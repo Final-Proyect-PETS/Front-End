@@ -256,7 +256,7 @@ export default function Blog() {
               </div>
 
               <ul className=" divide-y divide-gray-200 dark:divide-gray-700">
-                {blogger?.slice(0, 5).map((user) => (
+                {blogger?.reverse().slice(0, 5).map((user) => (
                   <li className="py-3 px-4 sm:py-4">
                     <div className="flex items-center space-x-4">
                       <div className="shrink-0">
