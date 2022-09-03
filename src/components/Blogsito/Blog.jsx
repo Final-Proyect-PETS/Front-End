@@ -75,20 +75,20 @@ export default function Blog() {
         {/* MAIN CARROUSEL------------------------------------------------------------------------------------------- */}
         <div className="h-3/4 w-full bg-yellow-900  flex justify-center ">
           <Carousel>
-            <a href="http://localhost:3000/home">
+            <a href="https://happytails.vercel.app/home">
               <img alt="blog" src={perronaranja} className="w-screen" />
             </a>
-            <a href="http://localhost:3000/donations">
+            <a href="https://happytails.vercel.app/donations">
               <img alt="blog" src={paradonar} className="w-screen" />
             </a>
 
-            <a href="http://localhost:3000/home">
+            <a href="https://happytails.vercel.app/home">
               <img alt="blog" src={carpi} className="w-screen  " />
             </a>
-            <a href="http://localhost:3000/home">
+            <a href="https://happytails.vercel.app/home">
               <img alt="blog" src={amarillobaño} className="w-screen" />
             </a>
-            <a href="http://localhost:3000/home">
+            <a href="https://happytails.vercel.app/home">
               <img alt="blog" src={cachita} className="w-screen  " />
             </a>
           </Carousel>
@@ -324,10 +324,9 @@ export default function Blog() {
                         </div>
 
                         <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                          {`$ ${
-                            don?.donations[don?.donations?.length - 1]
+                          {`$ ${don?.donations[don?.donations?.length - 1]
                               ?.donationAmount
-                          }`}
+                            }`}
                         </div>
                       </div>
                     </li>

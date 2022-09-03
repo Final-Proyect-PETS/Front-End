@@ -35,7 +35,7 @@ export default function AdoptForm() {
     adopter_email: loggedUser.email,
     adopter_telephone: loggedUser.telephone,
     message: "",
-    link: `http://localhost:3000/users/${loggedUser._id}`,
+    link: `https://happytails.vercel.app/users/${loggedUser._id}`,
   }); */
   /* useEffect(
 
@@ -45,41 +45,41 @@ export default function AdoptForm() {
     const petOwner = petDetail.user.email
  
       */
-     const [input, setInput] = useState({
-        owner_email: petOwner,
-        adopter_name: loggedUser.first_name + " " + loggedUser.last_name,   
-        adopter_username: loggedUser.username,
-        adopter_email: loggedUser.email,
-        adopter_telephone: loggedUser.telephone,
-        message: "",
-        link: `http://localhost:3000/users/${loggedUser._id}`,
-        pet_name: petDetail.name,
-        ownerId: petDetail.user._id,
-        userId: loggedUser._id,
-        petId: petDetail._id,
-        pet_interesed: petDetail.user.interestedUsers
-      }); 
-      /*
-      const [currentUser, setCurrentUser] = useState({
-        id: petDetail.user._id,
-        first_name: petDetail.user.first_name,
-        last_name: petDetail.user.last_name,
-        username: petDetail.user.username,
-        image: petDetail.user.image,
-        email: petDetail.user.email,
-        about: petDetail.user.about,
-        telephone: petDetail.user.telephone,
-        place: petDetail.user.place,
-        about: petDetail.user.about,
-        deleted: petDetail.user.deleted,
-        interestedUsers: petDetail.user.interestedUsers,
-      })
-       useEffect(
+  const [input, setInput] = useState({
+    owner_email: petOwner,
+    adopter_name: loggedUser.first_name + " " + loggedUser.last_name,
+    adopter_username: loggedUser.username,
+    adopter_email: loggedUser.email,
+    adopter_telephone: loggedUser.telephone,
+    message: "",
+    link: `https://happytails.vercel.app/users/${loggedUser._id}`,
+    pet_name: petDetail.name,
+    ownerId: petDetail.user._id,
+    userId: loggedUser._id,
+    petId: petDetail._id,
+    pet_interesed: petDetail.user.interestedUsers
+  });
+  /*
+  const [currentUser, setCurrentUser] = useState({
+    id: petDetail.user._id,
+    first_name: petDetail.user.first_name,
+    last_name: petDetail.user.last_name,
+    username: petDetail.user.username,
+    image: petDetail.user.image,
+    email: petDetail.user.email,
+    about: petDetail.user.about,
+    telephone: petDetail.user.telephone,
+    place: petDetail.user.place,
+    about: petDetail.user.about,
+    deleted: petDetail.user.deleted,
+    interestedUsers: petDetail.user.interestedUsers,
+  })
+   useEffect(
 
-        dispatch(getAllUsers()),
-        dispatch(getUserProfile()),
-        dispatch(getPetDetail())
-      ) */
+    dispatch(getAllUsers()),
+    dispatch(getUserProfile()),
+    dispatch(getPetDetail())
+  ) */
 
   /* function handleChange(e) {
     setInput({
@@ -99,37 +99,37 @@ export default function AdoptForm() {
   //     )
   // }
 
-       function handleChange(e) {
-        setInput({
-          ...input,
-          [e.target.name]: e.target.value,
-        });
-    }
+  function handleChange(e) {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  }
 
-  
-     /* function handlerSubmit(ev){
-        ev.preventDefault()
-        if (petDetail.user.interestedUsers !== loggedUser._id){
-            dispatch(
-                emailAdopt(),
-                patchInterestedUsers(obj)
-                )} 
-                alert("Ya se mando una solicitud de adopcion")
-        }  */  
 
-    // const sendPatch = {
-    //     id: petDetail.user._id,
-    //     interestedUsers: loggedUser,
-    // }
-    // function handlerSubmit(ev){
-    //     ev.preventDefault()
-    //     dispatch(
-    //         emailAdopt(input),
-    //         patchUsuer(sendPatch)
-    //     )  
-    // }
+  /* function handlerSubmit(ev){
+     ev.preventDefault()
+     if (petDetail.user.interestedUsers !== loggedUser._id){
+         dispatch(
+             emailAdopt(),
+             patchInterestedUsers(obj)
+             )} 
+             alert("Ya se mando una solicitud de adopcion")
+     }  */
 
-  
+  // const sendPatch = {
+  //     id: petDetail.user._id,
+  //     interestedUsers: loggedUser,
+  // }
+  // function handlerSubmit(ev){
+  //     ev.preventDefault()
+  //     dispatch(
+  //         emailAdopt(input),
+  //         patchUsuer(sendPatch)
+  //     )  
+  // }
+
+
   function handlerSubmit(ev) {
     ev.preventDefault();
     if (true) {
@@ -173,16 +173,16 @@ export default function AdoptForm() {
     }
 
   }
-   /*   function aaa (){
-      console.log(petDetail.user.interestedUsers.filter(
-        (e) => e[0]._id === loggedUser._id && e[1]._id === petDetail._id
-      ).length)
-   } */
+  /*   function aaa (){
+     console.log(petDetail.user.interestedUsers.filter(
+       (e) => e[0]._id === loggedUser._id && e[1]._id === petDetail._id
+     ).length)
+  } */
   return (
     <>
       <NavBar />
       <div className="flex flex-col w-full mt-15 m-auto py-8 bg-amber-600 shadow sm:px-6 md:px-8 lg:px-10">
-{/*       <button onClick={aaa}>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</button> */}
+        {/*       <button onClick={aaa}>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</button> */}
         <div className="flex items-center mt-8 px-18 max-w-lg self-center">
           <form
             className="flex flex-col justift-content"
