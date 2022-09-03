@@ -58,7 +58,7 @@ export default function LandingPage() {
   }
 
   const clientId =
-    "841685042609-24rmh0gcg16vvfl3j8cgrll1nr23pi04.apps.googleusercontent.com";
+    "1066896459343-34h3crloulb8su22sfl5l4ep4pqv2bud.apps.googleusercontent.com";
 
   useEffect(() => {
     gapi.load("client:auth2", () => {
