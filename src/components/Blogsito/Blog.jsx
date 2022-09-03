@@ -85,7 +85,7 @@ export default function Blog() {
       blogmessage: input,
     };
 
-    dispatch(patchUsuer(payload)).then(navigate("/blog", { replace: true }));
+    dispatch(patchUsuer(payload)).then(navigate("/blog#form", { replace: true }));
   }
 
   return (
@@ -201,6 +201,7 @@ export default function Blog() {
               <form
                 onSubmit={(e) => onSubmitHandler(e)}
                 className="flex flex-col gap-2"
+                id="form"
               >
                 <h5 className="text-2xl font-bold tracking-tight text-white dark:text-white">
                   Juntos podemos
