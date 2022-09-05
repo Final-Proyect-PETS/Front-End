@@ -33,7 +33,6 @@ export default function NavBar() {
   }
 
   function closeLikeHandler(e) {
-    e.preventDefault();
     let payload = {
       petId2: e.target.name,
       userId: e.target.value,
@@ -192,6 +191,9 @@ export default function NavBar() {
           </Link>
           <Link to={"/mydonations/" + id}>
             <Dropdown.Item>Mis donaciones</Dropdown.Item>
+          </Link>
+          <Link to="/chat">
+            <Dropdown.Item>Chat</Dropdown.Item>
           </Link>
           {loggedUser.isAdmin === true ? (
             <Link to="/admin">
