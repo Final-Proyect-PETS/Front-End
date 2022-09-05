@@ -15,7 +15,6 @@ export default function SearchBar() {
   }
 
   return (
-   
     <div className="flex justify-center">
       <label for="input-group-search" class="sr-only">
         Search

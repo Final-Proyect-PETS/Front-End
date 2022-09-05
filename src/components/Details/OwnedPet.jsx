@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { notificationSwal } from "../../utils/notificationSwal.jsx";
 import Swal from "sweetalert2";
 import "../LandingPage.css";
+import { Card, Dropdown } from "flowbite-react/lib/esm/components";
 import { Tooltip } from "flowbite-react/lib/esm/components";
 
 export default function OwnedPet({
@@ -115,89 +116,117 @@ export default function OwnedPet({
   //editar handler-------------------------------------------------------------
   function fillUpdateHandler(e) {
     e.preventDefault();
-    dispatch(getPetDetail(idPet)) .then(() => navigate(`/updatepet`, { replace: true }));
+    dispatch(getPetDetail(idPet)).then(() =>
+      navigate(`/updatepet`, { replace: true })
+    );
   }
 
   return (
     <div className="flex items-center py-4 px-5 ">
-      <div className=" flex border-2 border-yellow-700 rounded">
-        <div className=" border-yellow-900 border-r-2  flex justify-between  border items-center rounded bg-gray-300">
-          <div className=" column items-center mb-4 mr-4 ml-4 ">
-            {loggedUser._id === userDetail._id ? (
-              <div className="flex justify-center p-1">
-                <Tooltip content="Borrar mascota" placement="bottom">
-                  <button
-                    onClick={(e) => deleteHandler(e)}
-                    className="bg-red-600 m-1 hover:bg-red-700 text-white font-bold py- px-1 border border-yellow-700 rounded"
-                  >
-                    ✖️
-                  </button>
-                </Tooltip>
-                <Tooltip content="Editar mascota" placement="top">
-                  <button
-                    onClick={(e) => fillUpdateHandler(e)}
-                    className="bg-yellow-600 m-1 hover:bg-yellow-700 text-white font-bold py- px-1 border border-yellow-700 rounded"
-                  >
-                    📝
-                  </button>
-                </Tooltip>
-              </div>
-            ) : (
-              <></>
-            )}
+      <div className="max-w-sm ">
+        <Card   class="block opacity-90 max-w-sm bg-yellow-800 opacity-70 rounded-lg border border-yellow-900 shadow-md hover:opacity-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <div className="flex justify-end">
+           {loggedUser._id === userDetail._id ?  <Dropdown inline={true} label="">
+              <Dropdown.Item>
+                {loggedUser._id === userDetail._id ? (
+                  <div className="flex justify-center p-1">
+                    <Tooltip content="Editar mascota" placement="top">
+                      <button
+                        onClick={(e) => fillUpdateHandler(e)}
+                        className="block py-2 px-4 text-sm text-black-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Editar
+                      </button>
+                    </Tooltip>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </Dropdown.Item>
 
-            {/* <span className="text-2xl font-bold ">{namePet}</span> */}
-            <div className="flex justify-center">
-              <span className="text-2xl font-bold ">{namePet}</span>
-            </div>
-
-            {loggedUser._id === userDetail._id ? (
-              adopt.isAdopted === false && deleted.deleted === false ? (
-                <div className="flex flex-col justify-content items-center">
-                  <div className="flex  justify-content items-center"></div>
-                  <div className="flex">
+              <Dropdown.Item>
+                {loggedUser._id === userDetail._id ? (
+                  <div className="flex justify-center p-1">
+                    <Tooltip content="Borrar mascota" placement="bottom">
+                      <button
+                        onClick={(e) => deleteHandler(e)}
+                        className="block py-2 px-4 text-sm text-red-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Eliminar
+                      </button>
+                    </Tooltip>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </Dropdown.Item>
+            </Dropdown>:<></>}
+           
+          </div>
+          <div className="flex flex-col items-center">
+            <img
+              className="mb-3 h-24 w-24 rounded-full shadow-lg"
+              src={imagePet}
+              alt="Bonnie image"
+            />
+            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+              {namePet}
+            </h5>
+            {/* <span className="text-sm text-gray-500 dark:text-gray-400">
+              Visual Designer
+            </span> */}
+            <div className=" flex space-x-3">
+              {loggedUser._id === userDetail._id ? (
+                adopt.isAdopted === false && deleted.deleted === false ? (
+                  <div className="flex flex-col justify-content items-center">
+                    <div className="flex  justify-content items-center"></div>
+                    <div className="flex">
+                      <button
+                        onClick={(e) => patchAdoptionHandler(e)}
+                        className="bg-red-900 mt-4 hover:bg-red-600 text-white font-bold py-2 px-3 border border-yellow-700 rounded"
+                      >
+                        ⛔ PARAR ADOPCION
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex flex-col justify-content items-center">
                     <button
                       onClick={(e) => patchAdoptionHandler(e)}
-                      className="bg-red-900 mt-4 hover:bg-red-600 text-white font-bold py-2 px-3 border border-yellow-700 rounded"
+                      className="bg-yellow-900 mt-4 hover:bg-green-600 opacity-80 text-white font-bold py-2 px-3 border border-yellow-700 rounded"
                     >
-                      ⛔ PARAR ADOPCION
+                      ✔️ INICIAR ADOPCIÓN
                     </button>
                   </div>
+                )
+              ) : loggedUser._id !== userDetail._id &&
+                adopt.isAdopted === false &&
+                deleted.deleted === false ? (
+                <div className="flex flex-col items-center">
+                  <Link to={`/pet/${idPet}`}>
+                    {/* link de mierda -------------------------------------------------------------------------*/}
+                    <button className="bg-green-900 mr-4 mt-3 hover:bg-green-600 text-white font-bold  px-4 border border-yellow-700 rounded">
+                      <h2 className="font-semibold"> ¡Mascota en adopcion!</h2>
+                      <h2 className=""> VER PERFIL</h2>
+                    </button>
+                  </Link>
                 </div>
               ) : (
-                <div className="flex flex-col justify-content items-center">
-                  <button
-                    onClick={(e) => patchAdoptionHandler(e)}
-                    className="bg-green-900 mt-4 hover:bg-green-600 opacity-80 text-white font-bold py-2 px-3 border border-yellow-700 rounded"
-                  >
-                    ✔️ INICIAR ADOPCIÓN
-                  </button>
-                </div>
-              )
-            ) : loggedUser._id !== userDetail._id &&
-              adopt.isAdopted === false &&
-              deleted.deleted === false ? (
-              <div className="flex flex-col items-center">
                 <Link to={`/pet/${idPet}`}>
-                  {/* link de mierda -------------------------------------------------------------------------*/}
-                  <button className="bg-green-900 mr-4 mt-3 hover:bg-green-600 text-white font-bold  px-4 border border-yellow-700 rounded">
-                    <h2 className="font-semibold"> ¡Mascota en adopcion!</h2>
-                    <h2 className=""> VER PERFIL</h2>
+                  <button className="bg-yellow-900 mt-4 hover:bg-yellow-500 text-white font-bold py-2 px-4 border border-yellow-700 rounded">
+                    VER PERFIL
                   </button>
                 </Link>
-              </div>
-            ) : (
-              <Link to={`/pet/${idPet}`}>
-                <button className="bg-yellow-900 mt-4 hover:bg-yellow-500 text-white font-bold py-2 px-4 border border-yellow-700 rounded">
-                  VER PERFIL
-                </button>
-              </Link>
-            )}
+              )}
+              {/* <a
+                href="#"
+                className="inline-flex items-center rounded-lg border border-gray-300 bg-white py-2 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+              >
+                Message
+              </a> */}
+            </div>
           </div>
-        </div>
-        <Link to={"/pet/" + idPet}>
-          <img className="w-60 h-40 bg-cover " src={imagePet} alt="imagepet" />
-        </Link>
+        </Card>
       </div>
     </div>
   );

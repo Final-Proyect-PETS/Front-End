@@ -5,6 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Card from "./PetCard";
 import UserCard from "./UserCard";
 import Loader from "../Loaders/Loader";
+import "./Home.css";
 
 export default function Cards() {
 
@@ -33,6 +34,7 @@ export default function Cards() {
           <b>Yay! You have seen it all</b>
         </p>
       }
+      className="grid"
     >
       {getPets.length > 0 ? (
         switchRender === "mascota" ? (

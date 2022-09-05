@@ -96,7 +96,7 @@ function App() {
         </Route>
         <Route element={<PrivateAdmin />}>
           <Route path={"/admin"} element={<AdminView />} />
-        </Route>
+        </Route>  
       </Routes>
     </BrowserRouter>
   );
