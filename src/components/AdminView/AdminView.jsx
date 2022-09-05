@@ -125,7 +125,7 @@ export default function AdminView() {
                         <div className="h-1/2 flex justify-center items-center">
                           <h3 className="text-center">
                             Este usuario donó:{" "}
-                            {m.donations.length > 0 ? (
+                            {m.donations.length > 1 ? (
                               <p>{m.donations.length} veces</p>
                             ) : m.donations.length === 1 ? (
                               <p>1 vez</p>
@@ -139,8 +139,8 @@ export default function AdminView() {
                             Donado en total: $
                             {m.donations.length > 0
                               ? m.donations
-                                  .map((d) => d.donationAmount)
-                                  .reduce((prev, curr) => prev + curr)
+                                .map((d) => d.donationAmount)
+                                .reduce((prev, curr) => prev + curr)
                               : 0}
                           </h3>
                         </div>
