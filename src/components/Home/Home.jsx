@@ -6,7 +6,7 @@ import "./../LandingPage.css";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import NavBarHome from "../NavBar/NavBarHome";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -25,25 +25,20 @@ export default function Home() {
 
   function handley(e) {
     setTimeout(verifyData(), 5000);
-    ///FUNCION DE CHRIS
+    ///FUNCION DE CHRIS↑↑↑
   }
   return (
+    <section onClick={(e) => handley(e)}>
+      <NavBar />
+      <NavBarHome />
 
-    <section  onClick={(e) => handley(e)}>
-      <section className="fixed w-screen">
-        <NavBar />
-      </section>
-      <div className="flex flex-col">
+      <div className="flex  flex-col">
         <div className="flex flex-row">
-          <section className="flex w-1/3 fixed">
-            <SideBar />
-          </section>
-          <section className="flex w-full bg-white justify-center mt-9">
+          <div className="flex w-screen h-screen justify-center">
             <Cards />
-          </section>
+          </div>
         </div>
       </div>
     </section>
- 
   );
 }
