@@ -43,7 +43,7 @@ export default function PetCard({
       petId: idPet, //el likeado
       userId: loggedUser._id, //el que da like
       ownerId: idUser, //al que le llega el like
-      // likesPets: likesPets, //array DESCOMMENTE SI SE ROMPE NORIFICACION
+      // likesPets: likesPets, //array DESCOMMENTE SI SE ROMPE NOtIFICACION .jajajaj
     };
     if (buttonLike.a === false) {
       setButtonLike({ a: true, number: buttonLike.number + 1 });
