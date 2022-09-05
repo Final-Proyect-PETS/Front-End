@@ -420,6 +420,7 @@ export default function RegisterPet() {
             <label className="font-light text-white text-xl">Descripción</label>
             <textarea
               name="description"
+              maxLength="255"
               value={input.description}
               placeholder="Descripción"
               onChange={(e) => handleChange(e)}

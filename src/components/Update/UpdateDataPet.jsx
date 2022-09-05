@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { patchPet, postImage, getPetDetail } from "../../redux/Actions/index";
+import { patchPet, postImage } from "../../redux/Actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { notificationSwal } from "../../utils/notificationSwal.jsx";
 import { Link } from "react-router-dom";
@@ -351,6 +351,7 @@ export default function UpdatePet() {
             <textarea
               type="text"
               name="description"
+              maxLength="255"
               placeholder={input.description}
               onChange={(e) => handleChange(e)}
               className="w-full py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"

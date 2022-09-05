@@ -2,12 +2,11 @@ import React from "react";
 import NavBar from "../NavBar/NavBar";
 import "./Donations.css";
 import { useSelector } from "react-redux";
-import { getUserProfile, paymentMp } from "../../redux/Actions";
+import { paymentMp } from "../../redux/Actions";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { useState } from "react";
 import { notificationSwal } from "../../utils/notificationSwal";
-//import { useLocation } from "react-router-dom";
+
 
 export default function Donation() {
   const dispatch = useDispatch();

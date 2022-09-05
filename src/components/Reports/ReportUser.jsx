@@ -82,6 +82,7 @@ export default function ReportUser() {
           <textarea
             name="description"
             value={input}
+            maxLength="255"
             placeholder="Describa el motivo de su denuncia"
             onChange={(e) => handleChange(e)}
             className="w-full py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"
