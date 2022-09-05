@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import filtro from "../../assets/images/filtro.png";
 import {
   getUserProfile,
   viewing,
@@ -11,6 +12,7 @@ import { Navbar, Dropdown, Avatar, Toast, Tooltip } from "flowbite-react";
 import SideBar from "../SideBar/SideBar";
 import { useState } from "react";
 import SearchBar from "../SearchBars/SearchBar";
+import chatt from "../../assets/images/chatt.png";
 
 export default function NavBarHome() {
   const dispatch = useDispatch();
@@ -241,7 +243,7 @@ export default function NavBarHome() {
     <Navbar fluid={false} rounded={false} class="text-white  bg-yellow-500">
       {showSidebar ? (
         <button
-          className="flex text-4xl text-white items-center cursor-pointer fixed right-10 top-16  z-50"
+          className="flex text-4xl text-white items-center cursor-pointer fixed lg:right-10 right-4 top-16  z-50"
           onClick={() => setShowSidebar(!showSidebar)}
         >
           <Tooltip content="Cerrar Filtros" placement="bottom">
@@ -249,33 +251,41 @@ export default function NavBarHome() {
           </Tooltip>
         </button>
       ) : (
-       <button>
-        <svg
+        <>
+        <button
           onClick={() => setShowSidebar(!showSidebar)}
-          className="fixed  z-30 flex items-center rounded-lg bg-gray-100 hover:bg-yellow-500 cursor-pointer right-40 top-18 lg:right-1/2"
-          fill="Filtros"
-          viewBox="0 0 100 80"
+          className="fixed  z-30 flex items-center rounded-lg  cursor-pointer right-2 top-20 lg:right-56 hover:bg-yellow-500"
           width="40"
           height="40"
         >
-          <rect width="100" height="10"></rect>
-          <rect y="30" width="100" height="10"></rect>
-          <rect y="60" width="100" height="10"></rect>
-        </svg>
-        </button> 
+       
+          <img src={filtro} className=""/>
+         
+          
+        </button>
+        <Link to="/chat">
+          
+          <img
+            src={chatt}
+            className="fixed  flex items-center rounded-lg  cursor-pointer right-2 bottom-20 lg:right-56 hover:bg-yellow-500"
+          />
+       
+        </Link>
+
+        </>
       )}
 
       <div
-        className={`top-16 right-0 w-56 bg-yellow-600  text-white fixed h-full z-40  ease-in-out duration-300 ${
+        className={`top-16 right-0 w-56 lg:w-96 bg-yellow-500 z-40 text-white fixed h-screen   ease-in-out duration-300  flex flex-col pr-5 ${
           showSidebar ? "translate-x-0 " : "translate-x-full"
         }`}
       >
-        <div className=" flex justify-center flex-col mx-5 my-2">
+        <div className=" flex justify-center flex-col mx-5 mt-3 ">
           <SearchBar />
         </div>
 
         <Tooltip content="Estado de adopción" placement="bottom">
-          <div className="w-44 flex justify-center flex-col mx-5 ">
+          <div className="w-44 lg:w-56 flex justify-center flex-col mx-5 mb-3">
             <select
               className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
               onChange={(ev) => handlerFilterIsAdopted(ev)}
@@ -289,7 +299,7 @@ export default function NavBarHome() {
           </div>
         </Tooltip>
         <Tooltip content="¿Vacunado?" placement="bottom">
-          <div className="w-44 flex justify-center flex-col mx-5 my-2">
+          <div className="w-44 lg:w-56 flex justify-center flex-col mx-5 mb-3">
             <select
               className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
               onChange={(ev) => handlerFilterVacciantion(ev)}
@@ -306,7 +316,7 @@ export default function NavBarHome() {
         </Tooltip>
 
         <Tooltip content="¿Castrado?" placement="bottom">
-          <div className="w-44 flex justify-center flex-col mx-5 my-2">
+          <div className="w-44 lg:w-56 flex justify-center flex-col mx-5 mb-3">
             <select
               className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
               onChange={(ev) => handlerFilterCastraed(ev)}
@@ -322,7 +332,7 @@ export default function NavBarHome() {
         </Tooltip>
 
         <Tooltip content="Tipo de mascota" placement="bottom">
-          <div className="w-44 flex justify-center flex-col mx-5 my-2">
+          <div className="w-44 lg:w-56 flex justify-center flex-col mx-5 mb-3">
             <select
               className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
               onChange={(ev) => handlerFilterTypePet(ev)}
@@ -338,7 +348,7 @@ export default function NavBarHome() {
           </div>
         </Tooltip>
         <Tooltip content="Tamaño" placement="bottom">
-          <div className="w-44 flex justify-center flex-col mx-5 my-2">
+          <div className="w-44 lg:w-56 flex justify-center flex-col mx-5 mb-3">
             <select
               className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
               onChange={(ev) => handlerFilterBySize(ev)}
@@ -355,7 +365,7 @@ export default function NavBarHome() {
         </Tooltip>
 
         <Tooltip content="Edad" placement="bottom">
-          <div className="w-44 flex justify-center flex-col mx-5 my-2">
+          <div className="w-44 lg:w-56 flex justify-center flex-col mx-5 mb-3">
             <select
               className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
               onChange={(ev) => handlerFilterByAge(ev)}
@@ -370,7 +380,7 @@ export default function NavBarHome() {
           </div>
         </Tooltip>
         <Tooltip content="Genero" placement="bottom">
-          <div className="w-44 flex justify-center flex-col mx-5 my-2">
+          <div className="w-44 lg:w-56 flex justify-center flex-col mx-5 ">
             <select
               className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
               onChange={(ev) => handlerFilterByGender(ev)}
@@ -383,7 +393,7 @@ export default function NavBarHome() {
             </select>
           </div>
         </Tooltip>
-        <div className="w-44 flex justify-center flex-col mx-5 my-2">
+        <div className="w-44 lg:w-56 flex justify-center flex-col mx-5 ">
           <div className="flex justify-center gap-1">
             <button
               name="desc"

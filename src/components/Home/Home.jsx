@@ -32,20 +32,11 @@ export default function Home() {
     <section onClick={(e) => handley(e)}>
       <NavBar />
       <NavBarHome /> {/* NUEVA SIDEBAR TUGLE LU GULU */}
-
       <div className="flex  flex-col">
+        <div className="flex w-screen h-screen justify-center">
+          <Cards />
+        </div>
 
-          <div className="flex w-screen h-screen justify-center">
-            <Cards />
-          </div>
-        
-        
-        <Link to="/chat">
-          <img
-            src={chatt}
-            className=" fixed  z-30 flex items-center h-20 w-20 cursor-pointer bottom-14 right-64"
-          />
-        </Link>
       </div>
     </section>
   );

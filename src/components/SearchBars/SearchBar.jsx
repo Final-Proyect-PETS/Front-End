@@ -40,7 +40,7 @@ export default function SearchBar() {
         Search
       </label>
       <div class="relative">
-        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pt-2 pointer-events-none">
           <svg
             class="w-5 h-5 text-gray-500 dark:text-gray-400"
             aria-hidden="true"
@@ -59,7 +59,7 @@ export default function SearchBar() {
           onChange={(e) => handleInputChange(e)}
           type="text"
           id="input-group-search"
-          class="block p-2 pl-10 w-4/6 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+          class="block p-2 mt-2 pl-10 w-40 lg:w-3/4 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
           placeholder="Buscar..."
         />
       </div>
@@ -75,28 +75,30 @@ export default function SearchBar() {
           className="sr-only peer"
           onChange={(e) => handleToogle(e)}
         />
-        <div className="w-9 h-5 mb-1 bg-gray-200 peer-focus:outline-none  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-900"></div>
+        <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-900"></div>
         {/* TERNARIOS switch FALOPA,SI SACO EL DE ARRIBA NO ME RENDERIZA EL DE ABAJO-.-.--.-.-.-.-.-.-.-.- */}
+      </label>
+      <div className="mb-5">
         {input.length > 0 ? (
-          input === "mascota" ? (
-            <Tooltip content="Pulsa para mostrar usuarios" placement="top">
-              <span className="ml-6 text-sm font-medium text-white-900 dark:text-gray-300">
+          input === "mascota" ? ( 
+            <Tooltip content="Pulsa el switch para mostrar usuarios" placement="top">
+              <span className="text-lg font-bold text-white-900 dark:text-gray-300">
                 Mostrando Mascotas
               </span>
             </Tooltip>
           ) : (
-            <Tooltip content="Pulsa para mostrar mascotas" placement="top">
-              <span className="m-2 text-2x1 font-medium text-white-900 dark:text-gray-300">
+            <Tooltip content="Pulsa el switch para mostrar mascotas" placement="top">
+             <span className="  text-lg font-bold text-white-900 dark:text-gray-300">
                 Mostrando Usuarios
               </span>
             </Tooltip>
           )
         ) : (
-          <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+          <span className="  text-lg font-bold   text-white-900 dark:text-gray-300">
             Mascotas/Usuarios
           </span>
         )}
-      </label>
+        </div>
     </div>
   );
 }
