@@ -119,12 +119,7 @@ export default function RegisterPet() {
 
     if (!input.image) errors.image = "La imagen es requerida!";
 
-    if (!input.imagePool.length)
-      errors.imagePool = "Por lo menos una imagen extra requerida!";
-
     if (!input.type) errors.type = "El tipo de mascota es requerido!";
-
-    if (!input.description) errors.description = "La descripción es requerida!";
 
     if (!input.size) errors.size = "El tamaño es requerido!";
 
@@ -139,9 +134,6 @@ export default function RegisterPet() {
 
     if (!input.vaccination)
       errors.vaccination = "La información sobre vacunas es requerida!";
-
-    if (!input.castrated)
-      errors.castrated = "La información sobre castración es requerida!";
 
     if (!input.gender)
       errors.gender = "La información sobre castración es requerida!";
@@ -162,13 +154,10 @@ export default function RegisterPet() {
       errors.id ||
       errors.name ||
       errors.image ||
-      errors.imagePool ||
       errors.type ||
-      errors.description ||
       errors.size ||
       errors.age ||
       errors.vaccination ||
-      errors.castrated ||
       errors.gender ||
       errors.place
     ) {
@@ -177,13 +166,10 @@ export default function RegisterPet() {
       input.id &&
       input.name &&
       input.image &&
-      input.imagePool &&
       input.type &&
-      input.description &&
       input.size &&
       input.age &&
       input.vaccination &&
-      input.castrated &&
       input.gender &&
       input.place
     ) {
@@ -401,11 +387,6 @@ export default function RegisterPet() {
                 ))
               )}
             </div>
-            {errors.imagePool && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.imagePool}
-              </p>
-            )}
           </div>
           <div>
             <label className="font-light text-white text-xl">
@@ -439,16 +420,12 @@ export default function RegisterPet() {
             <label className="font-light text-white text-xl">Descripción</label>
             <textarea
               name="description"
+              maxLength="255"
               value={input.description}
               placeholder="Descripción"
               onChange={(e) => handleChange(e)}
               className="w-full py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"
             />
-            {errors.description && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.description}
-              </p>
-            )}
           </div>
           <div>
             <label className="font-light text-white text-xl">Tamaño</label>
@@ -544,11 +521,6 @@ export default function RegisterPet() {
                 <label className="font-light text-white text-xl">No</label>
               </span>
             </fieldset>
-            {errors.castrated && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.castrated}
-              </p>
-            )}
           </div>
           <div>
             <fieldset onChange={(e) => handleChange(e)}>

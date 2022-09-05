@@ -15,8 +15,6 @@ import { useState } from "react";
 import { io } from "socket.io-client";
 import axios from "axios";
 import Cabecera from "./Cabecera";
-import search from "./../../assets/search.svg";
-import profile from "./../../assets/images/2039031.png"
 
 
 export default function Chat() {
@@ -24,7 +22,6 @@ export default function Chat() {
   const dispatch = useDispatch();
 
   const conversations = useSelector((state) => state.conversations);
-
 
   const [messages, setMessages] = useState([]);
 
@@ -64,7 +61,7 @@ export default function Chat() {
   useEffect(() => {
     dispatch(getUserProfile(id));
     dispatch(getConversations(id));
-  }, [id]);
+  }, [dispatch, id]);
 
   useEffect(() => {
     const getMessages = async () => {
@@ -103,53 +100,53 @@ export default function Chat() {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+
+
+
   return (
-    <>
+    <div className="max-h-screen">
       <NavBar />
       <div className="flex">
-        <div className="w-14 h-screen flex flex-col items-center border-l-2 border-black">
+        <div className="w-32 lg:flex lg:justify-items-center flex-col items-center hidden">
         </div>
 
-        {/* div para iconos aqui  */}
-        <div className="w-72 h-screen bg-yellow-500 mb-3 shadow-sm shadow-slate-500">
+        <div className="w-72 mt-6 bg-yellow-500 mb-3 shadow-md shadow-slate-500 rounded-tl-md rounded-bl-md">
           <div className="text-xl text-white font-normal p-4">
             Chat
           </div>
-          <div className="p-3 flex">
-            <input className="p-2 w-10/12 rounded-tl-md border-transparent rounded-bl-md bg-gray-100 ring-2 ring-yellow-800 focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent shadow-md" type="text" placeholder="Buscar usuario..." />
-            <div className="w-2/12 justify-center items-center bg-gray-100 ring-2 ring-yellow-800 rounded-tr-md rounded-br-md">
-              <img src={search} alt="icon" className="w-5 self-center" />
-            </div>
-          </div>
+         
+          {/* <SearchUsers /> */}
 
-          <div>
-            {conversations.map((u) => (
-              <div
-                className="flex-col m-3 items-center gap-3 bg-white shadow-sm rounded-md shadow-slate-600">
-                <span onClick={() => setCurrentChat(u)}>
-                  <Conversations conversation={u} currentUser={id} />
-                </span>
-              </div>
-            ))}
-          </div>
-
+          {conversations.length >= 5 ?
+            <div className="max-h-96 overflow-y-scroll">
+              {conversations.map((u) => (
+                <div
+                  className="flex-col m-3 items-center gap-3 bg-white shadow-sm rounded-md shadow-slate-600">
+                  <span onClick={() => setCurrentChat(u)}>
+                    <Conversations conversation={u} currentUser={id} />
+                  </span>
+                </div>
+              ))}
+            </div> :
+            <div className="max-h-96">
+              {conversations.map((u) => (
+                <div
+                  className="flex-col m-3 items-center gap-3 bg-white shadow-sm rounded-md shadow-slate-600">
+                  <span onClick={() => setCurrentChat(u)}>
+                    <Conversations conversation={u} currentUser={id} />
+                  </span>
+                </div>
+              ))}
+            </div>}
         </div>
-        <div className="flex flex-col flex-grow h-screen bg-white mb-3">
+
+        <div className="flex mt-6 flex-col flex-grow bg-white mb-3">
 
           {/* cabecera */}
-          <div className="w-full h-20 bg-white shadow-sm shadow-slate-500">
-            <div className="flex items-center">
-              <div className="p-3">
-                <img src={profile} alt="imagen perfil" className="h-5 w-5 rounded-full" />
-                <div className="flex justify-center items-center w-3 h-3 relative left-6 bottom-3 pl-10">Nombre usuario</div>
-              </div>
-
-            </div>
-          </div>
-
           {currentChat ? (
             <>
-              <div className="w-full flex-grow bg-white shadow-sm shadow-slate-500 overflow-y-scroll ">
+              <Cabecera el={currentChat.members.filter((d) => d !== id)} />
+              <div className="w-full flex-grow bg-white shadow-sm shadow-slate-500 overflow-y-scroll">
                 <div className="pr-1 h-96">
                   {messages.map((m) => (
                     <div ref={scrollRef}>
@@ -160,7 +157,7 @@ export default function Chat() {
               </div>
 
               {/* text area */}
-              <div className="flex w-full h-14 px-4 bg-white shadow-sm shadow-slate-500">
+              <div className="flex w-full h-14 bg-white shadow-md shadow-slate-500 rounded-tr-md rounded-br-md">
                 <input type="text" placeholder="Escribe un mensaje..." onKeyPress={e => e.key === 'Enter' && handleSubmit(e)} onChange={(e) => setNewMessage(e.target.value)} value={newMessage} className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-100 rounded-tl-md rounded-bl-md py-3 ring-1 ring-yellow-800 focus:ring-1 focus:ring-yellow-800 focus:border-transparent shadow-md" />
 
                 <button type="button" className="inline-flex rounded-tr-md rounded-br-md items-center justify-center ring-1 ring-yellow-800 focus:outline-none focus:ring-1 focus:ring-yellow-800 focus:border-transparent shadow-md px-4 py-3 transition duration-500 ease-in-out text-white bg-green-500 hover:bg-green-400" onClick={handleSubmit}>
@@ -175,9 +172,9 @@ export default function Chat() {
             (<span className="flex p-6 justify-center items-center text-3xl text-gray-800 font-semibold">Seleccione un chat</span>)}
         </div>
 
-        <div className="w-14 h-screen flex flex-col items-center">
+        <div className="w-32 hidden lg:flex flex-col items-center">
         </div>
       </div>
-    </>
+    </div>
   );
 }

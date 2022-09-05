@@ -75,7 +75,7 @@ export default function AdminView() {
                     <div className="w-1/4">
                       <img
                         src={m.image}
-                        alt=""
+                        alt="imagen de usuario"
                         className="rounded-full w-36 h-36"
                       />
                     </div>
@@ -93,16 +93,12 @@ export default function AdminView() {
                     <div className=" h-1/4 flex items-center justify-center flex-col">
                       <div className="bg-white flex justify-center">
                         <h1>
-                          Cuenta creada el:
-                          {m.createdAt.slice(0, 10)} a las
-                          {m.createdAt.slice(11, 19)}
+                          Cuenta creada el: {m.createdAt.slice(0, 10)} a las {m.createdAt.slice(11, 19)}
                         </h1>
                       </div>
                       <div className="flex justify-center">
                         <h1>
-                          Cuenta editada por ultima vez el:
-                          {m.updatedAt.slice(0, 10)} a las
-                          {m.updatedAt.slice(11, 19)}
+                          Cuenta editada por ultima vez: {m.updatedAt.slice(0, 10)} a las {m.updatedAt.slice(11, 19)}
                         </h1>
                       </div>
                     </div>
@@ -110,22 +106,20 @@ export default function AdminView() {
                       <div className="w-1/2 h-full">
                         <div className="h-1/2 flex justify-center items-center">
                           <h3>
-                            Mascotas adoptadas:{" "}
-                            {m.pets.filter((m) => m.isAdopted === true).length}
+                            Mascotas adoptadas: {m.pets.filter((m) => m.isAdopted === true).length}
                           </h3>
                         </div>
                         <div className="h-1/2 flex justify-center items-center">
                           <h3>
-                            Mascotas en adopción:{" "}
-                            {m.pets.filter((m) => m.isAdopted === false).length}
+                            Mascotas en adopción: {m.pets.filter((m) => m.isAdopted === false).length}
                           </h3>
                         </div>
                       </div>
                       <div className="w-1/2 h-full">
                         <div className="h-1/2 flex justify-center items-center">
                           <h3 className="text-center">
-                            Este usuario donó:{" "}
-                            {m.donations.length > 0 ? (
+                            Este usuario donó:
+                             {m.donations.length > 1 ? (
                               <p>{m.donations.length} veces</p>
                             ) : m.donations.length === 1 ? (
                               <p>1 vez</p>
@@ -139,8 +133,8 @@ export default function AdminView() {
                             Donado en total: $
                             {m.donations.length > 0
                               ? m.donations
-                                  .map((d) => d.donationAmount)
-                                  .reduce((prev, curr) => prev + curr)
+                                .map((d) => d.donationAmount)
+                                .reduce((prev, curr) => prev + curr)
                               : 0}
                           </h3>
                         </div>

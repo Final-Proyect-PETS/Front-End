@@ -32,6 +32,7 @@ export default function SearchBar() {
     getPetNow(namePet);
     getUserNow(nameUser);
   }
+  
   return (
     <div className="flex m-1.5 px-10">
       <form>
