@@ -80,6 +80,8 @@ export default function Register() {
   function validate(input) {
     let errors = {};
 
+    let regex = new RegExp("^[0-9]+$")
+
     if (input.first_name) {
       if (
         !/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1\s]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/g.test(
@@ -131,6 +133,15 @@ export default function Register() {
           "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, una minúscula y una mayúscula (No puede tener otros simbolos)";
       } else errors.password = "";
     } else errors.password = "La contraseña es necesaria!";
+
+    if (input.telephone) {
+      if (!regex.test(input.telephone)) {
+        errors.telephone = "Solo numeros!"
+      }
+      else if (input.telephone?.length > 15) {
+        errors.telephone = "No puede tener mas de 15 caracteres!"
+      }
+    } else errors.telephone = ""
 
     if (input.passwordRepeat) {
       if (
@@ -419,6 +430,11 @@ export default function Register() {
               placeholder="Telefono"
               className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
             ></input>
+            {errors.telephone && (
+              <p className="font-bold text-red-700 text-center p-2">
+                {errors.telephone}
+              </p>
+            )}
           </div>
           <div>
             <button
