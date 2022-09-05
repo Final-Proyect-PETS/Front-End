@@ -64,21 +64,19 @@ export default function PetCard({
 
   //likes--hasta aca , casi te vas
   return (
-    <>
+    <Link to={`/pet/${idPet}`}>
       <div class="flex justify-between w-full h-56 mt-14 opacity-100  bg-gray-100 rounded-lg border shadow-md hover:bg-yellow-500  hover:opacity-100">
         <img
-          class="object-cover w-1/2 h-56 rounded-t-lg lg:h-auto lg:rounded-none lg:rounded-l-lg"
+          className="object-cover w-1/2 h-56 rounded-t-lg lg:h-auto lg:rounded-none lg:rounded-l-lg"
           src={imagePet}
           alt=""
         />
 
         <div className="flex flex-col justify-between">
           <div className="flex justify-between ml-2 ">
-            <Link to={`/pet/${idPet}`}>
-              <h5 class=" font-bold tracking-tight text-gray-900 dark:text-white">
-                {namePet}
-              </h5>
-            </Link>
+            <h5 class=" font-bold tracking-tight text-gray-900 dark:text-white">
+              {namePet}
+            </h5>
           </div>
           <span className="font-normal ml-2 text-sm text-gray-700 dark:text-gray-400">
             Tamaño:
@@ -92,7 +90,7 @@ export default function PetCard({
           <span className="font-normal ml-2  text-sm text-gray-700 dark:text-gray-400">
             {gender === "female" ? "Hembra" : "Macho"}
           </span>
-          <div className="rounded-full h-24 w-24 m-5 flex items-center justify-center overflow-hidden ">
+          <div className="h-24 w-24 m-5 flex items-center justify-center overflow-hidden ">
             <Tooltip
               trigger="hover"
               animation="duration-1000"
@@ -109,8 +107,18 @@ export default function PetCard({
               }
               placement="bottom"
             >
-              <button onClick={(e) => likeHandler(e)}>
-                <img src={likeim} alt="<3" />
+              <button
+                className=" flex items-center justify-center w-14 h-14"
+                onClick={(e) => likeHandler(e)}
+              >
+                <img
+                  src={likeim}
+                  alt="<3"
+                  className="absolute h-24  rounded-full shadow-lg"
+                />
+                <h1 className="relative flex justify-center items-center text-2xl  text-black font-bold  mt-5 ">
+                  {buttonLike.number}
+                </h1>
               </button>
             </Tooltip>
           </div>
@@ -124,7 +132,7 @@ export default function PetCard({
             label={
               <svg
                 // onClick={() => setShowSidebar(!showSidebar)}
-                className=" z-50 flex items-center cursor-pointer "
+                className="  flex items-center cursor-pointer "
                 fill=""
                 viewBox="0 0 100 80"
                 width="20"
@@ -167,107 +175,8 @@ export default function PetCard({
               </div>
             </Dropdown.Item>
           </Dropdown>
-
-          <div className="flex">
-            <h1 className="text-black font-bold text-2x1">
-              {buttonLike.number}
-            </h1>
-          </div>
         </div>
       </div>
-    </>
+    </Link>
   );
-}
-
-{
-  /* 
-  <>
-  <div class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 m-2 ">
-  <div className="w-96 h-56 flex ">
-  <img
-  class="object-cover rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-  src={image}
-  alt=""
-  />
-
-          <div class="flex flex-col justify-start  m-2   w-11/12 rounded leading-normal">
-            <div className="flex justify-end">
-              <Dropdown inline={true} label="">
-                <Dropdown.Item>
-                  <div className="flex justify-center ">
-                    <Tooltip content="Compartir en Facebook" placement="top">
-                      <div className="rounded-full  flex items-center justify-center overflow-hidden ">
-                        <FacebookShareButton
-                          url={`https://www.happytails.com/pet/${idPet}`}
-                          quote={"Adoptame"}
-                          hashtag={"#happytails"}
-                        >
-                          <FacebookIcon size={40} />
-                        </FacebookShareButton>
-                      </div>
-                    </Tooltip>
-                  </div>
-                </Dropdown.Item>
-
-                <Dropdown.Item>
-                  <div className="flex justify-center">
-                    <Tooltip content="Compartir por e-mail" placement="top">
-                      <div className="rounded-full  flex items-center justify-center overflow-hidden">
-                        <EmailShareButton
-                          subject="Quiero que me adoptes"
-                          body={`Adoptame en https://www.happytails.com/pet/${idPet}`}
-                        >
-                          <EmailIcon size={40} />
-                        </EmailShareButton>
-                      </div>
-                    </Tooltip>
-                  </div>
-                </Dropdown.Item>
-              </Dropdown>
-            </div>
-            <h5 class=" text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {username}
-            </h5>
-             <h5 class=" text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {first_name} {last_name}
-            </h5>
-
-          
-   <div className="text-sm flex">
-              <img src={ubicacion} alt="ubicacion" width="16px" />
-              <span className="font-medium text-xs mx-3">
-                {place?.length <= 25 ? place : `${place?.slice(0, 25)}...`}
-              </span>
-            </div>
-
-           
-{pettit?.length ? (
-            <div className="flex">
-              <h3 className="text-2xl font-normal text-white">Mis mascotas</h3>
-            </div>
-          ) : (
-            <div className="flex">
-              <span className="text-2xl font-bold">En búsqueda</span>
-            </div>
-          )}
-          <div className="text-sm flex">
-            <div className="grid grid-cols-2 place-content-center">
-              {pettit?.length
-                ? pettit?.map((pet) => (
-                    <div key={pet._id} className="m-1">
-                      <Link key={pet._id} to={`/pet/${pet._id}`}>
-                        <img
-                          key={pet._id}
-                          className="w-96 h-24 bg-cover border-solid border-2 border-[#B99782] rounded-full "
-                          src={pet.image}
-                          alt="ProfilePicture"
-                        />
-                      </Link>
-                    </div>
-                  ))
-                : ""}
-                  
-      </div></div></div>
-    </>
- */
 }
