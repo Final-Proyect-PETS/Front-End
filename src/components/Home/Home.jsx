@@ -4,10 +4,10 @@ import Cards from "./Cards";
 import SideBar from "../SideBar/SideBar";
 import "./../LandingPage.css";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import NavBarHome from "../NavBar/NavBarHome";
-import chatt from "../../assets/images/chatt.png"
+import chatt from "../../assets/images/chatt.png";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -31,16 +31,22 @@ export default function Home() {
   return (
     <section onClick={(e) => handley(e)}>
       <NavBar />
-      <NavBarHome />
+      <NavBarHome /> {/* NUEVA SIDEBAR TUGLE LU GULU */}
 
       <div className="flex  flex-col">
-        <div className="flex flex-row">
+
           <div className="flex w-screen h-screen justify-center">
             <Cards />
           </div>
-        </div>
+        
+        
+        <Link to="/chat">
+          <img
+            src={chatt}
+            className=" fixed  z-30 flex items-center h-20 w-20 cursor-pointer bottom-14 right-64"
+          />
+        </Link>
       </div>
-      <img src={chatt} className="fixed "  />
     </section>
   );
 }

@@ -249,20 +249,20 @@ export default function NavBarHome() {
           </Tooltip>
         </button>
       ) : (
-        <Tooltip content="Abrir Filtros" placement="">
-          <svg
-            onClick={() => setShowSidebar(!showSidebar)}
-            className="fixed  z-30 flex items-center cursor-pointer right-10"
-            fill=""
-            viewBox="0 0 100 80"
-            width="40"
-            height="40"
-          >
-            <rect width="100" height="10"></rect>
-            <rect y="30" width="100" height="10"></rect>
-            <rect y="60" width="100" height="10"></rect>
-          </svg>
-        </Tooltip>
+       <button>
+        <svg
+          onClick={() => setShowSidebar(!showSidebar)}
+          className="fixed  z-30 flex items-center rounded-lg bg-gray-100 hover:bg-yellow-500 cursor-pointer right-40 top-18 lg:right-1/2"
+          fill="Filtros"
+          viewBox="0 0 100 80"
+          width="40"
+          height="40"
+        >
+          <rect width="100" height="10"></rect>
+          <rect y="30" width="100" height="10"></rect>
+          <rect y="60" width="100" height="10"></rect>
+        </svg>
+        </button> 
       )}
 
       <div
@@ -273,99 +273,116 @@ export default function NavBarHome() {
         <div className=" flex justify-center flex-col mx-5 my-2">
           <SearchBar />
         </div>
-        <div className="w-44 flex justify-center flex-col mx-5 ">
-          <select
-            className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
-            onChange={(ev) => handlerFilterIsAdopted(ev)}
-          >
-            <option hidden selected={resetFilters}>
-              Estado de adopción
-            </option>
-            <option value="yes">Adoptados</option>
-            <option value="no">Aún sin hogar</option>
-          </select>
-        </div>
-        <div className="w-44 flex justify-center flex-col mx-5 my-2">
-          <select
-            className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
-            onChange={(ev) => handlerFilterVacciantion(ev)}
-          >
-            <option hidden selected={resetFilters}>
-              Vacunado
-            </option>
-            <option value="yes">Si</option>
-            <option value="no">No</option>
-            <option value="unknown">No se</option>
-          </select>
-          <p />
-        </div>
-        <div className="w-44 flex justify-center flex-col mx-5 my-2">
-          <select
-            className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
-            onChange={(ev) => handlerFilterCastraed(ev)}
-          >
-            <option hidden selected={resetFilters}>
-              Castrado
-            </option>
-            <option value="true">Si</option>
-            <option value="false">No</option>
-          </select>
-          <p />
-        </div>
-        <div className="w-44 flex justify-center flex-col mx-5 my-2">
-          <select
-            className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
-            onChange={(ev) => handlerFilterTypePet(ev)}
-          >
-            <option hidden selected={resetFilters}>
-              Búsqueda por tipo
-            </option>
-            <option value="dog">Perros</option>
-            <option value="cat">Gatos</option>
-            <option value="other">Otros</option>
-          </select>
-          <p />
-        </div>
-        <div className="w-44 flex justify-center flex-col mx-5 my-2">
-          <select
-            className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
-            onChange={(ev) => handlerFilterBySize(ev)}
-          >
-            <option hidden selected={resetFilters}>
-              Búsqueda por tamaño
-            </option>
-            <option value="big">Grande</option>
-            <option value="medium">Mediano</option>
-            <option value="small">Pequeño</option>
-          </select>
-          <p />
-        </div>
-        <div className="w-44 flex justify-center flex-col mx-5 my-2">
-          <select
-            className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
-            onChange={(ev) => handlerFilterByAge(ev)}
-          >
-            <option hidden selected={resetFilters}>
-              Búsqueda por edad
-            </option>
-            <option value="old">Anciano</option>
-            <option value="adult">Adulto</option>
-            <option value="young">Joven</option>
-          </select>
-        </div>
-        <div className="w-44 flex justify-center flex-col mx-5 my-2">
-          <select
-            className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
-            onChange={(ev) => handlerFilterByGender(ev)}
-          >
-            <option hidden selected={resetFilters}>
-              Búsqueda por género
-            </option>
-            <option value="male">Macho</option>
-            <option value="female">Hembra</option>
-          </select>
-        </div>
 
+        <Tooltip content="Estado de adopción" placement="bottom">
+          <div className="w-44 flex justify-center flex-col mx-5 ">
+            <select
+              className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
+              onChange={(ev) => handlerFilterIsAdopted(ev)}
+            >
+              <option hidden selected={resetFilters}>
+                Estado de adopción
+              </option>
+              <option value="yes">Adoptados</option>
+              <option value="no">Aún sin hogar</option>
+            </select>
+          </div>
+        </Tooltip>
+        <Tooltip content="¿Vacunado?" placement="bottom">
+          <div className="w-44 flex justify-center flex-col mx-5 my-2">
+            <select
+              className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
+              onChange={(ev) => handlerFilterVacciantion(ev)}
+            >
+              <option hidden selected={resetFilters}>
+                Vacunado
+              </option>
+              <option value="yes">Si</option>
+              <option value="no">No</option>
+              <option value="unknown">No se</option>
+            </select>
+            <p />
+          </div>
+        </Tooltip>
+
+        <Tooltip content="¿Castrado?" placement="bottom">
+          <div className="w-44 flex justify-center flex-col mx-5 my-2">
+            <select
+              className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
+              onChange={(ev) => handlerFilterCastraed(ev)}
+            >
+              <option hidden selected={resetFilters}>
+                Castrado
+              </option>
+              <option value="true">Si</option>
+              <option value="false">No</option>
+            </select>
+            <p />
+          </div>
+        </Tooltip>
+
+        <Tooltip content="Tipo de mascota" placement="bottom">
+          <div className="w-44 flex justify-center flex-col mx-5 my-2">
+            <select
+              className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
+              onChange={(ev) => handlerFilterTypePet(ev)}
+            >
+              <option hidden selected={resetFilters}>
+                Tipo de mascota
+              </option>
+              <option value="dog">Perros</option>
+              <option value="cat">Gatos</option>
+              <option value="other">Otros</option>
+            </select>
+            <p />
+          </div>
+        </Tooltip>
+        <Tooltip content="Tamaño" placement="bottom">
+          <div className="w-44 flex justify-center flex-col mx-5 my-2">
+            <select
+              className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
+              onChange={(ev) => handlerFilterBySize(ev)}
+            >
+              <option hidden selected={resetFilters}>
+                Tamaño
+              </option>
+              <option value="big">Grande</option>
+              <option value="medium">Mediano</option>
+              <option value="small">Pequeño</option>
+            </select>
+            <p />
+          </div>
+        </Tooltip>
+
+        <Tooltip content="Edad" placement="bottom">
+          <div className="w-44 flex justify-center flex-col mx-5 my-2">
+            <select
+              className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
+              onChange={(ev) => handlerFilterByAge(ev)}
+            >
+              <option hidden selected={resetFilters}>
+                Edad
+              </option>
+              <option value="old">Anciano</option>
+              <option value="adult">Adulto</option>
+              <option value="young">Joven</option>
+            </select>
+          </div>
+        </Tooltip>
+        <Tooltip content="Genero" placement="bottom">
+          <div className="w-44 flex justify-center flex-col mx-5 my-2">
+            <select
+              className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
+              onChange={(ev) => handlerFilterByGender(ev)}
+            >
+              <option hidden selected={resetFilters}>
+                Género
+              </option>
+              <option value="male">Macho</option>
+              <option value="female">Hembra</option>
+            </select>
+          </div>
+        </Tooltip>
         <div className="w-44 flex justify-center flex-col mx-5 my-2">
           <div className="flex justify-center gap-1">
             <button

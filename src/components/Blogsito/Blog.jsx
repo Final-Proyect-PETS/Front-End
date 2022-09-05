@@ -2,7 +2,13 @@ import React from "react";
 import NavBar from "../NavBar/NavBar";
 import "./Blog.css";
 import { useSelector } from "react-redux";
-
+import { Footer } from "flowbite-react";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  EmailShareButton,
+  EmailIcon,
+} from "react-share";
 import {
   getAllUsers,
   getAllPets,
@@ -638,6 +644,42 @@ export default function Blog() {
             </div>
           </div>
         </div>
+        <Footer container={true}>
+          <Footer.Copyright
+            href="#"
+            by="Blancaflor y los 7 hooksitos™"
+            year={2022}
+          />
+          <h1>lal</h1>
+          <Footer.LinkGroup>
+            <div className="rounded-full">
+              <FacebookShareButton
+                url={`https://happytails.vercel.app`}
+                quote={"Adoptame"}
+                hashtag={"#happytails"}
+              >
+                <FacebookIcon size={40} className="rounded-full" />
+              </FacebookShareButton>
+            </div>
+            <div>
+              <EmailShareButton
+                subject="Quiero que me adoptes"
+                body={`Seguinos en https://happytails.vercel.app`}
+              >
+                <EmailIcon size={40} className="rounded-full" />
+              </EmailShareButton>
+            </div>
+          </Footer.LinkGroup>
+          <div>
+            <Footer.Title title="legal" />
+            <Footer.LinkGroup>
+              <Footer.Link href="#">About</Footer.Link>
+              <Footer.Link href="#">Privacy Policy</Footer.Link>
+              <Footer.Link href="#">Licensing</Footer.Link>
+              <Footer.Link href="#">Contact</Footer.Link>
+            </Footer.LinkGroup>
+          </div>
+        </Footer>
         {/* hr--------------------------------------------------------------------------------------------------------------- */}
       </div>
     </>
