@@ -103,13 +103,13 @@ export default function Blog() {
               <img alt="blog" src={paradonar} className="w-screen" />
             </a>
 
-            <a href="https://happytails.vercel.app/home">
+            <a href="https://happytails.vercel.app/blog/3">
               <img alt="blog" src={carpi} className="w-screen  " />
             </a>
-            <a href="https://happytails.vercel.app/home">
+            <a href="https://happytails.vercel.app/blog/2">
               <img alt="blog" src={amarillobaño} className="w-screen" />
             </a>
-            <a href="https://happytails.vercel.app/home">
+            <a href="https://happytails.vercel.app/blog/1">
               <img alt="blog" src={cachita} className="w-screen  " />
             </a>
           </Carousel>
