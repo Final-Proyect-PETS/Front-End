@@ -54,7 +54,7 @@ export function getPetDetail(id) {
 export function getUserByName(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
+      let json = await axios.get(
         "https://happytails2.herokuapp.com/home/users?name=" + name
       );
       return dispatch({
@@ -69,7 +69,7 @@ export function getUserByName(name) {
 export function getPetByName(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
+      let json = await axios.get(
         "https://happytails2.herokuapp.com/home/pets?name=" + name
       );
       return dispatch({
