@@ -81,40 +81,48 @@ export default function UserDetail() {
       >
         <div className="pl-2 p-3 bg-yellow-600 rounded-md">
           <Modal.Header>
-            <p className="text-white">{userDetail.first_name} {userDetail.last_name}</p>
+            <p className="text-white">
+              {userDetail.first_name} {userDetail.last_name}
+            </p>
           </Modal.Header>
         </div>
         <Modal.Body class="p-6">
           <div className="space-y-6">
-            <div >
-              <div >
+            <div>
+              <div>
                 <div className="h-80">
                   <div className="h-1/4 flex items-center justify-center flex-col">
                     <div className="bg-white flex justify-center">
-                      <h1 className="text-xl font-semibold">
-                      📩 Email: {userDetail.email}
-                      </h1>
+
+                      <h2 className="text-xl font-semibold">
+                        📩 Email: {userDetail.email}
+                      </h2>
+
                     </div>
                   </div>
                   <div className="h-1/4 flex items-center justify-center flex-col">
                     <div className="bg-white flex justify-center">
-                      <h1 className="text-xl font-semibold">
-                      📞Telefono: {userDetail.telephone ? userDetail.telephone : "No hay información detallada"}
-                      </h1>
+
+                      <h2 className="text-xl font-semibold">
+                        📞Telefono:{" "}
+                        {userDetail.telephone
+                          ? userDetail.telephone
+                          : "No hay información detallada"}
+                      </h2>
                     </div>
                   </div>
                   <div className="h-1/4 flex items-center justify-center flex-col">
                     <div className="bg-white flex justify-center">
-                      <h1 className="text-xl font-semibold">
-                      📍 Ubicación: {userDetail.place}
-                      </h1>
+                      <h2 className="text-xl font-semibold">
+                        📍 Ubicación: {userDetail.place}
+                      </h2>
                     </div>
                   </div>
                   <div className="h-1/4 flex items-center justify-center flex-col">
                     <div className="bg-white flex justify-center">
-                      <h1 className="text-xl font-semibold">
+                      <h2 className="text-xl font-semibold">
                         Cuenta creada el: {userDetail.createdAt.slice(0, 10)}
-                      </h1>
+                      </h2>
                     </div>
                   </div>
                 </div>
@@ -124,9 +132,9 @@ export default function UserDetail() {
         </Modal.Body>
       </Modal>
       <>
-        <div className="lg:mx-36 my-12 h-4/5 rounded-xl bg-yellow-800">
-          <div className="h-3/4">
-            <div className="flex h-1/2">
+        <div className="lg:mx-36 my-12 h-5/6 rounded-xl bg-yellow-800 ring-2 ring-[#e1a13f]">
+          <div className="h-2/3">
+            <div className="flex h-2/5">
               <img
                 src={portada}
                 alt=""
@@ -136,16 +144,17 @@ export default function UserDetail() {
                 <img
                   src={userDetail.image}
                   alt=""
-                  className="w-20 h-20 lg:w-80 lg:h-80 bg-cover border-solid border-2 border-[#B99782] rounded-full"
+                  className="w-20 h-20 lg:w-80 lg:h-80 bg-cover border-solid border-2 border-[#e1a13f] rounded-full"
                 />
               </div>
+              
             </div>
             <div className="h-1/2 flex">
               <div className="w-1/3"></div>
               <div className="w-2/3 flex">
                 <div className="w-1/2 flex flex-col justify-around">
                   <div>
-                    <h3 className="text-6xl mt-4 text-white font-semibold">
+                    <h3 className="text-5xl mt-4 text-white font-semibold">
                       {userDetail.first_name} {userDetail.last_name}
                     </h3>
                     <p className="font-semibold text-white">
@@ -153,7 +162,7 @@ export default function UserDetail() {
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-400">
+                    <h3 className="text-xl font-semibold text-[#e1a13f] ">
                       Descripción:{" "}
                       {userDetail.about
                         ? userDetail.about
@@ -161,32 +170,24 @@ export default function UserDetail() {
                     </h3>
                   </div>
                 </div>
-                <div className="w-1/2 lg:m-8">
+                <div className="w-3/4 lg:m-8">
                   {userDetail.place_latitude && userDetail.place_longitude ? (
                     <div
                       ref={mapDiv}
-                      style={{
-                        //block: "w-full",
-                        height: "14.5vw",
-                        width: "full",
-                        borderRadius: "10px",
-                      }}
+                      className="ring-[#f19d3d] ring-2 h-60 rounded-xl"
                     />
                   ) : null}
                 </div>
               </div>
             </div>
           </div>
-          <div className="h-1/ flex">
-            <div className="w-1/2 flex justify-center items-center mt-10">
-              <h3 className="text-xl font-semibold">Mascotas del usuario</h3>
-            </div>
-            <div className="w-1/2 lg:flex lg:items-center lg:justify-around lg:mt-14">
+          <div className="h-1/3 pt-5 flex">
+            <div className="w-full flex justify-center items-center mt-10">
               {loggedUser._id !== userDetail._id ? (
                 <div>
                   <button
                     onClick={() => chat()}
-                    className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                    className="lg:py-2 lg:px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                   >
                     Enviar mensaje
                   </button>
@@ -195,11 +196,20 @@ export default function UserDetail() {
                 <></>
               )}
               {loggedUser._id === userDetail._id ? (
-                <Link to="/updateuser">
-                  <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                    ✏️Editar Perfil
-                  </button>
-                </Link>
+
+                <>
+
+                  <Link to="/interestedtraders">
+                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                      Traspaso de mascotas
+                    </button>
+                  </Link>
+                  <Link to="/updateuser">
+                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                      ✏️Editar Perfil
+                    </button>
+                  </Link>
+                </>
               ) : (
                 false
               )}
@@ -207,19 +217,28 @@ export default function UserDetail() {
                 onClick={() => {
                   onClick();
                 }}
-                class="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                class="ml-5 px-2 py-0.5 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
               >
                 Más información
               </Button>
               <Link to={`/reportuser`}>
-                <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                <button className="py-2 ml-5 px-4 md:px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                   Denunciar
                 </button>
               </Link>
             </div>
+
+            <div className="lg:w-3/4 lg:flex lg:items-center lg:mt-14 bg-yellow-800 rounded-xl">
+              
+            </div>
           </div>
-          <div className="bg-yellow-700 mt-10 rounded-xl">
-            <div id="editPet" className="grid grid-cols-3 place-content-center">
+          <div className="bg-yellow-600 ring-2 ring-yellow-900 my-10 rounded-xl">
+            <div className="w-full py-4">
+                <h3 className="text-2xl font-semibold text-white text-center">Mascotas del usuario
+                </h3>
+              </div>
+              <div id="editPet" className="grid grid-cols-3 place-content-center">
+              
               {userDetail.pets?.length ? (
                 userDetail.pets.map((pets) => (
                   <OwnedPet
@@ -232,12 +251,14 @@ export default function UserDetail() {
                     pets={userDetail.pets}
                     isDeleted={pets.deleted}
                     interestedUsers={userDetail.interestedUsers}
-                  ></OwnedPet>
+                  />
                 ))
               ) : (
-                <h3 className="text-2xl font-bold">
-                  No hay mascotas que mostrar...
-                </h3>
+                <div className="h-50">
+                  <h3 className="text-2xl font-semibold text-gray-700 mt-8 text-center">
+                    No hay mascotas que mostrar...
+                  </h3>
+                </div>
               )}
             </div>
           </div>

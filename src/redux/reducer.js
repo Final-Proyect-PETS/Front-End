@@ -17,6 +17,7 @@ const initialState = {
   viewedNotification: [], //vistas
   reportedPets: [],
   reportedUsers: [],
+  query:"",
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -120,9 +121,16 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
     //FILTROS
     case actions.FILTER_BY_QUERY:
+      if(payload.length === 0){
+        return {
+          ...state,
+          query: "empty",
+        };
+      }
       return {
         ...state,
         pets: payload,
+        query:""
       };
     //LOGIN
     case actions.USER_LOGIN:

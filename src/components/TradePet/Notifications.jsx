@@ -41,17 +41,17 @@ export default function Notifications() {
       <NavBar />
       <div className="flex flex-col items-center ">
         {noVistas?.length === 1 ? (
-          <span className="font-semibold text-3xl text-black py-5">
-            {`Tienes ${noVistas?.length} notificacion sin leer`}
+          <span className="font-semibold text-3xl text-gray-800 py-5">
+            {`Tienes ${noVistas?.length} notificación sin leer`}
           </span>
         ) : noVistas?.length > 1 ? (
-          <span className="font-semibold text-3xl text-black py-5">
+          <span className="font-semibold text-3xl text-gray-800 py-5">
             {`Tienes ${noVistas?.length} notificaciones sin leer`}
           </span>
         ) : (
           <>
-            <span className="font-semibold text-3xl text-black py-5">
-              {`No tienes notificaciones !`}
+            <span className="font-semibold text-3xl text-gray-800 py-5">
+              {`No tienes notificaciones`}
             </span>
           </>
         )}
