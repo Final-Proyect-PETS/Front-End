@@ -133,8 +133,8 @@ export default function AdminView() {
                             Donado en total: $
                             {m.donations.length > 0
                               ? m.donations
-                                  .map((d) => d.donationAmount)
-                                  .reduce((prev, curr) => prev + curr)
+                                .map((d) => d.donationAmount)
+                                .reduce((prev, curr) => prev + curr)
                               : 0}
                           </h3>
                         </div>

@@ -7,6 +7,7 @@ import SearchBar from "../SearchBars/SearchBar";
 
 export default function SideBar() {
   const dispatch = useDispatch();
+  const [resetFilters, setResetFilters] = useState("false");
   const [filterParams, setFilterParams] = useState({
     age: "all",
     creation_date: "asc",
@@ -18,6 +19,39 @@ export default function SideBar() {
     gender: "all",
     is_adopted: "all",
   });
+
+  function reset() {
+    if (resetFilters === "false") {
+      setResetFilters("true");
+    } else {
+      setResetFilters("false");
+    }
+    dispatch(
+      filterByQuery({
+        age: "all",
+        creation_date: "asc",
+        vaccinated: "all",
+        castrated: "all",
+        location: "all",
+        pet_type: "all",
+        pet_size: "all",
+        gender: "all",
+        is_adopted: "all",
+      })
+    );
+    setFilterParams({
+      age: "all",
+      creation_date: "asc",
+      vaccinated: "all",
+      castrated: "all",
+      location: "all",
+      pet_type: "all",
+      pet_size: "all",
+      gender: "all",
+      is_adopted: "all",
+    });
+  }
+
   function handlerFilterIsAdopted(ev) {
     ev.preventDefault();
     dispatch(
@@ -130,13 +164,14 @@ export default function SideBar() {
       </div>
       <SearchBar />
 
-
       <div className="w-3/4 flex justify-center flex-col">
         <select
           className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
           onChange={(ev) => handlerFilterVacciantion(ev)}
         >
-          <option hidden>Vacunado</option>
+          <option hidden selected={resetFilters}>
+            Vacunado
+          </option>
           <option value="yes">Si</option>
           <option value="no">No</option>
           <option value="unknown">No se</option>
@@ -148,7 +183,9 @@ export default function SideBar() {
           className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
           onChange={(ev) => handlerFilterCastraed(ev)}
         >
-          <option hidden>Castrado</option>
+          <option hidden selected={resetFilters}>
+            Castrado
+          </option>
           <option value="true">Si</option>
           <option value="false">No</option>
         </select>
@@ -159,7 +196,9 @@ export default function SideBar() {
           className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
           onChange={(ev) => handlerFilterTypePet(ev)}
         >
-          <option hidden>Búsqueda por tipo</option>
+          <option hidden selected={resetFilters}>
+            Búsqueda por tipo
+          </option>
           <option value="dog">Perros</option>
           <option value="cat">Gatos</option>
           <option value="other">Otros</option>
@@ -171,7 +210,9 @@ export default function SideBar() {
           className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
           onChange={(ev) => handlerFilterBySize(ev)}
         >
-          <option hidden>Búsqueda por tamaño</option>
+          <option hidden selected={resetFilters}>
+            Búsqueda por tamaño
+          </option>
           <option value="big">Grande</option>
           <option value="medium">Mediano</option>
           <option value="small">Pequeño</option>
@@ -183,7 +224,9 @@ export default function SideBar() {
           className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
           onChange={(ev) => handlerFilterByAge(ev)}
         >
-          <option hidden>Búsqueda por edad</option>
+          <option hidden selected={resetFilters}>
+            Búsqueda por edad
+          </option>
           <option value="old">Anciano</option>
           <option value="adult">Adulto</option>
           <option value="young">Joven</option>
@@ -194,7 +237,9 @@ export default function SideBar() {
           className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
           onChange={(ev) => handlerFilterByGender(ev)}
         >
-          <option hidden>Búsqueda por género</option>
+          <option hidden selected={resetFilters}>
+            Búsqueda por género
+          </option>
           <option value="male">Macho</option>
           <option value="female">Hembra</option>
         </select>
@@ -204,7 +249,9 @@ export default function SideBar() {
           className="bg-gray-200 font-semibold p-2 rounded-lg flex-1 appearance-none w-full py-2 px-4 text-gray-800 placeholder-white text-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-yellow-800"
           onChange={(ev) => handlerFilterIsAdopted(ev)}
         >
-          <option hidden>Estado de adopción</option>
+          <option hidden selected={resetFilters}>
+            Estado de adopción
+          </option>
           <option value="yes">Adoptados</option>
           <option value="no">Aún sin hogar</option>
         </select>
@@ -232,6 +279,12 @@ export default function SideBar() {
           <p />
         </div>
       </div>
+      <button
+        onClick={() => reset()}
+        className="py-2 px-4 m-1 bg-yellow-700 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+      >
+        Resetear filtros
+      </button>
       <Link to="/petregister">
         <button className="py-2 px-4 bg-yellow-700 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
           📝 Crear nueva mascota
