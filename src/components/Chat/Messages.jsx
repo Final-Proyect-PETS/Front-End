@@ -1,19 +1,12 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserDetail } from "../../redux/Actions";
+import React from "react";
+import { useSelector } from "react-redux";
 
 export default function Messages({ message, own, el }) {
 
-    const dispatch = useDispatch()
+    const yo = useSelector((state) => state.userProfile) // 42b28
+    const users = useSelector((state) => state.users)
 
-    const yo = useSelector((state) => state.userProfile)
-
-    useEffect(() => {
-        dispatch(getUserDetail(el))
-    }, [el])
-
-
-    const ell = useSelector((state) => state.userDetail)
+    const current = users.find(e => e._id === el)
 
     return (
         <>
@@ -40,7 +33,7 @@ export default function Messages({ message, own, el }) {
                                     </span>
                                 </div>
                             </div>
-                            <img src={ell.image} alt="My profile" class="w-6 h-6 rounded-full order-1" />
+                            <img src={current.image} alt="My profile" class="w-6 h-6 rounded-full order-1" />
                         </div>
                     </div>}
             </div>
