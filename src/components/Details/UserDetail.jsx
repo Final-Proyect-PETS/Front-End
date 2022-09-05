@@ -81,7 +81,9 @@ export default function UserDetail() {
       >
         <div className="pl-2 p-3 bg-yellow-600 rounded-md">
           <Modal.Header>
-            <p className="text-white">{userDetail.first_name} {userDetail.last_name}</p>
+            <p className="text-white">
+              {userDetail.first_name} {userDetail.last_name}
+            </p>
           </Modal.Header>
         </div>
         <Modal.Body class="p-6">
@@ -91,23 +93,29 @@ export default function UserDetail() {
                 <div className="h-80">
                   <div className="h-1/4 flex items-center justify-center flex-col">
                     <div className="bg-white flex justify-center">
+
                       <h2 className="text-xl font-semibold">
                         📩 Email: {userDetail.email}
                       </h2>
+
                     </div>
                   </div>
                   <div className="h-1/4 flex items-center justify-center flex-col">
                     <div className="bg-white flex justify-center">
+
                       <h2 className="text-xl font-semibold">
-                        📞Telefono: {userDetail.telephone ? userDetail.telephone : "No hay información detallada"}
+                        📞Telefono:{" "}
+                        {userDetail.telephone
+                          ? userDetail.telephone
+                          : "No hay información detallada"}
                       </h2>
                     </div>
                   </div>
                   <div className="h-1/4 flex items-center justify-center flex-col">
                     <div className="bg-white flex justify-center">
-                      <h1 className="text-xl font-semibold">
+                      <h2 className="text-xl font-semibold">
                         📍 Ubicación: {userDetail.place}
-                      </h1>
+                      </h2>
                     </div>
                   </div>
                   <div className="h-1/4 flex items-center justify-center flex-col">
@@ -188,11 +196,20 @@ export default function UserDetail() {
                 <></>
               )}
               {loggedUser._id === userDetail._id ? (
-                <Link to="/updateuser">
-                  <button className="py-2 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                    ✏️Editar Perfil
-                  </button>
-                </Link>
+
+                <>
+
+                  <Link to="/interestedtraders">
+                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                      Traspaso de mascotas
+                    </button>
+                  </Link>
+                  <Link to="/updateuser">
+                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                      ✏️Editar Perfil
+                    </button>
+                  </Link>
+                </>
               ) : (
                 false
               )}
