@@ -14,10 +14,9 @@ export default function AdopterCard({
   telephone,
   pets,
   place,
+  interested,
 }) {
-  function checkboxHandler(e) {
-    console.log(e.target.value, "CHECKBOXaDOPTER");
-  }
+
   return (
     <div
       id={_id}
@@ -31,7 +30,7 @@ export default function AdopterCard({
           <span className="ml-2 font-bold text-xs">
             {`${first_name} ${last_name} (${username})`}
           </span>
-          <span className="ml-2 font-bold text-xs"></span>
+          <span className="ml-2 font-bold text-xs- text-neutral-50">{interested === true ? "Está interesado en tu mascota": "" }</span>
         </div>
         <div className="flex items-center">
             <img src={ubicacion} alt="ubicacion" width="16px" />

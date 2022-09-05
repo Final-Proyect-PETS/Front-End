@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { getAllPets, getAllUsers } from "../../redux/Actions/index";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Card from "./PetCard";
@@ -9,41 +8,24 @@ import Loader from "../Loaders/Loader";
 import "./Home.css";
 
 export default function Cards() {
-  // const dispatch = useDispatch();  //ME LO LLEVE AL APP.JS
-
-  // useEffect(() => {
-  //   dispatch(getAllPets());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(getAllUsers());
-  // }, [dispatch]);
 
   const getPets = useSelector((state) => state.pets);
+  const query = useSelector((state) => state.query)
   const getUsers = useSelector((state) => state.users);
-
   const switchRender = useSelector((state) => state.switchRender);
-
   //PAGINADO-----------------------------------------------------------------------
   const [CurrentPag, setCurrentPag] = useState(1);
-
   const [CardsPerPage, setCardsPerPage] = useState(6);
-
-  const TotalPages = Math.ceil(getPets.length / CardsPerPage);
-
   const IndexLastCard = CurrentPag * CardsPerPage;
-
   const IndexFirstCard = IndexLastCard - CardsPerPage;
-
   const CurrentPages = getPets.slice(IndexFirstCard, IndexLastCard);
-
   const fetchMoreData = async () => {
     setCardsPerPage(CardsPerPage + 6);
   };
 
   return (
     <InfiniteScroll
-      dataLength={CurrentPages.length} //This is important field to render the next data
+      dataLength={CurrentPages.length}
       next={fetchMoreData}
       hasMore={true}
       loader={<h2 className="inline sr-only">Loading...</h2>}
@@ -56,6 +38,7 @@ export default function Cards() {
     >
       {getPets.length > 0 ? (
         switchRender === "mascota" ? (
+          query !== "empty" ? (
           CurrentPages.map((pets) => (
             <Card
               key={pets._id}
@@ -77,6 +60,7 @@ export default function Cards() {
               likes={pets.likes}
             />
           ))
+          ) : <div className="mt-20 text-yellow-600 text-2xl">NO HAY MASCOTAS QUE COINCIDAN CON TU BUSQUEDA...</div>
         ) : (
           getUsers.map((user) => (
             <UserCard

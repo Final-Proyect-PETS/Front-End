@@ -1,7 +1,7 @@
 // import React, {useState} from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import search from "./../../assets/search.svg";
-// import { getUserByName, getUserDetail } from "../../redux/Actions";
+// import { getUserByName } from "../../redux/Actions";
 
 // export default function SearchUsers() {
 
@@ -11,8 +11,6 @@
 //     const conversations = useSelector((state) => state.conversations) 
 //     const users = useSelector(state => state.users)
 
-//     console.log(conversations.map(e => e.members[1])); // array id de users invitados
-
 //     const idUsersss = conversations.map(e => e.members[1]) //array
 
 //     function handleInputChange(e) {
@@ -20,11 +18,17 @@
 //         setNameUser(e.target.value);
 //     }
 
-//     function handleSubmit(e){
+//     async function handleSubmit(e){
 //         e.preventDefault();
-//         dispatch(getUserByName(nameUser));
-//         const guachin = idUsersss.includes(nameUser._id)
-//         console.log(guachin);
+//         const user1 = await dispatch(getUserByName(nameUser))
+//         console.log(user1)
+
+//         if(idUsersss.includes(user1._id)){
+//             return console.log(user1)
+//         } else {
+//             return "no se enontró"
+//         }
+    
 //     }
 
 //     return (

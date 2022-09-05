@@ -28,6 +28,9 @@ import DonationSuccessful from "./components/Donations/DonationSuccessful";
 import Chat from "./components/Chat/Chat";
 import UserDonations from "./components/Donations/UsersDonations";
 import Blog from "./components/Blogsito/Blog.jsx";
+import Blog1 from "./components/Blogsito/Blog1";
+import Blog2 from "./components/Blogsito/Blog2";
+import Blog3 from "./components/Blogsito/Blog3";
 import MissingDataRequired from "./components/MissingDataRequired";
 import ReportPet from "./components/Reports/ReportPet";
 import ReportUser from "./components/Reports/ReportUser";
@@ -85,6 +88,9 @@ function App() {
           <Route path={"*"} element={<Error404 />} />
           <Route path={"/mydonations/:id"} element={<UserDonations />} />
           <Route path={"/blog"} element={<Blog />} />
+          <Route path={"/blog/1"} element={<Blog1 />} />
+          <Route path={"/blog/2"} element={<Blog2 />} />
+          <Route path={"/blog/3"} element={<Blog3 />} />
           <Route path={"/reportpet"} element={<ReportPet />} />
           <Route path={"/reportuser"} element={<ReportUser />} />
         </Route>
