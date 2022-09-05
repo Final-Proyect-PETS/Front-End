@@ -119,7 +119,7 @@ export default function Donation() {
       );
     }
   }
-  
+
   return (
     <>
       <NavBar />
@@ -156,60 +156,16 @@ export default function Donation() {
               <div className="flex items-center mb-6 -mt-4 w-full">
                 <button
                   type="submit"
-                  className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                  className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg flex items-center justify-center ml-2"
                   onClick={(e) => handleInput(e)}
                 >
                   Generar orden de pago
                 </button>
-                <p className="text-xl text-gray-800 font-normal text-center p-2">
+                <p className="text-xl text-gray-800 font-normal text-center">
                   {generating0 ? "Generando orden..." : null}
                 </p>
-                <form id="form0" className="place-self-center"></form>
+                <form id="form0" className="place-self-center pl-2"></form>
               </div>
-
-              <div className="flex items-center mb-6 -mt-4 w-full">
-                <button
-                  value="100"
-                  className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                  onClick={(e) => handleClick(e)}
-                  disabled={disable1}
-                >
-                  Generar orden de pago por 100 pesos
-                </button>
-                <p className="text-xl text-gray-800 font-normal text-center p-2">
-                  {generating1 ? "Generando orden..." : null}
-                </p>
-                <form id="form1"></form>
-              </div>
-            </div>
-
-            <div className="flex items-center mb-6 -mt-4 w-full">
-              <button
-                value="200"
-                className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                onClick={(e) => handleClick(e)}
-                disabled={disable2}
-              >
-                Generar orden de pago por 200 pesos
-              </button>
-              <p className="text-xl text-gray-800 font-normal text-center p-2">
-                {generating2 ? "Generando orden..." : null}
-              </p>
-              <form id="form2"></form>
-            </div>
-            <div className="flex items-center mb-6 -mt-4 w-full">
-              <button
-                value="500"
-                className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                onClick={(e) => handleClick(e)}
-                disabled={disable3}
-              >
-                Generar orden de pago por 500 pesos
-              </button>
-              <p className="text-xl text-gray-800 font-normal text-center p-2">
-                {generating3 ? "Generando orden..." : null}
-              </p>
-
               <form id="form3"></form>
             </div>
             {/* {payment ? <Comprar data={payment} /> : null} */}
