@@ -113,7 +113,7 @@ export default function OwnedPet({
         .then(() => navigate(`/home`, { replace: true }));
     } //oponer sweet
   }
-  //editar handler-------------------------------------------------------------
+  //editar handler--------------------------------------------------------------
   function fillUpdateHandler(e) {
     e.preventDefault();
     dispatch(getPetDetail(idPet)).then(() =>
@@ -126,42 +126,45 @@ export default function OwnedPet({
       <div className="max-w-sm ">
         <Card class="block opacity-90 max-w-sm bg-yellow-800 opacity-70 rounded-lg border border-yellow-900 shadow-md hover:opacity-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <div className="flex justify-end">
-            {loggedUser._id === userDetail._id ? <Dropdown inline={true} label="">
-              <Dropdown.Item>
-                {loggedUser._id === userDetail._id ? (
-                  <div className="flex justify-center p-1">
-                    <Tooltip content="Editar mascota" placement="top">
-                      <button
-                        onClick={(e) => fillUpdateHandler(e)}
-                        className="block py-2 px-4 text-sm text-black-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        Editar
-                      </button>
-                    </Tooltip>
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </Dropdown.Item>
+            {loggedUser._id === userDetail._id ? (
+              <Dropdown inline={true} label="">
+                <Dropdown.Item>
+                  {loggedUser._id === userDetail._id ? (
+                    <div className="flex justify-center p-1">
+                      <Tooltip content="Editar mascota" placement="top">
+                        <button
+                          onClick={(e) => fillUpdateHandler(e)}
+                          className="block py-2 px-4 text-sm text-black-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Editar
+                        </button>
+                      </Tooltip>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                </Dropdown.Item>
 
-              <Dropdown.Item>
-                {loggedUser._id === userDetail._id ? (
-                  <div className="flex justify-center p-1">
-                    <Tooltip content="Borrar mascota" placement="bottom">
-                      <button
-                        onClick={(e) => deleteHandler(e)}
-                        className="block py-2 px-4 text-sm text-red-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        Eliminar
-                      </button>
-                    </Tooltip>
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </Dropdown.Item>
-            </Dropdown> : <></>}
-
+                <Dropdown.Item>
+                  {loggedUser._id === userDetail._id ? (
+                    <div className="flex justify-center p-1">
+                      <Tooltip content="Borrar mascota" placement="bottom">
+                        <button
+                          onClick={(e) => deleteHandler(e)}
+                          className="block py-2 px-4 text-sm text-red-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Eliminar
+                        </button>
+                      </Tooltip>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                </Dropdown.Item>
+              </Dropdown>
+            ) : (
+              <></>
+            )}
           </div>
           <div className="flex flex-col items-center">
             <img
