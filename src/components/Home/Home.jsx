@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import NavBarHome from "../NavBar/NavBarHome";
+import chatt from "../../assets/images/chatt.png"
 
 export default function Home() {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <img src={chatt} className="fixed "  />
     </section>
   );
 }

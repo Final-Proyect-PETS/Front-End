@@ -73,7 +73,7 @@ export default function PetCard({
             alt=""
           />
 
-          <div class="flex flex-col  m-2 rounded leading-normal">
+          <div class="flex flex-col m-2 rounded leading-normal">
             <div className="flex justify-end">
               <Dropdown inline={true} label="">
                 <Dropdown.Item>
