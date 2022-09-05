@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+
 export default function Home() {
   const navigate = useNavigate();
 
@@ -27,7 +28,8 @@ export default function Home() {
     ///FUNCION DE CHRIS
   }
   return (
-    <section onClick={(e) => handley(e)}>
+
+    <section  onClick={(e) => handley(e)}>
       <section className="fixed w-screen">
         <NavBar />
       </section>
@@ -42,5 +44,6 @@ export default function Home() {
         </div>
       </div>
     </section>
+ 
   );
 }

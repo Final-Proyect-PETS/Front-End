@@ -11,10 +11,11 @@ import {
   EmailShareButton,
   EmailIcon,
 } from "react-share";
-import { Toast, Tooltip } from "flowbite-react";
+import { Toast, Tooltip, Dropdown } from "flowbite-react";
 import { ToastContext } from "flowbite-react/lib/esm/components/Toast/ToastContext";
+import { Card } from "flowbite-react";
 
-export default function Card({
+export default function PetCard({
   idUser,
   first_name,
   last_name,
@@ -64,105 +65,85 @@ export default function Card({
   //likes--hasta aca , casi te vas
   return (
     <>
-      <div
-        id={idUser}
-        className="grid col-start-3 rounded overflow-hidden border border-[#B99782] w-full bg-white my-12 md:mx-0 lg:mx-0"
-      >
-        <Link to={"/users/" + idUser}>
-          <div className="flex justify-between p-3 border-b items-center bg-yellow-500">
-            <div className="flex items-center">
-              <div className="rounded-full h-8 w-8 flex items-center justify-center overflow-hidden mr-2">
-                <img src={imageUser} alt="profilepic" />
-              </div>
-              <span className="ml-2 font-bold text-xs text-white">
-                {first_name} {last_name}
-              </span>
-            </div>
-            <div className="flex items-center">
-              <div className="text-sm flex">
-                <img src={ubicacion} alt="ubicacion" width="16px" />
-                <span className="font-medium text-xs mx-3">
-                  {place?.length <= 25 ? place : `${place?.slice(0, 25)}...`}
-                </span>
-              </div>
-            </div>
-          </div>
-        </Link>
-        <Link to={"/pet/" + idPet}>
-          <div className="py-3 flex">
-            <img
-              className="w-96 bg-cover rounded"
-              src={imagePet}
-              alt="imagepet"
-            />
-            <div className="bg-yellow-900 flex w-52 flex-col content-around gap-9 justify-center items-center">
-              <div className="flex">
-                <span className="text-2xl font-bold text-white">{namePet}</span>
-              </div>
-              <div className="text-sm flex">
-                <span className="font-bold text-lg text-white">
-                  Tamaño:{" "}
-                  {size === "big"
-                    ? "Grande"
-                    : size === "medium"
-                    ? "Mediano"
-                    : "Chico"}
-                </span>
-              </div>
-              <div>
-                <span className="text-2xl font-bold text-white">
-                  {gender === "female" ? "Hembra" : "Macho"}
-                </span>
-              </div>
-              <div className="flex">
-                <h1 className="text-white font-bold text-2x1">
-                  {/* aACA VA EL NUMERITO DEEEE LIKES */}
-                  {buttonLike.number}
-                  {/* aACA VA EL NUMERITO DE LIKES */}
-                </h1>
-                <div className="rounded-full h-8 w-8 flex items-center justify-center overflow-hidden mr-2">
-                  <Tooltip
-                    trigger="hover"
-                    animation="duration-1000"
-                    content={
-                      likes?.length > 1
-                        ? `A   ${likes.slice(0, 2).reverse()} y ${
-                            likes.length
-                          } mas les gusta esto...`
-                        : likes?.length === 1
-                        ? `A ${likes[0]} le gusta esto`
-                        : "Dame me gusta"
-                    }
-                    placement="bottom"
-                  >
-                    {" "}
-                    <button onClick={(e) => likeHandler(e)}>
-                      <img src={likeim} alt="<3" />
-                    </button>
+      <div className="max-w-sm my-2">
+        <Card horizontal={true} imgSrc={imagePet}>
+          <div className="flex justify-end">
+            <Dropdown inline={true} label="">
+              <Dropdown.Item>
+                <div className="flex justify-center ">
+                  <Tooltip content="Compartir en Facebook" placement="top">
+                    <div className="rounded-full  flex items-center justify-center overflow-hidden ">
+                      <FacebookShareButton
+                        url={`https://www.happytails.com/pet/${idPet}`}
+                        quote={"Adoptame"}
+                        hashtag={"#happytails"}
+                      >
+                        <FacebookIcon size={40} />
+                      </FacebookShareButton>
+                    </div>
                   </Tooltip>
                 </div>
+              </Dropdown.Item>
 
-                <div className="rounded-full h-8 w-8 flex items-center justify-center overflow-hidden mr-2">
-                  <FacebookShareButton
-                    url={`https://www.happytails.com/pet/${idPet}`}
-                    quote={"Adoptame"}
-                    hashtag={"#happytails"}
-                  >
-                    <FacebookIcon size={40} />
-                  </FacebookShareButton>
+              <Dropdown.Item>
+                <div className="flex justify-center">
+                  <Tooltip content="Compartir por e-mail" placement="top">
+                    <div className="rounded-full  flex items-center justify-center overflow-hidden">
+                      <EmailShareButton
+                        subject="Quiero que me adoptes"
+                        body={`Adoptame en https://www.happytails.com/pet/${idPet}`}
+                      >
+                        <EmailIcon size={40} />
+                      </EmailShareButton>
+                    </div>
+                  </Tooltip>
                 </div>
-                <div className="rounded-full h-8 w-8 flex items-center justify-center overflow-hidden mr-2">
-                  <EmailShareButton
-                    subject="Quiero que me adoptes"
-                    body={`Adoptame en https://www.happytails.com/pet/${idPet}`}
-                  >
-                    <EmailIcon size={40} />
-                  </EmailShareButton>
-                </div>
-              </div>
+              </Dropdown.Item>
+            </Dropdown>
+          </div>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {namePet}
+          </h5>
+          <span className="font-normal text-gray-700 dark:text-gray-400">
+            Tamaño:
+            {size === "big"
+              ? "Grande"
+              : size === "medium"
+              ? "Mediano"
+              : "Chico"}
+          </span>
+          <span className="font-normal text-gray-700 dark:text-gray-400">
+            {gender === "female" ? "Hembra" : "Macho"}
+          </span>
+          <div className="flex justify-end">
+            <h1 className="text-black font-bold text-2x1">
+              {/* aACA VA EL NUMERITO DEEEE LIKES */}
+              {buttonLike.number}
+              {/* aACA VA EL NUMERITO DE LIKES */}
+            </h1>
+            <div className="rounded-full h-8 w-8 flex items-center justify-center overflow-hidden mr-2">
+              <Tooltip
+                trigger="hover"
+                animation="duration-1000"
+                content={
+                  likes?.length > 1
+                    ? `A   ${likes.slice(0, 2).reverse()} y ${
+                        likes.length
+                      } mas les gusta esto...`
+                    : likes?.length === 1
+                    ? `A ${likes[0]} le gusta esto`
+                    : "Dame me gusta"
+                }
+                placement="bottom"
+              >
+                {" "}
+                <button onClick={(e) => likeHandler(e)}>
+                  <img src={likeim} alt="<3" />
+                </button>
+              </Tooltip>
             </div>
           </div>
-        </Link>
+        </Card>
       </div>
     </>
   );

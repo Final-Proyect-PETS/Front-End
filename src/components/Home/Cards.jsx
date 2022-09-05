@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Card from "./PetCard";
 import UserCard from "./UserCard";
 import Loader from "../Loaders/Loader";
+import "./Home.css"
 
 export default function Cards() {
   // const dispatch = useDispatch();  //ME LO LLEVE AL APP.JS
@@ -51,7 +52,9 @@ export default function Cards() {
           <b>Yay! You have seen it all</b>
         </p>
       }
+      
     >
+         
       {getPets.length > 0 ? (
         switchRender === "mascota" ? (
           CurrentPages.map((pets) => (
@@ -99,6 +102,7 @@ export default function Cards() {
           <Loader />
         </>
       )}
+
     </InfiniteScroll>
   );
 }
