@@ -25,7 +25,7 @@ export default function Register() {
     first_name: "",
     last_name: "",
     username: "",
-    image: "",
+    image: null,
     email: "",
     password: "",
     passwordRepeat: "",
