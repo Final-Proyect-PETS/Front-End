@@ -14,6 +14,7 @@ import OwnedPet from "./OwnedPet";
 import Loader from "./../Loaders/Loader";
 import "./userDetailStyle.css";
 import mapboxgl from "mapbox-gl";
+import portada from "./../../assets/images/Background2.png"
 
 export default function UserDetail() {
   let { id } = useParams();
@@ -132,15 +133,15 @@ export default function UserDetail() {
           <div className="h-3/4">
             <div className="flex h-1/2">
               <img
-                src="https://sergimateo.com/wp-content/2012/11/portadas-twitter-1.jpg"
+                src={portada}
                 alt=""
                 className="w-screen object-cover rounded-t-xl"
               />
-              <div className="absolute lg:mt-24 lg:ml-24 mt-48 ml-4">
+              <div className="absolute lg:mt-4 lg:ml-4 mt-48 ml-4">
                 <img
                   src={userDetail.image}
                   alt=""
-                  className="w-32 h-32 lg:w-80 lg:h-80 bg-cover border-solid border-2 border-[#B99782] rounded-full"
+                  className="w-20 h-20 lg:w-80 lg:h-80 bg-cover border-solid border-2 border-[#B99782] rounded-full"
                 />
               </div>
             </div>
@@ -149,7 +150,7 @@ export default function UserDetail() {
               <div className="w-2/3 flex">
                 <div className="w-1/2 flex flex-col justify-around">
                   <div>
-                    <h3 className="text-6xl text-white font-semibold">
+                    <h3 className="text-6xl mt-4 text-white font-semibold">
                       {userDetail.first_name} {userDetail.last_name}
                     </h3>
                     <p className="font-semibold text-white">
@@ -165,7 +166,7 @@ export default function UserDetail() {
                     </h3>
                   </div>
                 </div>
-                <div className="w-1/2">
+                <div className="w-1/2 lg:m-8">
                   {userDetail.place_latitude && userDetail.place_longitude ? (
                     <div
                       ref={mapDiv}
@@ -181,11 +182,11 @@ export default function UserDetail() {
               </div>
             </div>
           </div>
-          <div className="h-1/5 flex">
+          <div className="h-1/ flex">
             <div className="w-1/2 flex justify-center items-center mt-10">
               <h3 className="text-xl font-semibold">Mascotas del usuario</h3>
             </div>
-            <div className="w-1/2 lg:flex lg:items-center lg:justify-around">
+            <div className="w-1/2 lg:flex lg:items-center lg:justify-around lg:mt-14">
               {loggedUser._id !== userDetail._id ? (
                 <div>
                   <button
