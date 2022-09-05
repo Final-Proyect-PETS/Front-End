@@ -1,5 +1,5 @@
 #reportPet {
-  background-image: url("../../../public/images/Background2.png");
+  background-image: url("./../../assets/images/Background2.png");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
@@ -8,7 +8,7 @@
 }
 
 #reportUser {
-  background-image: url("../../../public/images/Background2.png");
+  background-image: url("./../../assets/images/Background2.png");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;

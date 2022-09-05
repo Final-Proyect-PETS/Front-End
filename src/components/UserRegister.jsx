@@ -391,6 +391,7 @@ export default function Register() {
               name="about"
               value={input.about}
               placeholder="Descripción"
+              maxLength="255"
               onChange={(e) => handleChange(e)}
               className="w-full py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"
             ></textarea>
