@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { getUserProfile, viewing, viewingLike } from "../../redux/Actions";
 import { useSelector, useDispatch } from "react-redux";
@@ -42,14 +42,6 @@ export default function NavBar() {
     dispatch(getUserProfile(loggedUser._id));
   }
 
-  let algo = loggedUser?.interestedUsers?.map((e) => {
-    return {
-      user: allUsers.filter((a) => a._id === e.interestedUser)[0],
-      pet: allPets.filter((a) => a._id === e.petId)[0],
-      viewState: e.viewState,
-    };
-  });
-
   let interest = loggedUser?.interestedUsers?.map((e) => {
     return {
       user: allUsers?.filter((a) => a._id === e.interestedUser)[0],
@@ -69,11 +61,9 @@ export default function NavBar() {
   });
 
   let notis = [interest, like];
-  let notisFlat = notis.flat().sort(() => {
-    return Math.random() - 0.5;
-  });
+
   let notiSlice = notis.flat().reverse().slice(0, 5);
-  // console.log(notiSlice, "SLICE");
+
   let bell = notis?.flat().filter((noti) => noti?.viewState === false);
 
   return (
