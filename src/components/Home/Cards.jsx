@@ -34,7 +34,7 @@ export default function Cards() {
           <b>Yay! You have seen it all</b>
         </p>
       }
-      className="grid"
+      className="flex flex-col justify-center items-center w-screen"
     >
       {getPets.length > 0 ? (
         switchRender === "mascota" ? (

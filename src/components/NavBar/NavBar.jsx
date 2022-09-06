@@ -67,7 +67,7 @@ export default function NavBar() {
   let bell = notis?.flat().filter((noti) => noti?.viewState === false);
 
   return (
-    <Navbar fluid={false} rounded={false} class="text-white bg-yellow-500 p-3">
+    <Navbar fluid={false} rounded={false} class=" fixed z-50 w-full text-white bg-yellow-500 p-3">
       <Link to="/home">
         <Navbar.Brand>
           <img

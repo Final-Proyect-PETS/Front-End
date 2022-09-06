@@ -32,12 +32,11 @@ export default function Home() {
     <section onClick={(e) => handley(e)}>
       <NavBar />
       <NavBarHome /> {/* NUEVA SIDEBAR TUGLE LU GULU */}
-      <div className="flex  flex-col">
-        <div className="flex w-screen h-screen justify-center">
-          <Cards />
-        </div>
-
+      <div className="mt-14 flex w-screen h-screen justify-center">
+        <Cards />
       </div>
+
+      
     </section>
   );
 }
