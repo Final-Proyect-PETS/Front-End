@@ -8,16 +8,45 @@ import "./LandingPage.css"
 export default function ResetPassword() {
     const dispatch = useDispatch();
     const { id, token } = useParams();
-    const [password, setPassword] = useState("");
+    const [input, setInput] = useState("");
+    const [errors, setErrors] = useState("")
 
+    function validate(input) {
+        let errors = {};
+        if (input.password) {
+            if (!/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.password)) {
+                errors.password =
+                    "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, una minúscula y una mayúscula (No puede tener otros simbolos)";
+            } else errors.password = "";
+        } else errors.password = "La contraseña es necesaria!";
+        if (input.passwordRepeat) {
+            if (
+                !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(
+                    input.passwordRepeat
+                )
+            ) {
+                errors.passwordRepeat =
+                    "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, una minúscula y una mayúscula (No puede tener otros simbolos)";
+            } else if (input.password && input.password !== input.passwordRepeat) {
+                errors.passwordRepeat = "Las contraseñas no coinciden";
+            } else errors.passwordRepeat = "";
+        } else errors.passwordRepeat = "La contraseña es necesaria";
+
+        return errors;
+    }
 
     function handleChange(e) {
-        setPassword(e.target.value)
+        setInput(e.target.value)
+        setErrors(
+            validate({
+                ...input,
+                [e.target.name]: e.target.value,
+            }))
     }
 
     function handleSubmit(e) {
         dispatch(resetPassword({
-            password: password,
+            password: input,
             id,
             auth: token
         }))
@@ -54,14 +83,18 @@ export default function ResetPassword() {
                                         </span>
                                         <input
                                             type="password"
-                                            id="sign-in-password"
                                             name="password"
-                                            value={password}
+                                            value={input.password}
                                             onChange={(e) => handleChange(e)}
                                             className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
                                             placeholder="Complete su contraseña"
                                             required
                                         />
+                                        {errors.password && (
+                                            <p className="font-bold text-red-700 text-center p-2">
+                                                {errors.password}
+                                            </p>
+                                        )}
                                     </div>
                                 </div>
 
@@ -80,14 +113,18 @@ export default function ResetPassword() {
                                         </span>
                                         <input
                                             type="password"
-                                            id="sign-in-password"
                                             name="password"
-                                            //   value={input.password}
+                                            value={input.passwordRepeat}
                                             onChange={(e) => handleChange(e)}
                                             className="rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
                                             placeholder="Confirmar contraseña"
                                             required
                                         />
+                                        {errors.passwordRepeat && (
+                                            <p className="font-bold text-red-700 text-center p-2">
+                                                {errors.passwordRepeat}
+                                            </p>
+                                        )}
                                     </div>
                                 </div>
                                 <div>

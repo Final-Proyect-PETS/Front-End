@@ -45,7 +45,6 @@ export default function Register() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input);
     setErrors(
       validate({
         ...input,
@@ -132,14 +131,14 @@ export default function Register() {
         errors.password =
           "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, una minúscula y una mayúscula (No puede tener otros simbolos)";
       } else errors.password = "";
-    } else errors.password = "La contraseña es necesaria!";
+    } else errors.password = "La contraseña es necesaria";
 
     if (input.telephone) {
       if (!regex.test(input.telephone)) {
         errors.telephone = "Solo numeros!"
       }
       else if (input.telephone?.length > 15) {
-        errors.telephone = "No puede tener mas de 15 caracteres!"
+        errors.telephone = "No puede tener mas de 15 caracteres"
       }
     } else errors.telephone = ""
 
@@ -154,7 +153,7 @@ export default function Register() {
       } else if (input.password && input.password !== input.passwordRepeat) {
         errors.passwordRepeat = "Las contraseñas no coinciden";
       } else errors.passwordRepeat = "";
-    } else errors.passwordRepeat = "La contraseña es necesaria!";
+    } else errors.passwordRepeat = "La contraseña es necesaria";
 
     return errors;
   }

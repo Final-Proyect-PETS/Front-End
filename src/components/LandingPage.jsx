@@ -111,7 +111,7 @@ export default function LandingPage() {
                   />
                 </div>
                 <div className="flex relative">
-                  <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
+                  <span className="rounded-l-md inline-flex items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                     <svg
                       width="15"
                       height="15"
@@ -149,7 +149,7 @@ export default function LandingPage() {
       </Modal>
 
       <div className="lg:flex lg:flex-col-4 w-screen lg:mx-10 lg:items-center flex flex-col-2 flex-wrap justify-center">
-        <div className="text-gray-800 lg:flex gap-14  lg:flex-row lg:items-center flex flex-col justify-center items-center">
+        <div className="text-gray-800 lg:flex gap-14 lg:flex-row lg:items-center flex flex-col justify-center items-center">
           <div className="mt-6 mx-4 text-center lg:text-start">
             <div>
               <h1 className="text-6xl font-semibold">Bienvenidos a </h1>
