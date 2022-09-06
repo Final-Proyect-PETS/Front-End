@@ -7,31 +7,12 @@ import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { userLoginGoogle, forgotPassword } from "../redux/Actions/index";
 import { Modal, Label } from "flowbite-react";
-
-function validate(input) {
-  let errors = {};
-  if (!input.email) {
-    errors.email = "El email es necesario";
-  } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(input.email)) {
-    errors.email = "Ingrese un email válido";
-  } else errors.email = "";
-
-  if (!input.password) {
-    errors.password = "La contraseña es necesaria";
-  } else if (
-    !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(input.password)
-  ) {
-    errors.password = "Ingrese una contraseña válida";
-  } else errors.password = "";
-
-  return errors;
-}
+import Swal from "sweetalert2";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [errors, setError] = useState({});
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -42,25 +23,32 @@ export default function LandingPage() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    setError(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
+  
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(userLogin(input)).then((e) => {
       if(e.payload === "Contraseña incorrecta"){
-        alert("contraseña incorrecta rey")
+        Swal.fire({
+          icon:"error",
+          text:"Contraseña incorrecta"
+        })
+        .then(()=> navigate("/"))
       }
       if(e.payload === "Usuario baneado"){
-        alert("te re banearon gil")
+        Swal.fire({
+          icon:"warning",
+          text:"Usuario baneado"
+        })
+        .then(()=> navigate("/"))
       }
       if (e.payload === "Usuario no encontrado"){
-        alert("no existe ese usuaario campeon")
+        Swal.fire({
+          icon:"error",
+          text:"Usuario no encontrado"
+        })
+        .then(()=> navigate("/"))
       }
       navigate("/blog");
     });
@@ -201,11 +189,7 @@ export default function LandingPage() {
                       required
                     />
                   </div>
-                  {errors.email && (
-                    <p className="font-bold text-red-700 text-center p-2">
-                      {errors.email}
-                    </p>
-                  )}
+             
                 </div>
                 <div className="flex flex-col mb-6">
                   <div className="flex relative ">
@@ -231,11 +215,7 @@ export default function LandingPage() {
                       required
                     />
                   </div>
-                  {errors.password && (
-                    <p className="font-bold text-red-700 text-center p-2">
-                      {errors.password}
-                    </p>
-                  )}
+             
                 </div>
                 <div className="flex items-center mb-6 -mt-4">
                   <div className="flex ml-auto">
