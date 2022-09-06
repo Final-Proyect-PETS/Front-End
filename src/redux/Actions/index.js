@@ -237,7 +237,9 @@ export function userLoginGoogle(payload) {
         type: actions.USER_LOGIN_GOOGLE,
         payload: json.data,
       });
-    } catch (error) {}
+    } catch (error) {
+    console.log(error)
+    }
   };
 }
 
