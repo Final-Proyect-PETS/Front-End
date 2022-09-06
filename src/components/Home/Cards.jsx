@@ -13,7 +13,7 @@ export default function Cards() {
   const query = useSelector((state) => state.query)
   const getUsers = useSelector((state) => state.users);
   const switchRender = useSelector((state) => state.switchRender);
-  //PAGINADO-----------------------------------------------------------------------
+  //PAGINADO-0----------------------------------------------------------------------
   const [CurrentPag, setCurrentPag] = useState(1);
   const [CardsPerPage, setCardsPerPage] = useState(6);
   const IndexLastCard = CurrentPag * CardsPerPage;
@@ -34,7 +34,7 @@ export default function Cards() {
           <b>Yay! You have seen it all</b>
         </p>
       }
-      className="grid"
+      className="flex flex-col justify-center items-center w-screen"
     >
       {getPets.length > 0 ? (
         switchRender === "mascota" ? (
