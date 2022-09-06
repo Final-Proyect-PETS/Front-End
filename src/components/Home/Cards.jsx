@@ -13,7 +13,7 @@ export default function Cards() {
   const query = useSelector((state) => state.query)
   const getUsers = useSelector((state) => state.users);
   const switchRender = useSelector((state) => state.switchRender);
-  //PAGINADO-----------------------------------------------------------------------
+  //PAGINADO-0----------------------------------------------------------------------
   const [CurrentPag, setCurrentPag] = useState(1);
   const [CardsPerPage, setCardsPerPage] = useState(6);
   const IndexLastCard = CurrentPag * CardsPerPage;
