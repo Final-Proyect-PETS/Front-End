@@ -69,7 +69,7 @@ export default function PetCard({
   return (
     <div class="flex flex-col-3 justify-between w-11/12 lg:w-3/6 h-56  opacity-100 mt-5 bg-gray-100 rounded-lg border shadow-md hover:bg-yellow-500  hover:opacity-100">
       <img
-        className="object-cover w-1/2 h-56 rounded-t-lg lg:h-auto lg:rounded-none lg:rounded-l-lg"
+        className="object-cover w-1/2 h-50 rounded-lg rounded-t-lg lg:h-auto lg:rounded-none lg:rounded-l-lg"
         src={imagePet}
         alt=""
       />
