@@ -30,14 +30,15 @@ import {
 } from "flowbite-react";
 import perronaranja from "../../assets/images/perronaranja.png";
 import cachita from "../../assets/images/carpi.png";
+import amarillobaño from "../../assets/images/amarillobaño.png";
 import paradonar from "../../assets/images/paradonar.jpg";
 import carpi from "../../assets/images/cachita.png";
-import broncepaw from "../../assets/images/broncepaw.gif";
-import goldenpaw from "../../assets/images/goldenpaw.gif";
-import goldenblackgif from "../../assets/images/goldenblackgif.gif";
 import diamantepaw from "../../assets/images/diamantepaw.gif";
-import amarillobaño from "../../assets/images/amarillobaño.png";
+import goldenpaw from "../../assets/images/goldenpaw.gif";
+import platinpaw from "../../assets/images/platinpaw.gif";
+import goldenblackgif from "../../assets/images/goldenblackgif.gif";
 import silverpaw from "../../assets/images/silverpaw.png"
+import broncepaw from "../../assets/images/broncepaw.gif";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -364,12 +365,12 @@ export default function Blog() {
                       <span className="ml-3 inline-flex items-center justify-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
                         Platino
                       </span>
-                      <span>patita de Platino</span>
-                      {/* <img
+                    
+                       <img
                         className="h-8 w-8 rounded-full"
-                        src={diamantepaw}
+                        src={goldenblackgif}
                         alt="paw"
-                      /> */}
+                      /> 
                     </Link>
                   </li>
                   <li>
@@ -413,7 +414,7 @@ export default function Blog() {
                       </span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={silverpaw}
+                        src={platinpaw}
                         alt="paw"
                       />
                     </Link>
@@ -500,12 +501,12 @@ export default function Blog() {
                       <span className="ml-3 inline-flex items-center justify-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
                         Platino
                       </span>
-                      <span>patita de platino</span>
-                      {/* <img
+                    
+                      <img
                         className="h-8 w-8 rounded-full"
                         src={goldenblackgif}
                         alt="paw"
-                      /> */}
+                      />
                     </Link>
                   </li>
 
@@ -551,7 +552,7 @@ export default function Blog() {
                       </span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={silverpaw}
+                        src={platinpaw}
                         alt="paw"
                       />
                     </Link>

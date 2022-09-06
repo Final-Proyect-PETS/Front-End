@@ -52,8 +52,6 @@ export default function UserDetail() {
     }
   }
 
-  console.log(userDetail);
-
   const [show, setShow] = useState(false);
 
   const onClick = () => {
@@ -346,11 +344,13 @@ export default function UserDetail() {
                 >
                   Más información
                 </Button>
-                <Link to={`/reportuser`}>
-                  <button className="py-2 ml-5 px-4 md:px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                    Denunciar
-                  </button>
-                </Link>
+                {loggedUser._id !== userDetail._id ? (
+                  <Link to={`/reportuser`}>
+                    <button className="py-2 ml-5 px-4 md:px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                      Denunciar
+                    </button>
+                  </Link>
+                ) : null}
               </div>
               {loggedUser.isAdmin && !userDetail.isAdmin ? (
                 <button
@@ -362,7 +362,9 @@ export default function UserDetail() {
                   NOMBRAR ADMINISTRADOR
                 </button>
               ) : null}
-              {loggedUser.isAdmin && userDetail.isAdmin ? (
+              {loggedUser.isAdmin &&
+              userDetail.isAdmin &&
+              loggedUser._id !== userDetail._id ? (
                 <button
                   onClick={() => {
                     handleAdminUnset(userDetail._id);
@@ -372,7 +374,7 @@ export default function UserDetail() {
                   DESCENDER A USUARIO
                 </button>
               ) : null}
-              {loggedUser.isAdmin ? (
+              {loggedUser.isAdmin && loggedUser._id !== userDetail._id ? (
                 <button
                   onClick={() => {
                     handleDeleteUser(userDetail._id);

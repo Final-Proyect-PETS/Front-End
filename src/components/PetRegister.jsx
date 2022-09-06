@@ -128,8 +128,8 @@ export default function RegisterPet() {
       if (/[  +]$/.test(input.age)) errors.age = "Sólo se permiten números";
       if (!Number.isInteger(Number(input.age)))
         errors.age = "Sólo se permiten números enteros";
-      if (parseInt(input.age) <= 0 || parseInt(input.age) > 25)
-        errors.age = "La edad debe ser entre 1 y 25 años";
+      if (parseInt(input.age) < 0 || parseInt(input.age) > 25)
+        errors.age = "La edad debe ser entre 0 y 25 años";
     } else errors.age = "La edad es requerida!";
 
     if (!input.vaccination)

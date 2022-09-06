@@ -12,7 +12,7 @@ import { Navbar, Dropdown, Avatar, Toast, Tooltip } from "flowbite-react";
 import SideBar from "../SideBar/SideBar";
 import { useState } from "react";
 import SearchBar from "../SearchBars/SearchBar";
-import chatt from "../../assets/images/chatt.png";
+import add from "../../assets/images/add.png";
 
 export default function NavBarHome() {
   const dispatch = useDispatch();
@@ -254,7 +254,7 @@ export default function NavBarHome() {
         <>
         <button
           onClick={() => setShowSidebar(!showSidebar)}
-          className="fixed  z-30 flex items-center rounded-lg  cursor-pointer right-2 top-20 lg:right-56 hover:bg-yellow-500"
+          className="fixed  z-30 flex items-center rounded-lg  cursor-pointer right-2 top-40 lg:right-56 hover:bg-yellow-500"
           width="40"
           height="40"
         >
@@ -263,10 +263,10 @@ export default function NavBarHome() {
          
           
         </button>
-        <Link to="/chat">
+        <Link to="/petregister">
           
           <img
-            src={chatt}
+            src={add}
             className="fixed  flex items-center rounded-lg  cursor-pointer right-2 bottom-20 lg:right-56 hover:bg-yellow-500"
           />
        

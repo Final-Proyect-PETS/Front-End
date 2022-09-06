@@ -1,6 +1,8 @@
 import React from "react";
 import likeim from "../../assets/images/like.png";
-import compartir from "../../assets/images/compartir.png";
+import share from "../../assets/images/share.png";
+import male from "../../assets/images/male.png";
+import female from "../../assets/images/female.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +29,7 @@ export default function PetCard({
   size,
   gender,
   likes,
+  description,
 }) {
   //likes***----de aca
   const dispatch = useDispatch();
@@ -64,33 +67,34 @@ export default function PetCard({
 
   //likes--hasta aca , casi te vas
   return (
-    <Link to={`/pet/${idPet}`}>
-      <div class="flex justify-between w-full h-56 mt-14 opacity-100  bg-gray-100 rounded-lg border shadow-md hover:bg-yellow-500  hover:opacity-100">
-        <img
-          className="object-cover w-1/2 h-56 rounded-t-lg lg:h-auto lg:rounded-none lg:rounded-l-lg"
-          src={imagePet}
-          alt=""
-        />
-
-        <div className="flex flex-col justify-between">
-          <div className="flex justify-between ml-2 ">
-            <h5 class=" font-bold tracking-tight text-gray-900 dark:text-white">
-              {namePet}
+    <div class="flex flex-col-3 justify-between w-11/12 lg:w-3/6 h-56  opacity-100 mt-5 bg-gray-100 rounded-lg border shadow-md hover:bg-yellow-500  hover:opacity-100">
+      <img
+        className="object-cover w-1/2 h-50 rounded-lg rounded-t-lg lg:h-auto lg:rounded-none lg:rounded-l-lg"
+        src={imagePet}
+        alt=""
+      />
+      <div className="flex w-1/2 justify-center">
+        <Link to={`/pet/${idPet}`}>
+          <div className="flex  flex-col h-40 justify-center">
+            <h5 class=" font-bold text-2xl ml-2 tracking-tight text-gray-900 dark:text-white">
+              {namePet?.length > 15 ?`${namePet.slice(0, 15)}...`: namePet}
             </h5>
+            <div className="flex">
+              <span className="font-normal ml-2  text-sm text-gray-700 dark:text-gray-400">
+                {`Género: `}
+              </span>
+              {gender === "female" ? (
+                <img src={female} alt="Female" className="w-6 h-6 " />
+              ) : (
+                <img src={male} alt="Male" className="w-6 h-6 " />
+              )}
+            </div>
+            
+            <span className="font-normal ml-2 text-sm text-gray-700 dark:text-gray-400">
+              {description}
+            </span>
           </div>
-          <span className="font-normal ml-2 text-sm text-gray-700 dark:text-gray-400">
-            Tamaño:
-            {size === "big"
-              ? " Grande"
-              : size === "medium"
-              ? " Mediano"
-              : " Chico"}
-          </span>
-
-          <span className="font-normal ml-2  text-sm text-gray-700 dark:text-gray-400">
-            {gender === "female" ? "Hembra" : "Macho"}
-          </span>
-          <div className="h-24 w-24 m-5 flex items-center justify-center overflow-hidden ">
+          <div className="flex justify-center overflow-hidden">
             <Tooltip
               trigger="hover"
               animation="duration-1000"
@@ -114,35 +118,23 @@ export default function PetCard({
                 <img
                   src={likeim}
                   alt="<3"
-                  className="absolute h-24  rounded-full shadow-lg"
+                  className="absolute h-14 rounded-full shadow-lg"
                 />
-                <h1 className="relative flex justify-center items-center text-2xl  text-black font-bold  mt-5 ">
+                <h1 className="relative flex justify-center items-center text-xl  text-black font-bold  mt-2 ">
                   {buttonLike.number}
                 </h1>
               </button>
             </Tooltip>
           </div>
-        </div>
-
+        </Link>
+      </div>
+      <Tooltip content="Compartir" trigger="hover" animation="duration-1000">
         <div className="flex flex-col justify-between">
           <Dropdown
             arrowIcon={false}
             inline={true}
             floatingArrow={false}
-            label={
-              <svg
-                // onClick={() => setShowSidebar(!showSidebar)}
-                className="  flex items-center cursor-pointer "
-                fill=""
-                viewBox="0 0 100 80"
-                width="20"
-                height="40"
-              >
-                <rect width="20" height="20"></rect>
-                <rect y="30" width="20" height="20"></rect>
-                <rect y="60" width="20" height="20"></rect>
-              </svg>
-            }
+            label={<img src={share} className="h-6 w-6" />}
           >
             <Dropdown.Item>
               <div className="flex justify-center ">
@@ -176,7 +168,7 @@ export default function PetCard({
             </Dropdown.Item>
           </Dropdown>
         </div>
-      </div>
-    </Link>
+      </Tooltip>
+    </div>
   );
 }

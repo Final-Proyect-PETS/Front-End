@@ -67,7 +67,7 @@ export default function NavBar() {
   let bell = notis?.flat().filter((noti) => noti?.viewState === false);
 
   return (
-    <Navbar fluid={false} rounded={false} class="text-white bg-yellow-500 p-3">
+    <Navbar fluid={false} rounded={false} class=" fixed z-50 w-full text-white bg-yellow-500 p-3">
       <Link to="/home">
         <Navbar.Brand>
           <img
@@ -203,12 +203,12 @@ export default function NavBar() {
       <Navbar.Collapse>
         <Navbar.Link>
           <Link to="/home" class="text-white hover:none">
-            Comunidad/Adopcion
+            Home
           </Link>
         </Navbar.Link>
         <Navbar.Link>
           <Link class="text-white hover:none" to="/blog">
-            Home
+            Blog
           </Link>
         </Navbar.Link>
         <Navbar.Link class="text-white hover:none">

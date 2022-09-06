@@ -1,43 +1,48 @@
 import React from "react";
 import { forgotPassword } from "../redux/Actions/index";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { useState } from "react";
-import { Modal, Label } from "flowbite-react";
+import { notificationSwal } from "../utils/notificationSwal";
+import Swal from "sweetalert2";
+import { Label } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
+
 
 export default function ForgotPassword() {
     const dispatch = useDispatch();
-    const [email, setEmail] = useState("");
-    const [show, setShow] = useState(false);
+    const navigate = useNavigate();
+    const [input, setInput] = useState("");
 
+    const users = useSelector((state) => state.users);
+    
     function handleChangePass(e) {
-        setEmail(e.target.value)
+        setInput(e.target.value)
     }
 
     function handleSubmitPass(e) {
         e.preventDefault();
-        console.log()
-        dispatch(forgotPassword({ email: email }))
+        if(users.find((u)=> u.email === input)){
+            dispatch(forgotPassword({ email: input })).then(
+                notificationSwal(
+                    "¡Enhorabuena!",
+                    "revisa tu casilla de correo electronico",
+                    "success",
+                    "OK"
+                    )) 
+                    navigate("/",{ replace: true })
+        }else{
+            Swal.fire({
+                icon:"error",
+                text:"Ese correo no se encunentra registrado"
+            })
+            navigate("/",{ replace: true })
+        }  
     }
-
-    // const onClick = () => {
-    //     setShow(true);
-    // };
-
-    const onClose = () => {
-        setShow(false);
-    };
-
     return (
         <>
-            <Modal
-                show={show}
-                size="md"
-                popup={true}
-                onClose={onClose}
-            >
+        
                 <div className="bg-yellow-500 rounded-lg shadow-md border border-white">
-                    <Modal.Header />
-                    <Modal.Body>
+                 
                         <div className="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
                             <h3 className="text-2xl font-light text-white">
                                 Recuperemos tu contraseña
@@ -65,7 +70,7 @@ export default function ForgotPassword() {
                                     <input
                                         type="text"
                                         name="email"
-                                        value={email}
+                                        value={input}
                                         onChange={(e) => handleChangePass(e)}
                                         id="sign-in-email"
                                         className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
@@ -81,21 +86,8 @@ export default function ForgotPassword() {
                             </div>
 
                         </div>
-                    </Modal.Body>
                 </div>
-            </Modal>
         </>
-        //     <div>
-        //         <h4>pone el mail aca wacho</h4>
-        //         <input
-        //             type="text"
-        //             name="email"
-        //             value={email}
-        //             onChange={(e) => handleChange(e)} />
-        //         <button onClick={(e) => handleSubmit(e)}>manda el mail con este boton che</button>
-        //     </div>
-
     )
-
 }
 
