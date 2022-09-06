@@ -213,7 +213,10 @@ export function userLogin(payload) {
         payload,
       });
     } catch (error) {
-      console.log(error);
+      return dispatch({
+        type: actions.USER_LOGIN,
+        payload : error.response.data,
+      });
     }
   };
 }
