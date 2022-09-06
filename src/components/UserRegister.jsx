@@ -360,7 +360,7 @@ export default function Register() {
               onChange={(e) => handleChange(e)}
               placeholder="Contraseña"
               className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            ></input>
+            />
             {errors.password && (
               <p className="font-bold text-red-700 text-center p-2">
                 {errors.password}
@@ -378,7 +378,7 @@ export default function Register() {
               onChange={(e) => handleChange(e)}
               placeholder="Repetir contraseña"
               className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            ></input>
+            />
             {errors.passwordRepeat && (
               <p className="font-bold text-red-700 text-center p-2">
                 {errors.passwordRepeat}
@@ -394,7 +394,7 @@ export default function Register() {
               maxLength="255"
               onChange={(e) => handleChange(e)}
               className="w-full py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"
-            ></textarea>
+            />
           </div>
           <div>
             <label className="font-light text-white text-xl">Ubicación</label>
@@ -430,7 +430,7 @@ export default function Register() {
               onChange={(e) => handleChange(e)}
               placeholder="Telefono"
               className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            ></input>
+            />
             {errors.telephone && (
               <p className="font-bold text-red-700 text-center p-2">
                 {errors.telephone}
