@@ -515,7 +515,7 @@ export function reportPet(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        `http://localhost:3001/home/reportpet`,
+        `https://happytails2.herokuapp.com/home/reportpet`,
         payload
       );
       dispatch({
@@ -533,7 +533,7 @@ export function reportUser(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        `http://localhost:3001/home/reportuser`,
+        `https://happytails2.herokuapp.com/home/reportuser`,
         payload
       );
       dispatch({
@@ -550,7 +550,9 @@ export function reportUser(payload) {
 export function getReportedPets() {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`http://localhost:3001/home/reportpet`);
+      let json = await axios.get(
+        `https://happytails2.herokuapp.com/home/reportpet`
+      );
       return dispatch({
         type: actions.GET_REPORTED_PETS,
         payload: json.data,
@@ -564,7 +566,9 @@ export function getReportedPets() {
 export function getReportedUsers() {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`http://localhost:3001/home/reportuser`);
+      let json = await axios.get(
+        `https://happytails2.herokuapp.com/home/reportuser`
+      );
       return dispatch({
         type: actions.GET_REPORTED_USERS,
         payload: json.data,
@@ -579,7 +583,7 @@ export function handlePet(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `http://localhost:3001/handle/pet/`,
+        `https://happytails2.herokuapp.com/handle/pet/`,
         payload
       );
       dispatch({
@@ -597,7 +601,7 @@ export function handleUser(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `http://localhost:3001/handle/user/`,
+        `https://happytails2.herokuapp.com/handle/user/`,
         payload
       );
       dispatch({
@@ -615,7 +619,7 @@ export function handlePetReport(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `http://localhost:3001/handle/petreport/`,
+        `https://happytails2.herokuapp.com/handle/petreport/`,
         payload
       );
       dispatch({
@@ -633,7 +637,7 @@ export function handleUserReport(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `http://localhost:3001/handle/userreport/`,
+        `https://happytails2.herokuapp.com/handle/userreport/`,
         payload
       );
       dispatch({
@@ -651,7 +655,7 @@ export function handleAdmin(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `http://localhost:3001/handle/admin/`,
+        `https://happytails2.herokuapp.com/handle/admin/`,
         payload
       );
       dispatch({
@@ -668,7 +672,9 @@ export function handleAdmin(payload) {
 export function getDeletedPets() {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`http://localhost:3001/handle/deletedpets`);
+      let json = await axios.get(
+        `https://happytails2.herokuapp.com/handle/deletedpets`
+      );
       return dispatch({
         type: actions.GET_DELETED_PETS,
         payload: json.data,
@@ -682,7 +688,9 @@ export function getDeletedPets() {
 export function getDeletedUsers() {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`http://localhost:3001/handle/deletedusers`);
+      let json = await axios.get(
+        `https://happytails2.herokuapp.com/handle/deletedusers`
+      );
       return dispatch({
         type: actions.GET_DELETED_USERS,
         payload: json.data,
@@ -697,7 +705,7 @@ export function handleUserRestore(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `http://localhost:3001/handle/deleteduser/`,
+        `https://happytails2.herokuapp.com/handle/deleteduser/`,
         payload
       );
       dispatch({
@@ -715,7 +723,7 @@ export function handleUserReportRestore(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `http://localhost:3001/handle/userreported/`,
+        `https://happytails2.herokuapp.com/handle/userreported/`,
         payload
       );
       dispatch({
@@ -732,7 +740,9 @@ export function handleUserReportRestore(payload) {
 export function getUserReportsSolved() {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`http://localhost:3001/handle/userreports`);
+      let json = await axios.get(
+        `https://happytails2.herokuapp.com/handle/userreports`
+      );
       return dispatch({
         type: actions.GET_USER_REPORTS_SOLVED,
         payload: json.data,
