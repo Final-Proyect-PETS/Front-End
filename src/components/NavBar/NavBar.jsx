@@ -203,12 +203,12 @@ export default function NavBar() {
       <Navbar.Collapse>
         <Navbar.Link>
           <Link to="/home" class="text-white hover:none">
-            Comunidad/Adopcion
+            Home
           </Link>
         </Navbar.Link>
         <Navbar.Link>
           <Link class="text-white hover:none" to="/blog">
-            Home
+            Blog
           </Link>
         </Navbar.Link>
         <Navbar.Link class="text-white hover:none">

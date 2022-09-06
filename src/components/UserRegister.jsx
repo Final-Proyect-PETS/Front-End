@@ -45,7 +45,6 @@ export default function Register() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input);
     setErrors(
       validate({
         ...input,

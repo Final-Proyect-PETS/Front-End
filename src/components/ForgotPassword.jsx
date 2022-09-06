@@ -22,7 +22,6 @@ export default function ForgotPassword() {
     function handleSubmitPass(e) {
         e.preventDefault();
         if(users.find((u)=> u.email === input)){
-            console.log("si estoy")
             dispatch(forgotPassword({ email: input })).then(
                 notificationSwal(
                     "¡Enhorabuena!",
@@ -32,7 +31,6 @@ export default function ForgotPassword() {
                     )) 
                     navigate("/",{ replace: true })
         }else{
-            console.log("no estoy")
             Swal.fire({
                 icon:"error",
                 text:"Ese correo no se encunentra registrado"
