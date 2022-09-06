@@ -52,8 +52,17 @@ export default function LandingPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(userLogin(input)).then(() => {
-      navigate("/blog"); //cambie /home por /blog.... fijense
+    dispatch(userLogin(input)).then((e) => {
+      if(e.payload === "Contraseña incorrecta"){
+        alert("contraseña incorrecta rey")
+      }
+      if(e.payload === "Usuario baneado"){
+        alert("te re banearon gil")
+      }
+      if (e.payload === "Usuario no encontrado"){
+        alert("no existe ese usuaario campeon")
+      }
+      navigate("/blog");
     });
   }
 
