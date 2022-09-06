@@ -103,7 +103,10 @@ export function postPet(id, payload) {
 export function postUser(payload) {
   return async function (dispatch) {
     try {
-      let json = await axios.post(`https://happytails2.herokuapp.com/register`, payload);
+      let json = await axios.post(
+        `https://happytails2.herokuapp.com/register`,
+        payload
+      );
       return dispatch({
         type: actions.POST_USER,
         payload: json.data,
@@ -117,7 +120,10 @@ export function postUser(payload) {
 export function postImage(archivo) {
   return async function (dispatch) {
     try {
-      let json = await axios.post(`https://happytails2.herokuapp.com/home/images`, archivo);
+      let json = await axios.post(
+        `https://happytails2.herokuapp.com/home/images`,
+        archivo
+      );
       return dispatch({
         type: actions.POST_IMAGE,
         payload: json.data,
@@ -229,14 +235,16 @@ export function userLoginGoogle(payload) {
         type: actions.USER_LOGIN_GOOGLE,
         payload: json.data,
       });
-    } catch (error) { }
+    } catch (error) {}
   };
 }
 
 export function getUserProfile(id) {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`https://happytails2.herokuapp.com/home/users/${id}`);
+      let json = await axios.get(
+        `https://happytails2.herokuapp.com/home/users/${id}`
+      );
       return dispatch({
         type: actions.GET_USER_PROFILE,
         payload: json.data,
@@ -287,7 +295,10 @@ export function resetPassword(payload) {
 export function tradePet(payload) {
   return async function (dispatch) {
     try {
-      let json = await axios.patch(`https://happytails2.herokuapp.com/home/adopt`, payload);
+      let json = await axios.patch(
+        `https://happytails2.herokuapp.com/home/adopt`,
+        payload
+      );
       return dispatch({
         type: actions.ADOPT,
         payload: json.data,
@@ -325,7 +336,10 @@ export function patchInterestedUsers(payload) {
 export function patchLikes(payload) {
   return async function (dispatch) {
     try {
-      let json = await axios.patch(`https://happytails2.herokuapp.com/home/likes`, payload);
+      let json = await axios.patch(
+        `https://happytails2.herokuapp.com/home/likes`,
+        payload
+      );
       dispatch({ type: actions.PATCH_LIKES, payload: json.data });
       return "OKA";
     } catch (error) {
@@ -401,7 +415,9 @@ export function getConversations(id) {
 export function getMessages(iddd) {
   return async function (dispatch) {
     try {
-      let json = await axios.get("https://happytails2.herokuapp.com/home/message/" + iddd);
+      let json = await axios.get(
+        "https://happytails2.herokuapp.com/home/message/" + iddd
+      );
       return dispatch({
         type: actions.GET_MESSAGES,
         payload: json.data,
@@ -499,7 +515,7 @@ export function reportPet(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        `https://happytails2.herokuapp.com/home/reportpet`,
+        `http://localhost:3001/home/reportpet`,
         payload
       );
       dispatch({
@@ -517,7 +533,7 @@ export function reportUser(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        `https://happytails2.herokuapp.com/home/reportuser`,
+        `http://localhost:3001/home/reportuser`,
         payload
       );
       dispatch({
@@ -534,7 +550,7 @@ export function reportUser(payload) {
 export function getReportedPets() {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`https://happytails2.herokuapp.com/home/reportpet`);
+      let json = await axios.get(`http://localhost:3001/home/reportpet`);
       return dispatch({
         type: actions.GET_REPORTED_PETS,
         payload: json.data,
@@ -548,9 +564,177 @@ export function getReportedPets() {
 export function getReportedUsers() {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`https://happytails2.herokuapp.com/home/reportuser`);
+      let json = await axios.get(`http://localhost:3001/home/reportuser`);
       return dispatch({
         type: actions.GET_REPORTED_USERS,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function handlePet(payload) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.patch(
+        `http://localhost:3001/handle/pet/`,
+        payload
+      );
+      dispatch({
+        type: actions.HANDLE_PET,
+        payload: json.data,
+      });
+      return "OK";
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function handleUser(payload) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.patch(
+        `http://localhost:3001/handle/user/`,
+        payload
+      );
+      dispatch({
+        type: actions.HANDLE_USER,
+        payload: json.data,
+      });
+      return "OK";
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function handlePetReport(payload) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.patch(
+        `http://localhost:3001/handle/petreport/`,
+        payload
+      );
+      dispatch({
+        type: actions.HANDLE_PET_REPORT,
+        payload: json.data,
+      });
+      return "OK";
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function handleUserReport(payload) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.patch(
+        `http://localhost:3001/handle/userreport/`,
+        payload
+      );
+      dispatch({
+        type: actions.HANDLE_USER_REPORT,
+        payload: json.data,
+      });
+      return "OK";
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function handleAdmin(payload) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.patch(
+        `http://localhost:3001/handle/admin/`,
+        payload
+      );
+      dispatch({
+        type: actions.HANDLE_ADMIN,
+        payload: json.data,
+      });
+      return "OK";
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getDeletedPets() {
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(`http://localhost:3001/handle/deletedpets`);
+      return dispatch({
+        type: actions.GET_DELETED_PETS,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getDeletedUsers() {
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(`http://localhost:3001/handle/deletedusers`);
+      return dispatch({
+        type: actions.GET_DELETED_USERS,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function handleUserRestore(payload) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.patch(
+        `http://localhost:3001/handle/deleteduser/`,
+        payload
+      );
+      dispatch({
+        type: actions.HANDLE_USER_RESTORE,
+        payload: json.data,
+      });
+      return "OK";
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function handleUserReportRestore(payload) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.patch(
+        `http://localhost:3001/handle/userreported/`,
+        payload
+      );
+      dispatch({
+        type: actions.HANDLE_USER_REPORT_RESTORE,
+        payload: json.data,
+      });
+      return "OK";
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getUserReportsSolved() {
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(`http://localhost:3001/handle/userreports`);
+      return dispatch({
+        type: actions.GET_USER_REPORTS_SOLVED,
         payload: json.data,
       });
     } catch (error) {

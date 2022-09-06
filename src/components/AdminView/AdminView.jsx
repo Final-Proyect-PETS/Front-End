@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "flowbite-react/lib/esm/components";
-import { useDispatch } from "react-redux";
-import { getReportedPets, getReportedUsers } from "../../redux/Actions";
 import "./AdminView.css";
-import { useEffect } from "react";
+import {
+  getReportedPets,
+  getReportedUsers,
+  getDeletedPets,
+  getDeletedUsers,
+  handleUser,
+  handleUserReport,
+  handlePet,
+  handlePetReport,
+  handleUserRestore,
+  handleUserReportRestore,
+  getUserReportsSolved,
+} from "../../redux/Actions";
+import Swal from "sweetalert2";
+import { notificationSwal } from "../../utils/notificationSwal";
 
 export default function AdminView() {
   const getUsers = useSelector((state) => state.users);
@@ -16,6 +28,12 @@ export default function AdminView() {
   const reportedPets = useSelector((state) => state.reportedPets);
 
   const reportedUsers = useSelector((state) => state.reportedUsers);
+
+  const deletedPets = useSelector((state) => state.deletedPets);
+
+  const deletedUsers = useSelector((state) => state.deletedUsers);
+
+  const deletedUserReports = useSelector((state) => state.deletedUserReports);
 
   const [show, setShow] = useState(false);
 
@@ -50,7 +68,246 @@ export default function AdminView() {
   useEffect(() => {
     dispatch(getReportedPets());
     dispatch(getReportedUsers());
+    dispatch(getDeletedPets());
+    dispatch(getDeletedUsers());
+    dispatch(getUserReportsSolved());
   }, []);
+
+  function handleDeleteUser(id) {
+    Swal.fire({
+      title: "¿Está seguro de que desea eliminar este usuario?",
+      text: "Esta usuario se eliminará",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Sí",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(handleUser({ id: id, ban: true })).then((e) => {
+          if (e === "OK") {
+            notificationSwal(
+              "¡Enhorabuena!",
+              "Usuario borrado con éxito",
+              "success",
+              "Ok"
+            );
+          } else {
+            notificationSwal(
+              "¡Ooops!",
+              "No se pudo borrar el usuario, intente mas tarde",
+              "error",
+              "Cancel"
+            );
+          }
+        });
+      } else {
+        notificationSwal(
+          "Operación cancelada",
+          "Usuario no borrado",
+          "error",
+          "Cancel"
+        );
+      }
+    });
+  }
+
+  function handleRestoreUser(id) {
+    Swal.fire({
+      title: "¿Está seguro de que desea restaurar este usuario?",
+      text: "Esta usuario se restaurará",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Sí",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(handleUserRestore({ id: id, ban: false })).then((e) => {
+          if (e === "OK") {
+            notificationSwal(
+              "¡Enhorabuena!",
+              "Usuario restaurado con éxito",
+              "success",
+              "Ok"
+            );
+          } else {
+            notificationSwal(
+              "¡Ooops!",
+              "No se pudo restaurar el usuario, intente mas tarde",
+              "error",
+              "Cancel"
+            );
+          }
+        });
+      } else {
+        notificationSwal(
+          "Operación cancelada",
+          "Usuario no restaurado",
+          "error",
+          "Cancel"
+        );
+      }
+    });
+  }
+
+  function handleDeletePet(id) {
+    Swal.fire({
+      title: "¿Está seguro de que desea eliminar esta publicación?",
+      text: "Esta publicación se eliminará",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Sí",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(handlePet({ id: id, ban: true })).then((e) => {
+          if (e === "OK") {
+            notificationSwal(
+              "¡Enhorabuena!",
+              "Publicación borrada con éxito",
+              "success",
+              "Ok"
+            );
+          } else {
+            notificationSwal(
+              "¡Ooops!",
+              "No se pudo borrar la publicación, intente mas tarde",
+              "error",
+              "Cancel"
+            );
+          }
+        });
+      } else {
+        notificationSwal(
+          "Operación cancelada",
+          "Publicación no borrada",
+          "error",
+          "Cancel"
+        );
+      }
+    });
+  }
+
+  function handleSolveUserReport(id) {
+    Swal.fire({
+      title: "¿Está seguro de que desea marcar como resuelta esta denuncia?",
+      text: "Esta denuncia se eliminará",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Sí",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(handleUserReport({ id: id, resolved: true }))
+          .then((e) => {
+            if (e === "OK") {
+              notificationSwal(
+                "¡Enhorabuena!",
+                "Denuncia borrada con éxito",
+                "success",
+                "Ok"
+              );
+            } else {
+              notificationSwal(
+                "¡Ooops!",
+                "No se pudo borrar la denuncia, intente mas tarde",
+                "error",
+                "Cancel"
+              );
+            }
+          })
+          .then(() => {
+            dispatch(getUserReportsSolved());
+          });
+      } else {
+        notificationSwal(
+          "Operación cancelada",
+          "Denuncia no borrada",
+          "error",
+          "Cancel"
+        );
+      }
+    });
+  }
+
+  function handleRestoreUserReport(id) {
+    Swal.fire({
+      title: "¿Está seguro de que desea marcar como no resuelta esta denuncia?",
+      text: "Esta denuncia se restaurará",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Sí",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(handleUserReportRestore({ id: id, resolved: false }))
+          .then((e) => {
+            if (e === "OK") {
+              notificationSwal(
+                "¡Enhorabuena!",
+                "Denuncia restaurada con éxito",
+                "success",
+                "Ok"
+              );
+            } else {
+              notificationSwal(
+                "¡Ooops!",
+                "No se pudo restaurar la denuncia, intente mas tarde",
+                "error",
+                "Cancel"
+              );
+            }
+          })
+          .then(() => {
+            dispatch(getReportedUsers());
+          });
+      } else {
+        notificationSwal(
+          "Operación cancelada",
+          "Denuncia no restaurada",
+          "error",
+          "Cancel"
+        );
+      }
+    });
+  }
+
+  function handleSolvePetReport(id) {
+    Swal.fire({
+      title: "¿Está seguro de que desea marcar como resuelta esta denuncia?",
+      text: "Esta denuncia se eliminará",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Sí",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(handlePetReport({ id: id, resolved: true })).then((e) => {
+          if (e === "OK") {
+            notificationSwal(
+              "¡Enhorabuena!",
+              "Denuncia borrada con éxito",
+              "success",
+              "Ok"
+            );
+          } else {
+            notificationSwal(
+              "¡Ooops!",
+              "No se pudo borrar la denuncia, intente mas tarde",
+              "error",
+              "Cancel"
+            );
+          }
+        });
+      } else {
+        notificationSwal(
+          "Operación cancelada",
+          "Denuncia no borrada",
+          "error",
+          "Cancel"
+        );
+      }
+    });
+  }
 
   return (
     <div>
@@ -347,10 +604,20 @@ export default function AdminView() {
                         </Link>
                       }{" "}
                       | Motivo de la denuncia: {p.reason}
-                      <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                      <button
+                        onClick={() => {
+                          handleDeletePet(p.reportedPetId);
+                        }}
+                        class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                      >
                         ELIMINAR PUBLICACION
                       </button>
-                      <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                      <button
+                        onClick={() => {
+                          handleSolvePetReport(p._id);
+                        }}
+                        class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                      >
                         MARCAR RESUELTO
                       </button>
                     </div>
@@ -395,11 +662,84 @@ export default function AdminView() {
                         </Link>
                       }{" "}
                       | Motivo de la denuncia: {p.reason}
-                      <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                      <button
+                        onClick={() => {
+                          handleDeleteUser(p.reportedUserId);
+                        }}
+                        class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                      >
                         ELIMINAR USUARIO
                       </button>
-                      <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                      <button
+                        onClick={() => {
+                          handleSolveUserReport(p._id);
+                        }}
+                        class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                      >
                         MARCAR RESUELTO
+                      </button>
+                    </div>
+                  </li>
+                ) : null
+              )}
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div className="w-1/1">
+        <div className="h-4/5">
+          <div className="flex justify-center">
+            <h3 className="text-2xl py-2 italic font-semibold text-gray-800">
+              Usuarios eliminados
+            </h3>
+          </div>
+          <div className="h-full pb-30 overflow-auto bg-[#685737] bg-opacity-80">
+            <ol className="ml-4 mt-4 text-white font-medium">
+              {deletedUsers.map((p) =>
+                p.deleted ? (
+                  <li className="flex gap-3 ring-yellow-900 h-16 overflow-hidden items-center">
+                    <div className="flex items-center h-12 w-4/5 flex-row overflow-hidden gap-3 p-4">
+                      {` ${p.first_name} ${p.last_name} |`}
+                      <button
+                        onClick={() => {
+                          handleRestoreUser(p._id);
+                        }}
+                        class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                      >
+                        RESTAURAR USUARIO
+                      </button>
+                    </div>
+                  </li>
+                ) : null
+              )}
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div className="w-1/1">
+        <div className="h-4/5">
+          <div className="flex justify-center">
+            <h3 className="text-2xl py-2 italic font-semibold text-gray-800">
+              Reportes de usuarios resueltos
+            </h3>
+          </div>
+          <div className="h-full pb-30 overflow-auto bg-[#685737] bg-opacity-80">
+            <ol className="ml-4 mt-4 text-white font-medium">
+              {deletedUserReports.map((p) =>
+                p.deleted ? (
+                  <li className="flex gap-3 ring-yellow-900 h-16 overflow-hidden items-center">
+                    <div className="flex items-center h-12 w-4/5 flex-row overflow-hidden gap-3 p-4">
+                      ID Reporte: {`${p._id}`}| Denunciante:
+                      {` ${p.informerFirstName} ${p.informerLastName}`}| Usuario
+                      denunciado:{" "}
+                      {` ${p.reportedFirstName} ${p.reportedLastName}`}
+                      <button
+                        onClick={() => {
+                          handleRestoreUserReport(p._id);
+                        }}
+                        class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                      >
+                        RESTAURAR REPORTE
                       </button>
                     </div>
                   </li>

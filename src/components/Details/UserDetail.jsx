@@ -8,12 +8,17 @@ import {
   clearState,
   getPetDetail,
   chatWithUser,
+  handleAdmin,
+  handleUser,
 } from "../../redux/Actions";
 import NavBar from "../NavBar/NavBar";
 import OwnedPet from "./OwnedPet";
 import Loader from "./../Loaders/Loader";
 import "./userDetailStyle.css";
 import mapboxgl from "mapbox-gl";
+import Swal from "sweetalert2";
+import { notificationSwal } from "../../utils/notificationSwal";
+import Error404 from "../Loaders/Error404.jsx";
 
 export default function UserDetail() {
   let { id } = useParams();
@@ -69,184 +74,349 @@ export default function UserDetail() {
   mapboxgl.accessToken =
     "pk.eyJ1IjoicG9saW5vIiwiYSI6ImNsN2FtdWNybTB0bmk0MHNqZXZxMzM0OTYifQ.O2Y9sZnF-K1k_KhC8MzJbA";
 
-  return Object.keys(userDetail).length ? (
-    <div className="h-screen">
-      <NavBar />
-      <Modal
-        show={show}
-        popup={true}
-        onClose={onClose}
-        class="bg-gray-800 bg-opacity-500"
-      >
-        <div className="pl-2 p-3 bg-yellow-600 rounded-md">
-          <Modal.Header>
-            <p className="text-white">{userDetail.first_name} {userDetail.last_name}</p>
-          </Modal.Header>
-        </div>
-        <Modal.Body class="p-6">
-          <div className="space-y-6">
-            <div >
-              <div >
-                <div className="h-80">
-                  <div className="h-1/4 flex items-center justify-center flex-col">
-                    <div className="bg-white flex justify-center">
-                      <h1 className="text-xl font-semibold">
-                      📩 Email: {userDetail.email}
-                      </h1>
-                    </div>
-                  </div>
-                  <div className="h-1/4 flex items-center justify-center flex-col">
-                    <div className="bg-white flex justify-center">
-                      <h1 className="text-xl font-semibold">
-                      📞Telefono: {userDetail.telephone ? userDetail.telephone : "No hay información detallada"}
-                      </h1>
-                    </div>
-                  </div>
-                  <div className="h-1/4 flex items-center justify-center flex-col">
-                    <div className="bg-white flex justify-center">
-                      <h1 className="text-xl font-semibold">
-                      📍 Ubicación: {userDetail.place}
-                      </h1>
-                    </div>
-                  </div>
-                  <div className="h-1/4 flex items-center justify-center flex-col">
-                    <div className="bg-white flex justify-center">
-                      <h1 className="text-xl font-semibold">
-                        Cuenta creada el: {userDetail.createdAt.slice(0, 10)}
-                      </h1>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+  function handleAdminSet(id) {
+    Swal.fire({
+      title: "¿Está seguro de que desea nombrar administrador a este usuario?",
+      text: "Tendrá control total del sitio",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Sí",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(handleAdmin({ id: id, isAdmin: true })).then((e) => {
+          if (e === "OK") {
+            notificationSwal(
+              "¡Enhorabuena!",
+              "El usuario ahora es administrador",
+              "success",
+              "Ok"
+            );
+            navigate("/home");
+          } else {
+            notificationSwal(
+              "¡Ooops!",
+              "No se poner al usuario como administrador, intente mas tarde",
+              "error",
+              "Cancel"
+            );
+          }
+        });
+      } else {
+        notificationSwal(
+          "Operación cancelada",
+          "Usuario sigue siendo usuario",
+          "error",
+          "Cancel"
+        );
+      }
+    });
+  }
+
+  function handleAdminUnset(id) {
+    Swal.fire({
+      title:
+        "¿Está seguro de que desea descender a usuario a este administrador?",
+      text: "Dejará de tener el control del sitio",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Sí",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(handleAdmin({ id: id, isAdmin: false })).then((e) => {
+          if (e === "OK") {
+            notificationSwal(
+              "¡Enhorabuena!",
+              "El administrador fue descendido usuario",
+              "success",
+              "Ok"
+            );
+            navigate("/home");
+          } else {
+            notificationSwal(
+              "¡Ooops!",
+              "No se pudo descender al administrador a usuario, intente mas tarde",
+              "error",
+              "Cancel"
+            );
+          }
+        });
+      } else {
+        notificationSwal(
+          "Operación cancelada",
+          "El administrador sigue siendo administrador",
+          "error",
+          "Cancel"
+        );
+      }
+    });
+  }
+
+  function handleDeleteUser(id) {
+    Swal.fire({
+      title: "¿Está seguro de que desea eliminar este usuario?",
+      text: "Este usuario se eliminará",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "No",
+      confirmButtonText: "Sí",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(handleUser({ id: id, ban: true })).then((e) => {
+          if (e === "OK") {
+            notificationSwal(
+              "¡Enhorabuena!",
+              "Usuario borrado con éxito",
+              "success",
+              "Ok"
+            );
+            navigate("/home");
+          } else {
+            notificationSwal(
+              "¡Ooops!",
+              "No se pudo borrar el usuario, intente mas tarde",
+              "error",
+              "Cancel"
+            );
+          }
+        });
+      } else {
+        notificationSwal(
+          "Operación cancelada",
+          "Usuario no borrado",
+          "error",
+          "Cancel"
+        );
+      }
+    });
+  }
+
+  if (userDetail === "") {
+    return (
+      <div>
+        <NavBar />
+        <Error404 />
+      </div>
+    );
+  } else if (Object.keys(userDetail).length) {
+    return (
+      <div className="h-screen">
+        <NavBar />
+        <Modal
+          show={show}
+          popup={true}
+          onClose={onClose}
+          class="bg-gray-800 bg-opacity-500"
+        >
+          <div className="pl-2 p-3 bg-yellow-600 rounded-md">
+            <Modal.Header>
+              <p className="text-white">
+                {userDetail.first_name} {userDetail.last_name}
+              </p>
+            </Modal.Header>
           </div>
-        </Modal.Body>
-      </Modal>
-      <>
-        <div className="lg:mx-36 my-12 h-4/5 rounded-xl bg-yellow-800">
-          <div className="h-3/4">
-            <div className="flex h-1/2">
-              <img
-                src="https://sergimateo.com/wp-content/2012/11/portadas-twitter-1.jpg"
-                alt=""
-                className="w-screen object-cover rounded-t-xl"
-              />
-              <div className="absolute lg:mt-24 lg:ml-24 mt-48 ml-4">
-                <img
-                  src={userDetail.image}
-                  alt=""
-                  className="w-32 h-32 lg:w-80 lg:h-80 bg-cover border-solid border-2 border-[#B99782] rounded-full"
-                />
-              </div>
-            </div>
-            <div className="h-1/2 flex">
-              <div className="w-1/3"></div>
-              <div className="w-2/3 flex">
-                <div className="w-1/2 flex flex-col justify-around">
-                  <div>
-                    <h3 className="text-6xl text-white font-semibold">
-                      {userDetail.first_name} {userDetail.last_name}
-                    </h3>
-                    <p className="font-semibold text-white">
-                      ({userDetail.username})
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-400">
-                      Descripción:{" "}
-                      {userDetail.about
-                        ? userDetail.about
-                        : "Este usuario no ha aportado descripción aún"}
-                    </h3>
-                  </div>
-                </div>
-                <div className="w-1/2">
-                  {userDetail.place_latitude && userDetail.place_longitude ? (
-                    <div
-                      ref={mapDiv}
-                      style={{
-                        //block: "w-full",
-                        height: "14.5vw",
-                        width: "full",
-                        borderRadius: "10px",
-                      }}
-                    />
-                  ) : null}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="h-1/5 flex">
-            <div className="w-1/2 flex justify-center items-center mt-10">
-              <h3 className="text-xl font-semibold">Mascotas del usuario</h3>
-            </div>
-            <div className="w-1/2 lg:flex lg:items-center lg:justify-around">
-              {loggedUser._id !== userDetail._id ? (
+          <Modal.Body class="p-6">
+            <div className="space-y-6">
+              <div>
                 <div>
-                  <button
-                    onClick={() => chat()}
-                    className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                  >
-                    Enviar mensaje
-                  </button>
+                  <div className="h-80">
+                    <div className="h-1/4 flex items-center justify-center flex-col">
+                      <div className="bg-white flex justify-center">
+                        <h1 className="text-xl font-semibold">
+                          📩 Email: {userDetail.email}
+                        </h1>
+                      </div>
+                    </div>
+                    <div className="h-1/4 flex items-center justify-center flex-col">
+                      <div className="bg-white flex justify-center">
+                        <h1 className="text-xl font-semibold">
+                          📞Telefono:{" "}
+                          {userDetail.telephone
+                            ? userDetail.telephone
+                            : "No hay información detallada"}
+                        </h1>
+                      </div>
+                    </div>
+                    <div className="h-1/4 flex items-center justify-center flex-col">
+                      <div className="bg-white flex justify-center">
+                        <h1 className="text-xl font-semibold">
+                          📍 Ubicación: {userDetail.place}
+                        </h1>
+                      </div>
+                    </div>
+                    <div className="h-1/4 flex items-center justify-center flex-col">
+                      <div className="bg-white flex justify-center">
+                        <h1 className="text-xl font-semibold">
+                          Cuenta creada el: {userDetail.createdAt.slice(0, 10)}
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              ) : (
-                <></>
-              )}
-              {loggedUser._id === userDetail._id ? (
-                <Link to="/updateuser">
+              </div>
+            </div>
+          </Modal.Body>
+        </Modal>
+        <>
+          <div className="lg:mx-36 my-12 h-4/5 rounded-xl bg-yellow-800">
+            <div className="h-3/4">
+              <div className="flex h-1/2">
+                <img
+                  src="https://sergimateo.com/wp-content/2012/11/portadas-twitter-1.jpg"
+                  alt=""
+                  className="w-screen object-cover rounded-t-xl"
+                />
+                <div className="absolute lg:mt-24 lg:ml-24 mt-48 ml-4">
+                  <img
+                    src={userDetail.image}
+                    alt=""
+                    className="w-32 h-32 lg:w-80 lg:h-80 bg-cover border-solid border-2 border-[#B99782] rounded-full"
+                  />
+                </div>
+              </div>
+              <div className="h-1/2 flex">
+                <div className="w-1/3"></div>
+                <div className="w-2/3 flex">
+                  <div className="w-1/2 flex flex-col justify-around">
+                    <div>
+                      <h3 className="text-6xl text-white font-semibold">
+                        {userDetail.first_name} {userDetail.last_name}
+                      </h3>
+                      <p className="font-semibold text-white">
+                        ({userDetail.username})
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-400">
+                        Descripción:{" "}
+                        {userDetail.about
+                          ? userDetail.about
+                          : "Este usuario no ha aportado descripción aún"}
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="w-1/2">
+                    {userDetail.place_latitude && userDetail.place_longitude ? (
+                      <div
+                        ref={mapDiv}
+                        style={{
+                          //block: "w-full",
+                          height: "14.5vw",
+                          width: "full",
+                          borderRadius: "10px",
+                        }}
+                      />
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="h-1/5 flex">
+              <div className="w-1/2 flex justify-center items-center mt-10">
+                <h3 className="text-xl font-semibold">Mascotas del usuario</h3>
+              </div>
+              <div className="w-1/2 lg:flex lg:items-center lg:justify-around">
+                {loggedUser._id !== userDetail._id ? (
+                  <div>
+                    <button
+                      onClick={() => chat()}
+                      className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                    >
+                      Enviar mensaje
+                    </button>
+                  </div>
+                ) : (
+                  <></>
+                )}
+                {loggedUser._id === userDetail._id ? (
+                  <Link to="/updateuser">
+                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                      ✏️Editar Perfil
+                    </button>
+                  </Link>
+                ) : (
+                  false
+                )}
+                <Button
+                  onClick={() => {
+                    onClick();
+                  }}
+                  class="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                >
+                  Más información
+                </Button>
+                <Link to={`/reportuser`}>
                   <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                    ✏️Editar Perfil
+                    Denunciar
                   </button>
                 </Link>
-              ) : (
-                false
-              )}
-              <Button
-                onClick={() => {
-                  onClick();
-                }}
-                class="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                {loggedUser.isAdmin && !userDetail.isAdmin ? (
+                  <button
+                    onClick={() => {
+                      handleAdminSet(userDetail._id);
+                    }}
+                    className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                  >
+                    NOMBRAR ADMINISTRADOR
+                  </button>
+                ) : null}
+                {loggedUser.isAdmin && userDetail.isAdmin ? (
+                  <button
+                    onClick={() => {
+                      handleAdminUnset(userDetail._id);
+                    }}
+                    className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                  >
+                    DESCENDER A USUARIO
+                  </button>
+                ) : null}
+                {loggedUser.isAdmin ? (
+                  <button
+                    onClick={() => {
+                      handleDeleteUser(userDetail._id);
+                    }}
+                    className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                  >
+                    ELIMINAR USUARIO
+                  </button>
+                ) : null}
+              </div>
+            </div>
+            <div className="bg-yellow-700 mt-10 rounded-xl">
+              <div
+                id="editPet"
+                className="grid grid-cols-3 place-content-center"
               >
-                Más información
-              </Button>
-              <Link to={`/reportuser`}>
-                <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                  Denunciar
-                </button>
-              </Link>
+                {userDetail.pets?.length ? (
+                  userDetail.pets.map((pets) => (
+                    <OwnedPet
+                      key={pets._id}
+                      idUser={userDetail._id}
+                      idPet={pets._id}
+                      namePet={pets.name}
+                      imagePet={pets.image}
+                      isAdopted={pets.isAdopted}
+                      pets={userDetail.pets}
+                      isDeleted={pets.deleted}
+                      interestedUsers={userDetail.interestedUsers}
+                    ></OwnedPet>
+                  ))
+                ) : (
+                  <h3 className="text-2xl font-bold">
+                    No hay mascotas que mostrar...
+                  </h3>
+                )}
+              </div>
             </div>
           </div>
-          <div className="bg-yellow-700 mt-10 rounded-xl">
-            <div id="editPet" className="grid grid-cols-3 place-content-center">
-              {userDetail.pets?.length ? (
-                userDetail.pets.map((pets) => (
-                  <OwnedPet
-                    key={pets._id}
-                    idUser={userDetail._id}
-                    idPet={pets._id}
-                    namePet={pets.name}
-                    imagePet={pets.image}
-                    isAdopted={pets.isAdopted}
-                    pets={userDetail.pets}
-                    isDeleted={pets.deleted}
-                    interestedUsers={userDetail.interestedUsers}
-                  ></OwnedPet>
-                ))
-              ) : (
-                <h3 className="text-2xl font-bold">
-                  No hay mascotas que mostrar...
-                </h3>
-              )}
-            </div>
-          </div>
-        </div>
-      </>
-    </div>
-  ) : (
+        </>
+      </div>
+    );
+  } else {
     <>
       <NavBar />
       <Loader />
-    </>
-  );
+    </>;
+  }
 }
