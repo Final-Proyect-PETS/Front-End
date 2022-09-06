@@ -22,7 +22,7 @@ export default function Conversations({ conversation, currentUser }) {
     return (
         <>
             <div key={userr?._id} className="flex items-center p-2">
-                <img src={userr?.image} alt="imagen de usuario" className="w-14 h-14 rounded-full" />
+                <img src={userr?.image} alt="imagen de usuario" className="w-14 h-14 rounded-full object-cover" />
                 <div className="text-md flex pl-3 text-gray-700 font-semibold">
                     {userr?.first_name} {userr?.last_name}
                 </div>

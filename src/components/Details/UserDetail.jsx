@@ -144,7 +144,7 @@ export default function UserDetail() {
                 <img
                   src={userDetail.image}
                   alt=""
-                  className="w-20 h-20 lg:w-80 lg:h-80 bg-cover border-solid border-2 border-[#e1a13f] rounded-full"
+                  className="w-20 h-20 lg:w-80 lg:h-80 object-cover border-solid border-2 border-[#e1a13f] rounded-full"
                 />
               </div>
               

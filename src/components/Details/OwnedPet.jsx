@@ -124,7 +124,7 @@ export default function OwnedPet({
   return (
     <div className="flex items-center py-4 px-5 ">
       <div className="max-w-sm ">
-        <Card class="block opacity-90 max-w-sm bg-yellow-800 opacity-70 rounded-lg border border-yellow-900 shadow-md hover:opacity-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <Card   class="block opacity-90 max-w-sm bg-yellow-800 rounded-lg border border-yellow-900 shadow-md hover:opacity-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <div className="flex justify-end">
             {loggedUser._id === userDetail._id ? (
               <Dropdown inline={true} label="">
@@ -168,9 +168,9 @@ export default function OwnedPet({
           </div>
           <div className="flex flex-col items-center">
             <img
-              className="mb-3 h-24 w-24 rounded-full shadow-lg"
+              className="mb-3 h-24 w-24 object-cover rounded-full shadow-lg"
               src={imagePet}
-              alt="Bonnie image"
+              alt="imagen de la la mascota"
             />
             <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
               {namePet}
