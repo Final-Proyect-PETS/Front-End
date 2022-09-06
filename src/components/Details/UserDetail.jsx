@@ -52,8 +52,6 @@ export default function UserDetail() {
     }
   }
 
-  console.log(userDetail);
-
   const [show, setShow] = useState(false);
 
   const onClick = () => {

@@ -7,7 +7,6 @@ const PrivateRoutes = () => {
   
   const pattern = /^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)/gi.test(tokenn)
 
-  console.log(pattern)
 
   return auth.token && pattern ? <Outlet /> : <Navigate to="/" />;
 };
