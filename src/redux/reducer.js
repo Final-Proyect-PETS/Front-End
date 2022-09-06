@@ -17,13 +17,10 @@ const initialState = {
   viewedNotification: [], //vistas
   reportedPets: [],
   reportedUsers: [],
-<<<<<<< HEAD
   deletedPets: [],
   deletedUsers: [],
   deletedUserReports: [],
-=======
-  query:"",
->>>>>>> 6e8caad32525240103fb790ce6f047816d1ed027
+  query: "",
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -127,7 +124,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
     //FILTROS
     case actions.FILTER_BY_QUERY:
-      if(payload.length === 0){
+      if (payload.length === 0) {
         return {
           ...state,
           query: "empty",
@@ -136,7 +133,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         pets: payload,
-        query:""
+        query: "",
       };
     //LOGIN
     case actions.USER_LOGIN:
