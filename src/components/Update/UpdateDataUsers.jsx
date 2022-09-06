@@ -90,7 +90,6 @@ export default function UpdateUser() {
 
   function handleUpDate(e) {
     e.preventDefault();
-    console.log(input);
     dispatch(patchUsuer(input)).then(
       notificationSwal(
         "¡Enhorabuena!",
@@ -150,7 +149,6 @@ export default function UpdateUser() {
       place_latitude: lat,
     });
     setPlaceSelect(true);
-    //if (placeSelect)
     createNewMap(long, lat);
   }
   const mapAccess = {

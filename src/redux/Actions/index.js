@@ -144,7 +144,6 @@ export function clearStatePet(payload) {
 //UpDate//----------------------------------------------------------------
 export function patchUsuer(payload) {
   return async function (dispatch) {
-    console.log(payload.id);
     try {
       let json = await axios.patch(
         `https://happytails2.herokuapp.com/home/users/${payload.id}`,
@@ -248,7 +247,6 @@ export function getUserProfile(id) {
 }
 
 export function forgotPassword(payload) {
-  console.log(payload);
   return async function (dispatch) {
     try {
       let json = await axios.post(
@@ -267,8 +265,6 @@ export function forgotPassword(payload) {
 
 export function resetPassword(payload) {
   return async function (dispatch) {
-    console.log(payload);
-    console.log(payload.password);
     try {
       let json = await axios.patch(
         `https://happytails2.herokuapp.com/resetpassword/${payload.id}/${payload.auth}`,
@@ -316,12 +312,6 @@ export function patchInterestedUsers(payload) {
   };
 }
 
-/* export function emailAdopt(payload) {
-  return async function (dispatch) {
-      console.log(error);
-    }
-  };
-} */
 export function patchLikes(payload) {
   return async function (dispatch) {
     try {
