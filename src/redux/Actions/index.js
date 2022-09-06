@@ -237,7 +237,12 @@ export function userLoginGoogle(payload) {
         type: actions.USER_LOGIN_GOOGLE,
         payload: json.data,
       });
-    } catch (error) {}
+    } catch (error) {
+      return dispatch({
+        type: actions.USER_LOGIN_GOOGLE,
+        payload : error.response.data.msg,
+      });
+    }
   };
 }
 
