@@ -2,7 +2,13 @@ import React from "react";
 import NavBar from "../NavBar/NavBar";
 import "./Blog.css";
 import { useSelector } from "react-redux";
-
+import { Footer } from "flowbite-react";
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  EmailShareButton,
+  EmailIcon,
+} from "react-share";
 import {
   getAllUsers,
   getAllPets,
@@ -31,6 +37,7 @@ import goldenpaw from "../../assets/images/goldenpaw.gif";
 import goldenblackgif from "../../assets/images/goldenblackgif.gif";
 import diamantepaw from "../../assets/images/diamantepaw.gif";
 import amarillobaño from "../../assets/images/amarillobaño.png";
+import silverpaw from "../../assets/images/silverpaw.png"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -40,9 +47,9 @@ export default function Blog() {
   const loggedUser = useSelector((state) => state.userProfile);
   const allUsers = useSelector((state) => state.users);
   const allPets = useSelector((state) => state.pets);
-  var donator = allUsers.filter((user) => user?.donations?.length >= 1);
-  var adopted = allPets.filter((pet) => pet?.isAdopted === true);
-  var blogger = allUsers.filter((user) => user?.blogmessage?.length >= 1);
+  const donator = allUsers.filter((user) => user?.donations?.length >= 1);
+  const adopted = allPets.filter((pet) => pet?.isAdopted === true);
+  const blogger = allUsers.filter((user) => user?.blogmessage?.length >= 1);
   const [input, setInput] = useState();
   const id = localStorage.getItem("id");
 
@@ -85,7 +92,9 @@ export default function Blog() {
       blogmessage: input,
     };
 
-    dispatch(patchUsuer(payload)).then(navigate("/blog#form", { replace: true }));
+    dispatch(patchUsuer(payload)).then(
+      navigate("/blog#form", { replace: true })
+    );
   }
 
   return (
@@ -103,13 +112,13 @@ export default function Blog() {
               <img alt="blog" src={paradonar} className="w-screen" />
             </a>
 
-            <a href="https://happytails.vercel.app/home">
+            <a href="https://happytails.vercel.app/blog/1">
               <img alt="blog" src={carpi} className="w-screen  " />
             </a>
-            <a href="https://happytails.vercel.app/home">
+            <a href="https://happytails.vercel.app/blog/2">
               <img alt="blog" src={amarillobaño} className="w-screen" />
             </a>
-            <a href="https://happytails.vercel.app/home">
+            <a href="https://happytails.vercel.app/blog/3">
               <img alt="blog" src={cachita} className="w-screen  " />
             </a>
           </Carousel>
@@ -175,28 +184,20 @@ export default function Blog() {
             🤎 Mas de {adopted?.length - 1} mascotas adoptadas a la fecha
           </h5>
         </div>
-        <div className="w-screen h-1/4 bg-yellow-900  opacity-90 flex justify-center ">
-          <Carousel>
+        <div className="w-screen h-1/4 bg-yellow-900 opacity-90 flex justify-center ">
+          <Carousel slideInterval={3500}>
             {adopted?.map((adopt) => (
               <img alt="adoptedPet" src={adopt.image} className="w-96 h-72" />
             ))}
           </Carousel>
         </div>
 
-        <div className=" w-screen bg-yellow-900 rounded opacity-90">
-          <Link to="/home" className="group flex justify-center rounded-full">
-            <Button class="m-3 w-48 bg-green-600 hover:bg-green-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-              <h5 className=" justify-center text-2xl font-bold leading-none text-white dark:text-white">
-                Buscar una Mascota
-              </h5>
-            </Button>
-          </Link>
-        </div>
-        <hr className="border" />
+        {/*  
+        <hr className="border" /> */}
         {/* --HR------------CHATITO------------------------------------------------------------------------------------------hr */}
 
         <div className="lg:flex gap-4 opacity-90 bg-yellow-900 lg:justify-center lg:m-25">
-          <div className="w-96  flex justify-center">
+          <div className="w-96 flex justify-center">
             <Card class="opacity-80 bg-yellow-900 flex justify-center">
               <form
                 onSubmit={(e) => onSubmitHandler(e)}
@@ -241,7 +242,7 @@ export default function Blog() {
             </Card>
           </div>
 
-          <div className=" w-96 flex justify-center">
+          <div className="mt-2 w-96 flex justify-center">
             <Card class="bg-gray-100  m-2 rounded">
               <div className="mb-1 flex ">
                 <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
@@ -257,37 +258,40 @@ export default function Blog() {
               </div>
 
               <ul className=" divide-y divide-gray-200 dark:divide-gray-700">
-                {blogger?.reverse().slice(0, 5).map((user) => (
-                  <li className="py-3 px-4 sm:py-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="shrink-0">
-                        <Link
-                          to={`/users/${user._id}`}
-                          className="group flex items-center rounded-full"
-                        >
-                          <img
-                            className="h-8 w-8 rounded-full"
-                            src={user.image}
-                            alt="image"
-                          />
-                        </Link>
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <Link
-                          to={`/users/${user._id}`}
-                          className="group flex items-center rounded-full"
-                        >
-                          <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                            {user.username}
+                {blogger
+                  ?.reverse()
+                  .slice(0, 5)
+                  .map((user) => (
+                    <li className="py-3 px-4 sm:py-4">
+                      <div className="flex items-center space-x-4">
+                        <div className="shrink-0">
+                          <Link
+                            to={`/users/${user._id}`}
+                            className="group flex items-center rounded-full"
+                          >
+                            <img
+                              className="h-8 w-8 rounded-full"
+                              src={user.image}
+                              alt="images"
+                            />
+                          </Link>
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <Link
+                            to={`/users/${user._id}`}
+                            className="group flex items-center rounded-full"
+                          >
+                            <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                              {user.username}
+                            </p>
+                          </Link>
+                          <p className="truncate text-sm text-gray-500 dark:text-gray-400">
+                            {user.blogmessage}
                           </p>
-                        </Link>
-                        <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                          {user.blogmessage}
-                        </p>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                ))}
+                    </li>
+                  ))}
               </ul>
             </Card>
           </div>
@@ -334,11 +338,11 @@ export default function Blog() {
                         {ranking1likes?.name}
                       </span>
                       <span className="ml-3 inline-flex items-center justify-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
-                        Platino
+                        Diamante
                       </span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={goldenblackgif}
+                        src={diamantepaw}
                         alt="paw"
                       />
                     </Link>
@@ -358,13 +362,14 @@ export default function Blog() {
                         {ranking2likes?.name}
                       </span>
                       <span className="ml-3 inline-flex items-center justify-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
-                        Diamante
+                        Platino
                       </span>
-                      <img
+                      <span>patita de Platino</span>
+                      {/* <img
                         className="h-8 w-8 rounded-full"
                         src={diamantepaw}
                         alt="paw"
-                      />
+                      /> */}
                     </Link>
                   </li>
                   <li>
@@ -381,7 +386,7 @@ export default function Blog() {
                         {ranking3likes?.name}
                       </span>
                       <span className="ml-3 inline-flex items-center justify-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
-                        Diamante
+                        Oro
                       </span>
                       <img
                         className="h-8 w-8 rounded-full"
@@ -404,11 +409,11 @@ export default function Blog() {
                         {ranking4likes?.name}
                       </span>
                       <span className="ml-3 inline-flex items-center justify-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
-                        Bronce
+                        Plata
                       </span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={broncepaw}
+                        src={silverpaw}
                         alt="paw"
                       />
                     </Link>
@@ -469,11 +474,11 @@ export default function Blog() {
                         {ranking1donator?.username}
                       </span>
                       <span className="ml-3 inline-flex items-center justify-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
-                        Platino
+                        Diamante
                       </span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={goldenblackgif}
+                        src={diamantepaw}
                         alt="paw"
                       />
                     </Link>
@@ -493,13 +498,14 @@ export default function Blog() {
                         {ranking2donator?.username}
                       </span>
                       <span className="ml-3 inline-flex items-center justify-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
-                        Diamante
+                        Platino
                       </span>
-                      <img
+                      <span>patita de platino</span>
+                      {/* <img
                         className="h-8 w-8 rounded-full"
-                        src={diamantepaw}
+                        src={goldenblackgif}
                         alt="paw"
-                      />
+                      /> */}
                     </Link>
                   </li>
 
@@ -541,11 +547,11 @@ export default function Blog() {
                         {ranking4donator?.username}
                       </span>
                       <span className="ml-3 inline-flex items-center justify-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
-                        Bronce
+                        Plata
                       </span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={broncepaw}
+                        src={silverpaw}
                         alt="paw"
                       />
                     </Link>
@@ -627,10 +633,9 @@ export default function Blog() {
                             </div>
 
                             <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                              {`$ ${
-                                don?.donations[don?.donations?.length - 1]
-                                  ?.donationAmount
-                              }`}
+                              {`$ ${don?.donations[don?.donations?.length - 1]
+                                ?.donationAmount
+                                }`}
                             </div>
                           </div>
                         </li>
@@ -641,6 +646,42 @@ export default function Blog() {
             </div>
           </div>
         </div>
+        <Footer container={true}>
+          <Footer.Copyright
+            href="#"
+            by="Blancaflor y los 7 hooksitos™"
+            year={2022}
+          />
+          <h1>lal</h1>
+          <Footer.LinkGroup>
+            <div className="rounded-full">
+              <FacebookShareButton
+                url={`https://happytails.vercel.app`}
+                quote={"Adoptame"}
+                hashtag={"#happytails"}
+              >
+                <FacebookIcon size={40} className="rounded-full" />
+              </FacebookShareButton>
+            </div>
+            <div>
+              <EmailShareButton
+                subject="Quiero que me adoptes"
+                body={`Seguinos en https://happytails.vercel.app`}
+              >
+                <EmailIcon size={40} className="rounded-full" />
+              </EmailShareButton>
+            </div>
+          </Footer.LinkGroup>
+          <div>
+            <Footer.Title title="legal" />
+            <Footer.LinkGroup>
+              <Footer.Link href="#">About</Footer.Link>
+              <Footer.Link href="#">Privacy Policy</Footer.Link>
+              <Footer.Link href="#">Licensing</Footer.Link>
+              <Footer.Link href="#">Contact</Footer.Link>
+            </Footer.LinkGroup>
+          </div>
+        </Footer>
         {/* hr--------------------------------------------------------------------------------------------------------------- */}
       </div>
     </>

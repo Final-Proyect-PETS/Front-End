@@ -25,7 +25,7 @@ export default function Register() {
     first_name: "",
     last_name: "",
     username: "",
-    image: "",
+    image: "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png",
     email: "",
     password: "",
     passwordRepeat: "",
@@ -80,6 +80,8 @@ export default function Register() {
   function validate(input) {
     let errors = {};
 
+    let regex = new RegExp("^[0-9]+$")
+
     if (input.first_name) {
       if (
         !/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1\s]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/g.test(
@@ -132,6 +134,15 @@ export default function Register() {
       } else errors.password = "";
     } else errors.password = "La contraseña es necesaria!";
 
+    if (input.telephone) {
+      if (!regex.test(input.telephone)) {
+        errors.telephone = "Solo numeros!"
+      }
+      else if (input.telephone?.length > 15) {
+        errors.telephone = "No puede tener mas de 15 caracteres!"
+      }
+    } else errors.telephone = ""
+
     if (input.passwordRepeat) {
       if (
         !/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/.test(
@@ -180,7 +191,7 @@ export default function Register() {
         first_name: "",
         last_name: "",
         username: "",
-        image: "",
+        image: "https://assets.stickpng.com/images/585e4beacb11b227491c3399.png",
         email: "",
         password: "",
         passwordRepeat: "",
@@ -380,6 +391,7 @@ export default function Register() {
               name="about"
               value={input.about}
               placeholder="Descripción"
+              maxLength="255"
               onChange={(e) => handleChange(e)}
               className="w-full py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"
             ></textarea>
@@ -419,6 +431,11 @@ export default function Register() {
               placeholder="Telefono"
               className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
             ></input>
+            {errors.telephone && (
+              <p className="font-bold text-red-700 text-center p-2">
+                {errors.telephone}
+              </p>
+            )}
           </div>
           <div>
             <button
