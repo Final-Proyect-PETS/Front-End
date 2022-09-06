@@ -240,7 +240,7 @@ export function userLoginGoogle(payload) {
     } catch (error) {
       return dispatch({
         type: actions.USER_LOGIN_GOOGLE,
-        payload : error.response.data.msg,
+        payload : error.response.data,
       });
     }
   };
