@@ -4,7 +4,7 @@ const initialState = {
   pets: [],
   users: [],
   userDetail: [], //detail route
-  petDetail: [], //detail route
+  petDetail: {}, //detail route
   switchRender: [], //switch
   token: null,
   userProfile: [], //usuario loggeado
@@ -17,7 +17,10 @@ const initialState = {
   viewedNotification: [], //vistas
   reportedPets: [],
   reportedUsers: [],
-  query:"",
+  deletedPets: [],
+  deletedUsers: [],
+  deletedUserReports: [],
+  query: "",
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -121,7 +124,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
     //FILTROS
     case actions.FILTER_BY_QUERY:
-      if(payload.length === 0){
+      if (payload.length === 0) {
         return {
           ...state,
           query: "empty",
@@ -130,7 +133,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         pets: payload,
-        query:""
+        query: "",
       };
     //LOGIN
     case actions.USER_LOGIN:
@@ -213,6 +216,56 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         reportedUsers: payload,
+      };
+    case actions.HANDLE_PET:
+      return {
+        ...state,
+        pets: payload,
+      };
+    case actions.HANDLE_USER:
+      return {
+        ...state,
+        users: payload,
+      };
+    case actions.HANDLE_PET_REPORT:
+      return {
+        ...state,
+        reportedPets: payload,
+      };
+    case actions.HANDLE_USER_REPORT:
+      return {
+        ...state,
+        reportedUsers: payload,
+      };
+    case actions.HANDLE_ADMIN:
+      return {
+        ...state,
+        //userDetail: payload,
+      };
+    case actions.GET_DELETED_PETS:
+      return {
+        ...state,
+        deletedPets: payload,
+      };
+    case actions.GET_DELETED_USERS:
+      return {
+        ...state,
+        deletedUsers: payload,
+      };
+    case actions.HANDLE_USER_RESTORE:
+      return {
+        ...state,
+        deletedUsers: payload,
+      };
+    case actions.HANDLE_USER_REPORT_RESTORE:
+      return {
+        ...state,
+        deletedUserReports: payload,
+      };
+    case actions.GET_USER_REPORTS_SOLVED:
+      return {
+        ...state,
+        deletedUserReports: payload,
       };
     default:
       return state;
