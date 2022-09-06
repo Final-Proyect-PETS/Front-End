@@ -56,7 +56,6 @@ export default function LandingPage() {
 
   const clientId =
     "1066896459343-34h3crloulb8su22sfl5l4ep4pqv2bud.apps.googleusercontent.com";
-
   useEffect(() => {
     gapi.load("client:auth2", () => {
       gapi.auth2.init({ clientId: clientId });
@@ -64,7 +63,15 @@ export default function LandingPage() {
   });
 
   const responseGoogle = (response) => {
-    dispatch(userLoginGoogle(response)).then(() => {
+    dispatch(userLoginGoogle(response)).then((e) => {
+      console.log(e)
+      if(e.payload === "Usuario baneado"){
+        Swal.fire({
+          icon:"warning",
+          text:"Usuario baneado"
+        })
+        .then(()=> navigate("/"))
+      }
       navigate("/blog"); //cambie /home por /blog.... fijense
     });
   };
