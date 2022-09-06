@@ -74,14 +74,14 @@ export default function LandingPage() {
 
   //------Forgot password
   const [email, setEmail] = useState("");
-  const [show, setShow] = useState(false);
-  const onClick = () => {
-    setShow(true);
-  };
+  // const [show, setShow] = useState(false);
+  // const onClick = () => {
+  //   setShow(true);
+  // };
 
-  const onClose = () => {
-    setShow(false);
-  };
+  // const onClose = () => {
+  //   setShow(false);
+  // };
   function handleChangePass(e) {
     setEmail(e.target.value);
   }
@@ -94,7 +94,7 @@ export default function LandingPage() {
 
   return (
     <div id="landing" className="lg:flex lg:w-screen">
-      <Modal show={show} size="md" popup={true} onClose={onClose}>
+      <Modal /*show={show} size="md" popup={true} onClose={onClose}*/>
         <div className="bg-yellow-500 rounded-lg shadow-md border border-white">
           <Modal.Header />
           <Modal.Body>
@@ -230,14 +230,14 @@ export default function LandingPage() {
                 </div>
                 <div className="flex items-center mb-6 -mt-4">
                   <div className="flex ml-auto">
-                    {/* <Link to="/forgotpassword"> */}
+                     <Link to="/forgotpassword">
                     <span
-                      onClick={onClick}
+                      // onClick={onClick}
                       className="inline-flex text-s font-thin text-white sm:text-sm  hover:text-yellow-900 "
                     >
                       ¿Has olvidado tu contraseña? Ingresa aquí.
                     </span>
-                    {/* </Link> */}
+                    </Link>
                   </div>
                 </div>
                 <div>
