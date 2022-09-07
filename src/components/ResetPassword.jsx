@@ -37,7 +37,6 @@ export default function ResetPassword() {
                 errors.passwordRepeat = "Las contraseñas no coinciden";
             } else errors.passwordRepeat = "";
         } else errors.passwordRepeat = "La contraseña es necesaria";
-
         return errors;
     }
 

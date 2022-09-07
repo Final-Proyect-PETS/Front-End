@@ -1,16 +1,21 @@
 import React from "react";
-import { forgotPassword } from "../redux/Actions/index";
+import { forgotPassword, getAllUsers } from "../redux/Actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { notificationSwal } from "../utils/notificationSwal";
 import Swal from "sweetalert2";
 import { Label } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function ForgotPassword() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [input, setInput] = useState("");
+
+    useEffect(() => {
+        dispatch(getAllUsers())
+    }, [dispatch])
 
     const users = useSelector((state) => state.users);
 
@@ -23,8 +28,8 @@ export default function ForgotPassword() {
         if (users.find((u) => u.email === input)) {
             dispatch(forgotPassword({ email: input })).then(
                 notificationSwal(
-                    "¡Enhorabuena!",
-                    "revisa tu casilla de correo electronico",
+                    "Correo enviado",
+                    "Revise su casilla de correo electronico",
                     "success",
                     "OK"
                 ))
@@ -37,6 +42,7 @@ export default function ForgotPassword() {
             navigate("/", { replace: true })
         }
     }
+
     return (
         <>
             <div className="bg-yellow-500 rounded-lg shadow-md border border-white">
@@ -49,7 +55,7 @@ export default function ForgotPassword() {
                             <Label
                                 htmlFor="email"
                                 value="Ingresa tu email"
-                                class="text-white"
+                                className="text-white"
                             />
                         </div>
                         <div className="flex relative">
