@@ -197,7 +197,7 @@ export default function Blog() {
         <div className=" w-screen h-1/2 bg-yellow-900 opacity-90 flex justify-center ">
           <Carousel slideInterval={3500}>
             {notisFlat?.slice(0,4).map((adopt) => (
-              <img alt="adoptedPet" src={adopt.image} className="object-cover w-96 h-72" />
+              <img alt="adoptedPet" src={adopt.image} className="object-cover w-96 h-72 rounded-lg" />
             ))}
           </Carousel>
         </div>
