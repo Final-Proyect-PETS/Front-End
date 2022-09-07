@@ -86,7 +86,7 @@ export default function SearchBar() {
               content="Pulsa el switch para mostrar usuarios"
               placement="top"
             >
-              <span className="text-lg flex w-96 font-bold text-white-900 dark:text-gray-300">
+              <span className="text-md flex w-96 font-bold text-white-900 dark:text-gray-300">
                 Mostrando Mascotas
               </span>
             </Tooltip>
@@ -95,7 +95,7 @@ export default function SearchBar() {
               content="Pulsa el switch para mostrar mascotas"
               placement="top"
             >
-              <span className="  text-lg font-bold text-white-900 dark:text-gray-300">
+              <span className="  text-md font-bold text-white-900 dark:text-gray-300">
                 Mostrando Usuarios
               </span>
             </Tooltip>
