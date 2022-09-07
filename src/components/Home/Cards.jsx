@@ -30,12 +30,12 @@ export default function Cards() {
   dispatch(switchRenderAction(input));
 
   function handleToogle(e) {
-    if (input === "mascota") {
-      setInput("usuario");
-    } else {
-      setInput("mascota");
+    if (e.target.id === ":ri:-tab-1"){
+      setInput("usuario")
     }
-    console.log("click");
+    if (e.target.id === ":ri:-tab-0"){
+      setInput("mascota")
+    }
     dispatch(switchRenderAction(input));
   }
 
