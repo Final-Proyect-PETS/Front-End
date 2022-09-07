@@ -393,16 +393,18 @@ export default function NavBarHome() {
               name="desc"
               value="desc"
               onClick={(ev) => handlerFilterPublicationAge(ev)}
+              className="text-black font-semibold"
             >
-              <h5 className="text-black">Mas antiguas</h5>
+              Mas antiguas
             </button>
             <p />
             <button
               name="asc"
               value="asc"
               onClick={(ev) => handlerFilterPublicationAge(ev)}
+              className="text-black font-semibold"
             >
-              <h5 className="text-black">Mas recientes</h5>
+              Mas recientes
             </button>
             <p />
           </div>

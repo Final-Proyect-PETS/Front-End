@@ -81,7 +81,7 @@ export default function TradePet() {
               );
             }
           })
-          .then(() => navigate(`/users/${loggedUser._id}`, { replace: true }));
+          .then(() => navigate("/home"));
       }
     }
   }

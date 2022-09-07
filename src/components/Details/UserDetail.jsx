@@ -313,14 +313,12 @@ export default function UserDetail() {
           <div className="h-1/3 pt-5 flex">
             <div className="w-full flex justify-center items-center mt-10">
               {loggedUser._id !== userDetail._id ? (
-                <div>
                   <button
                     onClick={() => chat()}
-                    className="lg:py-2 lg:px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                    className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                   >
                     Enviar mensaje
                   </button>
-                </div>
               ) : (
                 <></>
               )}
@@ -350,7 +348,7 @@ export default function UserDetail() {
               )}
               {loggedUser._id !== userDetail._id ? (
                 <Link to={`/reportuser`}>
-                  <button className="py-2 ml-5 px-4 md:px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                  <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                     Denunciar
                   </button>
                 </Link>
@@ -419,7 +417,7 @@ export default function UserDetail() {
               ))
             ) : (
               <div className="h-50">
-                <h3 className="text-2xl font-semibold text-gray-700 mt-8 text-center">
+                <h3 className="text-2xl font-semibold text-white m-5 text-center">
                   No hay mascotas que mostrar...
                 </h3>
               </div>
