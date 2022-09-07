@@ -106,7 +106,7 @@ export default function OwnedPet({
               "Operación cancelada",
               "Mascota no eliminada",
               "error",
-              "Cancel"
+              "Aceptar"
             );
           }
         })
