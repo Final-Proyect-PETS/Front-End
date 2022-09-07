@@ -120,6 +120,8 @@ export default function AdminView() {
     });
   }
 
+  let dond = donatedUsers.filter((d) => d.donations.length > 0)
+
   function handleRestoreUser(id) {
     Swal.fire({
       title: "¿Está seguro de que desea restaurar este usuario?",
@@ -537,47 +539,31 @@ export default function AdminView() {
               </div>
             </div>
             <div className="h-1/5 flex bg-[#685737] bg-opacity-90">
-              <div className="w-1/2 flex justify-center items-center">
+              <div className="w-1/2 flex justify-center items-center ">
                 <div className="flex h-3/4 w-3/4 bg-yellow-600">
                   <div className="w-1/4 flex justify-center items-center">
-                    <h3 className="text-2xl">{getUsers.length}</h3>
+                    <h3 className="text-2xl">{dond.length}</h3>
                   </div>
                   <div className="w-3/4 flex justify-center items-center">
-                    <h3>Usuarios Totales</h3>
+                    <h3>{dond.length === 1 ? "Usuario donó" : "Usuarios donaron"}</h3>
                   </div>
                 </div>
               </div>
               <div className="w-1/2 flex justify-center items-center">
                 <div className="flex h-3/4 w-3/4 bg-yellow-600">
-                  <div className="w-1/4 flex justify-center items-center">
-                    <h3 className="text-2xl">{getUsers.length}</h3>
+                  <div className="w-2/4 flex justify-center items-center">
+                    <h3 className="text-ls">{donaciones()}</h3>
                   </div>
-                  <div className="w-3/4 flex justify-center items-center">
-                    <h3>Usuarios Totales</h3>
+                  <div className="w-2/4 flex justify-center items-center">
+                    <h3>Recaudado</h3>
                   </div>
                 </div>
               </div>
             </div>
             <div className="h-1/5 flex bg-[#685737] bg-opacity-90">
-              <div className="w-1/2 flex justify-center items-center ">
-                <div className="flex h-3/4 w-3/4 bg-yellow-600">
-                  <div className="w-1/4 flex justify-center items-center">
-                    <h3 className="text-2xl">{donatedUsers.length}</h3>
-                  </div>
-                  <div className="w-3/4 flex justify-center items-center">
-                    <h3>Personas donaron</h3>
-                  </div>
-                </div>
+              <div className="w-1/2 flex justify-center items-center">
               </div>
               <div className="w-1/2 flex justify-center items-center">
-                <div className="flex h-3/4 w-3/4 bg-yellow-600">
-                  <div className="w-1/4 flex justify-center items-center">
-                    <h3 className="text-xl">{donaciones()}</h3>
-                  </div>
-                  <div className="w-3/4 flex justify-center items-center">
-                    <h3>Recaudado</h3>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
