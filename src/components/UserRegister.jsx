@@ -223,7 +223,6 @@ export default function Register() {
       );
   }
   function _suggestionSelect(result, lat, long, text) {
-    console.log(result, lat, long, text);
     setInput({
       ...input,
       place: result,
@@ -231,7 +230,6 @@ export default function Register() {
       place_latitude: lat,
     });
     setPlaceSelect(true);
-    //if (placeSelect)
     createNewMap(long, lat);
   }
   const mapAccess = {
