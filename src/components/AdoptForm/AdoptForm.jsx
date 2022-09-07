@@ -121,11 +121,12 @@ export default function AdoptForm() {
               <h1 className="  text-black">Tu Mensaje:</h1>
 
               <textarea
-                className="rounded  text-black"
+                className="rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent text-black resize-none"
                 name="message"
                 value={input.message}
                 placeholder="Mensaje para el dueño de la mascota..."
                 onChange={(ev) => handleChange(ev)}
+                maxLength="255"
               ></textarea>
             </div>
             <div className="flex items-center ">
