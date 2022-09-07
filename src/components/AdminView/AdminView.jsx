@@ -50,6 +50,8 @@ export default function AdminView() {
 
   const don = userr.map((d) => d.donations.map((d) => d.donationAmount));
 
+  const loggedUser = useSelector((state) => state.userProfile);
+
   const dispatch = useDispatch();
 
   // const amount = donatedUsers.map((m) => m.donations.map((d) => d.donationAmount).reduce((prev, curr) => prev + curr))
@@ -101,11 +103,13 @@ export default function AdminView() {
           })
           .then(() => {
             dispatch(getDeletedUsers());
-            dispatch(
-              handleUserReport({ id: idUserReport, resolved: true })
-            ).then(() => {
-              dispatch(getUserReportsSolved());
-            });
+            if (idUserReport) {
+              dispatch(
+                handleUserReport({ id: idUserReport, resolved: true })
+              ).then(() => {
+                dispatch(getUserReportsSolved());
+              });
+            } else onClose();
           });
       } else {
         notificationSwal(
@@ -130,23 +134,27 @@ export default function AdminView() {
       confirmButtonText: "Sí",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(handleUserRestore({ id: id, ban: false })).then((e) => {
-          if (e === "OK") {
-            notificationSwal(
-              "¡Enhorabuena!",
-              "Usuario restaurado con éxito",
-              "success",
-              "Ok"
-            );
-          } else {
-            notificationSwal(
-              "¡Ooops!",
-              "No se pudo restaurar el usuario, intente mas tarde",
-              "error",
-              "Cancel"
-            );
-          }
-        });
+        dispatch(handleUserRestore({ id: id, ban: false }))
+          .then((e) => {
+            if (e === "OK") {
+              notificationSwal(
+                "¡Enhorabuena!",
+                "Usuario restaurado con éxito",
+                "success",
+                "Ok"
+              );
+            } else {
+              notificationSwal(
+                "¡Ooops!",
+                "No se pudo restaurar el usuario, intente mas tarde",
+                "error",
+                "Cancel"
+              );
+            }
+          })
+          .then(() => {
+            dispatch(getAllUsers());
+          });
       } else {
         notificationSwal(
           "Operación cancelada",
@@ -423,12 +431,19 @@ export default function AdminView() {
                       <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                         <Link to={"/users/" + m._id}>Perfil del usuario</Link>
                       </button>
-                      <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                      {/* <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                         Editar usuario
-                      </button>
-                      <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                        Eliminar usuario
-                      </button>
+                      </button> */}
+                      {loggedUser.isAdmin && loggedUser._id !== m._id ? (
+                        <button
+                          onClick={() => {
+                            handleDeleteUser(m._id);
+                          }}
+                          class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                        >
+                          Deshabilitar usuario
+                        </button>
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -451,7 +466,7 @@ export default function AdminView() {
             <div className="h-4/5">
               <div className="flex justify-center">
                 <h3 className="text-2xl py-2 italic font-semibold text-gray-800">
-                  Usuarios Registrados
+                  Usuarios Habilitados
                 </h3>
               </div>
               <div className="h-full pb-30 overflow-auto bg-[#685737] bg-opacity-80">
