@@ -215,7 +215,7 @@ export function userLogin(payload) {
     } catch (error) {
       return dispatch({
         type: actions.USER_LOGIN,
-        payload : error.response.data,
+        payload: error.response.data,
       });
     }
   };
@@ -240,7 +240,7 @@ export function userLoginGoogle(payload) {
     } catch (error) {
       return dispatch({
         type: actions.USER_LOGIN_GOOGLE,
-        payload : error.response.data,
+        payload: error.response.data,
       });
     }
   };
