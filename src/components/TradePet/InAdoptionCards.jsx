@@ -38,7 +38,7 @@ export default function InAdoptionCard({
                 src={ubicacion}
                 alt="ubicacion"
                 width="16px"
-                className="rounded" 
+                className="rounded"
               />
               <span className="font-medium text-xs mx-3">
                 {place ? place : `"Sin ubicación registrada"`}
@@ -57,11 +57,9 @@ export default function InAdoptionCard({
             {size === "big"
               ? "Grande"
               : size === "medium"
-              ? "Mediano"
-              : "Chico"}
+                ? "Mediano"
+                : "Chico"}
           </span>
-
-          {/* <span className="ml-2 font-bold text-xs">📧E-mail: {email}</span> */}
         </div>
       </div>
     </>

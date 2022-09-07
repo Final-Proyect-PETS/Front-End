@@ -213,7 +213,7 @@ export default function UserDetail() {
           <div className="pl-2 p-3 bg-yellow-600 rounded-md">
             <Modal.Header>
               <p className="text-white">
-                {userDetail.first_name} {userDetail.last_name}
+                {userDetail?.first_name} {userDetail?.last_name}
               </p>
             </Modal.Header>
           </div>
@@ -225,7 +225,7 @@ export default function UserDetail() {
                     <div className="h-1/4 flex items-center justify-center flex-col">
                       <div className="bg-white flex justify-center">
                         <h2 className="text-xl font-semibold">
-                          📩 Email: {userDetail.email}
+                          📩 Email: {userDetail?.email}
                         </h2>
                       </div>
                     </div>
@@ -233,8 +233,8 @@ export default function UserDetail() {
                       <div className="bg-white flex justify-center">
                         <h2 className="text-xl font-semibold">
                           📞Telefono:{" "}
-                          {userDetail.telephone
-                            ? userDetail.telephone
+                          {userDetail?.telephone
+                            ? userDetail?.telephone
                             : "No hay informaci贸n detallada"}
                         </h2>
                       </div>
@@ -242,14 +242,14 @@ export default function UserDetail() {
                     <div className="h-1/4 flex items-center justify-center flex-col">
                       <div className="bg-white flex justify-center">
                         <h2 className="text-xl font-semibold">
-                          📍 Ubicación: {userDetail.place}
+                          📍 Ubicación: {userDetail?.place}
                         </h2>
                       </div>
                     </div>
                     <div className="h-1/4 flex items-center justify-center flex-col">
                       <div className="bg-white flex justify-center">
                         <h2 className="text-xl font-semibold">
-                          Cuenta creada el: {userDetail.createdAt.slice(0, 10)}
+                          Cuenta creada el: {userDetail?.createdAt.slice(0, 10)}
                         </h2>
                       </div>
                     </div>
@@ -270,7 +270,7 @@ export default function UserDetail() {
               />
               <div className="absolute lg:mt-4 lg:ml-4 mt-20 ml-4">
                 <img
-                  src={userDetail.image}
+                  src={userDetail?.image}
                   alt=""
                   className="w-32 h-32 lg:w-80 lg:h-80 object-cover lg:mt-14 border-solid border-2 border-[#e1a13f] rounded-full"
                 />
@@ -282,24 +282,24 @@ export default function UserDetail() {
                 <div className="w-1/2 flex flex-col justify-around">
                   <div>
                     <h3 className="text-5xl lg:mt-4 text-white font-semibold">
-                      {userDetail.first_name} {userDetail.last_name}
+                      {userDetail?.first_name} {userDetail?.last_name}
                     </h3>
                     <p className="font-semibold text-white">
-                      "{userDetail.username}"
+                      "{userDetail?.username}"
                     </p>
                   </div>
                   <div className="w-screen lg:w-96">
                     <h3 className="ml-5 lg:m-0 text-xl font-semibold text-[#e1a13f] ">
                       {" "}
-                      {userDetail.about
-                        ? userDetail.about
+                      {userDetail?.about
+                        ? userDetail?.about
                         : "Este usuario no ha aportado descripción aún"}
                     </h3>
                   </div>
                 </div>
 
                 <div className="w-96 h-96 m-20 lg:w-3/4 lg:h-3/4 lg:m-8">
-                  {userDetail.place_latitude && userDetail.place_longitude ? (
+                  {userDetail?.place_latitude && userDetail?.place_longitude ? (
                     <div
                       ref={mapDiv}
                       className="ring-[#f19d3d] ring-2 h-36  w-36 lg:h-60 lg:w-96  rounded-xl"
@@ -330,7 +330,7 @@ export default function UserDetail() {
               >
                 Más información
               </button>
-              {loggedUser._id === userDetail._id ? (
+              {loggedUser?._id === userDetail?._id ? (
                 <>
                   <Link to="/updateuser">
                     <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
@@ -346,7 +346,7 @@ export default function UserDetail() {
               ) : (
                 false
               )}
-              {loggedUser._id !== userDetail._id ? (
+              {loggedUser?._id !== userDetail?._id ? (
                 <Link to={`/reportuser`}>
                   <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                     Denunciar
@@ -354,19 +354,19 @@ export default function UserDetail() {
                 </Link>
               ) : null}
             </div>
-            {loggedUser.isAdmin && !userDetail.isAdmin ? (
+            {loggedUser?.isAdmin && !userDetail?.isAdmin ? (
               <button
                 onClick={() => {
-                  handleAdminSet(userDetail._id);
+                  handleAdminSet(userDetail?._id);
                 }}
                 className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
               >
                 NOMBRAR ADMINISTRADOR
               </button>
             ) : null}
-            {loggedUser.isAdmin &&
-            userDetail.isAdmin &&
-            loggedUser._id !== userDetail._id ? (
+            {loggedUser?.isAdmin &&
+              userDetail?.isAdmin &&
+              loggedUser?._id !== userDetail?._id ? (
               <button
                 onClick={() => {
                   handleAdminUnset(userDetail._id);
@@ -376,10 +376,10 @@ export default function UserDetail() {
                 DESCENDER A USUARIO
               </button>
             ) : null}
-            {loggedUser.isAdmin && loggedUser._id !== userDetail._id ? (
+            {loggedUser?.isAdmin && loggedUser?._id !== userDetail?._id ? (
               <button
                 onClick={() => {
-                  handleDeleteUser(userDetail._id);
+                  handleDeleteUser(userDetail?._id);
                 }}
                 className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
               >
@@ -401,8 +401,8 @@ export default function UserDetail() {
             </h3>
           </div>
           <div id="editPet" className="flex flex-col lg:flex-row place-content-center">
-            {userDetail.pets?.length ? (
-              userDetail.pets.map((pets) => (
+            {userDetail?.pets?.length ? (
+              userDetail?.pets.map((pets) => (
                 <OwnedPet
                   key={pets._id}
                   idUser={userDetail._id}

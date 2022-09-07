@@ -137,14 +137,13 @@ export default function RegisterPet() {
 
     if (!input.gender)
       errors.gender = "La información sobre castración es requerida!";
-
-    // if (input.place) {
-    //   if (!/^[a-zA-Z0-9\s]+$/.test(input.place)) {
-    //     errors.place = "La ubicación sólo puede tener letras y/o números!";
-    //   } else if (input.place.length > 30) {
-    //     errors.place = "La ubicación no puede tener más de 30 caracteres!";
-    //   }
-    // } else errors.place = "La ubicación es requerida!";
+    if (input.place) {
+      if (!/^[a-zA-Z0-9\s]+$/.test(input.place)) {
+        errors.place = "La ubicación sólo puede tener letras y/o números!";
+      } else if (input.place.length > 50) {
+        errors.place = "La ubicación no puede tener más de 50 caracteres!";
+      }
+    } else errors.place = "La ubicación es requerida!";
 
     return errors;
   }
@@ -219,7 +218,7 @@ export default function RegisterPet() {
             "Aceptar"
           )
         }
-      }).then(()=>{
+      }).then(() => {
         navigate("/home")
       });
 
@@ -282,7 +281,6 @@ export default function RegisterPet() {
       place_latitude: lat,
     });
     setPlaceSelect(true);
-    //if (placeSelect)
     createNewMap(long, lat);
   }
   const mapAccess = {
@@ -555,14 +553,6 @@ export default function RegisterPet() {
           </div>
           <div>
             <label className="font-light text-white text-xl">Ubicación</label>
-            {/* <input
-              type="text"
-              name="place"
-              value={input.place}
-              onChange={(e) => handleChange(e)}
-              placeholder="Ubicación"
-              className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            /> */}
             <MapboxAutocomplete
               publicKey={mapAccess.mapboxApiAccessToken}
               inputClass="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
