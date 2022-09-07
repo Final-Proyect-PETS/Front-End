@@ -217,8 +217,10 @@ export default function RegisterPet() {
             "Mascota no creada",
             "error",
             "Cancel"
-          );
+          )
         }
+      }).then(()=>{
+        navigate("/home")
       });
 
       setInput({
