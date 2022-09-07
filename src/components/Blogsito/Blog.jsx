@@ -54,6 +54,7 @@ export default function Blog() {
   const blogger = allUsers.filter((user) => user?.blogmessage?.length >= 1);
   const [input, setInput] = useState();
   const id = localStorage.getItem("id");
+  const [random, setRandom] = useState(Math.random())
 
   //RANKING DONACIONES-----------------------------------------------------------
   let rankingdonations = donator?.sort(
@@ -101,9 +102,10 @@ export default function Blog() {
 
   // let adopt = adopt.
 
-  let notisFlat = adopted.sort(() => {
-    return Math.random() - 0.5;
+  let notisFlat = adopted?.sort(() => {
+    return random - 0.5;
   });
+
 
   return (
     <>
@@ -189,7 +191,7 @@ export default function Blog() {
         {/* hr-----------------------------CARROUSEL-------------------------------------------------- */}
         <div className="bg-yellow-900 flex justify-center  opacity-90">
           <h5 className="flex justify-center m-2 text-4xl font-bold leading-none text-white dark:text-white">
-            🤎 Mas de {adopted?.length - 1} mascotas adoptadas a la fecha
+            {adopted?.length ? `🤎 Mas de ${adopted?.length - 1} mascotas adoptadas a la fecha` : null}
           </h5>
         </div>
         <div className="w-screen h-1/2 bg-yellow-900 opacity-90 flex justify-center ">
