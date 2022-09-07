@@ -72,7 +72,9 @@ export default function LandingPage() {
         })
         .then(()=> navigate("/"))
       }
-      navigate("/blog"); //cambie /home por /blog.... fijense
+       else {
+        navigate("/blog"); //cambie /home por /blog.... fijense
+      }
     });
   };
 
