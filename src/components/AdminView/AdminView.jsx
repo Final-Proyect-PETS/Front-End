@@ -16,6 +16,7 @@ import {
   handleUserRestore,
   handleUserReportRestore,
   getUserReportsSolved,
+  getAllUsers,
 } from "../../redux/Actions";
 import Swal from "sweetalert2";
 import { notificationSwal } from "../../utils/notificationSwal";
@@ -53,7 +54,6 @@ export default function AdminView() {
 
   // const amount = donatedUsers.map((m) => m.donations.map((d) => d.donationAmount).reduce((prev, curr) => prev + curr))
 
-
   const onClick = () => {
     setShow(true);
   };
@@ -68,6 +68,7 @@ export default function AdminView() {
     dispatch(getDeletedPets());
     dispatch(getDeletedUsers());
     dispatch(getUserReportsSolved());
+    dispatch(getAllUsers());
   }, []);
 
   function handleDeleteUser(idReportedUser, idUserReport) {
@@ -117,7 +118,7 @@ export default function AdminView() {
     });
   }
 
-  let dond = donatedUsers.filter((d) => d.donations.length > 0)
+  let dond = donatedUsers.filter((d) => d.donations.length > 0);
 
   function handleRestoreUser(id) {
     Swal.fire({
@@ -407,11 +408,14 @@ export default function AdminView() {
                           </h3>
                         </div>
                         <div className="h-1/2 flex justify-center items-center">
-                          <h3>Donado en total: $ {m.donations.length > 0
-                            ? m.donations
-                              .map((d) => d.donationAmount)
-                              .reduce((prev, curr) => prev + curr)
-                            : 0}</h3>
+                          <h3>
+                            Donado en total: ${" "}
+                            {m.donations.length > 0
+                              ? m.donations
+                                  .map((d) => d.donationAmount)
+                                  .reduce((prev, curr) => prev + curr)
+                              : 0}
+                          </h3>
                         </div>
                       </div>
                     </div>
@@ -543,7 +547,9 @@ export default function AdminView() {
                     <h3 className="text-2xl">{dond.length}</h3>
                   </div>
                   <div className="w-3/4 flex justify-center items-center">
-                    <h3>{dond.length === 1 ? "Usuario donó" : "Usuarios donaron"}</h3>
+                    <h3>
+                      {dond.length === 1 ? "Usuario donó" : "Usuarios donaron"}
+                    </h3>
                   </div>
                 </div>
               </div>
@@ -559,10 +565,8 @@ export default function AdminView() {
               </div>
             </div>
             <div className="h-1/5 flex bg-[#685737] bg-opacity-90">
-              <div className="w-1/2 flex justify-center items-center">
-              </div>
-              <div className="w-1/2 flex justify-center items-center">
-              </div>
+              <div className="w-1/2 flex justify-center items-center"></div>
+              <div className="w-1/2 flex justify-center items-center"></div>
             </div>
           </div>
         </div>
