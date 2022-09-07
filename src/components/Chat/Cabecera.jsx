@@ -11,11 +11,11 @@ export default function Cabecera({ el }) {
     <div className="w-full h-16 bg-gray-200 shadow-sm shadow-slate-500">
       <div className="flex items-center">
         <div className="p-3">
-          <img src={current.image} alt="imagen de usuario" className="h-8 w-8 rounded-full" />
+          <img src={current?.image} alt="imagen de usuario" className="h-8 w-8 rounded-full" />
         </div>
         <div className="p-3">
           <div className="flex justify-center items-center font-semibold text-gray-900">
-            {current.first_name} {current.last_name}
+            {current ? current?.first_name + current?.last_name : "Usuario eliminado"}
           </div>
         </div>
       </div>
