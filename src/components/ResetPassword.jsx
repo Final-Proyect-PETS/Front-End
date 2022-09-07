@@ -113,7 +113,7 @@ export default function ResetPassword() {
                         </div>
                     </div>
 
-                    <div className="flex flex-col py-6 w-full max-w-md bg-amber-600 rounded-lg items-center shadow sm:px-6 md:px-8 lg:px-10 lg:mx-20">
+                    <div className="flex flex-col py-6 w-full max-w-md bg-amber-600 rounded-lg items-center shadow sm:px-6 md:px-8 lg:px-10">
                         <div className="self-center text-xl font-light sm:text-2xl text-white">
                             Nueva Contraseña
                         </div>

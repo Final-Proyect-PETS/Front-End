@@ -222,6 +222,7 @@ export default function Register() {
         "Cancel"
       );
   }
+  
   function _suggestionSelect(result, lat, long, text) {
     setInput({
       ...input,
