@@ -91,15 +91,15 @@ export default function TradePet() {
       <NavBar />
       <div className="flex flex-col   opacity-95  place-content-center rounded ">
         <div className="px-1 flex justify-center rounded">
-          <div className=" lg:w-1/2 rounded  bg-yellow-900 rounded mt-20">
+          <div className=" lg:w-1/2 bg-yellow-900 rounded mt-20">
             <div className="rounded">
 
               <Accordion alwaysOpen={false}>
                 <Accordion.Panel>
                   <Accordion.Title>
-                    <h1 className="text-2xl font-bold text-red-700">
+                    <h2 className="text-2xl font-bold text-red-700">
                       Selecciona la mascota que quieres dar en adopcion
-                    </h1>
+                    </h2>
                   </Accordion.Title>
                   <Accordion.Content>
                     <div className="flex justify-center py-5 h-full">

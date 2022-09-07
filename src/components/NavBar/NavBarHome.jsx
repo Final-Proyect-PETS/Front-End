@@ -258,11 +258,11 @@ export default function NavBarHome() {
             width="40"
             height="40"
           >
-            <img src={filtro} className="" />
+            <img src={filtro} alt="narnia" />
           </button>
           <Link to="/petregister">
             <img
-              src={add}
+              src={add} alt="imagen de pet"
               className="fixed  flex items-center rounded-lg  cursor-pointer right-2 bottom-20 lg:right-56 hover:bg-yellow-500"
             />
           </Link>
