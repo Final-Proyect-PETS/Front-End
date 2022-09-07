@@ -20,6 +20,7 @@ import Swal from "sweetalert2";
 import { notificationSwal } from "../../utils/notificationSwal";
 import Error404 from "../Loaders/Error404.jsx";
 import portada from "./../../assets/images/Background2.png";
+import FooterComponent from "../FooterComponent";
 
 export default function UserDetail() {
   let { id } = useParams();
@@ -200,8 +201,9 @@ export default function UserDetail() {
     );
   } else if (Object.keys(userDetail).length) {
     return (
-      <div className="h-screen">
+      <>
         <NavBar />
+
         <Modal
           show={show}
           popup={true}
@@ -257,175 +259,181 @@ export default function UserDetail() {
             </div>
           </Modal.Body>
         </Modal>
-        <>
-          <div className="lg:mx-36 my-12 h-5/6 rounded-xl bg-yellow-800 ring-2 ring-[#e1a13f]">
-            <div className="h-2/3">
-              <div className="flex h-2/5">
+
+        <div className=" lg:h-5/6 w-screen rounded-xl bg-yellow-800 ring-2 ring-[#e1a13f]">
+          <div className="lg:h-2/3">
+            <div className="flex w-screen">
+              <img
+                src={portada}
+                alt=""
+                className="w-screen lg:h-72 object-cover rounded-t-xl"
+              />
+              <div className="absolute lg:mt-4 lg:ml-4 mt-20 ml-4">
                 <img
-                  src={portada}
+                  src={userDetail.image}
                   alt=""
-                  className="w-screen object-cover rounded-t-xl"
+                  className="w-32 h-32 lg:w-80 lg:h-80 object-cover lg:mt-14 border-solid border-2 border-[#e1a13f] rounded-full"
                 />
-                <div className="absolute lg:mt-4 lg:ml-4 mt-48 ml-4">
-                  <img
-                    src={userDetail.image}
-                    alt=""
-                    className="w-20 h-20 lg:w-80 lg:h-80 object-cover border-solid border-2 border-[#e1a13f] rounded-full"
-                  />
-                </div>
               </div>
-              <div className="h-1/2 flex">
-                <div className="w-1/3"></div>
-                <div className="w-2/3 flex">
-                  <div className="w-1/2 flex flex-col justify-around">
-                    <div>
-                      <h3 className="text-5xl mt-4 text-white font-semibold">
-                        {userDetail.first_name} {userDetail.last_name}
-                      </h3>
-                      <p className="font-semibold text-white">
-                        ({userDetail.username})
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-[#e1a13f] ">
-                        Descripción:{" "}
-                        {userDetail.about
-                          ? userDetail.about
-                          : "Este usuario no ha aportado descripción aún"}
-                      </h3>
-                    </div>
+            </div>
+            <div className="lg:h-1/2 flex">
+              <div className="lg:w-1/3"></div>
+              <div className="w-2/3 flex">
+                <div className="w-1/2 flex flex-col justify-around">
+                  <div>
+                    <h3 className="text-5xl lg:mt-4 text-white font-semibold">
+                      {userDetail.first_name} {userDetail.last_name}
+                    </h3>
+                    <p className="font-semibold text-white">
+                      "{userDetail.username}"
+                    </p>
                   </div>
-                  <div className="w-3/4 lg:m-8">
-                    {userDetail.place_latitude && userDetail.place_longitude ? (
-                      <div
-                        ref={mapDiv}
-                        className="ring-[#f19d3d] ring-2 h-60 rounded-xl"
-                      />
-                    ) : null}
+                  <div className="w-screen lg:w-96">
+                    <h3 className="ml-5 lg:m-0 text-xl font-semibold text-[#e1a13f] ">
+                      {" "}
+                      {userDetail.about
+                        ? userDetail.about
+                        : "Este usuario no ha aportado descripción aún"}
+                    </h3>
                   </div>
+                </div>
+
+                <div className="w-96 h-96 m-20 lg:w-3/4 lg:h-3/4 lg:m-8">
+                  {userDetail.place_latitude && userDetail.place_longitude ? (
+                    <div
+                      ref={mapDiv}
+                      className="ring-[#f19d3d] ring-2 h-36  w-36 lg:h-60 lg:w-96  rounded-xl"
+                    />
+                  ) : null}
                 </div>
               </div>
             </div>
-            <div className="h-1/3 pt-5 flex">
-              <div className="w-full flex justify-center items-center mt-10">
-                {loggedUser._id !== userDetail._id ? (
-                  <div>
-                    <button
-                      onClick={() => chat()}
-                      className="lg:py-2 lg:px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                    >
-                      Enviar mensaje
-                    </button>
-                  </div>
-                ) : (
-                  <></>
-                )}
-                {loggedUser._id === userDetail._id ? (
-                  <>
-                    <Link to="/interestedtraders">
-                      <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                        Traspaso de mascotas
-                      </button>
-                    </Link>
-                    <Link to="/updateuser">
-                      <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                        ✏️Editar Perfil
-                      </button>
-                    </Link>
-                  </>
-                ) : (
-                  false
-                )}
-                <Button
-                  onClick={() => {
-                    onClick();
-                  }}
-                  class="ml-5 px-2 py-0.5 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                >
-                  Más información
-                </Button>
-                {loggedUser._id !== userDetail._id ? (
-                  <Link to={`/reportuser`}>
-                    <button className="py-2 ml-5 px-4 md:px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                      Denunciar
+          </div>
+
+          <div className="h-1/3 pt-5 flex">
+            <div className="w-full flex justify-center items-center mt-10">
+              {loggedUser._id !== userDetail._id ? (
+                <div>
+                  <button
+                    onClick={() => chat()}
+                    className="lg:py-2 lg:px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                  >
+                    Enviar mensaje
+                  </button>
+                </div>
+              ) : (
+                <></>
+              )}
+                <button
+                onClick={() => {
+                  onClick();
+                }}
+                className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              >
+                Más información
+              </button>
+              {loggedUser._id === userDetail._id ? (
+                <>
+                  <Link to="/updateuser">
+                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                      ✏️Editar Perfil
                     </button>
                   </Link>
-                ) : null}
-              </div>
-              {loggedUser.isAdmin && !userDetail.isAdmin ? (
-                <button
-                  onClick={() => {
-                    handleAdminSet(userDetail._id);
-                  }}
-                  className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                >
-                  NOMBRAR ADMINISTRADOR
-                </button>
+                  <Link to="/interestedtraders">
+                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                      Traspaso de mascotas
+                    </button>
+                  </Link>
+                </>
+              ) : (
+                false
+              )}
+              {loggedUser._id !== userDetail._id ? (
+                <Link to={`/reportuser`}>
+                  <button className="py-2 ml-5 px-4 md:px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                    Denunciar
+                  </button>
+                </Link>
               ) : null}
-              {loggedUser.isAdmin &&
-              userDetail.isAdmin &&
-              loggedUser._id !== userDetail._id ? (
-                <button
-                  onClick={() => {
-                    handleAdminUnset(userDetail._id);
-                  }}
-                  className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                >
-                  DESCENDER A USUARIO
-                </button>
-              ) : null}
-              {loggedUser.isAdmin && loggedUser._id !== userDetail._id ? (
-                <button
-                  onClick={() => {
-                    handleDeleteUser(userDetail._id);
-                  }}
-                  className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                >
-                  ELIMINAR USUARIO
-                </button>
-              ) : null}
-              <div className="lg:w-3/4 lg:flex lg:items-center lg:mt-14 bg-yellow-800 rounded-xl"></div>
             </div>
-
+            {loggedUser.isAdmin && !userDetail.isAdmin ? (
+              <button
+                onClick={() => {
+                  handleAdminSet(userDetail._id);
+                }}
+                className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              >
+                NOMBRAR ADMINISTRADOR
+              </button>
+            ) : null}
+            {loggedUser.isAdmin &&
+            userDetail.isAdmin &&
+            loggedUser._id !== userDetail._id ? (
+              <button
+                onClick={() => {
+                  handleAdminUnset(userDetail._id);
+                }}
+                className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              >
+                DESCENDER A USUARIO
+              </button>
+            ) : null}
+            {loggedUser.isAdmin && loggedUser._id !== userDetail._id ? (
+              <button
+                onClick={() => {
+                  handleDeleteUser(userDetail._id);
+                }}
+                className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              >
+                ELIMINAR USUARIO
+              </button>
+            ) : null}
             <div className="lg:w-3/4 lg:flex lg:items-center lg:mt-14 bg-yellow-800 rounded-xl"></div>
           </div>
-          <div className="bg-yellow-600 ring-2 ring-yellow-900 my-10 rounded-xl">
-            <div className="w-full py-4">
-              <h3 className="text-2xl font-semibold text-white text-center">
-                Mascotas del usuario
-              </h3>
-            </div>
-            <div id="editPet" className="grid grid-cols-3 place-content-center">
-              {userDetail.pets?.length ? (
-                userDetail.pets.map((pets) => (
-                  <OwnedPet
-                    key={pets._id}
-                    idUser={userDetail._id}
-                    idPet={pets._id}
-                    namePet={pets.name}
-                    imagePet={pets.image}
-                    isAdopted={pets.isAdopted}
-                    pets={userDetail.pets}
-                    isDeleted={pets.deleted}
-                    interestedUsers={userDetail.interestedUsers}
-                  />
-                ))
-              ) : (
-                <div className="h-50">
-                  <h3 className="text-2xl font-semibold text-gray-700 mt-8 text-center">
-                    No hay mascotas que mostrar...
-                  </h3>
-                </div>
-              )}
-            </div>
+
+          <div className="lg:w-3/4 lg:flex lg:items-center lg:mt-14 bg-yellow-800 rounded-xl"></div>
+        </div>
+
+        <hr />
+
+        <div className="bg-yellow-600 ring-2 ring-yellow-900 my-5 rounded-xl">
+          <div className="w-full py-4">
+            <h3 className="text-2xl font-semibold text-white text-center">
+              Mascotas del usuario
+            </h3>
           </div>
-        </>
-      </div>
+          <div id="editPet" className="grid grid-cols-3 place-content-center">
+            {userDetail.pets?.length ? (
+              userDetail.pets.map((pets) => (
+                <OwnedPet
+                  key={pets._id}
+                  idUser={userDetail._id}
+                  idPet={pets._id}
+                  namePet={pets.name}
+                  imagePet={pets.image}
+                  isAdopted={pets.isAdopted}
+                  pets={userDetail.pets}
+                  isDeleted={pets.deleted}
+                  interestedUsers={userDetail.interestedUsers}
+                />
+              ))
+            ) : (
+              <div className="h-50">
+                <h3 className="text-2xl font-semibold text-gray-700 mt-8 text-center">
+                  No hay mascotas que mostrar...
+                </h3>
+              </div>
+            )}
+          </div>
+        </div>
+        <FooterComponent />
+      </>
     );
   } else {
     <>
       <NavBar />
       <Loader />
+      <FooterComponent />
     </>;
   }
 }

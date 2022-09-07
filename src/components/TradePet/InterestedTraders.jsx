@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar/NavBar";
-import Loader from "./../Loaders/Loader"
+import Loader from "./../Loaders/Loader";
 import SearchTrade from "../SearchBars/SearchTrade";
 import { getAllUsers, tradePet } from "../../redux/Actions/index";
 import { useState } from "react";
@@ -12,9 +12,9 @@ import "../LandingPage.css";
 import { Accordion } from "flowbite-react";
 import { notificationSwal } from "../../utils/notificationSwal.jsx";
 import Swal from "sweetalert2";
+import FooterComponent from "../FooterComponent";
 
 export default function TradePet() {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const getUsers = useSelector((state) => state.users);
@@ -37,14 +37,13 @@ export default function TradePet() {
   }
 
   function submitHandler(e) {
-    if (data.userId === "" || data.petId === ""){
+    if (data.userId === "" || data.petId === "") {
       Swal.fire({
         title: "seleccione una mascota y un usuario para traspasar",
         icon: "warning",
         confirmButtonText: "Ok",
-      })
-    }
-    else {
+      });
+    } else {
       if (true) {
         Swal.fire({
           title: "¿Está seguro de que desea dar en adopción esta mascota?",
@@ -88,17 +87,19 @@ export default function TradePet() {
   }
 
   return (
-    <div id="landing" className="w-full">
+    <div id="landing" className="w-full flex flex-col justify-between">
       <NavBar />
-      <div className="flex flex-col   opacity-95  mt-2 place-content-center rounded ">
+      <div className="flex flex-col   opacity-95  place-content-center rounded ">
         <div className="px-1 flex justify-center rounded">
-          <div className=" w-1/2 rounded  bg-yellow-900">
+          <div className=" lg:w-1/2 rounded  bg-yellow-900 rounded mt-20">
             <div className="rounded">
-              {" "}
+
               <Accordion alwaysOpen={false}>
                 <Accordion.Panel>
                   <Accordion.Title>
-                      <h1 className="text-2xl font-bold text-red-700">Selecciona la mascota que quieres dar en adopcion</h1>
+                    <h1 className="text-2xl font-bold text-red-700">
+                      Selecciona la mascota que quieres dar en adopcion
+                    </h1>
                   </Accordion.Title>
                   <Accordion.Content>
                     <div className="flex justify-center py-5 h-full">
@@ -147,7 +148,10 @@ export default function TradePet() {
                 </Accordion.Panel>
                 <Accordion.Panel>
                   <Accordion.Title>
-                      <h1 className="text-2xl font-bold text-yellow-300 opacity-100">Selecciona el usuario a quien darás tu mascota (nuevo dueño)</h1>
+                    <h1 className="text-2xl font-bold text-yellow-300 opacity-100">
+                      Selecciona el usuario a quien darás tu mascota (nuevo
+                      dueño)
+                    </h1>
                   </Accordion.Title>
                   <Accordion.Content>
                     <SearchTrade />
@@ -179,7 +183,15 @@ export default function TradePet() {
                                     telephone={user.telephone}
                                     pets={user.pets}
                                     place={user.place}
-                                    interested={loggedUser?.interestedUsers?.filter(e => e.interestedUser === user._id && e.petId === data.petId).length ? true:false}
+                                    interested={
+                                      loggedUser?.interestedUsers?.filter(
+                                        (e) =>
+                                          e.interestedUser === user._id &&
+                                          e.petId === data.petId
+                                      ).length
+                                        ? true
+                                        : false
+                                    }
                                   />
                                 </li>
                               ))
@@ -215,12 +227,12 @@ export default function TradePet() {
                   </Accordion.Content>
                 </Accordion.Panel>
               </Accordion>
-              <div className=" mt-2 ">
-              </div>
+          
             </div>
           </div>
         </div>
       </div>
+      <FooterComponent />
     </div>
   );
 }
