@@ -41,6 +41,7 @@ import silverpaw from "../../assets/images/silverpaw.png";
 import broncepaw from "../../assets/images/broncepaw.gif";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FooterComponent from "../FooterComponent";
 
 export default function Blog() {
   const navigate = useNavigate();
@@ -94,7 +95,7 @@ export default function Blog() {
     };
 
     dispatch(patchUsuer(payload)).then(
-      navigate("/blog#form", { replace: true })
+      navigate("/blog", { replace: true })
     );
   }
 
@@ -648,46 +649,7 @@ export default function Blog() {
             </div>
           </div>
         </div>
-        <Footer container={true}>
-          <div>
-            <Footer.Title title="Compartir" />
-            <Footer.LinkGroup>
-              <Footer.Link href="#">
-                {" "}
-                <div className="rounded-full">
-                  <FacebookShareButton
-                    url={`https://happytails.vercel.app`}
-                    quote={"Adoptame"}
-                    hashtag={"#happytails"}
-                  >
-                    <FacebookIcon size={40} className="rounded-full" />
-                  </FacebookShareButton>
-                </div>
-              </Footer.Link>
-              <Footer.Link href="#">
-                <div>
-                  <EmailShareButton
-                    subject="Quiero que me adoptes"
-                    body={`Seguinos en https://happytails.vercel.app`}
-                  >
-                    <EmailIcon size={40} className="rounded-full" />
-                  </EmailShareButton>
-                </div>
-              </Footer.Link>
-            </Footer.LinkGroup>
-          </div>
-
-          <Footer.LinkGroup>
-            <Footer.Link href="#">Sobre nosotros</Footer.Link>
-          </Footer.LinkGroup>
-          <Footer.LinkGroup>
-            <Footer.Link href="#">Ir Arriba</Footer.Link>
-          </Footer.LinkGroup>
-          <Footer.LinkGroup>
-            <Footer.Link href="#">Centro de denuncias</Footer.Link>
-          </Footer.LinkGroup>
-          <Footer.Copyright by="Blancaflor y los 7 hooksitos™" year={2022} />
-        </Footer>
+        <FooterComponent/>
         {/* hr--------------------------------------------------------------------------------------------------------------- */}
       </div>
     </>
