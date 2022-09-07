@@ -76,8 +76,11 @@ export default function PetCard({
       <div className="flex w-1/2 justify-center">
         <Link to={`/pet/${idPet}`}>
           <div className="flex  flex-col h-40 justify-center">
-            <h5 class=" font-bold text-2xl ml-2 tracking-tight text-gray-900 dark:text-white">
+            <h5 class=" font-bold text-xl lg:text-2xl ml-2 tracking-tight text-gray-900 dark:text-white">
               {namePet?.length > 15 ? `${namePet.slice(0, 15)}...` : namePet}
+            </h5>
+            <h5 class=" font-semibold text-sm lg:text-xl ml-2 tracking-tight text-gray-900 dark:text-white">
+              {place}
             </h5>
             <div className="flex">
               <span className="font-normal ml-2  text-sm text-gray-700 dark:text-gray-400">
