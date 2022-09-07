@@ -207,7 +207,7 @@ export default function RegisterPet() {
                 "¡Ooops!",
                 "No se pudo crear la mascota, intente mas tarde",
                 "error",
-                "Cancel"
+                "Aceptar"
               );
             }
           });
@@ -216,7 +216,7 @@ export default function RegisterPet() {
             "Operación cancelada",
             "Mascota no creada",
             "error",
-            "Cancel"
+            "Aceptar"
           )
         }
       }).then(()=>{
@@ -245,14 +245,14 @@ export default function RegisterPet() {
         "¡Faltan datos!",
         "Complete todos los campos obligatorios",
         "error",
-        "Cancel"
+        "Aceptar"
       );
     } else
       notificationSwal(
         "¡Hay errores!",
         "Corríjalos por favor",
         "error",
-        "Cancel"
+        "Aceptar"
       );
   }
 
