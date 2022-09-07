@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import bloqueado from "../../assets/images/bloqueado.jpg"
 
 export default function Messages({ message, own, el }) {
 
@@ -22,7 +23,7 @@ export default function Messages({ message, own, el }) {
                                 </span>
                             </div>
                         </div>
-                        <img src={yo.image} alt="My profile" className="w-6 h-6 rounded-full order-2" />
+                        <img src={yo?.image} alt="My profile" className="w-6 h-6 rounded-full order-2" />
                     </div>
                     : <div className="chat-message">
                         <div className="flex items-end">
@@ -33,7 +34,12 @@ export default function Messages({ message, own, el }) {
                                     </span>
                                 </div>
                             </div>
-                            <img src={current.image} alt="My profile" class="w-6 h-6 rounded-full order-1" />
+                            {
+                                current ?
+                                    <img src={current?.image} alt="imagen de usuario" className="w-6 h-6 rounded-full order-1" />
+                                    :
+                                    <img src={bloqueado} alt="Imagen bloqueado" className="w-6 h-6 rounded-full order-1" />
+                            }
                         </div>
                     </div>}
             </div>
