@@ -4,6 +4,7 @@ import { getUserProfile, viewing, viewingLike } from "../../redux/Actions";
 import { useSelector, useDispatch } from "react-redux";
 import { Navbar, Dropdown, Avatar, Toast } from "flowbite-react";
 import { NavbarLink } from "flowbite-react/lib/esm/components/Navbar/NavbarLink";
+import { DropdownItem } from "flowbite-react/lib/esm/components/Dropdown/DropdownItem";
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -81,7 +82,7 @@ export default function NavBar() {
             alt="Happy Tails logo"
           />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Happy Tails
+            H<span className="text-black">app</span>y Tails
           </span>
         </Navbar.Brand>
       </Link>
@@ -206,25 +207,19 @@ export default function NavBar() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <NavbarLink>
-          <Dropdown.Item>
-            <Link className="text-white lg:hover:none lg:hover:text-white hover:text-gray-700  w-full" to="/home">
+        <Navbar.Link>
+            <Link to="/home" class="text-white hover:none">
               Home
             </Link>
-          </Dropdown.Item>
-        </NavbarLink>
-        <NavbarLink>
-          <Dropdown.Item>
-            <Link className="text-white lg:hover:none lg:hover:text-white hover:text-gray-700 w-full" to="/blog">
+        </Navbar.Link>
+        <Navbar.Link>
+            <Link class="text-white hover:none" to="/blog">
               Blog
             </Link>
-          </Dropdown.Item>
-        </NavbarLink>
-        <NavbarLink>
-          <Dropdown.Item>
-            <Link className="text-white lg:hover:none lg:hover:text-white hover:text-gray-700 w-full" to="/donations">Donaciones</Link>
-          </Dropdown.Item>
-        </NavbarLink>
+        </Navbar.Link>
+        <Navbar.Link class="text-white hover:none">
+            <Link to="/donations">Donaciones</Link>
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
