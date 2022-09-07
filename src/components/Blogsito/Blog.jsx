@@ -99,6 +99,12 @@ export default function Blog() {
     );
   }
 
+  // let adopt = adopt.
+
+  let notisFlat = adopted.sort(() => {
+    return Math.random() - 0.5;
+  });
+
   return (
     <>
       <NavBar />
@@ -188,7 +194,7 @@ export default function Blog() {
         </div>
         <div className="w-screen h-1/2 bg-yellow-900 opacity-90 flex justify-center ">
           <Carousel slideInterval={3500}>
-            {adopted?.map((adopt) => (
+            {notisFlat?.slice(0,4).map((adopt) => (
               <img alt="adoptedPet" src={adopt.image} className="object-cover w-96 h-72" />
             ))}
           </Carousel>
@@ -228,7 +234,6 @@ export default function Blog() {
                       id="area"
                       type="text"
                       onChange={(e) => handleChange(e)}
-                      required={true}
                       sizing="lg"
                     />
                   </div>
@@ -250,13 +255,6 @@ export default function Blog() {
                 <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
                   Últimos mensajes 💌
                 </h5>
-
-                <Link
-                  to={`/home`}
-                  className="text-sm font-medium text-yellow-600 hover:underline dark:text-yellow-500"
-                >
-                  Ver Todos
-                </Link>
               </div>
 
               <ul className=" divide-y divide-gray-200 dark:divide-gray-700">

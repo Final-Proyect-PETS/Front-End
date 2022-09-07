@@ -73,33 +73,42 @@ export default function AdminView() {
     dispatch(getUserReportsSolved());
   }, []);
 
-  function handleDeleteUser(id) {
+  function handleDeleteUser(idReportedUser, idUserReport) {
     Swal.fire({
-      title: "¿Está seguro de que desea eliminar este usuario?",
-      text: "Esta usuario se eliminará",
+      title: "¿Está seguro de que desea deshabilitar este usuario?",
+      text: "Esta usuario se deshabilitará",
       icon: "warning",
       showCancelButton: true,
       cancelButtonText: "No",
       confirmButtonText: "Sí",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(handleUser({ id: id, ban: true })).then((e) => {
-          if (e === "OK") {
-            notificationSwal(
-              "¡Enhorabuena!",
-              "Usuario borrado con éxito",
-              "success",
-              "Ok"
-            );
-          } else {
-            notificationSwal(
-              "¡Ooops!",
-              "No se pudo borrar el usuario, intente mas tarde",
-              "error",
-              "Cancel"
-            );
-          }
-        });
+        dispatch(handleUser({ id: idReportedUser, ban: true }))
+          .then((e) => {
+            if (e === "OK") {
+              notificationSwal(
+                "¡Enhorabuena!",
+                "Usuario borrado con éxito",
+                "success",
+                "Ok"
+              );
+            } else {
+              notificationSwal(
+                "¡Ooops!",
+                "No se pudo borrar el usuario, intente mas tarde",
+                "error",
+                "Cancel"
+              );
+            }
+          })
+          .then(() => {
+            dispatch(getDeletedUsers());
+            dispatch(
+              handleUserReport({ id: idUserReport, resolved: true })
+            ).then(() => {
+              dispatch(getUserReportsSolved());
+            });
+          });
       } else {
         notificationSwal(
           "Operación cancelada",
@@ -308,7 +317,18 @@ export default function AdminView() {
       }
     });
   }
-
+  function donaciones() {
+    // let don = donatedUsers.map(e => e.donations).flat(1)
+    // let don2 = don.map(e => e.donationAmount)
+    // return don2.reduce((a, b) => a + b, 0);
+    let don = donatedUsers.map((e) => e.donations).flat(1);
+    let don2 = don.map((e) => e.donationAmount);
+    don2 = don2.reduce((a, b) => a + b, 0);
+    return new Intl.NumberFormat("es-ar", {
+      style: "currency",
+      currency: "ARS",
+    }).format(don2);
+  }
   return (
     <div>
       <NavBar />
@@ -350,12 +370,15 @@ export default function AdminView() {
                     <div className=" h-1/4 flex items-center justify-center flex-col">
                       <div className="bg-white flex justify-center">
                         <h1>
-                          Cuenta creada el: {m.createdAt.slice(0, 10)} a las {m.createdAt.slice(11, 19)}
+                          Cuenta creada el: {m.createdAt.slice(0, 10)} a las{" "}
+                          {m.createdAt.slice(11, 19)}
                         </h1>
                       </div>
                       <div className="flex justify-center">
                         <h1>
-                          Cuenta editada por ultima vez: {m.updatedAt.slice(0, 10)} a las {m.updatedAt.slice(11, 19)}
+                          Cuenta editada por ultima vez:{" "}
+                          {m.updatedAt.slice(0, 10)} a las{" "}
+                          {m.updatedAt.slice(11, 19)}
                         </h1>
                       </div>
                     </div>
@@ -363,12 +386,14 @@ export default function AdminView() {
                       <div className="w-1/2 h-full">
                         <div className="h-1/2 flex justify-center items-center">
                           <h3>
-                            Mascotas adoptadas: {m.pets.filter((m) => m.isAdopted === true).length}
+                            Mascotas adoptadas:{" "}
+                            {m.pets.filter((m) => m.isAdopted === true).length}
                           </h3>
                         </div>
                         <div className="h-1/2 flex justify-center items-center">
                           <h3>
-                            Mascotas en adopción: {m.pets.filter((m) => m.isAdopted === false).length}
+                            Mascotas en adopción:{" "}
+                            {m.pets.filter((m) => m.isAdopted === false).length}
                           </h3>
                         </div>
                       </div>
@@ -376,7 +401,7 @@ export default function AdminView() {
                         <div className="h-1/2 flex justify-center items-center">
                           <h3 className="text-center">
                             Este usuario donó:
-                             {m.donations.length > 1 ? (
+                            {m.donations.length > 1 ? (
                               <p>{m.donations.length} veces</p>
                             ) : m.donations.length === 1 ? (
                               <p>1 vez</p>
@@ -386,14 +411,7 @@ export default function AdminView() {
                           </h3>
                         </div>
                         <div className="h-1/2 flex justify-center items-center">
-                          <h3>
-                            Donado en total: $
-                            {m.donations.length > 0
-                              ? m.donations
-                                .map((d) => d.donationAmount)
-                                .reduce((prev, curr) => prev + curr)
-                              : 0}
-                          </h3>
+                          <h3>Donado en total: {donaciones()}</h3>
                         </div>
                       </div>
                     </div>
@@ -554,7 +572,7 @@ export default function AdminView() {
               <div className="w-1/2 flex justify-center items-center">
                 <div className="flex h-3/4 w-3/4 bg-yellow-600">
                   <div className="w-1/4 flex justify-center items-center">
-                    <h3 className="text-xl">$7.304</h3>
+                    <h3 className="text-xl">{donaciones()}</h3>
                   </div>
                   <div className="w-3/4 flex justify-center items-center">
                     <h3>Recaudado</h3>
@@ -658,11 +676,11 @@ export default function AdminView() {
                       | Motivo de la denuncia: {p.reason}
                       <button
                         onClick={() => {
-                          handleDeleteUser(p.reportedUserId);
+                          handleDeleteUser(p.reportedUserId, p._id);
                         }}
                         class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
                       >
-                        ELIMINAR USUARIO
+                        DESHABILITAR USUARIO
                       </button>
                       <button
                         onClick={() => {
@@ -684,7 +702,7 @@ export default function AdminView() {
         <div className="h-4/5">
           <div className="flex justify-center">
             <h3 className="text-2xl py-2 italic font-semibold text-gray-800">
-              Usuarios eliminados
+              Usuarios deshabilitados
             </h3>
           </div>
           <div className="h-full pb-30 overflow-auto bg-[#685737] bg-opacity-80">
