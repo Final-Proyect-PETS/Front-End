@@ -94,7 +94,9 @@ export default function PetCard({
             </div>
 
             <span className="font-normal ml-2 text-sm text-gray-700 dark:text-gray-400">
-              {description}
+              {description?.length > 40
+                ? `${description.slice(0, 40)}...`
+                : description}
             </span>
           </div>
           <div className="flex justify-center overflow-hidden">
