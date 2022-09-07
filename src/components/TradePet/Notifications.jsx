@@ -4,6 +4,7 @@ import NavBar from "../NavBar/NavBar";
 import { Link } from "react-router-dom";
 import "../LandingPage.css";
 import "./Notification.css";
+import FooterComponent from "../FooterComponent";
 
 export default function Notifications() {
   const loggedUser = useSelector((state) => state.userProfile);
@@ -37,7 +38,7 @@ export default function Notifications() {
   let noVistas = notisFlat?.filter((noti) => noti?.viewState === false);
 
   return (
-    <div id="notification-component" className="w-full h-full ">
+    <div id="notification-component" className="w-full h-full flex flex-col justify-between ">
       <NavBar />
       <div className="flex flex-col items-center ">
         {noVistas?.length === 1 ? (
@@ -122,6 +123,7 @@ export default function Notifications() {
           </div>
         </div>
       </div>
+      <FooterComponent/>
     </div>
   );
 }
