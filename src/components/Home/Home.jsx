@@ -30,14 +30,16 @@ export default function Home() {
     ///FUNCION DE CHRIS↑↑↑
   }
   return (
-    <section onClick={(e) => handley(e)}>
+    <section
+      onClick={(e) => handley(e)}
+      className="flex flex-col h-full"
+    >
       <NavBar />
       <NavBarHome /> {/* NUEVA SIDEBAR TUGLE LU GULU */}
       <div className="mt-14 flex w-screen h-screen justify-center">
         <Cards />
       </div>
-
-    
+        
     </section>
   );
 }
