@@ -274,7 +274,6 @@ export default function RegisterPet() {
       place_latitude: lat,
     });
     setPlaceSelect(true);
-    //if (placeSelect)
     createNewMap(long, lat);
   }
   const mapAccess = {
@@ -547,14 +546,6 @@ export default function RegisterPet() {
           </div>
           <div>
             <label className="font-light text-white text-xl">Ubicación</label>
-            {/* <input
-              type="text"
-              name="place"
-              value={input.place}
-              onChange={(e) => handleChange(e)}
-              placeholder="Ubicación"
-              className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            /> */}
             <MapboxAutocomplete
               publicKey={mapAccess.mapboxApiAccessToken}
               inputClass="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"

@@ -11,36 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import MapboxAutocomplete from "react-mapbox-autocomplete";
 import mapboxgl from "mapbox-gl";
 
-function validateFrom(input) {
-  let errors = {};
-
-  if (input.first_name) {
-    if (!/^[a-zA-Z]+$/.test(input.first_name)) {
-      errors.first_name = "El nombre solo puede tener letras!";
-    } else if (input.first_name.length > 20) {
-      errors.first_name = "El nombre no puede tener más de 20 caracteres!";
-    } else errors.first_name = "";
-  } else errors.first_name = "El nombre es requerido!";
-
-  if (input.last_name) {
-    if (!/^[a-zA-Z]+$/.test(input.last_name)) {
-      errors.last_name = "El nombre solo puede tener letras!";
-    } else if (input.last_name.length > 20) {
-      errors.last_name = "El nombre no puede tener más de 20 caracteres!";
-    } else errors.last_name = "";
-  } else errors.last_name = "El nombre es requerido!";
-
-  if (input.username) {
-    if (!/^[A-Za-z0-9\s]+$/g.test(input.username)) {
-      errors.username = "El nombre de usuario debe tener letras y números!";
-    } else if (input.username.length > 20) {
-      errors.username =
-        "El nombre de usuario no puede tener más de 20 caracteres!";
-    } else errors.username = "";
-  } else errors.username = "El nombre de usuario es requerido!";
-
-  return errors;
-}
 
 export default function UpdateUser() {
   const dispatch = useDispatch();
@@ -65,6 +35,50 @@ export default function UpdateUser() {
     place_longitude: upDateUser.place_longitude,
     place_latitude: upDateUser.place_latitude,
   });
+
+  let users = useSelector((state) => state.users)
+  function validateFrom(input) {
+    let errors = {};
+    if (input.first_name) {
+      if (
+        !/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1\s]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/g.test(
+          input.first_name
+        )
+      ) {
+        errors.first_name = "El nombre solo puede tener letras";
+      } else if (input.first_name.length > 20) {
+        errors.first_name = "El nombre no puede tener más de 20 caracteres";
+      } else errors.first_name = "";
+    } else errors.first_name = "El nombre es necesario";
+
+    if (input.last_name) {
+      if (
+        !/^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1\s]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/g.test(
+          input.last_name
+        )
+      ) {
+        errors.last_name = "El nombre solo puede tener letras";
+      } else if (input.last_name.length > 20) {
+        errors.last_name = "El nombre no puede tener más de 20 caracteres";
+      } else errors.last_name = "";
+    } else errors.last_name = "El apellido es necesario";
+
+    if (input.username) {
+      if (!/^[A-Za-z0-9\s]+$/g.test(input.username)) {
+        errors.username = "El nombre de usuario debe tener letras y números";
+      } else if (input.username.length > 20) {
+        errors.username =
+          "El nombre de usuario no puede tener más de 20 caracteres";
+      } else if (
+        users.find((u) => u.username === input.username.toLowerCase())
+      ) {
+        errors.username = "El usuario ya existe";
+      } else errors.username = "";
+    } else errors.username = "El nombre de usuario es necesario";
+
+
+    return errors;
+  }
 
   function handleChange(e) {
     setInput({
