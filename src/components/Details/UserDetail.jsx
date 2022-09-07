@@ -98,7 +98,7 @@ export default function UserDetail() {
               "¡Ooops!",
               "No se poner al usuario como administrador, intente mas tarde",
               "error",
-              "Cancel"
+              "Aceptar"
             );
           }
         });
@@ -107,7 +107,7 @@ export default function UserDetail() {
           "Operación cancelada",
           "Usuario sigue siendo usuario",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });
@@ -138,7 +138,7 @@ export default function UserDetail() {
               "¡Ooops!",
               "No se pudo descender al administrador a usuario, intente mas tarde",
               "error",
-              "Cancel"
+              "Aceptar"
             );
           }
         });
@@ -147,7 +147,7 @@ export default function UserDetail() {
           "Operación cancelada",
           "El administrador sigue siendo administrador",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });
@@ -177,7 +177,7 @@ export default function UserDetail() {
               "¡Ooops!",
               "No se pudo borrar el usuario, intente mas tarde",
               "error",
-              "Cancel"
+              "Aceptar"
             );
           }
         });
@@ -186,7 +186,7 @@ export default function UserDetail() {
           "Operación cancelada",
           "Usuario no borrado",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });

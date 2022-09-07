@@ -97,7 +97,7 @@ export default function AdminView() {
                 "¡Ooops!",
                 "No se pudo borrar el usuario, intente mas tarde",
                 "error",
-                "Cancel"
+                "Aceptar"
               );
             }
           })
@@ -116,7 +116,7 @@ export default function AdminView() {
           "Operación cancelada",
           "Usuario no borrado",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });

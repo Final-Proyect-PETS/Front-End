@@ -51,7 +51,7 @@ export default function ReportPet() {
               "¡Ooops!",
               "No se pudo denunciar la publicación, intente mas tarde",
               "error",
-              "Cancel"
+              "Aceptar"
             );
           }
         });
@@ -60,7 +60,7 @@ export default function ReportPet() {
           "Operación cancelada",
           "Publicación no denunciada",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });

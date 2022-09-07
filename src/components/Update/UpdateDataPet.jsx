@@ -170,7 +170,7 @@ export default function UpdatePet() {
           "¡Oooops!",
           "No se pudo modificar la mascota",
           "warning",
-          "Cancel"
+          "Aceptar"
         );
       }
     });

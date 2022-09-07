@@ -65,7 +65,7 @@ export default function AdoptForm() {
                   "¡Ooops!",
                   "Ya mandaste una solicitud de adopcion",
                   "error",
-                  "Cancel"
+                  "Aceptar"
                 );
               }
             });
@@ -74,7 +74,7 @@ export default function AdoptForm() {
               "Operación cancelada",
               "La solicitud fue cancelada",
               "error",
-              "Cancel"
+              "Aceptar"
             );
           }
         })

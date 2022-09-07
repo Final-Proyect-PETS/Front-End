@@ -62,7 +62,7 @@ export default function TradePet() {
                   "¡Ooops!",
                   "No se pudo enviar la mascota, intente mas tarde",
                   "error",
-                  "Cancel"
+                  "Aceptar"
                 );
               } else {
                 notificationSwal(
@@ -78,7 +78,7 @@ export default function TradePet() {
               "Operación cancelada",
               "Mascota no enviada",
               "error",
-              "Cancel"
+              "Aceptar"
             );
           }
         })

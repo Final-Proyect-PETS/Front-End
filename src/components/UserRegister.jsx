@@ -212,14 +212,14 @@ export default function Register() {
         "¡Faltan datos!",
         "Complete todos los campos obligatorios",
         "error",
-        "Cancel"
+        "Aceptar"
       );
     } else
       notificationSwal(
         "Faltan datos, por favor verifique y vuelva a intentarlo",
         "Complete todos los campos obligatorios",
         "error",
-        "Cancel"
+        "Aceptar"
       );
   }
   
