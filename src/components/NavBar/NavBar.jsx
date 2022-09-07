@@ -205,19 +205,19 @@ export default function NavBar() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link>
-          <Link to="/home" class="text-white hover:none">
-            Home
-          </Link>
-        </Navbar.Link>
-        <Navbar.Link>
-          <Link class="text-white hover:none" to="/blog">
+      <Dropdown.Item>
+        <Link class="text-white hover:text-gray-700 w-full" to="/home">
+          Home
+        </Link>
+        </Dropdown.Item>
+        <Dropdown.Item>
+          <Link class="text-white hover:text-gray-700 w-full" to="/blog">
             Blog
           </Link>
-        </Navbar.Link>
-        <Navbar.Link class="text-white hover:none">
-          <Link to="/donations">Donaciones</Link>
-        </Navbar.Link>
+        </Dropdown.Item>
+        <Dropdown.Item>
+          <Link class="text-white hover:text-gray-700 w-full" to="/donations">Donaciones</Link>
+        </Dropdown.Item>
       </Navbar.Collapse>
     </Navbar>
   );
