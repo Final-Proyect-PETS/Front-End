@@ -17,7 +17,7 @@ export default function FooterComponent() {
             <div className="rounded-full">
               <FacebookShareButton
                 url={`https://happytails.vercel.app`}
-                quote={"Adoptame"}
+                quote={"Happy Tails"}
                 hashtag={"#happytails"}
               >
                 <FacebookIcon size={40} className="rounded-full" />

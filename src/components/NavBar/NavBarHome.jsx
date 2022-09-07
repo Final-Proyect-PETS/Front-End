@@ -252,26 +252,20 @@ export default function NavBarHome() {
         </button>
       ) : (
         <>
-        <button
-          onClick={() => setShowSidebar(!showSidebar)}
-          className="fixed  z-30 flex items-center rounded-lg  cursor-pointer right-2 top-40 lg:right-56 hover:bg-yellow-500"
-          width="40"
-          height="40"
-        >
-       
-          <img src={filtro} className=""/>
-         
-          
-        </button>
-        <Link to="/petregister">
-          
-          <img
-            src={add}
-            className="fixed  flex items-center rounded-lg  cursor-pointer right-2 bottom-20 lg:right-56 hover:bg-yellow-500"
-          />
-       
-        </Link>
-
+          <button
+            onClick={() => setShowSidebar(!showSidebar)}
+            className="fixed  z-30 flex items-center rounded-lg  cursor-pointer right-2 top-40 lg:right-56 hover:bg-yellow-500"
+            width="40"
+            height="40"
+          >
+            <img src={filtro} className="" />
+          </button>
+          <Link to="/petregister">
+            <img
+              src={add}
+              className="fixed  flex items-center rounded-lg  cursor-pointer right-2 bottom-20 lg:right-56 hover:bg-yellow-500"
+            />
+          </Link>
         </>
       )}
 
@@ -394,13 +388,13 @@ export default function NavBarHome() {
           </div>
         </Tooltip>
         <div className="w-44 lg:w-56 flex justify-center flex-col mx-5 ">
-          <div className="flex justify-center gap-1">
+          <div className="flex justify-center gap-2 m-4">
             <button
               name="desc"
               value="desc"
               onClick={(ev) => handlerFilterPublicationAge(ev)}
             >
-              Mas antiguas
+              <h5 className="text-black">Mas antiguas</h5>
             </button>
             <p />
             <button
@@ -408,7 +402,7 @@ export default function NavBarHome() {
               value="asc"
               onClick={(ev) => handlerFilterPublicationAge(ev)}
             >
-              Mas recientes
+              <h5 className="text-black">Mas recientes</h5>
             </button>
             <p />
           </div>
