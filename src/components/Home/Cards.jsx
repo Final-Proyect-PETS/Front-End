@@ -6,6 +6,7 @@ import Card from "./PetCard";
 import UserCard from "./UserCard";
 import Loader from "../Loaders/Loader";
 import "./Home.css";
+import FooterComponent from "../FooterComponent";
 
 export default function Cards() {
 
@@ -24,6 +25,7 @@ export default function Cards() {
   };
 
   return (
+    <div>
     <InfiniteScroll
       dataLength={CurrentPages.length}
       next={fetchMoreData}
@@ -86,5 +88,7 @@ export default function Cards() {
         </>
       )}
     </InfiniteScroll>
+    <FooterComponent/>
+    </div>
   );
 }

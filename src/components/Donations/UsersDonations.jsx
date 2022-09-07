@@ -21,7 +21,7 @@ export default function UserDonations() {
     return <>
         <div id="my-donations" >
             <NavBar />
-            <div className="w-full text-center p-5">
+            <div className="lg:w-full text-center lg:p-5">
                 <h3 className="text-6xl font-semibold italic text-gray-800">
                     Mis donaciones
                 </h3>
