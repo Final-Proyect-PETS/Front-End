@@ -63,47 +63,7 @@ export default function SearchBar() {
           placeholder="Buscar..."
         />
       </div>
-
-      {/* <label
-        htmlFor="small-toggle"
-        className="inline-flex relative items-center  m-2 cursor-pointer"
-      >
-        <input
-          type="checkbox"
-          value={input}
-          id="small-toggle"
-          className="sr-only peer"
-          onChange={(e) => handleToogle(e)}
-        />
-        <div className="w-14 h-8 bg-gray-200 peer-focus:outline-none  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[8px] after:left-[8px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-900"></div>
-        <h5 className="text-2xl ml-2">Switch</h5>
-      </label> */}
       <div className="mb-2 flex">
-        {/* {input.length > 0 ? (
-          input === "mascota" ? (
-            <Tooltip
-              content="Pulsa el switch para mostrar usuarios"
-              placement="top"
-            >
-              <span className="text-md flex w-96 font-bold text-white-900 dark:text-gray-300">
-                Mostrando Mascotas
-              </span>
-            </Tooltip>
-          ) : (
-            <Tooltip
-              content="Pulsa el switch para mostrar mascotas"
-              placement="top"
-            >
-              <span className="  text-md font-bold text-white-900 dark:text-gray-300">
-                Mostrando Usuarios
-              </span>
-            </Tooltip>
-          )
-        ) : (
-          <span className="  text-lg font-bold   text-white-900 dark:text-gray-300">
-            Mascotas/Usuarios
-          </span>
-        )} */}
       </div>
     </div>
   );

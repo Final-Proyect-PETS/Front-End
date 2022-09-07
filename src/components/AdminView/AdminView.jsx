@@ -420,8 +420,8 @@ export default function AdminView() {
                             Donado en total: ${" "}
                             {m.donations.length > 0
                               ? m.donations
-                                  .map((d) => d.donationAmount)
-                                  .reduce((prev, curr) => prev + curr)
+                                .map((d) => d.donationAmount)
+                                .reduce((prev, curr) => prev + curr)
                               : 0}
                           </h3>
                         </div>
@@ -431,9 +431,6 @@ export default function AdminView() {
                       <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                         <Link to={"/users/" + m._id}>Perfil del usuario</Link>
                       </button>
-                      {/* <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                        Editar usuario
-                      </button> */}
                       {loggedUser.isAdmin && loggedUser._id !== m._id ? (
                         <button
                           onClick={() => {

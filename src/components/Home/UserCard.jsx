@@ -68,26 +68,6 @@ export default function UserCard({
             ) : (
               false
             )}
-
-            {/* {pettit?.length === 1 ? (
-              <div className="flex">
-                <span className="text-md lg:font-bold text-gray-700 dark:text-gray-400">
-                  Mi mascota
-                </span>
-              </div>
-            ) : pettit?.length > 1 ? (
-              <div className="flex">
-                <span className="text-md lg:font-bold text-gray-700 dark:text-gray-400">
-                  Mis mascotas
-                </span>
-              </div>
-            ) : (
-              <div className="flex">
-                <span className="text-md font-bold text-gray-700 dark:text-gray-400">
-                  Sin mascotas
-                </span>
-              </div>
-            )} */}
           </div>
         </Link>
         {/* info */}
@@ -131,6 +111,7 @@ export default function UserCard({
               <img
                 src={share}
                 className="w-6 h-6 lg:w-10 lg:h-10 lg:t-4 flex justify-end"
+                alt="Share"
               />
             }
           >

@@ -36,10 +36,6 @@ function validateFrom(input) {
     } else if (input.username.length > 20) {
       errors.username =
         "El nombre de usuario no puede tener más de 20 caracteres!";
-      // } else if if(
-      //   users.find((u) => u.username === input.username.toLowerCase())
-      // ) {
-      //   errors.username = "El usuario ya existe!";
     } else errors.username = "";
   } else errors.username = "El nombre de usuario es requerido!";
 
@@ -69,11 +65,6 @@ export default function UpdateUser() {
     place_longitude: upDateUser.place_longitude,
     place_latitude: upDateUser.place_latitude,
   });
-
-  // useEffect(() => {
-  //   dispatch(getUserDetail());
-  //   dispatch(getAllUsers());
-  // }, [dispatch]);
 
   function handleChange(e) {
     setInput({
@@ -262,7 +253,7 @@ export default function UpdateUser() {
             </div>
 
             {upDateUser.hasOwnProperty("place_latitude") &&
-            upDateUser.hasOwnProperty("place_longitude") ? (
+              upDateUser.hasOwnProperty("place_longitude") ? (
               <div
                 ref={mapDiv}
                 style={{
@@ -291,11 +282,11 @@ export default function UpdateUser() {
               className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
             />
             {errors.first_name ||
-            errors.last_name ||
-            errors.username ||
-            errors.image ||
-            errors.about ||
-            errors.telephone ? (
+              errors.last_name ||
+              errors.username ||
+              errors.image ||
+              errors.about ||
+              errors.telephone ? (
               <h3>missing required fields</h3>
             ) : (
               <button

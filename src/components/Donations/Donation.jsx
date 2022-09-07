@@ -19,7 +19,6 @@ export default function Donation() {
   const [generating1, setGenerating1] = useState(false);
   const [generating2, setGenerating2] = useState(false);
   const [generating3, setGenerating3] = useState(false);
-  // const [disable0, setDisable0] = useState(false);
   const [disable1, setDisable1] = useState(false);
   const [disable2, setDisable2] = useState(false);
   const [disable3, setDisable3] = useState(false);
@@ -165,7 +164,6 @@ export default function Donation() {
             </div>
             <form id="form3"></form>
           </div>
-          {/* {payment ? <Comprar data={payment} /> : null} */}
         </div>
       </div>
 

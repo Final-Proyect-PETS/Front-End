@@ -89,7 +89,6 @@ export default function Blog() {
     setInput(e.target.value);
   }
   function onSubmitHandler(e) {
-    // e.preventDefault();
     let payload = {
       id: loggedUser._id,
       blogmessage: input,
@@ -99,8 +98,6 @@ export default function Blog() {
       navigate("/blog", { replace: true })
     );
   }
-
-  // let adopt = adopt.
 
   let notisFlat = adopted?.sort(() => {
     return random - 0.5;
@@ -196,14 +193,13 @@ export default function Blog() {
         </div>
         <div className=" w-screen h-1/2 bg-yellow-900 opacity-90 flex justify-center ">
           <Carousel slideInterval={3500}>
-            {notisFlat?.slice(0,4).map((adopt) => (
+            {notisFlat?.slice(0, 4).map((adopt) => (
               <img alt="adoptedPet" src={adopt.image} className="object-cover w-96 h-72 rounded-lg" />
             ))}
           </Carousel>
         </div>
 
         {/*  
-        <hr className="border" /> */}
         {/* --HR------------CHATITO------------------------------------------------------------------------------------------hr */}
 
         <div className="lg:flex gap-4 opacity-90 bg-yellow-900 lg:justify-center lg:m-25">
@@ -318,12 +314,6 @@ export default function Blog() {
                   <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
                     🥇 Ranking de Likes
                   </h5>
-                  {/* <Link
-                    to="/home"
-                    className="text-sm font-medium text-yellow-600 hover:underline dark:text-yellow-500"
-                  >
-                    Ver Todos
-                  </Link> */}
                 </div>
                 <ul className="  space-y-2   ">
                   <li>
@@ -453,12 +443,6 @@ export default function Blog() {
                   <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
                     🔥 Usuarios destacados
                   </h5>
-                  {/* <Link
-                    to="/home"
-                    className="text-sm font-medium text-yellow-600 hover:underline dark:text-yellow-500"
-                  >
-                    Ver Todos
-                  </Link> */}
                 </div>
 
                 <ul className=" space-y-2   ">
@@ -630,15 +614,14 @@ export default function Blog() {
                                 </p>
                               </Link>
                               <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                                {`${don.place.slice(0,20 )}...`}
+                                {`${don.place.slice(0, 20)}...`}
                               </p>
                             </div>
 
                             <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                              {`$ ${
-                                don?.donations[don?.donations?.length - 1]
+                              {`$ ${don?.donations[don?.donations?.length - 1]
                                   ?.donationAmount
-                              }`}
+                                }`}
                             </div>
                           </div>
                         </li>
@@ -649,7 +632,7 @@ export default function Blog() {
             </div>
           </div>
         </div>
-        <FooterComponent/>
+        <FooterComponent />
         {/* hr--------------------------------------------------------------------------------------------------------------- */}
       </div>
     </>

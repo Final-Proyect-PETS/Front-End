@@ -35,9 +35,6 @@ export default function TradePet() {
     for (let x = 0; x < iUser[i].length; x++) {
       if (iUser[i][x]._id === data.userId) {
         futuresPets.push(iUser[i][x + 1])
-        /*  for (let z = 0; z < i.length; z++){
-          if (iUser[i][x] !== iUser[i][x + 1] || iUser[i][x + 1] !== iUser[i][x])
-         } */
       }
     }
 
@@ -48,19 +45,6 @@ export default function TradePet() {
   }
 
   function submitHandler(e) {
-    // dispatch(tradePet(data));
-    // navigate("/home", { replace: true });
-    // e.preventDefault();
-    // setDeleted({
-    //   id: idPet,
-    //   deleted: true,
-    // });
-    // payloadDelete = {
-    //   id: idPet,
-    //   deleted: true,
-    // };
-    // dispatch(patchPet(payloadDelete));
-
     if (true) {
       Swal.fire({
         title: "¿Está seguro de que desea dar en adopción esta mascota?",
@@ -108,9 +92,6 @@ export default function TradePet() {
       for (let x = 0; x < iUser[i].length; x++) {
         if (iUser[i][x]._id === getUsers[j]._id) {
           interesados.push(iUser[i][x])
-          /*  for (let z = 0; z < i.length; z++){
-            if (iUser[i][x] !== iUser[i][x + 1] || iUser[i][x + 1] !== iUser[i][x])
-           } */
         }
       }
     }
@@ -121,30 +102,11 @@ export default function TradePet() {
       for (let x = 0; x < iUser[i].length; x++) {
         if (iUser[i][x]._id === loggedUser.pets[j]._id) {
           petsInteresados.push(iUser[i][x])
-          /*  for (let z = 0; z < i.length; z++){
-            if (iUser[i][x] !== iUser[i][x + 1] || iUser[i][x + 1] !== iUser[i][x])
-           } */
         }
       }
     }
   }
 
-  /*         function handlerDeleted (){
-            for (let i = 0; i < iUser.length; i++){
-              for(let j = 0; j < interesados.length; j++){ 
-                for(let x = 0; x < iUser[i].length; x++){
-                  if(iUser[i][x]._id === data.userId){
-                    let deleteData = iUser[i].filter((e => e[x] !== data.userId))
-                      dispatch(patchUsuer(deleteData))
-                    /*  for (let z = 0; z < i.length; z++){
-                      if (iUser[i][x] !== iUser[i][x + 1] || iUser[i][x + 1] !== iUser[i][x])
-                     } 
-                   }
-                 }
-               } 
-             }
-        }
-   */
   return (
     <div id="landing" className="w-full">
       <NavBar />
@@ -154,9 +116,8 @@ export default function TradePet() {
           <div className=" w-1/2 rounded bg-yellow-900">
             <div className="rounded">
               {" "}
-              {/* <div className="  h-1/3 rounded"></div> */}
               <Accordion
-                alwaysOpen={false} /* arrowIcon={HiOutlineArrowCircleDown} */
+                alwaysOpen={false}
               >
                 <Accordion.Panel>
                   <Accordion.Title>
@@ -176,7 +137,6 @@ export default function TradePet() {
                             {interesados?.length > 0 ? (
                               interesados.map((user) => (
                                 <li className="flex flex-col-2  gap-3 h-18 w-98 mr-2 py-1 overflow-hidden items-center rounded">
-                                  {/* <div className="flex items-center bg-gray-200 h-8 w-3/5 flex-row overflow-hidden gap-3"> */}
                                   <input
                                     className="w-10 h-10 ml-2 text-green-600 bg-yellow-800 border-yellow-500 dark:ring-offset-yellow-800  dark:bg-yellow-700 dark:border-yellow-600"
                                     key={user._id + "1"}
@@ -290,42 +250,6 @@ export default function TradePet() {
                 </Accordion.Panel>
               </Accordion>
               <div className=" mt-2 ">
-                {/* <form>
-                  {getUsers?.length > 0 ? (
-                    getUsers.map((user) => (
-                      <div className="flex bg-gray-600 mt-2">
-                        <input
-                          className="w-10 h-10 text-green-600 bg-gray-100 border-gray-300  dark:ring-offset-gray-800  dark:bg-gray-700 dark:border-gray-600"
-                          key={user._id + "1"}
-                          type="radio"
-                          name="adopter"
-                          id={user._id}
-                          value={user._id}
-                          onChange={(e) => adopterHandler(e)}
-                        />
-                        <AdopterCard
-                          key={user._id}
-                          _id={user._id}
-                          first_name={user.first_name}
-                          last_name={user.last_name}
-                          username={user.username}
-                          image={user.image}
-                          email={user.email}
-                          about={user.about}
-                          telephone={user.telephone}
-                          pets={user.pets}
-                          place={user.place}
-                        />
-                      </div>
-                    ))
-                  ) : (
-                    <>
-                      <NavBar />
-                      <Loader />
-                    
-                    </>
-                  )}
-                </form> */}
               </div>
             </div>
           </div>

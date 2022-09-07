@@ -107,12 +107,11 @@ export default function PetCard({
                 likes?.length > 1
                   ? likes?.length === 2
                     ? `A ${likes[0]} y ${likes[1]} les gusta esto...`
-                    : `A   ${likes.slice(0, 2).reverse()} y ${
-                        likes.length - 2
-                      } mas les gusta esto...`
+                    : `A   ${likes.slice(0, 2).reverse()} y ${likes.length - 2
+                    } mas les gusta esto...`
                   : likes?.length === 1
-                  ? `A ${likes[0]} le gusta esto`
-                  : "Me gusta"
+                    ? `A ${likes[0]} le gusta esto`
+                    : "Me gusta"
               }
               placement="bottom"
             >
@@ -143,6 +142,7 @@ export default function PetCard({
               <img
                 src={share}
                 className="w-6 h-6 lg:w-10 lg:h-10 lg:t-4 flex justify-end"
+                alt="Share"
               />
             }
           >
