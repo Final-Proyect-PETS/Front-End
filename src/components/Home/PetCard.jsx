@@ -67,7 +67,7 @@ export default function PetCard({
 
   //likes--hasta aca , casi te vas
   return (
-    <div class="flex flex-col-3 justify-between w-11/12 lg:w-3/6 h-56  opacity-100 mt-4 mb-2 lg:mb-2 bg-gray-100 rounded-lg border shadow-md hover:bg-yellow-500  hover:opacity-100">
+    <div class="flex flex-col-3 justify-between w-11/12 lg:w-3/6 h-56  opacity-100 mt-2 mb-2 lg:mb-2 bg-gray-100 rounded-lg border shadow-md hover:bg-yellow-500  hover:opacity-100">
       <img
         className="object-cover w-1/2 h-50 rounded-lg rounded-t-lg lg:h-auto lg:rounded-none lg:rounded-l-lg"
         src={imagePet}
@@ -139,7 +139,12 @@ export default function PetCard({
             arrowIcon={false}
             inline={true}
             floatingArrow={false}
-            label={<img src={share} className="h-6 w-6" />}
+            label={
+              <img
+                src={share}
+                className="w-6 h-6 lg:w-10 lg:h-10 lg:t-4 flex justify-end"
+              />
+            }
           >
             <Dropdown.Item>
               <div className="flex justify-center ">
