@@ -545,7 +545,7 @@ export default function AdminView() {
                     <h3 className="text-2xl">{dond.length}</h3>
                   </div>
                   <div className="w-3/4 flex justify-center items-center">
-                    <h3>Personas donaron</h3>
+                    <h3>{dond.length === 1 ? "Usuario donó" : "Usuarios donaron"}</h3>
                   </div>
                 </div>
               </div>
