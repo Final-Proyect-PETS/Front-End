@@ -79,7 +79,7 @@ export default function MissingDataRequired() {
     dispatch(patchUsuer(input)).then(
       notificationSwal(
         "¡Enhorabuena!",
-        "Tus datos fueron modificados con éxito (づ￣ 3￣)づ",
+        "Tus datos fueron modificados con éxito",
         "success",
         "Ok"
       )

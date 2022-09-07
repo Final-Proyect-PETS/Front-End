@@ -74,7 +74,7 @@ export default function PetDetail() {
               "¡Ooops!",
               "No se pudo borrar la publicación, intente mas tarde",
               "error",
-              "Cancel"
+              "Aceptar"
             );
           }
         });
@@ -83,7 +83,7 @@ export default function PetDetail() {
           "Operación cancelada",
           "Publicación no borrada",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });

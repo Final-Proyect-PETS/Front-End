@@ -96,7 +96,7 @@ export default function OwnedPet({
                   "¡Ooops!",
                   "No se pudo eliminar la mascota, intente mas tarde",
                   "error",
-                  "Cancel"
+                  "Aceptar"
                 );
               }
             });

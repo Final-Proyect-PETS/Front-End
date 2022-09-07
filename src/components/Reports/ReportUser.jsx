@@ -51,7 +51,7 @@ export default function ReportUser() {
               "¡Ooops!",
               "No se pudo denunciar al usuario, intente mas tarde",
               "error",
-              "Cancel"
+              "Aceptar"
             );
           }
         });
@@ -60,7 +60,7 @@ export default function ReportUser() {
           "Operación cancelada",
           "Usuario no denunciado",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });

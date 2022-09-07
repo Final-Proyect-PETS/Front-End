@@ -99,21 +99,21 @@ export default function Donation() {
         "¡Ooops!",
         "Sólo se permiten números",
         "error",
-        "Cancel"
+        "Aceptar"
       );
     } else if (!input.name) {
       notificationSwal(
         "¡Ooops!",
         "Debe ingresar el monto a donar",
         "error",
-        "Cancel"
+        "Aceptar"
       );
     } else {
       notificationSwal(
         "¡Ooops!",
         "El monto a donar debe ser mayor a cero",
         "error",
-        "Cancel"
+        "Aceptar"
       );
     }
   }

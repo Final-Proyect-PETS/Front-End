@@ -97,7 +97,7 @@ export default function AdminView() {
                 "¡Ooops!",
                 "No se pudo borrar el usuario, intente mas tarde",
                 "error",
-                "Cancel"
+                "Aceptar"
               );
             }
           })
@@ -116,7 +116,7 @@ export default function AdminView() {
           "Operación cancelada",
           "Usuario no borrado",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });
@@ -148,7 +148,7 @@ export default function AdminView() {
                 "¡Ooops!",
                 "No se pudo restaurar el usuario, intente mas tarde",
                 "error",
-                "Cancel"
+                "Aceptar"
               );
             }
           })
@@ -160,7 +160,7 @@ export default function AdminView() {
           "Operación cancelada",
           "Usuario no restaurado",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });
@@ -189,7 +189,7 @@ export default function AdminView() {
               "¡Ooops!",
               "No se pudo borrar la publicación, intente mas tarde",
               "error",
-              "Cancel"
+              "Aceptar"
             );
           }
         });
@@ -198,7 +198,7 @@ export default function AdminView() {
           "Operación cancelada",
           "Publicación no borrada",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });
@@ -228,7 +228,7 @@ export default function AdminView() {
                 "¡Ooops!",
                 "No se pudo borrar la denuncia, intente mas tarde",
                 "error",
-                "Cancel"
+                "Aceptar"
               );
             }
           })
@@ -240,7 +240,7 @@ export default function AdminView() {
           "Operación cancelada",
           "Denuncia no borrada",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });
@@ -270,7 +270,7 @@ export default function AdminView() {
                 "¡Ooops!",
                 "No se pudo restaurar la denuncia, intente mas tarde",
                 "error",
-                "Cancel"
+                "Aceptar"
               );
             }
           })
@@ -282,7 +282,7 @@ export default function AdminView() {
           "Operación cancelada",
           "Denuncia no restaurada",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });
@@ -311,7 +311,7 @@ export default function AdminView() {
               "¡Ooops!",
               "No se pudo borrar la denuncia, intente mas tarde",
               "error",
-              "Cancel"
+              "Aceptar"
             );
           }
         });
@@ -320,7 +320,7 @@ export default function AdminView() {
           "Operación cancelada",
           "Denuncia no borrada",
           "error",
-          "Cancel"
+          "Aceptar"
         );
       }
     });
@@ -428,7 +428,7 @@ export default function AdminView() {
                       </div>
                     </div>
                     <div className="bg-white h-1/4 flex items-center justify-around">
-                      <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                      <button class="py-2 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                         <Link to={"/users/" + m._id}>Perfil del usuario</Link>
                       </button>
                       {loggedUser.isAdmin && loggedUser._id !== m._id ? (
@@ -450,7 +450,7 @@ export default function AdminView() {
         </Modal.Body>
       </Modal>
 
-      <div id="view-admin">
+      <div id="view-admin" className="pt-20">
         <div className="w-full text-center p-5">
           <h3 className="text-6xl font-semibold italic text-gray-800">
             Happy Tails
