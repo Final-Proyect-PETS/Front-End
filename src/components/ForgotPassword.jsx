@@ -6,6 +6,7 @@ import { notificationSwal } from "../utils/notificationSwal";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./LandingPage.css";
 
 export default function ForgotPassword() {
@@ -90,14 +91,21 @@ export default function ForgotPassword() {
                                 </div>
 
                                 <div>
-                                    <div className="flex items-center mb-6 -mt-4 w-full">
+                                    <div className="flex items-center mt-1 w-full">
                                         <button
                                             onClick={(e) => handleSubmitPass(e)}
-                                            className="mt-8 py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                                            className="mt-2 py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                                             type="submit"
                                         >
                                             Enviar
                                         </button>
+                                    </div>
+                                    <div className="flex items-center mb-6 w-full">
+                                        <Link to="/" className="mt-2 py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                                        
+                                            Regresar
+                                        
+                                        </Link>
                                     </div>
                                 </div>
                             </form>

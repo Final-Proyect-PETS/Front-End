@@ -86,42 +86,42 @@ export default function AdoptForm() {
   return (
     <>
       <NavBar />
-      <div className="flex flex-col w-full mt-15 m-auto py-8 bg-amber-600 shadow sm:px-6 md:px-8 lg:px-10">
+      <div className="flex flex-col w-full mt-15 m-auto py-8 shadow sm:px-6 md:px-8 lg:px-10">
         <div className="flex items-center mt-8 px-18 max-w-lg self-center">
           <form
             className="flex flex-col justift-content"
             onSubmit={handlerSubmit}
           >
             <div>
-              <h1 className="text-5xl font-bold">
+              <h3 className="text-4xl font-semibold text-center text-gray-800">
                 Envia una notificación al dueño mostrando tu interés
-              </h1>
+              </h3>
             </div>
-            <div className="flex flex-col mt-5 px-3 py-3 text-white bg-gray-500 rounded bg-opacity-50">
-              <h1 className="  text-black">Nombre Completo:</h1>
-              <h1 className="text-3xl font-bold">
+            <div className="flex flex-col mt-5 px-3 py-3 text-white bg-gray-500 rounded-md bg-opacity-50">
+              <h3 className="  text-black">Nombre Completo:</h3>
+              <h3 className="text-3xl font-bold">
                 {loggedUser.first_name + " " + loggedUser.last_name}{" "}
-              </h1>
+              </h3>
             </div>
-            <div className="flex flex-col mt-5 px-3 py-3 text-white bg-gray-500 rounded bg-opacity-50">
-              <h1 className="  text-black">Usuario:</h1>
-              <h1 className="text-3xl font-bold">{loggedUser.username}</h1>
+            <div className="flex flex-col mt-5 px-3 py-3 text-white bg-gray-500 rounded-md bg-opacity-50">
+              <h3 className="  text-black">Usuario:</h3>
+              <h3 className="text-3xl font-bold">{loggedUser.username}</h3>
             </div>
-            <div className="flex flex-col mt-5 px-3 py-3 text-white bg-gray-500 rounded bg-opacity-50">
-              <h1 className="  text-black">Email:</h1>
-              <h1 className="text-3xl font-bold">{loggedUser.email}</h1>
-            </div>
-
-            <div className="flex flex-col mt-5 px-3 py-3 text-white bg-gray-500 rounded bg-opacity-50">
-              <h1 className="  text-black">Telefono de contacto:</h1>
-              <h1 className="text-3xl font-bold">{loggedUser.telephone}</h1>
+            <div className="flex flex-col mt-5 px-3 py-3 text-white bg-gray-500 rounded-md bg-opacity-50">
+              <h3 className="  text-black">Email:</h3>
+              <h3 className="text-3xl font-bold">{loggedUser.email}</h3>
             </div>
 
-            <div className="flex flex-col mt-5 px-3 py-3 text-white bg-gray-500 rounded bg-opacity-50">
-              <h1 className="  text-black">Tu Mensaje:</h1>
+            <div className="flex flex-col mt-5 px-3 py-3 text-white bg-gray-500 rounded-md bg-opacity-50">
+              <h3 className="  text-black">Telefono de contacto:</h3>
+              <h3 className="text-3xl font-bold">{loggedUser.telephone}</h3>
+            </div>
+
+            <div className="flex flex-col mt-5 px-3 py-3 text-white bg-gray-500 rounded-md bg-opacity-50">
+              <h3 className="text-black pb-2">Tu Mensaje:</h3>
 
               <textarea
-                className="rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent text-black resize-none"
+                className="rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent text-black resize-none"
                 name="message"
                 value={input.message}
                 placeholder="Mensaje para el dueño de la mascota..."
@@ -132,7 +132,7 @@ export default function AdoptForm() {
             <div className="flex items-center ">
               <h3>¿Algun dato es incorrecto?</h3>
               <Link to="/updateuser">
-                <button className="bg-yellow-900 ml-10 mr-1 mt-4 hover:bg-yellow-500 text-white font-bold py-2 px-2 border border-yellow-700 rounded">
+                <button className="bg-yellow-900 ml-10 mr-1 mt-4 hover:bg-yellow-500 text-white font-bold py-2 px-2 border border-yellow-700 rounded-md">
                   Editar perfil→
                 </button>
               </Link>
@@ -140,7 +140,7 @@ export default function AdoptForm() {
             <div className="flex justify-content py-3">
               <button
                 type="submit"
-                className="bg-green-500 w-full hover:bg-yellow-500 text-white font-bold py-5 px-20 border border-yellow-700 rounded"
+                className="bg-green-500 w-full hover:bg-yellow-500 text-white font-bold py-5 px-20 border border-yellow-700 rounded-md"
               >
                 💌ENVIAR NOTIFICACIÓN DE ADOPCIÓN💌
               </button>
