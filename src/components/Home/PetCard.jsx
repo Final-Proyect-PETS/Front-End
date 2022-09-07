@@ -67,7 +67,7 @@ export default function PetCard({
 
   //likes--hasta aca , casi te vas
   return (
-    <div class="flex flex-col-3 justify-between w-11/12 lg:w-3/6 h-56  opacity-100 mt-2 mb-2 lg:mb-2 bg-gray-100 rounded-lg border shadow-md hover:bg-yellow-500  hover:opacity-100">
+    <div class="flex flex-col-3 justify-between w-11/12 lg:w-3/6 h-56 lg:h-96  opacity-100 mt-2 mb-2 lg:mb-2 bg-gray-100 rounded-lg border shadow-md hover:bg-yellow-500  hover:opacity-100">
       <img
         className="object-cover w-1/2 h-50 rounded-lg rounded-t-lg lg:h-auto lg:rounded-none lg:rounded-l-lg"
         src={imagePet}
@@ -99,7 +99,7 @@ export default function PetCard({
                 : description}
             </span>
           </div>
-          <div className="flex justify-center overflow-hidden">
+          <div className="flex justify-center lg:mt-24 overflow-hidden">
             <Tooltip
               trigger="hover"
               animation="duration-1000"
@@ -123,9 +123,9 @@ export default function PetCard({
                 <img
                   src={likeim}
                   alt="<3"
-                  className="absolute h-14 rounded-full shadow-lg"
+                  className="absolute h-14 lg:h-32 rounded-full shadow-lg"
                 />
-                <h1 className="relative flex justify-center items-center text-xl  text-black font-bold  mt-2 ">
+                <h1 className="relative flex justify-center items-center text-xl  text-black font-bold  mt-2 lg:text-2xl lg:mt-4 ">
                   {buttonLike.number}
                 </h1>
               </button>
