@@ -94,7 +94,7 @@ export default function AdoptForm() {
           >
             <div>
               <h3 className="text-4xl font-semibold text-center text-gray-800">
-                Envia una notificación al dueño mostrando tu interés
+                Envía una notificación al dueño mostrando tu interés
               </h3>
             </div>
             <div className="flex flex-col mt-5 px-3 py-3 text-white bg-gray-500 rounded-md bg-opacity-50">
