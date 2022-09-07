@@ -6,7 +6,7 @@ import { paymentMp } from "../../redux/Actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { notificationSwal } from "../../utils/notificationSwal";
-
+import FooterComponent from "../FooterComponent";
 
 export default function Donation() {
   const dispatch = useDispatch();
@@ -120,57 +120,58 @@ export default function Donation() {
   }
 
   return (
-    <>
+    <section id="donations" className="flex flex-col justify-between">
       <NavBar />
-      <div id="donations" className="w-full">
-        <div className="h-screen flex justify-center items-center flex-col backdrop-blur-sm">
-          <div className="flex flex-col justify-center items-center">
-            <h3 className="text-6xl italic text-gray-800 flex justify-center font-semibold mb-3">
-              Hola {user.first_name} {user.last_name}!
-            </h3>
-            <h2 className="text-center text-gray-800 text-2xl font-normal sm:text-2xl">
-              Nosotros somos HappyTails!, una organización con la iniciativa de
-              poder cuidar a nuestros amigos de 4 patas.
-              <br />
-              Cualquier donación hecha será aceptada con mucho amor y será
-              destinada a mejorar la calidad de vida de los animales.
+      <div className="flex flex-col justify-center items-center mt-24 lg:mt-56">
+        <h3 className="lg:text-6xl text-3xl  italic text-gray-800 flex justify-center font-semibold lg:mb-3">
+          Hola {user.first_name} {user.last_name}!
+        </h3>
+        <h2 className="text-center text-gray-800 lg:text-2xl font-semibold sm:text-2xl">
+          Nosotros somos HappyTails !, una organización con la iniciativa de
+          poder cuidar a los animales más damnificados.
+          <br />
+          Cualquier donación hecha es aceptada con mucho amor y será destinada a
+          mejorar la calidad de vida de los animales.
+        </h2>
+
+        <div className="flex flex-col w-full max-w-md lg:m-14">
+          <div className="text-center mb-3">
+            <h2 className="lg:text-2xl lg:font-semibold font-bold text-gray-800">
+              Podrás donar la cantidad que desees colocando el monto aquí:
             </h2>
           </div>
-
-          <div className="flex flex-col w-full max-w-md m-14">
-            <div className="text-center mb-3">
-              <h2 className="text-2xl text-gray-800">
-                Podrás donar la cantidad que desees colocando el monto aquí:
-              </h2>
+          <input
+            type="text"
+            maxLength="4"
+            name="name"
+            value={input.name}
+            onChange={(e) => handleChange(e)}
+            placeholder="Cantidad a donar"
+            className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent mb-8"
+          />
+          <div>
+            <div className="flex items-center mb-6 -mt-4 w-full">
+              <button
+                type="submit"
+                className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg flex items-center justify-center ml-2"
+                onClick={(e) => handleInput(e)}
+              >
+                Generar orden de pago
+              </button>
+              <p className="text-xl text-gray-800 font-normal text-center">
+                {generating0 ? "Generando orden..." : null}
+              </p>
+              <form id="form0" className="place-self-center pl-2"></form>
             </div>
-            <input
-              type="text" maxLength="4"
-              name="name"
-              value={input.name}
-              onChange={(e) => handleChange(e)}
-              placeholder="Cantidad a donar"
-              className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent mb-8"
-            />
-            <div>
-              <div className="flex items-center mb-6 -mt-4 w-full">
-                <button
-                  type="submit"
-                  className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg flex items-center justify-center ml-2"
-                  onClick={(e) => handleInput(e)}
-                >
-                  Generar orden de pago
-                </button>
-                <p className="text-xl text-gray-800 font-normal text-center">
-                  {generating0 ? "Generando orden..." : null}
-                </p>
-                <form id="form0" className="place-self-center pl-2"></form>
-              </div>
-              <form id="form3"></form>
-            </div>
-            {/* {payment ? <Comprar data={payment} /> : null} */}
+            <form id="form3"></form>
           </div>
+          {/* {payment ? <Comprar data={payment} /> : null} */}
         </div>
       </div>
-    </>
+
+      <div>
+        <FooterComponent />
+      </div>
+    </section>
   );
 }

@@ -1,5 +1,5 @@
-import React from 'react'
-import { Footer } from 'flowbite-react'
+import React from "react";
+import { Footer } from "flowbite-react";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -9,45 +9,44 @@ import {
 export default function FooterComponent() {
   return (
     <Footer container={true}>
-    <div>
-      <Footer.Title title="Compartir" />
+      <div>
+        <Footer.Title title="Compartir" />
+        <Footer.LinkGroup>
+          <Footer.Link href="#">
+            {" "}
+            <div className="rounded-full">
+              <FacebookShareButton
+                url={`https://happytails.vercel.app`}
+                quote={"Adoptame"}
+                hashtag={"#happytails"}
+              >
+                <FacebookIcon size={40} className="rounded-full" />
+              </FacebookShareButton>
+            </div>
+          </Footer.Link>
+          <Footer.Link href="#">
+            <div>
+              <EmailShareButton
+                subject="Quiero que me adoptes"
+                body={`Seguinos en https://happytails.vercel.app`}
+              >
+                <EmailIcon size={40} className="rounded-full" />
+              </EmailShareButton>
+            </div>
+          </Footer.Link>
+        </Footer.LinkGroup>
+      </div>
+
       <Footer.LinkGroup>
-        <Footer.Link href="#">
-          {" "}
-          <div className="rounded-full">
-            <FacebookShareButton
-              url={`https://happytails.vercel.app`}
-              quote={"Adoptame"}
-              hashtag={"#happytails"}
-            >
-              <FacebookIcon size={40} className="rounded-full" />
-            </FacebookShareButton>
-          </div>
-        </Footer.Link>
-        <Footer.Link href="#">
-          <div>
-            <EmailShareButton
-              subject="Quiero que me adoptes"
-              body={`Seguinos en https://happytails.vercel.app`}
-            >
-              <EmailIcon size={40} className="rounded-full" />
-            </EmailShareButton>
-          </div>
-        </Footer.Link>
+        <Footer.Link href="#">Sobre nosotros</Footer.Link>
       </Footer.LinkGroup>
-    </div>
-
-    <Footer.LinkGroup>
-      <Footer.Link href="#">Sobre nosotros</Footer.Link>
-    </Footer.LinkGroup>
-    <Footer.LinkGroup>
-      <Footer.Link href="#">Ir Arriba</Footer.Link>
-    </Footer.LinkGroup>
-    <Footer.LinkGroup>
-      <Footer.Link href="#">Centro de denuncias</Footer.Link>
-    </Footer.LinkGroup>
-    <Footer.Copyright by="Blancaflor y los 7 hooksitos™" year={2022} />
-  </Footer>
-  )
+      <Footer.LinkGroup>
+        <Footer.Link href="#">Ir Arriba</Footer.Link>
+      </Footer.LinkGroup>
+      <Footer.LinkGroup>
+        <Footer.Link href="#">Centro de denuncias</Footer.Link>
+      </Footer.LinkGroup>
+      <Footer.Copyright by="Blancaflor y los 7 hooksitos™" year={2022} />
+    </Footer>
+  );
 }
-
