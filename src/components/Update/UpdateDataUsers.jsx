@@ -141,7 +141,6 @@ export default function UpdateUser() {
   }
 
   function _suggestionSelect(result, lat, long, text) {
-    console.log(result, lat, long, text);
     setInput({
       ...input,
       place: result,
@@ -164,7 +163,6 @@ export default function UpdateUser() {
 
   function createNewMap(long, lat) {
     if (placeSelect) {
-      console.log(mapDiv);
       new mapboxgl.Map({
         container: mapDiv.current, // container ID
         style: "mapbox://styles/mapbox/streets-v11", // style URL
