@@ -20,7 +20,6 @@ export default function TradePet() {
   }, [dispatch]);
   const getUsers = useSelector((state) => state.users);
   const loggedUser = useSelector((state) => state.userProfile);
-  console.log(loggedUser.pets);
   const [data, setData] = useState({
     userId: "",
     petId: "",
@@ -30,7 +29,6 @@ export default function TradePet() {
   const iUser = loggedUser.interestedUsers
   const futuresPets = []
   function adopterHandler(e) {
-    console.log(e.target.value, "ADOPTER");
     setData({ ...data, userId: e.target.value });
   }
   for (let i = 0; i < iUser.length; i++) {
@@ -46,7 +44,6 @@ export default function TradePet() {
   }
 
   function petHandler(e) {
-    console.log(e.target.value, "PET");
     setData({ ...data, petId: e.target.value });
   }
 

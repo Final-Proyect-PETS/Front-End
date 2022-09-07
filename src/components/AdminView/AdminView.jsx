@@ -51,11 +51,8 @@ export default function AdminView() {
 
   const dispatch = useDispatch();
 
-  console.log(don);
-
   // const amount = donatedUsers.map((m) => m.donations.map((d) => d.donationAmount).reduce((prev, curr) => prev + curr))
 
-  // console.log(amount)
 
   const onClick = () => {
     setShow(true);
