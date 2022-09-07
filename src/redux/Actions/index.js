@@ -227,6 +227,8 @@ export function userLoginGoogle(payload) {
       let json = await axios
         .post("https://happytails2.herokuapp.com/logingoogle", payload)
         .then((response) => {
+          console.log("aca abajo el response")
+          console.log(response)
           const token = response.data.data.token;
           const id = response.data.id.id;
           localStorage.setItem("token", token);
