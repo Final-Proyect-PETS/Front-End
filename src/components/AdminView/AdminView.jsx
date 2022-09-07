@@ -100,6 +100,7 @@ export default function AdminView() {
             );
           }
         });
+
       } else {
         notificationSwal(
           "Operación cancelada",
@@ -308,7 +309,15 @@ export default function AdminView() {
       }
     });
   }
-
+  function donaciones() {
+    // let don = donatedUsers.map(e => e.donations).flat(1)
+    // let don2 = don.map(e => e.donationAmount)
+    // return don2.reduce((a, b) => a + b, 0); 
+    let don = donatedUsers.map(e => e.donations).flat(1)
+    let don2 = don.map(e => e.donationAmount)
+    don2 = don2.reduce((a, b) => a + b, 0);
+    return new Intl.NumberFormat("es-ar", { style: "currency", currency: "ARS" }).format(don2)
+  }
   return (
     <div>
       <NavBar />
@@ -376,7 +385,7 @@ export default function AdminView() {
                         <div className="h-1/2 flex justify-center items-center">
                           <h3 className="text-center">
                             Este usuario donó:
-                             {m.donations.length > 1 ? (
+                            {m.donations.length > 1 ? (
                               <p>{m.donations.length} veces</p>
                             ) : m.donations.length === 1 ? (
                               <p>1 vez</p>
@@ -387,12 +396,11 @@ export default function AdminView() {
                         </div>
                         <div className="h-1/2 flex justify-center items-center">
                           <h3>
-                            Donado en total: $
-                            {m.donations.length > 0
-                              ? m.donations
-                                .map((d) => d.donationAmount)
-                                .reduce((prev, curr) => prev + curr)
-                              : 0}
+                            Donado en total: {" "}
+                            {
+                              donaciones()
+                            }
+
                           </h3>
                         </div>
                       </div>
@@ -554,7 +562,7 @@ export default function AdminView() {
               <div className="w-1/2 flex justify-center items-center">
                 <div className="flex h-3/4 w-3/4 bg-yellow-600">
                   <div className="w-1/4 flex justify-center items-center">
-                    <h3 className="text-xl">$7.304</h3>
+                    <h3 className="text-xl">{donaciones()}</h3>
                   </div>
                   <div className="w-3/4 flex justify-center items-center">
                     <h3>Recaudado</h3>
