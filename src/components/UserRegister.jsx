@@ -245,7 +245,6 @@ export default function Register() {
 
   function createNewMap(long, lat) {
     if (placeSelect) {
-      console.log(mapDiv);
       new mapboxgl.Map({
         container: mapDiv.current, // container ID
         style: "mapbox://styles/mapbox/streets-v11", // style URL

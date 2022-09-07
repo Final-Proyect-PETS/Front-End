@@ -16,6 +16,7 @@ import {
   handleUserRestore,
   handleUserReportRestore,
   getUserReportsSolved,
+  getAllUsers,
 } from "../../redux/Actions";
 import Swal from "sweetalert2";
 import { notificationSwal } from "../../utils/notificationSwal";
@@ -49,13 +50,11 @@ export default function AdminView() {
 
   const don = userr.map((d) => d.donations.map((d) => d.donationAmount));
 
+  const loggedUser = useSelector((state) => state.userProfile);
+
   const dispatch = useDispatch();
 
-  console.log(don);
-
   // const amount = donatedUsers.map((m) => m.donations.map((d) => d.donationAmount).reduce((prev, curr) => prev + curr))
-
-  // console.log(amount)
 
   const onClick = () => {
     setShow(true);
@@ -71,6 +70,7 @@ export default function AdminView() {
     dispatch(getDeletedPets());
     dispatch(getDeletedUsers());
     dispatch(getUserReportsSolved());
+    dispatch(getAllUsers());
   }, []);
 
   function handleDeleteUser(idReportedUser, idUserReport) {
@@ -103,11 +103,13 @@ export default function AdminView() {
           })
           .then(() => {
             dispatch(getDeletedUsers());
-            dispatch(
-              handleUserReport({ id: idUserReport, resolved: true })
-            ).then(() => {
-              dispatch(getUserReportsSolved());
-            });
+            if (idUserReport) {
+              dispatch(
+                handleUserReport({ id: idUserReport, resolved: true })
+              ).then(() => {
+                dispatch(getUserReportsSolved());
+              });
+            } else onClose();
           });
       } else {
         notificationSwal(
@@ -120,7 +122,7 @@ export default function AdminView() {
     });
   }
 
-  let dond = donatedUsers.filter((d) => d.donations.length > 0)
+  let dond = donatedUsers.filter((d) => d.donations.length > 0);
 
   function handleRestoreUser(id) {
     Swal.fire({
@@ -132,23 +134,27 @@ export default function AdminView() {
       confirmButtonText: "Sí",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(handleUserRestore({ id: id, ban: false })).then((e) => {
-          if (e === "OK") {
-            notificationSwal(
-              "¡Enhorabuena!",
-              "Usuario restaurado con éxito",
-              "success",
-              "Ok"
-            );
-          } else {
-            notificationSwal(
-              "¡Ooops!",
-              "No se pudo restaurar el usuario, intente mas tarde",
-              "error",
-              "Cancel"
-            );
-          }
-        });
+        dispatch(handleUserRestore({ id: id, ban: false }))
+          .then((e) => {
+            if (e === "OK") {
+              notificationSwal(
+                "¡Enhorabuena!",
+                "Usuario restaurado con éxito",
+                "success",
+                "Ok"
+              );
+            } else {
+              notificationSwal(
+                "¡Ooops!",
+                "No se pudo restaurar el usuario, intente mas tarde",
+                "error",
+                "Cancel"
+              );
+            }
+          })
+          .then(() => {
+            dispatch(getAllUsers());
+          });
       } else {
         notificationSwal(
           "Operación cancelada",
@@ -320,9 +326,6 @@ export default function AdminView() {
     });
   }
   function donaciones() {
-    // let don = donatedUsers.map(e => e.donations).flat(1)
-    // let don2 = don.map(e => e.donationAmount)
-    // return don2.reduce((a, b) => a + b, 0);
     let don = donatedUsers.map((e) => e.donations).flat(1);
     let don2 = don.map((e) => e.donationAmount);
     don2 = don2.reduce((a, b) => a + b, 0);
@@ -413,11 +416,14 @@ export default function AdminView() {
                           </h3>
                         </div>
                         <div className="h-1/2 flex justify-center items-center">
-                          <h3>Donado en total: $ {m.donations.length > 0
+                          <h3>
+                            Donado en total: ${" "}
+                            {m.donations.length > 0
                               ? m.donations
-                                .map((d) => d.donationAmount)
-                                .reduce((prev, curr) => prev + curr)
-                              : 0}</h3>
+                                  .map((d) => d.donationAmount)
+                                  .reduce((prev, curr) => prev + curr)
+                              : 0}
+                          </h3>
                         </div>
                       </div>
                     </div>
@@ -425,12 +431,19 @@ export default function AdminView() {
                       <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                         <Link to={"/users/" + m._id}>Perfil del usuario</Link>
                       </button>
-                      <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                      {/* <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                         Editar usuario
-                      </button>
-                      <button class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                        Eliminar usuario
-                      </button>
+                      </button> */}
+                      {loggedUser.isAdmin && loggedUser._id !== m._id ? (
+                        <button
+                          onClick={() => {
+                            handleDeleteUser(m._id);
+                          }}
+                          class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                        >
+                          Deshabilitar usuario
+                        </button>
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -453,7 +466,7 @@ export default function AdminView() {
             <div className="h-4/5">
               <div className="flex justify-center">
                 <h3 className="text-2xl py-2 italic font-semibold text-gray-800">
-                  Usuarios Registrados
+                  Usuarios Habilitados
                 </h3>
               </div>
               <div className="h-full pb-30 overflow-auto bg-[#685737] bg-opacity-80">
@@ -549,7 +562,9 @@ export default function AdminView() {
                     <h3 className="text-2xl">{dond.length}</h3>
                   </div>
                   <div className="w-3/4 flex justify-center items-center">
-                    <h3>{dond.length === 1 ? "Usuario donó" : "Usuarios donaron"}</h3>
+                    <h3>
+                      {dond.length === 1 ? "Usuario donó" : "Usuarios donaron"}
+                    </h3>
                   </div>
                 </div>
               </div>
@@ -565,10 +580,8 @@ export default function AdminView() {
               </div>
             </div>
             <div className="h-1/5 flex bg-[#685737] bg-opacity-90">
-              <div className="w-1/2 flex justify-center items-center">
-              </div>
-              <div className="w-1/2 flex justify-center items-center">
-              </div>
+              <div className="w-1/2 flex justify-center items-center"></div>
+              <div className="w-1/2 flex justify-center items-center"></div>
             </div>
           </div>
         </div>

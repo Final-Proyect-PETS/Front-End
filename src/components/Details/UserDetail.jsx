@@ -155,8 +155,8 @@ export default function UserDetail() {
 
   function handleDeleteUser(id) {
     Swal.fire({
-      title: "¿Está seguro de que desea eliminar este usuario?",
-      text: "Este usuario se eliminará",
+      title: "¿Está seguro de que desea deshabilitar este usuario?",
+      text: "Este usuario se deshabilitará",
       icon: "warning",
       showCancelButton: true,
       cancelButtonText: "No",
@@ -313,16 +313,16 @@ export default function UserDetail() {
           <div className="h-1/3 pt-5 flex">
             <div className="w-full flex justify-center items-center mt-10">
               {loggedUser._id !== userDetail._id ? (
-                  <button
-                    onClick={() => chat()}
-                    className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                  >
-                    Enviar mensaje
-                  </button>
+                <button
+                  onClick={() => chat()}
+                  className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                >
+                  Enviar mensaje
+                </button>
               ) : (
                 <></>
               )}
-                <button
+              <button
                 onClick={() => {
                   onClick();
                 }}
@@ -383,7 +383,7 @@ export default function UserDetail() {
                 }}
                 className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
               >
-                ELIMINAR USUARIO
+                DESHABILITAR USUARIO
               </button>
             ) : null}
             <div className="lg:w-3/4 lg:flex lg:items-center lg:mt-14 bg-yellow-800 rounded-xl"></div>

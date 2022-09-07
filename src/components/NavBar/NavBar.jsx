@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getUserProfile, viewing, viewingLike } from "../../redux/Actions";
 import { useSelector, useDispatch } from "react-redux";
 import { Navbar, Dropdown, Avatar, Toast } from "flowbite-react";
+import { NavbarLink } from "flowbite-react/lib/esm/components/Navbar/NavbarLink";
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -205,19 +206,19 @@ export default function NavBar() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link>
-          <Link to="/home" class="text-white hover:none">
-            Home
-          </Link>
-        </Navbar.Link>
-        <Navbar.Link>
-          <Link class="text-white hover:none" to="/blog">
+      <NavbarLink>
+        <Link class="text-white lg:hover:none lg:hover:text-white hover:text-gray-700  w-full" to="/home">
+          Home
+        </Link>
+        </NavbarLink>
+        <NavbarLink>
+          <Link class="text-white lg:hover:none lg:hover:text-white hover:text-gray-700 w-full" to="/blog">
             Blog
           </Link>
-        </Navbar.Link>
-        <Navbar.Link class="text-white hover:none">
-          <Link to="/donations">Donaciones</Link>
-        </Navbar.Link>
+          </NavbarLink>
+        <NavbarLink>
+          <Link class="text-white lg:hover:none lg:hover:text-white hover:text-gray-700 w-full" to="/donations">Donaciones</Link>
+          </NavbarLink>
       </Navbar.Collapse>
     </Navbar>
   );

@@ -173,11 +173,7 @@ export default function AdoptForm() {
     }
 
   }
-  /*   function aaa (){
-     console.log(petDetail.user.interestedUsers.filter(
-       (e) => e[0]._id === loggedUser._id && e[1]._id === petDetail._id
-     ).length)
-  } */
+
   return (
     <>
       <NavBar />

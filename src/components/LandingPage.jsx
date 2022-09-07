@@ -63,7 +63,6 @@ export default function LandingPage() {
 
   const responseGoogle = (response) => {
     dispatch(userLoginGoogle(response)).then((e) => {
-      console.log(e)
       if(e.payload === "Usuario baneado"){
         Swal.fire({
           icon:"warning",

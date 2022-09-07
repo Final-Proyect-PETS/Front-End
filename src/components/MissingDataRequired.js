@@ -25,14 +25,12 @@ export default function MissingDataRequired() {
   const mapDiv = useRef(null);
 
   const id = localStorage.getItem("id");
-  console.log(id + "el id");
 
   useEffect(() => {
     dispatch(getUserProfile(id));
   }, [dispatch, id]);
 
   const upDateUser = useSelector((state) => state.userProfile);
-  console.log(upDateUser, "LOGGG");
   const [input, setInput] = useState({
     id: id,
     username: upDateUser.username,
@@ -128,7 +126,6 @@ export default function MissingDataRequired() {
   }
 
   function _suggestionSelect(result, lat, long, text) {
-    console.log(result, lat, long, text);
     setInput({
       ...input,
       place: result,
@@ -152,7 +149,6 @@ export default function MissingDataRequired() {
 
   function createNewMap(long, lat) {
     if (placeSelect) {
-      console.log(mapDiv);
       new mapboxgl.Map({
         container: mapDiv.current, // container ID
         style: "mapbox://styles/mapbox/streets-v11", // style URL
@@ -223,7 +219,6 @@ export default function MissingDataRequired() {
                 <p className="font-light text-white text-xl">{input.place}</p>
               )}
             </div>
-            {console.log(upDateUser)}
             {input.place_latitude && input.place_longitude ? (
               <div
                 ref={mapDiv}
