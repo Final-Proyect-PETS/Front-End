@@ -324,30 +324,30 @@ export default function UserDetail() {
               ) : (
                 <></>
               )}
+                <button
+                onClick={() => {
+                  onClick();
+                }}
+                className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              >
+                Más información
+              </button>
               {loggedUser._id === userDetail._id ? (
                 <>
-                  <Link to="/interestedtraders">
-                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                      Traspaso de mascotas
-                    </button>
-                  </Link>
                   <Link to="/updateuser">
                     <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                       ✏️Editar Perfil
+                    </button>
+                  </Link>
+                  <Link to="/interestedtraders">
+                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                      Traspaso de mascotas
                     </button>
                   </Link>
                 </>
               ) : (
                 false
               )}
-              <Button
-                onClick={() => {
-                  onClick();
-                }}
-                class="ml-5 px-2 py-0.5 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-              >
-                Más información
-              </Button>
               {loggedUser._id !== userDetail._id ? (
                 <Link to={`/reportuser`}>
                   <button className="py-2 ml-5 px-4 md:px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
