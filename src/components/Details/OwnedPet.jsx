@@ -123,8 +123,8 @@ export default function OwnedPet({
 
   return (
     <div className="flex items-center py-4 px-5 ">
-      <div className="max-w-sm ">
-        <Card   class="block opacity-90 max-w-sm bg-yellow-800 rounded-lg border border-yellow-900 shadow-md hover:opacity-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+      <div className="">
+        <Card class="block opacity-90 max-w-sm bg-yellow-800 rounded-lg border border-yellow-900 shadow-md hover:opacity-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <div className="flex justify-end">
             {loggedUser._id === userDetail._id ? (
               <Dropdown inline={true} label="">
@@ -166,18 +166,17 @@ export default function OwnedPet({
               <></>
             )}
           </div>
+          <Link to={`/pet/${idPet}`}>
           <div className="flex flex-col items-center">
             <img
               className="mb-3 h-24 w-24 object-cover rounded-full shadow-lg"
               src={imagePet}
               alt="imagen de la la mascota"
             />
-            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+            <h5 className="mb-1 lg:text-xl font-medium text-gray-900 dark:text-white">
               {namePet}
             </h5>
-            {/* <span className="text-sm text-gray-500 dark:text-gray-400">
-              Visual Designer
-            </span> */}
+
             <div className=" flex space-x-3">
               {loggedUser._id === userDetail._id ? (
                 adopt.isAdopted === false && deleted.deleted === false ? (
@@ -221,14 +220,9 @@ export default function OwnedPet({
                   </button>
                 </Link>
               )}
-              {/* <a
-                href="#"
-                className="inline-flex items-center rounded-lg border border-gray-300 bg-white py-2 px-4 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-              >
-                Message
-              </a> */}
             </div>
           </div>
+          </Link>
         </Card>
       </div>
     </div>
