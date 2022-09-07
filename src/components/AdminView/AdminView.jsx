@@ -413,7 +413,11 @@ export default function AdminView() {
                           </h3>
                         </div>
                         <div className="h-1/2 flex justify-center items-center">
-                          <h3>Donado en total: {donaciones()}</h3>
+                          <h3>Donado en total: $ {m.donations.length > 0
+                              ? m.donations
+                                .map((d) => d.donationAmount)
+                                .reduce((prev, curr) => prev + curr)
+                              : 0}</h3>
                         </div>
                       </div>
                     </div>
