@@ -320,9 +320,6 @@ export default function AdminView() {
     });
   }
   function donaciones() {
-    // let don = donatedUsers.map(e => e.donations).flat(1)
-    // let don2 = don.map(e => e.donationAmount)
-    // return don2.reduce((a, b) => a + b, 0);
     let don = donatedUsers.map((e) => e.donations).flat(1);
     let don2 = don.map((e) => e.donationAmount);
     don2 = don2.reduce((a, b) => a + b, 0);
@@ -414,10 +411,10 @@ export default function AdminView() {
                         </div>
                         <div className="h-1/2 flex justify-center items-center">
                           <h3>Donado en total: $ {m.donations.length > 0
-                              ? m.donations
-                                .map((d) => d.donationAmount)
-                                .reduce((prev, curr) => prev + curr)
-                              : 0}</h3>
+                            ? m.donations
+                              .map((d) => d.donationAmount)
+                              .reduce((prev, curr) => prev + curr)
+                            : 0}</h3>
                         </div>
                       </div>
                     </div>

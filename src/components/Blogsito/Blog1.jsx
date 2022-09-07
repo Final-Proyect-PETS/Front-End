@@ -96,15 +96,15 @@ export default function Blog1() {
                         }
                         hashtag={"#happytails"}
                       >
-                        <FacebookIcon size={40} className="rounded-full"/>
+                        <FacebookIcon size={40} className="rounded-full" />
                       </FacebookShareButton>
                     </div>
                     <div className="rounded-lg h-16 w-16 flex items-center justify-center overflow-hidden">
                       <EmailShareButton
-                        subject="Miren este blog de Happy Tails, me ayudo mucho!"
-                        body={`https://www.happytails.vercel.app/blog/1`}
+                        subject="Mira este blog de Happy Tails, me ayudo mucho!"
+                        body={`https://www.happytails.vercel.app/blog/1 Como cuidar correctamente a los recien llegados a casa`}
                       >
-                        <EmailIcon size={40} className="rounded-full"/>
+                        <EmailIcon size={40} className="rounded-full" />
                       </EmailShareButton>
                     </div>
                   </div>
