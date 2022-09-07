@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { notificationSwal } from "../utils/notificationSwal.jsx";
 import MapboxAutocomplete from "react-mapbox-autocomplete";
 import mapboxgl from "mapbox-gl";
+import NavBar from "./NavBar/NavBar.jsx";
 
 export default function RegisterPet() {
   const dispatch = useDispatch();
@@ -309,294 +310,297 @@ export default function RegisterPet() {
     "pk.eyJ1IjoicG9saW5vIiwiYSI6ImNsN2FtdWNybTB0bmk0MHNqZXZxMzM0OTYifQ.O2Y9sZnF-K1k_KhC8MzJbA";
 
   return (
-    <div className="flex flex-col w-full mt-15 m-auto py-8 bg-amber-600 rounded-lg shadow sm:px-6 md:px-8 lg:px-10">
-      <div className="self-center mb-6 text-xl font-normal text-white sm:text-2xl">
-        Registra tu mascota para adoptar
-      </div>
+    <>
+      <NavBar />
+      <div className="flex flex-col w-full mt-15 m-auto py-8 rounded-lg shadow sm:px-6 md:px-8 lg:px-10">
+        <div className="self-center mb-1 mt-14 text-xl font-normal text-white sm:text-2xl">
+          Registra tu mascota para adoptar
+        </div>
 
-      <div className="mt-8 px-8 max-w-lg self-center">
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label className="font-light text-white text-xl">Nombre</label>
-            <input
-              type="text"
-              name="name"
-              value={input.name}
-              onChange={(e) => handleChange(e)}
-              placeholder="Nombre de la mascota"
-              className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-black placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            />
-            {errors.name && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.name}
-              </p>
-            )}
+        <div className="mt-8 px-8 max-w-lg self-center">
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label className="font-light text-white text-xl">Nombre</label>
+              <input
+                type="text"
+                name="name"
+                value={input.name}
+                onChange={(e) => handleChange(e)}
+                placeholder="Nombre de la mascota"
+                className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-black placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
+              />
+              {errors.name && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.name}
+                </p>
+              )}
 
-          </div>
-          <div>
-            <label className="font-light text-white text-xl">
-              Imagen de perfil
-            </label>
-            <input
-              type="file"
-              name="image"
-              accept=".jpg, .png, .jpeg"
-              onChange={(e) => handleImage(e)}
-              className="w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
-            {loadingImage ? (
-              <h3 className="font-light text-white text-xl self-center">
-                Cargando imagen...
-              </h3>
-            ) : (
-              <img src={image} alt="" className="max-w-xs" />
-            )}
-            {errors.image && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.image}
-              </p>
-            )}
-          </div>
-          <div>
-            <label className="font-light text-white text-xl">
-              Más imágenes
-            </label>
-            <input
-              type="file"
-              name="imagePool"
-              accept=".jpg, .png, .jpeg"
-              onChange={(e) => handleImagePool(e)}
-              className="w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-            />
-
-            <div className="font-light text-white text-xl">
-              {loadingImagePool ? (
-                <h3>Cargando imagen...</h3>
+            </div>
+            <div>
+              <label className="font-light text-white text-xl">
+                Imagen de perfil
+              </label>
+              <input
+                type="file"
+                name="image"
+                accept=".jpg, .png, .jpeg"
+                onChange={(e) => handleImage(e)}
+                className="w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
+              {loadingImage ? (
+                <h3 className="font-light text-white text-xl self-center">
+                  Cargando imagen...
+                </h3>
               ) : (
-                input.imagePool.map((el) => (
-                  <div key={addKey()}>
-                    <button
-                      key={el.id}
-                      type="button"
-                      onClick={() => handleDelete(el)}
-                      className="px-2 border-4 rounded-lg font-bold text-yellow-900 border-yellow-900"
-                    >
-                      x
-                    </button>
-                    <img src={el} alt="" width="300px" />
-                  </div>
-                ))
+                <img src={image} alt="" className="max-w-xs" />
+              )}
+              {errors.image && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.image}
+                </p>
               )}
             </div>
-          </div>
-          <div>
-            <label className="font-light text-white text-xl">
-              Tipo de mascota
-            </label>
-            <select
-              name="type"
-              onChange={(e) => handleChange(e)}
-              className="bg-gray-50 border border-gray-300 text-gray-400 text-base rounded-lg focus:ring-yellow-800 focus:border-transparent focus:outline-none focus:ring-2 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-yellow-800 dark:focus:border-transparent"
-            >
-              <option value="typeSelect" defaultValue hidden>
-                Seleccione tipo
-              </option>
-              <option value="dog" key={addKey()}>
-                Perro
-              </option>
-              <option value="cat" key={addKey()}>
-                Gato
-              </option>
-              <option value="other" key={addKey()}>
-                Otro
-              </option>
-            </select>
-            {errors.type && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.type}
-              </p>
-            )}
-          </div>
-          <div>
-            <label className="font-light text-white text-xl">Descripción</label>
-            <textarea
-              name="description"
-              maxLength="255"
-              value={input.description}
-              placeholder="Descripción"
-              onChange={(e) => handleChange(e)}
-              className="w-full py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"
-            />
-          </div>
-          <div>
-            <label className="font-light text-white text-xl">Tamaño</label>
-            <select
-              name="size"
-              onChange={(e) => handleChange(e)}
-              className="bg-gray-50 border border-gray-300 text-gray-400 text-base rounded-lg focus:ring-yellow-800 focus:border-transparent focus:outline-none focus:ring-2 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-yellow-800 dark:focus:border-transparent"
-            >
-              <option value="sizeSelect" defaultValue hidden>
-                Seleccione tamaño
-              </option>
-              <option value="small" key={addKey()}>
-                Chico
-              </option>
-              <option value="medium" key={addKey()}>
-                Mediano
-              </option>
-              <option value="big" key={addKey()}>
-                Grande
-              </option>
-            </select>
-            {errors.size && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.size}
-              </p>
-            )}
-          </div>
-          <div>
-            <label className="font-light text-white text-xl">Edad</label>
-            <input
-              type="text"
-              name="age"
-              value={input.age}
-              onChange={(e) => handleChange(e)}
-              placeholder="Edad"
-              className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            />
-            {errors.age && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.age}
-              </p>
-            )}
-          </div>
-          <div>
-            <label className="font-light text-white text-xl">¿Vacunado?</label>
-            <span>
+            <div>
+              <label className="font-light text-white text-xl">
+                Más imágenes
+              </label>
+              <input
+                type="file"
+                name="imagePool"
+                accept=".jpg, .png, .jpeg"
+                onChange={(e) => handleImagePool(e)}
+                className="w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+              />
+
+              <div className="font-light text-white text-xl">
+                {loadingImagePool ? (
+                  <h3>Cargando imagen...</h3>
+                ) : (
+                  input.imagePool.map((el) => (
+                    <div key={addKey()}>
+                      <button
+                        key={el.id}
+                        type="button"
+                        onClick={() => handleDelete(el)}
+                        className="px-2 border-4 rounded-lg font-bold text-yellow-900 border-yellow-900"
+                      >
+                        x
+                      </button>
+                      <img src={el} alt="" width="300px" />
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+            <div>
+              <label className="font-light text-white text-xl">
+                Tipo de mascota
+              </label>
               <select
-                name="vaccination"
-                className="bg-gray-50 border border-gray-300 text-gray-400 text-base rounded-lg focus:ring-yellow-800 focus:border-transparent focus:outline-none focus:ring-2 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-yellow-800 dark:focus:border-transparent"
+                name="type"
                 onChange={(e) => handleChange(e)}
+                className="bg-gray-50 border border-gray-300 text-gray-400 text-base rounded-lg focus:ring-yellow-800 focus:border-transparent focus:outline-none focus:ring-2 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-yellow-800 dark:focus:border-transparent"
               >
-                <option value="vaccinationSelect" defaultValue hidden>
-                  Seleccione opción
+                <option value="typeSelect" defaultValue hidden>
+                  Seleccione tipo
                 </option>
-                <option value="yes" key={addKey()}>
-                  Sí
+                <option value="dog" key={addKey()}>
+                  Perro
                 </option>
-                <option value="no" key={addKey()}>
-                  No
+                <option value="cat" key={addKey()}>
+                  Gato
                 </option>
-                <option value="unknown" key={addKey()}>
-                  No sé
+                <option value="other" key={addKey()}>
+                  Otro
                 </option>
               </select>
-            </span>
-            {errors.vaccination && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.vaccination}
-              </p>
-            )}
-          </div>
-          <div>
-            <fieldset onChange={(e) => handleChange(e)}>
-              <legend className="font-light text-white text-xl">
-                ¿Castrado?
-              </legend>
-              <span className="p-3">
-                <input
-                  type="radio"
-                  name="castrated"
-                  value={true}
-                  className="w-4 h-4 mx-4 text-yellow-600 bg-white ring-1 ring-yellow-900  focus:ring-yellow-900"
-                />
-                <label className="font-light text-white text-xl">Sí</label>
+              {errors.type && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.type}
+                </p>
+              )}
+            </div>
+            <div>
+              <label className="font-light text-white text-xl">Descripción</label>
+              <textarea
+                name="description"
+                maxLength="255"
+                value={input.description}
+                placeholder="Descripción"
+                onChange={(e) => handleChange(e)}
+                className="w-full py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"
+              />
+            </div>
+            <div>
+              <label className="font-light text-white text-xl">Tamaño</label>
+              <select
+                name="size"
+                onChange={(e) => handleChange(e)}
+                className="bg-gray-50 border border-gray-300 text-gray-400 text-base rounded-lg focus:ring-yellow-800 focus:border-transparent focus:outline-none focus:ring-2 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-yellow-800 dark:focus:border-transparent"
+              >
+                <option value="sizeSelect" defaultValue hidden>
+                  Seleccione tamaño
+                </option>
+                <option value="small" key={addKey()}>
+                  Chico
+                </option>
+                <option value="medium" key={addKey()}>
+                  Mediano
+                </option>
+                <option value="big" key={addKey()}>
+                  Grande
+                </option>
+              </select>
+              {errors.size && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.size}
+                </p>
+              )}
+            </div>
+            <div>
+              <label className="font-light text-white text-xl">Edad</label>
+              <input
+                type="text"
+                name="age"
+                value={input.age}
+                onChange={(e) => handleChange(e)}
+                placeholder="Edad"
+                className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
+              />
+              {errors.age && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.age}
+                </p>
+              )}
+            </div>
+            <div>
+              <label className="font-light text-white text-xl">¿Vacunado?</label>
+              <span>
+                <select
+                  name="vaccination"
+                  className="bg-gray-50 border border-gray-300 text-gray-400 text-base rounded-lg focus:ring-yellow-800 focus:border-transparent focus:outline-none focus:ring-2 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-yellow-800 dark:focus:border-transparent"
+                  onChange={(e) => handleChange(e)}
+                >
+                  <option value="vaccinationSelect" defaultValue hidden>
+                    Seleccione opción
+                  </option>
+                  <option value="yes" key={addKey()}>
+                    Sí
+                  </option>
+                  <option value="no" key={addKey()}>
+                    No
+                  </option>
+                  <option value="unknown" key={addKey()}>
+                    No sé
+                  </option>
+                </select>
               </span>
-              <span className="p-16">
-                <input
-                  type="radio"
-                  name="castrated"
-                  value={false}
-                  className="w-4 h-4 mx-4 text-yellow-600 bg-white ring-1 ring-yellow-900  focus:ring-yellow-900"
-                />
-                <label className="font-light text-white text-xl">No</label>
-              </span>
-            </fieldset>
-          </div>
-          <div>
-            <fieldset onChange={(e) => handleChange(e)}>
-              <legend className="font-light text-white text-xl">Género</legend>
-              <span className="p-3">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="female"
-                  className="w-4 h-4 mx-4 text-yellow-600 bg-white ring-1 ring-yellow-900  focus:ring-yellow-900"
-                />
-                <label className="font-light text-white text-xl">Hembra</label>
-              </span>
-              <span className="p-3">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="male"
-                  className="w-4 h-4 mx-4 text-yellow-600 bg-white ring-1 ring-yellow-900  focus:ring-yellow-900"
-                />
-                <label className="font-light text-white text-xl">Macho</label>
-              </span>
+              {errors.vaccination && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.vaccination}
+                </p>
+              )}
+            </div>
+            <div>
+              <fieldset onChange={(e) => handleChange(e)}>
+                <legend className="font-light text-white text-xl">
+                  ¿Castrado?
+                </legend>
+                <span className="p-3">
+                  <input
+                    type="radio"
+                    name="castrated"
+                    value={true}
+                    className="w-4 h-4 mx-4 text-yellow-600 bg-white ring-1 ring-yellow-900  focus:ring-yellow-900"
+                  />
+                  <label className="font-light text-white text-xl">Sí</label>
+                </span>
+                <span className="p-16">
+                  <input
+                    type="radio"
+                    name="castrated"
+                    value={false}
+                    className="w-4 h-4 mx-4 text-yellow-600 bg-white ring-1 ring-yellow-900  focus:ring-yellow-900"
+                  />
+                  <label className="font-light text-white text-xl">No</label>
+                </span>
+              </fieldset>
+            </div>
+            <div>
+              <fieldset onChange={(e) => handleChange(e)}>
+                <legend className="font-light text-white text-xl">Género</legend>
+                <span className="p-3">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    className="w-4 h-4 mx-4 text-yellow-600 bg-white ring-1 ring-yellow-900  focus:ring-yellow-900"
+                  />
+                  <label className="font-light text-white text-xl">Hembra</label>
+                </span>
+                <span className="p-3">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    className="w-4 h-4 mx-4 text-yellow-600 bg-white ring-1 ring-yellow-900  focus:ring-yellow-900"
+                  />
+                  <label className="font-light text-white text-xl">Macho</label>
+                </span>
 
-            </fieldset>
-            {errors.gender && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.gender}
-              </p>
-            )}
-          </div>
-          <div>
-            <label className="font-light text-white text-xl">Ubicación</label>
-            <MapboxAutocomplete
-              publicKey={mapAccess.mapboxApiAccessToken}
-              inputClass="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-              onSuggestionSelect={_suggestionSelect}
-              resetSearch={false}
-              placeholder={
-                !input.place ? "Escriba su ciudad" : "Modifique ciudad"
-              }
-            />
-            {input.place && (
-              <p className="font-light text-white text-xl">{input.place}</p>
-            )}
-            {errors.place && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.place}
-              </p>
-            )}
-          </div>
-          {input.place ? (
-            <div
-              ref={mapDiv}
-              style={{
-                block: "w-full",
-                height: "15vw",
-                borderRadius: "10px",
-              }}
-            />
-          ) : null}
-          <div>
-            <button
-              type="submit"
-              className="py-2 px-4 my-4 w-full bg-yellow-900 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-            >
-              Crear
+              </fieldset>
+              {errors.gender && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.gender}
+                </p>
+              )}
+            </div>
+            <div>
+              <label className="font-light text-white text-xl">Ubicación</label>
+              <MapboxAutocomplete
+                publicKey={mapAccess.mapboxApiAccessToken}
+                inputClass="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
+                onSuggestionSelect={_suggestionSelect}
+                resetSearch={false}
+                placeholder={
+                  !input.place ? "Escriba su ciudad" : "Modifique ciudad"
+                }
+              />
+              {input.place && (
+                <p className="font-light text-white text-xl">{input.place}</p>
+              )}
+              {errors.place && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.place}
+                </p>
+              )}
+            </div>
+            {input.place ? (
+              <div
+                ref={mapDiv}
+                style={{
+                  block: "w-full",
+                  height: "15vw",
+                  borderRadius: "10px",
+                }}
+              />
+            ) : null}
+            <div>
+              <button
+                type="submit"
+                className="py-2 px-4 my-4 w-full bg-yellow-900 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              >
+                Crear
+              </button>
+            </div>
+          </form>
+
+          <Link to="/home">
+            <button className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+              Regresar
             </button>
-          </div>
-        </form>
-
-        <Link to="/home">
-          <button className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-            Regresar
-          </button>
-        </Link>
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
