@@ -400,7 +400,7 @@ export default function UserDetail() {
               Mascotas del usuario
             </h3>
           </div>
-          <div id="editPet" className="grid grid-cols-3 place-content-center">
+          <div id="editPet" className="flex flex-col lg:flex-row place-content-center">
             {userDetail.pets?.length ? (
               userDetail.pets.map((pets) => (
                 <OwnedPet
