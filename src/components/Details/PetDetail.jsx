@@ -100,13 +100,13 @@ export default function PetDetail() {
     return (
       <div>
         <NavBar />
-        <h2 className="flex pt-20 justify-center font-semibold text-3xl   ">
+        <h2 className="flex pt-20 justify-center font-semibold text-3xl  text-white ">
           Detalles 🐶
         </h2>
 
-        <div className="lg:px-32">
-          <div className="lg:flex border border-black w-full">
-            <div className="bg-yellow-800 lg:w-3/4">
+        <div className="lg:px-32 pt-5">
+          <div className="lg:flex rounded-lg ring-2 ring-yellow-600 w-full">
+            <div className="bg-yellow-800 w-full rounded-lg ring-2 ring-yellow-600">
               <div className="flex">
                 <div>
                   <FacebookShareButton
@@ -132,7 +132,7 @@ export default function PetDetail() {
                   <div className="flex flex-col gap-10">
                     {loggedUser._id === petDetail.user._id ? (
                       <Link to="/updatepet">
-                        <button className="py-2 px-4 my-4 w-full bg-yellow-900 hover:bg-yellow-600 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                        <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                           📝Editar mascota
                         </button>
                       </Link>
@@ -160,135 +160,64 @@ export default function PetDetail() {
                       Descripción: {petDetail.description}
                     </h2>
                   </div>
-                </div>
-                <div className="lg:w-1/2 flex flex-col items-center gap-10">
-                  <div className="flex flex-col items-center justify-center gap-3">
-                    <h2 className="font-semibold text-white text-3xl">
-                      {petDetail.name}
-                    </h2>
-                    <h2 className="font-semibold text-white text-ls">
-                      Dueño:{" "}
-                      {petDetail.user.first_name +
-                        " " +
-                        petDetail.user.last_name}
-                    </h2>
-                    <h3 className="font-semibold text-white">{`En ${petDetail.place}`}</h3>
-                  </div>
-                  <div className="flex flex-col gap-5 border-t pt-3">
-                    <div>
-                      <h1 className="font-semibold text-white text-xl">
-                        Información detallada
-                      </h1>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold">
-                        Tamaño:{" "}
-                        {petDetail.size === "big"
-                          ? "Grande"
-                          : petDetail.size === "medium"
-                          ? "Mediano"
-                          : "Chico"}
-                      </h3>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold">
-                        ¿Está vacunado?:{" "}
-                        {petDetail.vaccination === "yes"
-                          ? "Sí"
-                          : petDetail.vaccination === "no"
-                          ? "No"
-                          : "No se sabe"}
-                      </h3>
-                    </div>
-                    <h3 className="font-semibold">
-                      Género:{" "}
-                      {petDetail.gender === "female" ? "Hembra" : "Macho"}
-                    </h3>
-                    <div>
-                      <h3 className="font-semibold">
-                        Edad: {petDetail.age} años
-                      </h3>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold mr-10">
-                        Castrado: {petDetail.castrated === true ? "Si" : "No"}
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex bg-yellow-500 lg:w-1/4">
-              <div className="flex">
+                  <div className="flex">
                 <div>
                   {loggedUser._id !== petDetail.user._id ? (
                     petDetail.isAdopted === true ? (
-                      <div>
+                      <div className="flex flex-col w-full">
                         {loggedUser.isAdmin ? (
                           <button
                             onClick={() => {
                               handleDeletePet(petDetail._id);
                             }}
-                            className="py-2 px-4 my-2 mb-5 mr-2 w-full bg-yellow-900 hover:bg-yellow-700 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                            className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                           >
                             ELIMINAR PUBLICACION
                           </button>
                         ) : null}
                         <Link to={`/reportpet`}>
-                          <button className="py-2 px-4 my-2 mb-5 mr-2 w-full bg-yellow-900 hover:bg-yellow-700 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                          <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                             DENUNCIAR PUBLICACION
                           </button>
                         </Link>
                         <Link to={`/users/${petDetail.user._id}`}>
-                          <button className="py-2 px-4 my-4 mr-2 w-full bg-yellow-900 hover:bg-yellow-700 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                          <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                             PERFIL DEL DUEÑO
                           </button>
                         </Link>
                       </div>
                     ) : (
-                      <div>
-                        <h2 className="font-semibold text">
+                      <div className="flex flex-col justify-center items-center w-full gap-5 mt-5">
+                        <h2 className="font-semibold text-white">
                           {" "}
-                          "ESTA MASCOTA ESTA BUSCANDO NUEVO DUEÑO!"
+                          ESTA MASCOTA ESTA BUSCANDO NUEVO DUEÑO!
                         </h2>
-                        <div>
+                        <div className="flex flex-col w-full gap-6">
                           {loggedUser.isAdmin ? (
                             <button
                               onClick={() => {
                                 handleDeletePet(petDetail._id);
                               }}
-                              className="py-2 px-4 my-2 mb-5 mr-2 w-full bg-yellow-900 hover:bg-yellow-700 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                              className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                             >
                               ELIMINAR PUBLICACION
                             </button>
                           ) : null}
                           <Link to={`/reportpet`}>
-                            <button className="py-2 px-4 my-2 mb-5 mr-2 w-full bg-yellow-900 hover:bg-yellow-700 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                            <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                               DENUNCIAR PUBLICACION
                             </button>
                           </Link>
                           <Link to={`/users/${petDetail.user._id}`}>
-                            <button className="py-2 px-4 my-2 mb-5 mr-2 w-full bg-yellow-900 hover:bg-yellow-700 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                            <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                               PERFIL DEL DUEÑO
                             </button>
                           </Link>
                           <Link to={`/adopt/${petDetail._id}`}>
-                            <button className="py-2 px-4 my-2 mb-5  w-full ml-2 bg-green-900 hover:bg-green-600 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                            <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                               LO QUIERO!
                             </button>
                           </Link>
-                          {petDetail.place_latitude &&
-                          petDetail.place_longitude ? (
-                            <div
-                              ref={mapDiv}
-                              style={{
-                                //block: "w-full",
-                                height: "20vw",
-                                width: "full",
-                                borderRadius: "10px",
-                              }}
-                            />
-                          ) : null}
                         </div>
                       </div>
                     )
@@ -308,6 +237,75 @@ export default function PetDetail() {
                       </Link>
                     </>
                   )}
+                </div>
+              </div>
+                </div>
+                <div className="lg:w-1/2 flex flex-col items-center gap-10">
+                  <div className="flex flex-col items-center justify-center gap-3">
+                    <h2 className="font-semibold text-white text-3xl mt-5">
+                      {petDetail.name}
+                    </h2>
+                    <h2 className="font-semibold text-white text-ls">
+                      Dueño:{" "}
+                      {petDetail.user.first_name +
+                        " " +
+                        petDetail.user.last_name}
+                    </h2>
+                    <h3 className="font-semibold text-white">{`En ${petDetail.place}`}</h3>
+                    {petDetail.place_latitude &&
+                          petDetail.place_longitude ? (
+                            <div
+                              ref={mapDiv}
+                              style={{
+                                //block: "w-full",
+                                height: "20vw",
+                                width: "30vh",
+                                borderRadius: "10px",
+                              }}
+                            />
+                          ) : null}
+                  </div>
+                  <div className="flex flex-col gap-5 border-t pt-3 mb-3">
+                    <div>
+                      <h1 className="font-semibold italic text-white text-2xl">
+                        Información detallada
+                      </h1>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white text-xl">
+                        Tamaño:{" "}
+                        {petDetail.size === "big"
+                          ? "Grande"
+                          : petDetail.size === "medium"
+                          ? "Mediano"
+                          : "Chico"}
+                      </h3>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-white text-xl">
+                        ¿Está vacunado?:{" "}
+                        {petDetail.vaccination === "yes"
+                          ? "Sí"
+                          : petDetail.vaccination === "no"
+                          ? "No"
+                          : "No se sabe"}
+                      </h3>
+                    </div>
+                    <h3 className="font-semibold text-white text-xl">
+                      Género:{" "}
+                      {petDetail.gender === "female" ? "Hembra" : "Macho"}
+                    </h3>
+                    <div>
+                      <h3 className="font-semibold text-white text-xl">
+                        Edad: {petDetail.age} años
+                      </h3>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mr-10 text-white text-xl">
+                        Castrado: {petDetail.castrated === true ? "Si" : "No"}
+                      </h3>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
