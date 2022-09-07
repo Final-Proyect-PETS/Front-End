@@ -1,26 +1,15 @@
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { Link } from "react-router-dom"
-
-
-
 import { getUserProfile, getAllUsers, getPetDetail, emailAdopt, patchUsuer, patchInterestedUsers } from "../../redux/Actions";
-
-
 import { useNavigate } from "react-router-dom";
 import { notificationSwal } from "../../utils/notificationSwal.jsx";
 import Swal from "sweetalert2";
 import NavBar from "../NavBar/NavBar";
 
-
 export default function AdoptForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-
-
-
 
   const loggedUser = useSelector((state) => state.userProfile);
   const petDetail = useSelector((state) => state.petDetail);
@@ -28,23 +17,6 @@ export default function AdoptForm() {
   const petOwner = petDetail.user.email;
 
 
-  /* const [input, setInput] = useState({
-    owner_email: petOwner,
-    adopter_name: loggedUser.first_name + " " + loggedUser.last_name,
-    adopter_username: loggedUser.username,
-    adopter_email: loggedUser.email,
-    adopter_telephone: loggedUser.telephone,
-    message: "",
-    link: `https://happytails.vercel.app/users/${loggedUser._id}`,
-  }); */
-  /* useEffect(
-
-    const loggedUser = useSelector((state) => state.userProfile)
-    const petDetail = useSelector((state) => state.petDetail)
-    const usersArray = useSelector((state) => state.users)
-    const petOwner = petDetail.user.email
- 
-      */
   const [input, setInput] = useState({
     owner_email: petOwner,
     adopter_name: loggedUser.first_name + " " + loggedUser.last_name,
@@ -59,45 +31,6 @@ export default function AdoptForm() {
     petId: petDetail._id,
     pet_interesed: petDetail.user.interestedUsers
   });
-  /*
-  const [currentUser, setCurrentUser] = useState({
-    id: petDetail.user._id,
-    first_name: petDetail.user.first_name,
-    last_name: petDetail.user.last_name,
-    username: petDetail.user.username,
-    image: petDetail.user.image,
-    email: petDetail.user.email,
-    about: petDetail.user.about,
-    telephone: petDetail.user.telephone,
-    place: petDetail.user.place,
-    about: petDetail.user.about,
-    deleted: petDetail.user.deleted,
-    interestedUsers: petDetail.user.interestedUsers,
-  })
-   useEffect(
-
-    dispatch(getAllUsers()),
-    dispatch(getUserProfile()),
-    dispatch(getPetDetail())
-  ) */
-
-  /* function handleChange(e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-  } */
-  // const sendPatch = {
-  //     id: petDetail.user._id,
-  //     interestedUsers: loggedUser,
-  // }
-  // function handlerSubmit(ev){
-  //     ev.preventDefault()
-  //     dispatch(
-  //         emailAdopt(input),
-  //         patchUsuer(sendPatch)
-  //     )
-  // }
 
   function handleChange(e) {
     setInput({
@@ -106,36 +39,12 @@ export default function AdoptForm() {
     });
   }
 
-
-  /* function handlerSubmit(ev){
-     ev.preventDefault()
-     if (petDetail.user.interestedUsers !== loggedUser._id){
-         dispatch(
-             emailAdopt(),
-             patchInterestedUsers(obj)
-             )} 
-             alert("Ya se mando una solicitud de adopcion")
-     }  */
-
-  // const sendPatch = {
-  //     id: petDetail.user._id,
-  //     interestedUsers: loggedUser,
-  // }
-  // function handlerSubmit(ev){
-  //     ev.preventDefault()
-  //     dispatch(
-  //         emailAdopt(input),
-  //         patchUsuer(sendPatch)
-  //     )  
-  // }
-
-
   function handlerSubmit(ev) {
     ev.preventDefault();
     if (true) {
       Swal.fire({
-        title: "¿Está seguro de que desea adoptar esta mascota?",
-        // text: "Esta mascota se eliminará",
+        title: "¿Está seguro de que desea enviar el formulario de adopcion?",
+        text: "El dueño recibirá una notificación",
         icon: "warning",
         showCancelButton: true,
         cancelButtonText: "No",
