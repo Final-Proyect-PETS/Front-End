@@ -105,7 +105,7 @@ export default function OwnedPet({
               "Operación cancelada",
               "Mascota no eliminada",
               "error",
-              "Cancel"
+              "Aceptar"
             );
           }
         })
@@ -121,7 +121,7 @@ export default function OwnedPet({
   }
 
   return (
-    <div className="flex items-center py-4 px-5 ">
+    <div className="flex flex-col items-center py-4 px-5 ">
       <div className="">
         <Card class="block opacity-90 max-w-sm bg-yellow-800 rounded-lg border border-yellow-900 shadow-md hover:opacity-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <div className="flex justify-end">
