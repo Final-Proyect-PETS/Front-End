@@ -235,10 +235,13 @@ export function userLoginGoogle(payload) {
         });
       return dispatch({
         type: actions.USER_LOGIN_GOOGLE,
-        payload: json.data,
+        payload: json?.data,
       });
     } catch (error) {
-      console.log(error);
+      return dispatch({
+        type: actions.USER_LOGIN_GOOGLE,
+        payload: error.response.data,
+      });
     }
   };
 }
