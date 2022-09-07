@@ -37,10 +37,11 @@ import diamantepaw from "../../assets/images/diamantepaw.gif";
 import goldenpaw from "../../assets/images/goldenpaw.gif";
 import platinpaw from "../../assets/images/platinpaw.gif";
 import goldenblackgif from "../../assets/images/goldenblackgif.gif";
-import silverpaw from "../../assets/images/silverpaw.png"
+import silverpaw from "../../assets/images/silverpaw.png";
 import broncepaw from "../../assets/images/broncepaw.gif";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FooterComponent from "../FooterComponent";
 
 export default function Blog() {
   const navigate = useNavigate();
@@ -94,7 +95,7 @@ export default function Blog() {
     };
 
     dispatch(patchUsuer(payload)).then(
-      navigate("/blog#form", { replace: true })
+      navigate("/blog", { replace: true })
     );
   }
 
@@ -102,9 +103,9 @@ export default function Blog() {
     <>
       <NavBar />
 
-      <div id="blog" className="column w-screen h-screen justify-center">
+      <div id="blog" className="column w-screen h-screen pt-12 justify-center">
         {/* MAIN CARROUSEL------------------------------------------------------------------------------------------- */}
-        <div className="h-3/4 w-full bg-yellow-900  flex justify-center ">
+        <div className="h-40 lg:h-3/4 w-full bg-yellow-900  flex justify-center ">
           <Carousel>
             <a href="https://happytails.vercel.app/home">
               <img alt="blog" src={perronaranja} className="w-screen" />
@@ -185,10 +186,10 @@ export default function Blog() {
             🤎 Mas de {adopted?.length - 1} mascotas adoptadas a la fecha
           </h5>
         </div>
-        <div className="w-screen h-1/4 bg-yellow-900 opacity-90 flex justify-center ">
+        <div className="w-screen h-1/2 bg-yellow-900 opacity-90 flex justify-center ">
           <Carousel slideInterval={3500}>
             {adopted?.map((adopt) => (
-              <img alt="adoptedPet" src={adopt.image} className="w-96 h-72" />
+              <img alt="adoptedPet" src={adopt.image} className="object-cover w-96 h-72" />
             ))}
           </Carousel>
         </div>
@@ -365,12 +366,12 @@ export default function Blog() {
                       <span className="ml-3 inline-flex items-center justify-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
                         Platino
                       </span>
-                    
-                       <img
+
+                      <img
                         className="h-8 w-8 rounded-full"
                         src={goldenblackgif}
                         alt="paw"
-                      /> 
+                      />
                     </Link>
                   </li>
                   <li>
@@ -501,7 +502,7 @@ export default function Blog() {
                       <span className="ml-3 inline-flex items-center justify-center rounded bg-gray-200 px-2 py-0.5 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
                         Platino
                       </span>
-                    
+
                       <img
                         className="h-8 w-8 rounded-full"
                         src={goldenblackgif}
@@ -629,14 +630,15 @@ export default function Blog() {
                                 </p>
                               </Link>
                               <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                                {don.place}
+                                {`${don.place.slice(0,20 )}...`}
                               </p>
                             </div>
 
                             <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                              {`$ ${don?.donations[don?.donations?.length - 1]
-                                ?.donationAmount
-                                }`}
+                              {`$ ${
+                                don?.donations[don?.donations?.length - 1]
+                                  ?.donationAmount
+                              }`}
                             </div>
                           </div>
                         </li>
@@ -647,42 +649,7 @@ export default function Blog() {
             </div>
           </div>
         </div>
-        <Footer container={true}>
-          <Footer.Copyright
-            href="#"
-            by="Blancaflor y los 7 hooksitos™"
-            year={2022}
-          />
-          <h1>lal</h1>
-          <Footer.LinkGroup>
-            <div className="rounded-full">
-              <FacebookShareButton
-                url={`https://happytails.vercel.app`}
-                quote={"Adoptame"}
-                hashtag={"#happytails"}
-              >
-                <FacebookIcon size={40} className="rounded-full" />
-              </FacebookShareButton>
-            </div>
-            <div>
-              <EmailShareButton
-                subject="Quiero que me adoptes"
-                body={`Seguinos en https://happytails.vercel.app`}
-              >
-                <EmailIcon size={40} className="rounded-full" />
-              </EmailShareButton>
-            </div>
-          </Footer.LinkGroup>
-          <div>
-            <Footer.Title title="legal" />
-            <Footer.LinkGroup>
-              <Footer.Link href="#">About</Footer.Link>
-              <Footer.Link href="#">Privacy Policy</Footer.Link>
-              <Footer.Link href="#">Licensing</Footer.Link>
-              <Footer.Link href="#">Contact</Footer.Link>
-            </Footer.LinkGroup>
-          </div>
-        </Footer>
+        <FooterComponent/>
         {/* hr--------------------------------------------------------------------------------------------------------------- */}
       </div>
     </>
