@@ -66,7 +66,7 @@ export default function SearchBar() {
 
       <label
         htmlFor="small-toggle"
-        className="inline-flex relative items-center mb-5 m-2 cursor-pointer"
+        className="inline-flex relative items-center  m-2 cursor-pointer"
       >
         <input
           type="checkbox"
@@ -75,20 +75,27 @@ export default function SearchBar() {
           className="sr-only peer"
           onChange={(e) => handleToogle(e)}
         />
-        <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-900"></div>
+        <div className="w-14 h-8 bg-gray-200 peer-focus:outline-none  rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[8px] after:left-[8px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-900"></div>
+        <h5 className="text-2xl ml-2">Switch</h5>
         {/* TERNARIOS switch FALOPA,SI SACO EL DE ARRIBA NO ME RENDERIZA EL DE ABAJO-.-.--.-.-.-.-.-.-.-.- */}
       </label>
-      <div className="mb-5">
+      <div className="mb-2 flex">
         {input.length > 0 ? (
-          input === "mascota" ? ( 
-            <Tooltip content="Pulsa el switch para mostrar usuarios" placement="top">
-              <span className="text-lg font-bold text-white-900 dark:text-gray-300">
+          input === "mascota" ? (
+            <Tooltip
+              content="Pulsa el switch para mostrar usuarios"
+              placement="top"
+            >
+              <span className="text-lg flex w-96 font-bold text-white-900 dark:text-gray-300">
                 Mostrando Mascotas
               </span>
             </Tooltip>
           ) : (
-            <Tooltip content="Pulsa el switch para mostrar mascotas" placement="top">
-             <span className="  text-lg font-bold text-white-900 dark:text-gray-300">
+            <Tooltip
+              content="Pulsa el switch para mostrar mascotas"
+              placement="top"
+            >
+              <span className="  text-lg font-bold text-white-900 dark:text-gray-300">
                 Mostrando Usuarios
               </span>
             </Tooltip>
@@ -98,7 +105,7 @@ export default function SearchBar() {
             Mascotas/Usuarios
           </span>
         )}
-        </div>
+      </div>
     </div>
   );
 }

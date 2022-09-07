@@ -100,16 +100,16 @@ export default function PetDetail() {
     return (
       <div>
         <NavBar />
-        <h2 className="flex justify-center font-semibold text-3xl   ">
+        <h2 className="flex p-20 justify-center font-semibold text-3xl   ">
           Detalles 🐶
         </h2>
 
-        <div className="flex w-2/3 my-10 ml-60 flex-row border-2 border-black">
+        <div className="flex w-2/3  ml-60 flex-row border-2 border-black">
           <div>
             <FacebookShareButton
-              url={`https://www.happytails.com/pet/${petDetail._id}`}
-              quote={"Adoptame"}
-              hashtag={"#happytails"}
+              url={`https://happytails.vercel.app/pet/${petDetail._id}`}
+              quote={"Adoptá esta mascota"}
+              hashtag={"#AdopcionResponsable"}
             >
               <FacebookIcon size={40} />
             </FacebookShareButton>

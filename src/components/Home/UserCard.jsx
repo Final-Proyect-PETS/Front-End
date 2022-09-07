@@ -31,7 +31,7 @@ export default function UserCard({
   const pettit = pets;
 
   return (
-    <div class="flex flex-col-3 justify-between w-11/12 lg:w-3/6 h-56 opacity-100 mt-5 lg:mb-2 bg-gray-100 rounded-lg border shadow-md hover:bg-yellow-500  hover:opacity-100">
+    <div class="flex flex-col-3 justify-between w-11/12 lg:w-3/6 h-56 opacity-100 mt-4 mb-2 lg:mb-2 bg-gray-100 rounded-lg border shadow-md hover:bg-yellow-500  hover:opacity-100">
       <img
         className="object-cover w-1/2 h-50 rounded-lg rounded-t-lg lg:h-auto lg:rounded-none lg:rounded-l-lg"
         src={image}
@@ -40,16 +40,16 @@ export default function UserCard({
       <div className="flex flex-col mt-2 justify-between">
         <Link to={`/users/${_id}`}>
           <div className="flex  flex-col">
-            <h5 class=" text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 class=" text-xl lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {username?.length > 15 ? `${username.slice(0, 10)}...` : username}
             </h5>
-            <span className="font-normal text-gray-700 dark:text-gray-400">
+            <span className="font-normal text-sm lg:text-xl text-gray-700 dark:text-gray-400">
               {first_name} {last_name}
             </span>
 
             {donations?.length > 0 ? (
               <div className="flex">
-                <span className="font-bold text-xl text-gnormalray-700 dark:text-gray-400">
+                <span className="font-bold text-sm lg:text-xl text-gnormalray-700 dark:text-gray-400">
                   Donador Activo
                 </span>
                 <img src={donator} className="ml-1 h-6 w-6" alt="" />
@@ -105,7 +105,7 @@ export default function UserCard({
         {/* imagencarrusel */}
       </div>
       <Tooltip content="Compartir" trigger="hover" animation="duration-1000">
-        <div className="flex flex-col justify-between h-10 w-10 m-4">
+        <div className="flex flex-col justify-between h-10 w-10 m-1 lg:m-4">
           <Dropdown
             arrowIcon={false}
             inline={true}
@@ -117,9 +117,9 @@ export default function UserCard({
                 <Tooltip content="Compartir en Facebook" placement="top">
                   <div className="rounded-full  flex items-center justify-center overflow-hidden ">
                     <FacebookShareButton
-                      url={`Mira mis mascotas en https://happytails.vercel.app/users/${_id}`}
-                      quote={"Adoptame"}
-                      hashtag={"#happytails"}
+                      url={`https://happytails.vercel.app/users/${_id}`}
+                      quote={"Mis mascotas"}
+                      hashtag={"#AdopcionResponsable"}
                     >
                       <FacebookIcon size={40} />
                     </FacebookShareButton>
@@ -133,7 +133,7 @@ export default function UserCard({
                 <Tooltip content="Compartir por e-mail" placement="top">
                   <div className="rounded-full  flex items-center justify-center overflow-hidden">
                     <EmailShareButton
-                      subject="Quiero que me adoptes"
+                      subject="Mis mascotas"
                       body={`Mira mis mascotas en https://happytails.vercel.app/users/${_id}`}
                     >
                       <EmailIcon size={40} />
