@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import NavBarHome from "../NavBar/NavBarHome";
 import chatt from "../../assets/images/chatt.png";
+import FooterComponent from "../FooterComponent";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ export default function Home() {
         <Cards />
       </div>
 
-      
+    
     </section>
   );
 }
