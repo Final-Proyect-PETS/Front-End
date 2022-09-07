@@ -5,7 +5,8 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { getPetDetail, clearStatePet, handlePet } from "../../redux/Actions";
 import NavBar from "../NavBar/NavBar";
 import Loader from "./../Loaders/Loader";
-import { Carousel } from "flowbite-react";
+import FooterComponent from "../FooterComponent";
+import { Carousel, Footer } from "flowbite-react";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -99,7 +100,7 @@ export default function PetDetail() {
     return (
       <div>
         <NavBar />
-        <h2 className="flex justify-center font-semibold text-3xl mt-3">
+        <h2 className="flex justify-center font-semibold text-3xl   ">
           Detalles 🐶
         </h2>
 
@@ -287,6 +288,7 @@ export default function PetDetail() {
             </div>
           </div>
         </div>
+        <FooterComponent />
       </div>
     );
   } else {
