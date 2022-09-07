@@ -131,14 +131,14 @@ export default function Register() {
         errors.password =
           "La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, una minúscula y una mayúscula (No puede tener otros simbolos)";
       } else errors.password = "";
-    } else errors.password = "La contraseña es necesaria!";
+    } else errors.password = "La contraseña es necesaria";
 
     if (input.telephone) {
       if (!regex.test(input.telephone)) {
         errors.telephone = "Solo numeros!"
       }
       else if (input.telephone?.length > 15) {
-        errors.telephone = "No puede tener mas de 15 caracteres!"
+        errors.telephone = "No puede tener mas de 15 caracteres"
       }
     } else errors.telephone = ""
 
@@ -153,7 +153,7 @@ export default function Register() {
       } else if (input.password && input.password !== input.passwordRepeat) {
         errors.passwordRepeat = "Las contraseñas no coinciden";
       } else errors.passwordRepeat = "";
-    } else errors.passwordRepeat = "La contraseña es necesaria!";
+    } else errors.passwordRepeat = "La contraseña es necesaria";
 
     return errors;
   }
@@ -222,8 +222,8 @@ export default function Register() {
         "Cancel"
       );
   }
+  
   function _suggestionSelect(result, lat, long, text) {
-    console.log(result, lat, long, text);
     setInput({
       ...input,
       place: result,
@@ -231,7 +231,6 @@ export default function Register() {
       place_latitude: lat,
     });
     setPlaceSelect(true);
-    //if (placeSelect)
     createNewMap(long, lat);
   }
   const mapAccess = {
@@ -359,7 +358,7 @@ export default function Register() {
               onChange={(e) => handleChange(e)}
               placeholder="Contraseña"
               className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            ></input>
+            />
             {errors.password && (
               <p className="font-bold text-red-700 text-center p-2">
                 {errors.password}
@@ -377,7 +376,7 @@ export default function Register() {
               onChange={(e) => handleChange(e)}
               placeholder="Repetir contraseña"
               className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            ></input>
+            />
             {errors.passwordRepeat && (
               <p className="font-bold text-red-700 text-center p-2">
                 {errors.passwordRepeat}
@@ -393,7 +392,7 @@ export default function Register() {
               maxLength="255"
               onChange={(e) => handleChange(e)}
               className="w-full py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"
-            ></textarea>
+            />
           </div>
           <div>
             <label className="font-light text-white text-xl">Ubicación</label>
@@ -429,7 +428,7 @@ export default function Register() {
               onChange={(e) => handleChange(e)}
               placeholder="Telefono"
               className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            ></input>
+            />
             {errors.telephone && (
               <p className="font-bold text-red-700 text-center p-2">
                 {errors.telephone}
