@@ -87,13 +87,11 @@ export default function AdoptForm() {
     <>
       <NavBar />
       <div className="flex flex-col w-full mt-15 m-auto py-8 bg-amber-600 shadow sm:px-6 md:px-8 lg:px-10">
-        {/*       <button onClick={aaa}>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</button> */}
         <div className="flex items-center mt-8 px-18 max-w-lg self-center">
           <form
             className="flex flex-col justift-content"
             onSubmit={handlerSubmit}
           >
-            {/* <button onClick={aaa}>console.log</button>   */}
             <div>
               <h1 className="text-5xl font-bold">
                 Envia una notificación al dueño mostrando tu interés

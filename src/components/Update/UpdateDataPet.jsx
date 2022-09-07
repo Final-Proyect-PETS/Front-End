@@ -11,7 +11,7 @@ import mapboxgl from "mapbox-gl";
 function validateFrom(input) {
   let errors = {};
   if (input.name) {
-    if (!/^[a-zA-Z]+$/.test(input.name)) {
+    if (!/^[a-zA-Z\s]+$/.test(input.name)) {
       errors.name = "El nombre sólo puede tener letras!";
     } else if (input.name.length > 20) {
       errors.name = "El nombre no puede tener más de 20 caracteres!";

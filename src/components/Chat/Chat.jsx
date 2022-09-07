@@ -14,7 +14,6 @@ import { useState } from "react";
 import { io } from "socket.io-client";
 import axios from "axios";
 import Cabecera from "./Cabecera";
-import SearchUsers from "./SearchUsers";
 
 export default function Chat() {
   const dispatch = useDispatch();

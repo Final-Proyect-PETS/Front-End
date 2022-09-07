@@ -71,7 +71,6 @@ export default function OwnedPet({
       id: idPet,
       deleted: true,
     };
-    // dispatch(patchPet(payloadDelete));
 
     if (true) {
       Swal.fire({
@@ -167,61 +166,61 @@ export default function OwnedPet({
             )}
           </div>
           <Link to={`/pet/${idPet}`}>
-          <div className="flex flex-col items-center">
-            <img
-              className="mb-3 h-24 w-24 object-cover rounded-full shadow-lg"
-              src={imagePet}
-              alt="imagen de la la mascota"
-            />
-            <h5 className="mb-1 lg:text-xl font-medium text-gray-900 dark:text-white">
-              {namePet}
-            </h5>
+            <div className="flex flex-col items-center">
+              <img
+                className="mb-3 h-24 w-24 object-cover rounded-full shadow-lg"
+                src={imagePet}
+                alt="imagen de la la mascota"
+              />
+              <h5 className="mb-1 lg:text-xl font-medium text-gray-900 dark:text-white">
+                {namePet}
+              </h5>
 
-            <div className=" flex space-x-3">
-              {loggedUser._id === userDetail._id ? (
-                adopt.isAdopted === false && deleted.deleted === false ? (
-                  <div className="flex flex-col justify-content items-center">
-                    <div className="flex  justify-content items-center"></div>
-                    <div className="flex">
+              <div className=" flex space-x-3">
+                {loggedUser._id === userDetail._id ? (
+                  adopt.isAdopted === false && deleted.deleted === false ? (
+                    <div className="flex flex-col justify-content items-center">
+                      <div className="flex  justify-content items-center"></div>
+                      <div className="flex">
+                        <button
+                          onClick={(e) => patchAdoptionHandler(e)}
+                          className="bg-red-900 mt-4 hover:bg-red-600 text-white font-bold py-2 px-3 border border-yellow-700 rounded"
+                        >
+                          ⛔ PARAR ADOPCION
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col justify-content items-center">
                       <button
                         onClick={(e) => patchAdoptionHandler(e)}
-                        className="bg-red-900 mt-4 hover:bg-red-600 text-white font-bold py-2 px-3 border border-yellow-700 rounded"
+                        className="bg-yellow-900 mt-4 hover:bg-green-600 opacity-80 text-white font-bold py-2 px-3 border border-yellow-700 rounded"
                       >
-                        ⛔ PARAR ADOPCION
+                        ✔️ INICIAR ADOPCIÓN
                       </button>
                     </div>
+                  )
+                ) : loggedUser._id !== userDetail._id &&
+                  adopt.isAdopted === false &&
+                  deleted.deleted === false ? (
+                  <div className="flex flex-col items-center">
+                    <Link to={`/pet/${idPet}`}>
+                      {/* link de mierda -------------------------------------------------------------------------*/}
+                      <button className="bg-green-900 mr-4 mt-3 hover:bg-green-600 text-white font-bold  px-4 border border-yellow-700 rounded">
+                        <h2 className="font-semibold"> ¡Mascota en adopcion!</h2>
+                        <h2 className=""> VER PERFIL</h2>
+                      </button>
+                    </Link>
                   </div>
                 ) : (
-                  <div className="flex flex-col justify-content items-center">
-                    <button
-                      onClick={(e) => patchAdoptionHandler(e)}
-                      className="bg-yellow-900 mt-4 hover:bg-green-600 opacity-80 text-white font-bold py-2 px-3 border border-yellow-700 rounded"
-                    >
-                      ✔️ INICIAR ADOPCIÓN
-                    </button>
-                  </div>
-                )
-              ) : loggedUser._id !== userDetail._id &&
-                adopt.isAdopted === false &&
-                deleted.deleted === false ? (
-                <div className="flex flex-col items-center">
                   <Link to={`/pet/${idPet}`}>
-                    {/* link de mierda -------------------------------------------------------------------------*/}
-                    <button className="bg-green-900 mr-4 mt-3 hover:bg-green-600 text-white font-bold  px-4 border border-yellow-700 rounded">
-                      <h2 className="font-semibold"> ¡Mascota en adopcion!</h2>
-                      <h2 className=""> VER PERFIL</h2>
+                    <button className="bg-yellow-900 mt-4 hover:bg-yellow-500 text-white font-bold py-2 px-4 border border-yellow-700 rounded">
+                      VER PERFIL
                     </button>
                   </Link>
-                </div>
-              ) : (
-                <Link to={`/pet/${idPet}`}>
-                  <button className="bg-yellow-900 mt-4 hover:bg-yellow-500 text-white font-bold py-2 px-4 border border-yellow-700 rounded">
-                    VER PERFIL
-                  </button>
-                </Link>
-              )}
+                )}
+              </div>
             </div>
-          </div>
           </Link>
         </Card>
       </div>

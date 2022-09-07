@@ -161,84 +161,84 @@ export default function PetDetail() {
                     </h2>
                   </div>
                   <div className="flex">
-                <div>
-                  {loggedUser._id !== petDetail.user._id ? (
-                    petDetail.isAdopted === true ? (
-                      <div className="flex flex-col w-full">
-                        {loggedUser.isAdmin ? (
-                          <button
-                            onClick={() => {
-                              handleDeletePet(petDetail._id);
-                            }}
-                            className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                          >
-                            ELIMINAR PUBLICACION
-                          </button>
-                        ) : null}
-                        <Link to={`/reportpet`}>
-                          <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                            DENUNCIAR PUBLICACION
-                          </button>
-                        </Link>
-                        <Link to={`/users/${petDetail.user._id}`}>
-                          <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                            PERFIL DEL DUEÑO
-                          </button>
-                        </Link>
-                      </div>
-                    ) : (
-                      <div className="flex flex-col justify-center items-center w-full gap-5 mt-5">
-                        <h2 className="font-semibold text-white">
-                          {" "}
-                          ESTA MASCOTA ESTA BUSCANDO NUEVO DUEÑO!
-                        </h2>
-                        <div className="flex flex-col w-full gap-6">
-                          {loggedUser.isAdmin ? (
-                            <button
-                              onClick={() => {
-                                handleDeletePet(petDetail._id);
-                              }}
-                              className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                            >
-                              ELIMINAR PUBLICACION
-                            </button>
-                          ) : null}
-                          <Link to={`/reportpet`}>
-                            <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                              DENUNCIAR PUBLICACION
-                            </button>
-                          </Link>
-                          <Link to={`/users/${petDetail.user._id}`}>
-                            <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                              PERFIL DEL DUEÑO
-                            </button>
-                          </Link>
-                          <Link to={`/adopt/${petDetail._id}`}>
-                            <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                              LO QUIERO!
-                            </button>
-                          </Link>
-                        </div>
-                      </div>
-                    )
-                  ) : (
-                    <>
-                      <h2 className="font-semibold text">
-                        ESTA MASCOTA TE PERTENECE! Quieres
-                        {petDetail.isAdopted === false
-                          ? " quitarla de adopción?"
-                          : " ponerla en adopción?"}
-                      </h2>
+                    <div>
+                      {loggedUser._id !== petDetail.user._id ? (
+                        petDetail.isAdopted === true ? (
+                          <div className="flex flex-col w-full">
+                            {loggedUser.isAdmin ? (
+                              <button
+                                onClick={() => {
+                                  handleDeletePet(petDetail._id);
+                                }}
+                                className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                              >
+                                ELIMINAR PUBLICACION
+                              </button>
+                            ) : null}
+                            <Link to={`/reportpet`}>
+                              <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                                DENUNCIAR PUBLICACION
+                              </button>
+                            </Link>
+                            <Link to={`/users/${petDetail.user._id}`}>
+                              <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                                PERFIL DEL DUEÑO
+                              </button>
+                            </Link>
+                          </div>
+                        ) : (
+                          <div className="flex flex-col justify-center items-center w-full gap-5 mt-5">
+                            <h2 className="font-semibold text-white">
+                              {" "}
+                              ESTA MASCOTA ESTA BUSCANDO NUEVO DUEÑO!
+                            </h2>
+                            <div className="flex flex-col w-full gap-6">
+                              {loggedUser.isAdmin ? (
+                                <button
+                                  onClick={() => {
+                                    handleDeletePet(petDetail._id);
+                                  }}
+                                  className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                                >
+                                  ELIMINAR PUBLICACION
+                                </button>
+                              ) : null}
+                              <Link to={`/reportpet`}>
+                                <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                                  DENUNCIAR PUBLICACION
+                                </button>
+                              </Link>
+                              <Link to={`/users/${petDetail.user._id}`}>
+                                <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                                  PERFIL DEL DUEÑO
+                                </button>
+                              </Link>
+                              <Link to={`/adopt/${petDetail._id}`}>
+                                <button className="py-2 w-full px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                                  LO QUIERO!
+                                </button>
+                              </Link>
+                            </div>
+                          </div>
+                        )
+                      ) : (
+                        <>
+                          <h2 className="font-semibold text">
+                            ESTA MASCOTA TE PERTENECE! Quieres
+                            {petDetail.isAdopted === false
+                              ? " quitarla de adopción?"
+                              : " ponerla en adopción?"}
+                          </h2>
 
-                      <Link to={`/users/${petDetail.user._id}`}>
-                        <button className="py-2 px-3 my-4 mr-8  w-full bg-yellow-900 hover:bg-green-700 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                          📝 CAMBIAR ESTADO
-                        </button>
-                      </Link>
-                    </>
-                  )}
-                </div>
-              </div>
+                          <Link to={`/users/${petDetail.user._id}`}>
+                            <button className="py-2 px-3 my-4 mr-8  w-full bg-yellow-900 hover:bg-green-700 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                              📝 CAMBIAR ESTADO
+                            </button>
+                          </Link>
+                        </>
+                      )}
+                    </div>
+                  </div>
                 </div>
                 <div className="lg:w-1/2 flex flex-col items-center gap-10">
                   <div className="flex flex-col items-center justify-center gap-3">
@@ -253,17 +253,16 @@ export default function PetDetail() {
                     </h2>
                     <h3 className="font-semibold text-white">{`En ${petDetail.place}`}</h3>
                     {petDetail.place_latitude &&
-                          petDetail.place_longitude ? (
-                            <div
-                              ref={mapDiv}
-                              style={{
-                                //block: "w-full",
-                                height: "20vw",
-                                width: "30vh",
-                                borderRadius: "10px",
-                              }}
-                            />
-                          ) : null}
+                      petDetail.place_longitude ? (
+                      <div
+                        ref={mapDiv}
+                        style={{
+                          height: "20vw",
+                          width: "30vh",
+                          borderRadius: "10px",
+                        }}
+                      />
+                    ) : null}
                   </div>
                   <div className="flex flex-col gap-5 border-t pt-3 mb-3">
                     <div>
@@ -277,8 +276,8 @@ export default function PetDetail() {
                         {petDetail.size === "big"
                           ? "Grande"
                           : petDetail.size === "medium"
-                          ? "Mediano"
-                          : "Chico"}
+                            ? "Mediano"
+                            : "Chico"}
                       </h3>
                     </div>
                     <div>
@@ -287,8 +286,8 @@ export default function PetDetail() {
                         {petDetail.vaccination === "yes"
                           ? "Sí"
                           : petDetail.vaccination === "no"
-                          ? "No"
-                          : "No se sabe"}
+                            ? "No"
+                            : "No se sabe"}
                       </h3>
                     </div>
                     <h3 className="font-semibold text-white text-xl">
