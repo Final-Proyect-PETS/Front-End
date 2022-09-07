@@ -237,7 +237,7 @@ export function userLoginGoogle(payload) {
         });
       return dispatch({
         type: actions.USER_LOGIN_GOOGLE,
-        payload: json.data,
+        payload: response,
       });
     } catch (error) {
       console.log(error)
