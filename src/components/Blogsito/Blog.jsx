@@ -630,7 +630,7 @@ export default function Blog() {
                                 </p>
                               </Link>
                               <p className="truncate text-sm text-gray-500 dark:text-gray-400">
-                                {don.place}
+                                {`${don.place.slice(0,20 )}...`}
                               </p>
                             </div>
 
