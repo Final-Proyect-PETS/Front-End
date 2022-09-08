@@ -66,7 +66,7 @@ export default function LandingPage() {
       if(e.payload === "Usuario baneado"){
         Swal.fire({
           icon:"warning",
-          text:"Usuario baneado"
+          text:"Cuenta suspendida momentaneamente"
         })
         .then(()=> navigate("/"))
       }
