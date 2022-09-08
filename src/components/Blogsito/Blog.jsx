@@ -231,6 +231,7 @@ export default function Blog() {
                       className="rounded-lg flex-1 appearance-none border border-gray-300 w-3/4 p-1 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
                       id="area"
                       type="text"
+                      maxLength="32"
                       onChange={(e) => handleChange(e)}
                       sizing="lg"
                     />
