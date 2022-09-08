@@ -138,13 +138,13 @@ export default function RegisterPet() {
 
     if (!input.gender)
       errors.gender = "La información sobre castración es requerida!";
-    if (input.place) {
-      if (!/^[a-zA-Z0-9\s]+$/.test(input.place)) {
-        errors.place = "La ubicación sólo puede tener letras y/o números!";
-      } else if (input.place.length > 50) {
-        errors.place = "La ubicación no puede tener más de 50 caracteres!";
-      }
-    } else errors.place = "La ubicación es requerida!";
+
+    // if (input.place) {
+    //   if (input.place.length > 50) {
+    //     errors.place = "La ubicación no puede tener más de 50 caracteres!";
+    //   }
+    // } else errors.place = "La ubicación es requerida!";
+    
 
     return errors;
   }
