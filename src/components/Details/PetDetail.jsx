@@ -132,14 +132,14 @@ export default function PetDetail() {
                   <div className="flex flex-col gap-10">
                     {loggedUser._id === petDetail.user._id ? (
                       <Link to="/updatepet">
-                        <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                        <button className="py-2 mt-5 px-4 w-full bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                           📝Editar mascota
                         </button>
                       </Link>
                     ) : (
                       <></>
                     )}
-                    <div className="h-56 w-72 bg-yellow-900 rounded ">
+                    <div className="block lg:ml-28 ml-14 mt-10 h-56 w-72 bg-yellow-900 rounded">
                       <Carousel className="rounded">
                         <img
                           src={petDetail?.image}
@@ -156,7 +156,7 @@ export default function PetDetail() {
                         ))}
                       </Carousel>
                     </div>
-                    <h2 className="font-semibold">
+                    <h2 className="font-semibold text-white text-lg text-center my-6">
                       Descripción: {petDetail.description}
                     </h2>
                   </div>
@@ -164,7 +164,7 @@ export default function PetDetail() {
                     <div>
                       {loggedUser._id !== petDetail.user._id ? (
                         petDetail.isAdopted === true ? (
-                          <div className="flex flex-col w-full">
+                          <div className="flex flex-col w-full my-5 gap-6">
                             {loggedUser.isAdmin ? (
                               <button
                                 onClick={() => {
@@ -188,7 +188,7 @@ export default function PetDetail() {
                           </div>
                         ) : (
                           <div className="flex flex-col justify-center items-center w-full gap-5 mt-5">
-                            <h2 className="font-semibold text-white">
+                            <h2 className="font-semibold text-white my-5">
                               {" "}
                               ESTA MASCOTA ESTA BUSCANDO NUEVO DUEÑO!
                             </h2>
@@ -223,7 +223,7 @@ export default function PetDetail() {
                         )
                       ) : (
                         <>
-                          <h2 className="font-semibold text">
+                          <h2 className="font-semibold text-white my-6">
                             ESTA MASCOTA TE PERTENECE! Quieres
                             {petDetail.isAdopted === false
                               ? " quitarla de adopción?"
@@ -231,7 +231,7 @@ export default function PetDetail() {
                           </h2>
 
                           <Link to={`/users/${petDetail.user._id}`}>
-                            <button className="py-2 px-3 my-4 mr-8  w-full bg-yellow-900 hover:bg-green-700 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                            <button className="py-2 px-3 my-4 mr-8  w-full bg-yellow-600 hover:bg-green-700 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                               📝 CAMBIAR ESTADO
                             </button>
                           </Link>
