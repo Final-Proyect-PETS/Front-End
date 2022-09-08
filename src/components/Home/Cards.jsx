@@ -56,7 +56,7 @@ export default function Cards() {
         <Tabs.Group
           aria-label="Pills"
           style="pills"
-          class="bg-yellow-500 rounded flex hover:bg-yellow-500"
+          class="bg-yellow-500 rounded flex hover:bg-yellow-500 mt-10"
           onClick={(e) => handleToogle(e)}
         >
           <Tabs.Item
