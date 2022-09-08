@@ -46,17 +46,26 @@ import FooterComponent from "../FooterComponent";
 export default function Blog() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const loggedUser = useSelector((state) => state.userProfile);
+  const id = localStorage.getItem("id");
+
+  useEffect(() => {
+    dispatch(getAllUsers());
+    dispatch(getAllPets());
+    dispatch(getUserProfile(id));
+  }, [dispatch, id]);
+  
   const allUsers = useSelector((state) => state.users);
   const allPets = useSelector((state) => state.pets);
+  const loggedUser = useSelector((state) => state.userProfile);
+
   const donator = allUsers.filter((user) => user?.donations?.length >= 1);
   const adopted = allPets.filter((pet) => pet?.isAdopted === true);
   const blogger = allUsers.filter((user) => user?.blogmessage?.length >= 1);
+  
   const [input, setInput] = useState();
-  const id = localStorage.getItem("id");
-  const [random, setRandom] = useState(Math.random())
+  const [random, setRandom] = useState(Math.random());
 
-  //RANKING DONACIONES-----------------------------------------------------------
+  //RANKING DONACIONES-------------------------------------------------------------
   let rankingdonations = donator?.sort(
     (a, b) => a?.donations?.length - b?.donations?.length
   );
@@ -79,14 +88,11 @@ export default function Blog() {
   let ranking4likes = rankingPets[rankingPets?.length - 4];
   let ranking5likes = rankingPets[rankingPets?.length - 5];
 
-  useEffect(() => {
-    dispatch(getAllUsers());
-    dispatch(getAllPets());
-    dispatch(getUserProfile(id));
-  }, [dispatch, id]);
+
 
   function handleChange(e) {
     setInput(e.target.value);
+ 
   }
   function onSubmitHandler(e) {
     let payload = {
@@ -94,15 +100,12 @@ export default function Blog() {
       blogmessage: input,
     };
 
-    dispatch(patchUsuer(payload)).then(
-      navigate("/blog", { replace: true })
-    );
+    dispatch(patchUsuer(payload)).then(navigate("/blog", { replace: true }));
   }
 
   let notisFlat = adopted?.sort(() => {
     return random - 0.5;
   });
-
 
   return (
     <>
@@ -188,13 +191,19 @@ export default function Blog() {
         {/* hr-----------------------------CARROUSEL-------------------------------------------------- */}
         <div className="bg-yellow-900 flex justify-center  opacity-90">
           <h5 className="flex justify-center m-2 text-4xl font-bold leading-none text-white dark:text-white">
-            {adopted?.length ? `🤎 Mas de ${adopted?.length - 1} mascotas adoptadas a la fecha` : null}
+            {adopted?.length
+              ? `🤎 Mas de ${adopted?.length - 1} mascotas adoptadas a la fecha`
+              : null}
           </h5>
         </div>
         <div className=" w-screen h-1/2 bg-yellow-900 opacity-90 flex justify-center ">
           <Carousel slideInterval={3500}>
             {notisFlat?.slice(0, 4).map((adopt) => (
-              <img alt="adoptedPet" src={adopt.image} className="object-cover w-96 h-72 rounded-lg" />
+              <img
+                alt="adoptedPet"
+                src={adopt.image}
+                className="object-cover w-96 h-72 rounded-lg"
+              />
             ))}
           </Carousel>
         </div>
@@ -231,6 +240,7 @@ export default function Blog() {
                       className="rounded-lg flex-1 appearance-none border border-gray-300 w-3/4 p-1 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
                       id="area"
                       type="text"
+                      maxLength="32"
                       onChange={(e) => handleChange(e)}
                       sizing="lg"
                     />
@@ -619,9 +629,10 @@ export default function Blog() {
                             </div>
 
                             <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                              {`$ ${don?.donations[don?.donations?.length - 1]
+                              {`$ ${
+                                don?.donations[don?.donations?.length - 1]
                                   ?.donationAmount
-                                }`}
+                              }`}
                             </div>
                           </div>
                         </li>

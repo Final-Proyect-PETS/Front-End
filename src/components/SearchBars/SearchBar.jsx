@@ -28,14 +28,18 @@ export default function SearchBar() {
 
   function handleInputChange(e) {
     e.preventDefault();
-    if (e.target.value.length < 3) { //IF PARA QUE NO SE ROMPA LA BARRA, CAMBIO DE ULTIMO MOMENTO
+    if (e.target.value.length < 2) {
+      //IF PARA QUE NO SE ROMPA LA BARRA, CAMBIO DE ULTIMO MOMENTO
       setNamePet("");
       setNameUser("");
+      getPetNow(namePet);
+      getUserNow(nameUser);
+    } else {
+      setNamePet(e.target.value);
+      setNameUser(e.target.value);
+      getPetNow(namePet);
+      getUserNow(nameUser);
     }
-    setNamePet(e.target.value);
-    setNameUser(e.target.value);
-    getPetNow(namePet);
-    getUserNow(nameUser);
   }
 
   return (
