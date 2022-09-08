@@ -28,6 +28,10 @@ export default function SearchBar() {
 
   function handleInputChange(e) {
     e.preventDefault();
+    if (e.target.value.length < 3) { //IF PARA QUE NO SE ROMPA LA BARRA, CAMBIO DE ULTIMO MOMENTO
+      setNamePet("");
+      setNameUser("");
+    }
     setNamePet(e.target.value);
     setNameUser(e.target.value);
     getPetNow(namePet);
@@ -63,8 +67,7 @@ export default function SearchBar() {
           placeholder="Buscar..."
         />
       </div>
-      <div className="mb-2 flex">
-      </div>
+      <div className="mb-2 flex"></div>
     </div>
   );
 }
