@@ -3,6 +3,8 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
+  getAllPets,
+  getAllUsers,
   getPetByName,
   getUserByName,
   switchRenderAction,
@@ -12,10 +14,6 @@ export default function SearchBar() {
   const dispatch = useDispatch();
   const [input, setInput] = useState("mascota");
   dispatch(switchRenderAction(input));
-  const [namePet, setNamePet] = useState("");
-  const [nameUser, setNameUser] = useState("");
-  const getPetNow = async () => dispatch(getPetByName(namePet));
-  const getUserNow = async () => dispatch(getUserByName(nameUser));
 
   function handleToogle(e) {
     if (input === "mascota") {
@@ -28,17 +26,14 @@ export default function SearchBar() {
 
   function handleInputChange(e) {
     e.preventDefault();
-    if (e.target.value.length < 2) {
-      //IF PARA QUE NO SE ROMPA LA BARRA, CAMBIO DE ULTIMO MOMENTO
-      setNamePet("");
-      setNameUser("");
-      getPetNow(namePet);
-      getUserNow(nameUser);
-    } else {
-      setNamePet(e.target.value);
-      setNameUser(e.target.value);
-      getPetNow(namePet);
-      getUserNow(nameUser);
+
+    if (e.target.value.length >= 1 && e.target.value.length >= 1) {
+      dispatch(getPetByName(e.target.value));
+      dispatch(getUserByName(e.target.value));
+    }
+    if (e.target.value.length === 0) {
+      dispatch(getAllPets());
+      dispatch(getAllUsers());
     }
   }
 
