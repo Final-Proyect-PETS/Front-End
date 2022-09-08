@@ -305,7 +305,6 @@ export default function RegisterPet() {
       });
     }
   }
-
   mapboxgl.accessToken =
     "pk.eyJ1IjoicG9saW5vIiwiYSI6ImNsN2FtdWNybTB0bmk0MHNqZXZxMzM0OTYifQ.O2Y9sZnF-K1k_KhC8MzJbA";
 
