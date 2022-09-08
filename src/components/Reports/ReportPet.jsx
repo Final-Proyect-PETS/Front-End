@@ -69,34 +69,44 @@ export default function ReportPet() {
   return (
     <div id="reportPet" className="fixed">
       <NavBar />
-      <h1 className="flex justify-center font-semibold text-3xl mt-3">
-        ¿Por qué desea reportar esta publicación?
-      </h1>
-      <div className="mt-8 px-8 max-w-lg self-center"></div>
-      <form
-        onSubmit={handleSubmit}
-        className="bg-yellow-500 flex w-2/3 my-10 ml-60 flex-row border-2 border-black"
-      >
-        <div>
-          <label className="font-light text-white text-xl">Comentarios</label>
-          <textarea
-            name="description"
-            value={input}
-            maxLength="255"
-            placeholder="Describa el motivo de su denuncia"
-            onChange={(e) => handleChange(e)}
-            className="w-full py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"
-          />
+      <div className="flex flex-col w-full mt-15 m-auto py-8 rounded-lg sm:px-6 md:px-8 lg:px-10">
+        <div className="self-center mb-1 mt-14 text-xl font-normal text-white sm:text-2xl dark:text-white">
+          ¿Por qué desea reportar esta publicación?
         </div>
-        <div>
-          <button
-            type="submit"
-            className="py-2 px-4 my-4 w-full bg-yellow-900 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-          >
-            Reportar publicación
-          </button>
+
+
+        <div className="flex flex-col justify-items-center self-center mt-8 w-1/3 bg-yellow-500 p-4 rounded-lg">
+          <form onSubmit={handleSubmit}>
+            <div className="flex flex-col mb-2">
+              <div className="flex flex-col">
+                <div className="self-center text-xl font-light sm:text-2xl text-white py-10">
+                  Comenta el motivo de tu denuncia
+                </div>
+                <div className="flex justify-center items-center mt-1 w-full">
+                  <textarea
+                    name="description"
+                    value={input}
+                    maxLength="255"
+                    placeholder="Describa el motivo de su denuncia"
+                    onChange={(e) => handleChange(e)}
+                    className="flex justify-center items-center w-2/3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="flex justify-center items-center mt-1 w-full pb-10">
+                <button
+                  type="submit"
+                  className="mt-2 py-2 w-2/3 bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                >
+                  Enviar reporte de publicación
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

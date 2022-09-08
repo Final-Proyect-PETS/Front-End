@@ -428,7 +428,7 @@ export default function AdminView() {
                       </div>
                     </div>
                     <div className="bg-white h-1/4 flex items-center justify-around">
-                      <button class="py-2 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                      <button className="py-2 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
                         <Link to={"/users/" + m._id}>Perfil del usuario</Link>
                       </button>
                       {loggedUser.isAdmin && loggedUser._id !== m._id ? (
@@ -436,7 +436,7 @@ export default function AdminView() {
                           onClick={() => {
                             handleDeleteUser(m._id);
                           }}
-                          class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                          className="py-2 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                         >
                           Deshabilitar usuario
                         </button>
@@ -492,7 +492,7 @@ export default function AdminView() {
                               onClick();
                               setUser(u._id);
                             }}
-                            class="w-full bg-yellow-900 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                            class="w-full bg-yellow-900 hover:bg-yellow-600 focus:ring-yellow-600 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 rounded-lg"
                           >
                             Más información
                           </Button>
@@ -601,7 +601,7 @@ export default function AdminView() {
                       {
                         <Link
                           to={`/users/${p.informerId}`}
-                          class="py-2 px-1  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                          className="w-36 py-6 rounded-sm bg-yellow-900 hover:bg-yellow-600 focus:ring-yellow-600 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2"
                         >
                           VER PERFIL
                         </Link>
@@ -610,7 +610,7 @@ export default function AdminView() {
                       {
                         <Link
                           to={`/pet/${p.reportedPetId}`}
-                          class="py-2 px-1  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                          className="w-40 py-8 rounded-lg bg-yellow-900 hover:bg-yellow-600 focus:ring-yellow-600 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2"
                         >
                           VER PUBLICACION
                         </Link>
@@ -620,7 +620,7 @@ export default function AdminView() {
                         onClick={() => {
                           handleDeletePet(p.reportedPetId);
                         }}
-                        class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                        className="w-40 py-8 rounded-lg bg-yellow-900 hover:bg-yellow-600 focus:ring-yellow-600 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-sm font-semibold shadow-md focus:outline-none focus:ring-2"
                       >
                         ELIMINAR PUBLICACION
                       </button>
@@ -628,7 +628,7 @@ export default function AdminView() {
                         onClick={() => {
                           handleSolvePetReport(p._id);
                         }}
-                        class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                        className="w-40 py-8 rounded-lg bg-yellow-900 hover:bg-yellow-600 focus:ring-yellow-600 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2"
                       >
                         MARCAR RESUELTO
                       </button>
@@ -658,7 +658,7 @@ export default function AdminView() {
                       {
                         <Link
                           to={`/users/${p.informerId}`}
-                          class="py-2 px-1  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                          className="w-40 py-8 rounded-lg bg-yellow-900 hover:bg-yellow-600 focus:ring-yellow-600 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2"
                         >
                           VER PERFIL
                         </Link>
@@ -668,7 +668,7 @@ export default function AdminView() {
                       {
                         <Link
                           to={`/users/${p.reportedUserId}`}
-                          class="py-2 px-1  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                          className="w-40 py-8 rounded-lg bg-yellow-900 hover:bg-yellow-600 focus:ring-yellow-600 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2"
                         >
                           VER USUARIO
                         </Link>
@@ -678,7 +678,7 @@ export default function AdminView() {
                         onClick={() => {
                           handleDeleteUser(p.reportedUserId, p._id);
                         }}
-                        class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                        className="w-40 py-10 rounded-lg bg-yellow-900 hover:bg-yellow-600 focus:ring-yellow-600 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-sm font-semibold shadow-md focus:outline-none focus:ring-2"
                       >
                         DESHABILITAR USUARIO
                       </button>
@@ -686,7 +686,7 @@ export default function AdminView() {
                         onClick={() => {
                           handleSolveUserReport(p._id);
                         }}
-                        class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                        className="w-40 py-8 rounded-lg bg-yellow-900 hover:bg-yellow-600 focus:ring-yellow-600 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2"
                       >
                         MARCAR RESUELTO
                       </button>
@@ -716,7 +716,7 @@ export default function AdminView() {
                         onClick={() => {
                           handleRestoreUser(p._id);
                         }}
-                        class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                        class="w-40 py-8 rounded-lg bg-yellow-900 hover:bg-yellow-600 focus:ring-yellow-600 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2"
                       >
                         RESTAURAR USUARIO
                       </button>
@@ -749,7 +749,7 @@ export default function AdminView() {
                         onClick={() => {
                           handleRestoreUserReport(p._id);
                         }}
-                        class="py-2 px-4  bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-500 focus:ring-offset-indigo-200 text-white w-28 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                        className="w-40 py-8 rounded-lg bg-yellow-900 hover:bg-yellow-600 focus:ring-yellow-600 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-sm font-semibold shadow-md focus:outline-none focus:ring-2"
                       >
                         RESTAURAR REPORTE
                       </button>
