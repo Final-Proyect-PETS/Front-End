@@ -65,7 +65,7 @@ export default function Blog() {
   const [input, setInput] = useState();
   const [random, setRandom] = useState(Math.random());
 
-  //RANKING DONACIONES-----------------------------------------------------------
+  //RANKING DONACIONES-------------------------------------------------------------
   let rankingdonations = donator?.sort(
     (a, b) => a?.donations?.length - b?.donations?.length
   );
