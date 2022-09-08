@@ -7,6 +7,7 @@ import { notificationSwal } from "../../utils/notificationSwal.jsx";
 import { Link } from "react-router-dom";
 import MapboxAutocomplete from "react-mapbox-autocomplete";
 import mapboxgl from "mapbox-gl";
+import NavBar from "../NavBar/NavBar";
 
 function validateFrom(input) {
   let errors = {};
@@ -231,276 +232,279 @@ export default function UpdatePet() {
     "pk.eyJ1IjoicG9saW5vIiwiYSI6ImNsN2FtdWNybTB0bmk0MHNqZXZxMzM0OTYifQ.O2Y9sZnF-K1k_KhC8MzJbA";
 
   return (
-    <div className="flex flex-col w-full mt-15 m-auto py-8 bg-amber-600 rounded-lg shadow sm:px-6 md:px-8 lg:px-10">
-      <div className="self-center mb-6 text-xl font-normal text-white sm:text-2xl dark:text-white">
-        Edita los datos de tu mascota
-      </div>
-      <div className="mt-8 px-8 max-w-lg self-center">
-        <form onSubmit={(e) => handleUpDate(e)}>
-          <div>
-            <label className="font-light text-white text-xl">Nombre</label>
-            <input
-              type="text"
-              name="name"
-              placeholder={input.name}
-              onChange={(e) => handleChange(e)}
-              className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            />
-            {errors.name && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.name}
-              </p>
-            )}
+    <>
+      <NavBar />
+      <div className="flex flex-col w-full mt-15 m-auto py-8 rounded-lg shadow sm:px-6 md:px-8 lg:px-10">
+        <div className="self-center mb-1 mt-14 text-xl font-normal text-white sm:text-2xl dark:text-white">
+          Edita los datos de tu mascota
+        </div>
+        <div className="mt-8 px-8 max-w-lg self-center">
+          <form onSubmit={(e) => handleUpDate(e)}>
             <div>
-              <label className="font-light text-white text-xl">
-                Imagen de perfil
-              </label>
-
+              <label className="font-light text-white text-xl">Nombre</label>
               <input
-                type="file"
-                name="image"
-                accept=".jpg, .png, .jpeg"
-                onChange={(e) => handleImage(e)}
-                className="rounded-lg flex-1 appearance-none w-full py-2 px-4 bg-amber-600  text-white placeholder-white text-sm focus:outline-none focus:border-transparent"
+                type="text"
+                name="name"
+                placeholder={input.name}
+                onChange={(e) => handleChange(e)}
+                className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
               />
-              {loadingImage ? (
-                <h3 className="font-light text-white text-xl">
-                  Cargando imagen...
-                </h3>
-              ) : (
-                <img src={image || input.image} alt="" width="300px" />
-              )}
-              {errors.image && (
+              {errors.name && (
                 <p className="font-bold text-red-700 text-center p-2">
-                  {errors.image}
+                  {errors.name}
                 </p>
               )}
-            </div>
-            <div>
-              <label className="font-light text-white text-xl">
-                Más imágenes
-              </label>
-              <input
-                type="file"
-                name="imagePool"
-                accept=".jpg, .png, .jpeg"
-                onChange={(e) => handleImagePool(e)}
-                className="self-center rounded-lg flex-1 appearance-none w-full py-2 px-4 bg-amber-600  text-white placeholder-white text-sm focus:outline-none focus:border-transparent"
-              />
-              <div className="font-light text-white text-xl">
-                {loadingImagePool ? (
-                  <h3>Cargando imagen...</h3>
+              <div>
+                <label className="font-light text-white text-xl">
+                  Imagen de perfil
+                </label>
+
+                <input
+                  type="file"
+                  name="image"
+                  accept=".jpg, .png, .jpeg"
+                  onChange={(e) => handleImage(e)}
+                  className="rounded-lg flex-1 appearance-none w-full py-2 px-4 text-white placeholder-white text-sm focus:outline-none focus:border-transparent"
+                />
+                {loadingImage ? (
+                  <h3 className="font-light text-white text-xl">
+                    Cargando imagen...
+                  </h3>
                 ) : (
-                  input.imagePool.map((el) => (
-                    <div key={addKey()}>
-                      <button
-                        key={el.id}
-                        type="button"
-                        onClick={() => handleDelete(el)}
-                        className="px-2 border-4 rounded-lg font-bold text-yellow-900 border-yellow-900"
-                      >
-                        x
-                      </button>
-                      <img src={el} alt="" width="300px" />
-                    </div>
-                  ))
+                  <img src={image || input.image} alt="" width="300px" />
+                )}
+                {errors.image && (
+                  <p className="font-bold text-red-700 text-center p-2">
+                    {errors.image}
+                  </p>
                 )}
               </div>
-              {errors.imagePool && (
+              <div>
+                <label className="font-light text-white text-xl">
+                  Más imágenes
+                </label>
+                <input
+                  type="file"
+                  name="imagePool"
+                  accept=".jpg, .png, .jpeg"
+                  onChange={(e) => handleImagePool(e)}
+                  className="self-center rounded-lg flex-1 appearance-none w-full py-2 px-4 text-white placeholder-white text-sm focus:outline-none focus:border-transparent"
+                />
+                <div className="font-light text-white text-xl">
+                  {loadingImagePool ? (
+                    <h3>Cargando imagen...</h3>
+                  ) : (
+                    input.imagePool.map((el) => (
+                      <div key={addKey()}>
+                        <button
+                          key={el.id}
+                          type="button"
+                          onClick={() => handleDelete(el)}
+                          className="px-2 border-4 rounded-lg font-bold text-yellow-900 border-yellow-900"
+                        >
+                          x
+                        </button>
+                        <img src={el} alt="" width="300px" />
+                      </div>
+                    ))
+                  )}
+                </div>
+                {errors.imagePool && (
+                  <p className="font-bold text-red-700 text-center p-2">
+                    {errors.imagePool}
+                  </p>
+                )}
+              </div>
+              <label className="font-light text-white text-xl">
+                Tipo de mascota{" "}
+              </label>
+              <select
+                name="type"
+                onChange={(e) => handleChangeSelect(e)}
+                className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
+              >
+                <option
+                  value="dog"
+                  selected={input.type === "dog" ? true : false}
+                >
+                  Perro
+                </option>
+                <option
+                  value="cat"
+                  selected={input.type === "cat" ? true : false}
+                >
+                  Gato
+                </option>
+                <option
+                  value="other"
+                  selected={input.type === "other" ? true : false}
+                >
+                  Otro
+                </option>
+              </select>
+              {errors.type && (
                 <p className="font-bold text-red-700 text-center p-2">
-                  {errors.imagePool}
+                  {errors.type}
                 </p>
               )}
-            </div>
-            <label className="font-light text-white text-xl">
-              Tipo de mascota{" "}
-            </label>
-            <select
-              name="type"
-              onChange={(e) => handleChangeSelect(e)}
-              className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            >
-              <option
-                value="dog"
-                selected={input.type === "dog" ? true : false}
-              >
-                Perro
-              </option>
-              <option
-                value="cat"
-                selected={input.type === "cat" ? true : false}
-              >
-                Gato
-              </option>
-              <option
-                value="other"
-                selected={input.type === "other" ? true : false}
-              >
-                Otro
-              </option>
-            </select>
-            {errors.type && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.type}
-              </p>
-            )}
-            <br />
-            <label className="font-light text-white text-xl">Descripción</label>
-            <textarea
-              type="text"
-              name="description"
-              maxLength="255"
-              placeholder={input.description}
-              onChange={(e) => handleChange(e)}
-              className="w-full py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"
-            />
-            {errors.description && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.description}
-              </p>
-            )}
-
-            <label className="font-light text-white text-xl">Tamaño </label>
-            <select
-              name="size"
-              onChange={(e) => handleChangeSelect(e)}
-              className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            >
-              <option
-                value="big"
-                selected={input.size === "big" ? true : false}
-              >
-                Grande
-              </option>
-              <option
-                value="medium"
-                selected={input.size === "medium" ? true : false}
-              >
-                Mediano
-              </option>
-              <option
-                value="small"
-                selected={input.size === "small" ? true : false}
-              >
-                Chico
-              </option>
-            </select>
-            {errors.size && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.size}
-              </p>
-            )}
-            <br />
-            <label className="font-light text-white text-xl">Edad</label>
-            <input
-              type="text"
-              name="age"
-              placeholder={input.age}
-              onChange={(e) => handleChange(e)}
-              className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            />
-            {errors.age && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.age}
-              </p>
-            )}
-            <label className="font-light text-white text-xl">Vacunado </label>
-            <select
-              name="vaccination"
-              onChange={(e) => handleChangeSelect(e)}
-              className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            >
-              <option
-                value="yes"
-                selected={input.vaccination === "yes" ? true : false}
-              >
-                Sí
-              </option>
-              <option
-                value="no"
-                selected={input.vaccination === "no" ? true : false}
-              >
-                No
-              </option>
-              <option
-                value="unknown"
-                selected={input.vaccination === "unknown" ? true : false}
-              >
-                No sé
-              </option>
-            </select>
-            {errors.vaccination && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.vaccination}
-              </p>
-            )}
-            <br />
-            <label className="font-light text-white text-xl">Castrado </label>
-            <select
-              name="castrated"
-              onChange={(e) => handleChangeSelect(e)}
-              className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-            >
-              <option
-                value="true"
-                selected={input.castrated === "true" ? true : false}
-              >
-                Sí
-              </option>
-              <option
-                value="false"
-                selected={input.castrated === "false" ? true : false}
-              >
-                No
-              </option>
-            </select>
-            {errors.castrated && (
-              <p className="font-bold text-red-700 text-center p-2">
-                {errors.castrated}
-              </p>
-            )}
-            <br />
-            <div>
-              <label className="font-light text-white text-xl">Ubicación</label>
-              <MapboxAutocomplete
-                publicKey={mapAccess.mapboxApiAccessToken}
-                inputClass="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
-                onSuggestionSelect={_suggestionSelect}
-                resetSearch={false}
-                placeholder={"Modifique ciudad"}
+              <br />
+              <label className="font-light text-white text-xl">Descripción</label>
+              <textarea
+                type="text"
+                name="description"
+                maxLength="255"
+                placeholder={input.description}
+                onChange={(e) => handleChange(e)}
+                className="w-full py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent resize-none"
               />
-              {input.place && (
-                <p className="font-light text-white text-xl">{input.place}</p>
+              {errors.description && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.description}
+                </p>
               )}
-            </div>
-            {upDatePet.place ? (
-              <div
-                ref={mapDiv}
-                style={{
-                  block: "w-full",
-                  height: "15vw",
-                  borderRadius: "10px",
-                }}
+
+              <label className="font-light text-white text-xl">Tamaño </label>
+              <select
+                name="size"
+                onChange={(e) => handleChangeSelect(e)}
+                className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
+              >
+                <option
+                  value="big"
+                  selected={input.size === "big" ? true : false}
+                >
+                  Grande
+                </option>
+                <option
+                  value="medium"
+                  selected={input.size === "medium" ? true : false}
+                >
+                  Mediano
+                </option>
+                <option
+                  value="small"
+                  selected={input.size === "small" ? true : false}
+                >
+                  Chico
+                </option>
+              </select>
+              {errors.size && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.size}
+                </p>
+              )}
+              <br />
+              <label className="font-light text-white text-xl">Edad</label>
+              <input
+                type="text"
+                name="age"
+                placeholder={input.age}
+                onChange={(e) => handleChange(e)}
+                className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
               />
-            ) : null}
+              {errors.age && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.age}
+                </p>
+              )}
+              <label className="font-light text-white text-xl">Vacunado </label>
+              <select
+                name="vaccination"
+                onChange={(e) => handleChangeSelect(e)}
+                className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
+              >
+                <option
+                  value="yes"
+                  selected={input.vaccination === "yes" ? true : false}
+                >
+                  Sí
+                </option>
+                <option
+                  value="no"
+                  selected={input.vaccination === "no" ? true : false}
+                >
+                  No
+                </option>
+                <option
+                  value="unknown"
+                  selected={input.vaccination === "unknown" ? true : false}
+                >
+                  No sé
+                </option>
+              </select>
+              {errors.vaccination && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.vaccination}
+                </p>
+              )}
+              <br />
+              <label className="font-light text-white text-xl">Castrado </label>
+              <select
+                name="castrated"
+                onChange={(e) => handleChangeSelect(e)}
+                className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
+              >
+                <option
+                  value="true"
+                  selected={input.castrated === "true" ? true : false}
+                >
+                  Sí
+                </option>
+                <option
+                  value="false"
+                  selected={input.castrated === "false" ? true : false}
+                >
+                  No
+                </option>
+              </select>
+              {errors.castrated && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.castrated}
+                </p>
+              )}
+              <br />
+              <div>
+                <label className="font-light text-white text-xl">Ubicación</label>
+                <MapboxAutocomplete
+                  publicKey={mapAccess.mapboxApiAccessToken}
+                  inputClass="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
+                  onSuggestionSelect={_suggestionSelect}
+                  resetSearch={false}
+                  placeholder={"Modifique ciudad"}
+                />
+                {input.place && (
+                  <p className="font-light text-white text-xl">{input.place}</p>
+                )}
+              </div>
+              {upDatePet.place ? (
+                <div
+                  ref={mapDiv}
+                  style={{
+                    block: "w-full",
+                    height: "15vw",
+                    borderRadius: "10px",
+                  }}
+                />
+              ) : null}
+            </div>
+            {
+              <button
+                type="submit"
+                className="py-2 px-4 my-4 w-full bg-yellow-900 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              >
+                Actualizar
+              </button>
+            }
+          </form>
+          <div>
+            <Link to={`/pet/${upDatePet._id}`}>
+              <button className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                Regresar
+              </button>
+            </Link>
           </div>
-          {
-            <button
-              type="submit"
-              className="py-2 px-4 my-4 w-full bg-yellow-900 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-            >
-              Actualizar
-            </button>
-          }
-        </form>
-        <div>
-          <Link to={`/pet/${upDatePet._id}`}>
-            <button className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-              Regresar
-            </button>
-          </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 }
