@@ -28,7 +28,7 @@ export default function SearchBar() {
 
   function handleInputChange(e) {
     e.preventDefault();
-    if (e.target.value.length < 3) {
+    if (e.target.value.length < 3) { //IF PARA QUE NO SE ROMPA LA BARRA, CAMBIO DE ULTIMO MOMENTO
       setNamePet("");
       setNameUser("");
     }
