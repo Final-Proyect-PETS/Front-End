@@ -38,7 +38,7 @@ export default function FooterComponent() {
       </div>
 
       <Footer.LinkGroup>
-        <Footer.Link href="#">Sobre nosotros</Footer.Link>
+        <Footer.Link href="https://happytails.vercel.app/about">Sobre nosotros</Footer.Link>
       </Footer.LinkGroup>
       <Footer.LinkGroup>
         <Footer.Link href="#">Ir Arriba</Footer.Link>
