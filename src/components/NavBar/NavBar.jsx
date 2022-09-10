@@ -220,6 +220,11 @@ export default function NavBar() {
         <Navbar.Link class="text-white hover:none">
             <Link to="/donations">Donaciones</Link>
         </Navbar.Link>
+        <Navbar.Link>
+            <Link class="text-white hover:none" to="/about">
+              Sobre Nosotros
+            </Link>
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
