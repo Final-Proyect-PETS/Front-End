@@ -750,3 +750,42 @@ export function getUserReportsSolved() {
     }
   };
 }
+
+export function createProduct (id, payload) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.post(`https://happytails2.herokuapp.com/home/product/${id}`, payload);
+      dispatch ({
+        type: actions.CREATE_PRODUCT,
+        payload: json.data
+      })
+      return "Producto creado correctamente";
+    } catch (error) {
+      console.log(error)
+      return "Error de server, no se pudo crear el producto, intente más tarde";
+    }
+  }
+}
+
+export function getAllProducts () {
+  return async (dispatch) => {
+    return await axios
+      .get("https://happytails2.herokuapp.com/home/products")
+      .then((json) =>
+        dispatch({ type: actions.GET_ALL_PRODUCTS, payload: json.data })
+      )
+      .catch((error) => console.log(error));
+  };
+}
+
+export function getProductDetail (id) {
+  return async (dispatch) => {
+    return await axios
+      .get(`https://happytails2.herokuapp.com/home/products/${id}`)
+      .then((json) =>
+        dispatch({ type: actions.GET_PRODUCT_DETAIL, payload: json.data })
+      )
+      .catch((error) => console.log(error));
+  };
+}
+

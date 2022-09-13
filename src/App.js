@@ -34,6 +34,7 @@ import Blog3 from "./components/Blogsito/Blog3";
 import MissingDataRequired from "./components/MissingDataRequired";
 import ReportPet from "./components/Reports/ReportPet";
 import ReportUser from "./components/Reports/ReportUser";
+import CreationForm from "./components/Market/CreationForm"
 import { getUserProfile, getAllUsers, getAllPets } from "./redux/Actions/index";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -77,6 +78,7 @@ function App() {
           <Route path={"/interestedtraders"} element={<InterestedTraders />} />
           <Route path={"/notifications"} element={<Notifications />} />
           <Route path={"/adopt/:id"} element={<AdoptForm />} />
+          <Route path={"/market/create"} element={<CreationForm />} />
           <Route path={"/chat"} element={<Chat />} />
           <Route path={"/donations"} element={<Donation />} />
           <Route
