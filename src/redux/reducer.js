@@ -20,6 +20,8 @@ const initialState = {
   deletedPets: [],
   deletedUsers: [],
   deletedUserReports: [],
+  products: [],
+  productDetail: [],
   query: "",
 };
 
@@ -43,6 +45,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         users: payload,
       };
+    case actions.GET_ALL_PRODUCTS:
+      return {
+        ...state,
+        products: payload,
+      }
 
     //GET BY NAME
     case actions.GET_USER_BY_NAME:
@@ -86,12 +93,21 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         petDetail: payload,
       };
+    case actions.GET_PRODUCT_DETAIL:
+      return {
+        ...state,
+        productDetail: payload
+      }
 
     //POSTS
     case actions.POST_PET:
       return {
         ...state,
       };
+    case actions.CREATE_PRODUCT:
+      return {
+        ...state,
+      }
     case actions.POST_USER:
       return {
         ...state,
