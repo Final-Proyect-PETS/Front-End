@@ -225,6 +225,11 @@ export default function NavBar() {
               Sobre Nosotros
             </Link>
         </Navbar.Link>
+        <Navbar.Link>
+            <Link class="text-white hover:none" to="/market">
+              Marketplace
+            </Link>
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );
