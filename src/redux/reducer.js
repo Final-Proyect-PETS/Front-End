@@ -62,6 +62,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         pets: payload,
       };
+    case actions.GET_PRODUCT_NAME:
+      return {
+        ...state,
+        products: payload
+      }
     //CHAT
     case actions.GET_CONVERSATIONS:
       return {
