@@ -62,6 +62,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         pets: payload,
       };
+    case actions.GET_PRODUCT_NAME:
+      return {
+        ...state,
+        products: payload
+      }
     //CHAT
     case actions.GET_CONVERSATIONS:
       return {
@@ -127,6 +132,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         petDetail: {}, //seteas a 0 el estado de nuevo para una nueva peticion
       };
+    case actions.CLEAR_PRODUCT_DETAIL:
+      return {
+        ...state,
+        productDetail: {}
+      }
     //UDPDATE
     case actions.PATCH_USER:
       return {

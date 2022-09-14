@@ -751,11 +751,11 @@ export function getUserReportsSolved() {
   };
 }
 
-export function createProduct (id, payload) {
+export function createProduct(id, payload) {
   return async function (dispatch) {
     try {
       let json = await axios.post(`https://happytails2.herokuapp.com/home/product/${id}`, payload);
-      dispatch ({
+      dispatch({
         type: actions.CREATE_PRODUCT,
         payload: json.data
       })
@@ -767,7 +767,7 @@ export function createProduct (id, payload) {
   }
 }
 
-export function getAllProducts () {
+export function getAllProducts() {
   return async (dispatch) => {
     return await axios
       .get("https://happytails2.herokuapp.com/home/products")
@@ -778,7 +778,7 @@ export function getAllProducts () {
   };
 }
 
-export function getProductDetail (id) {
+export function getProductDetail(id) {
   return async (dispatch) => {
     return await axios
       .get(`https://happytails2.herokuapp.com/home/products/${id}`)
@@ -787,5 +787,24 @@ export function getProductDetail (id) {
       )
       .catch((error) => console.log(error));
   };
+}
+
+export function getProductByName(name) {
+  return async (dispatch) => {
+    try {
+      let json = await axios.get("https://happytails2.herokuapp.com/home/products?name=" + name)
+      return dispatch({
+        type: actions.GET_PRODUCT_NAME,
+        payload: json.data
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+export function resetProductDetails() {
+  return {
+    type: actions.CLEAR_PRODUCT_DETAIL
+  }
 }
 

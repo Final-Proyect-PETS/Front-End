@@ -1,6 +1,7 @@
 import React from "react"
+import SearchBarProduct from "../SearchBars/SearchBarProduct.jsx"
 
-export default function MarketSideBar () {
+export default function MarketSideBar({ setCurrentPage }) {
 
 
     return (
@@ -9,7 +10,9 @@ export default function MarketSideBar () {
                 <h1 className="text-2xl text-white font-semibold">MarketPlace</h1>
             </div>
             <div>
-                <h2>SEARCH BAR</h2>
+                <SearchBarProduct
+                    setCurrentPage={setCurrentPage}
+                />
             </div>
             <div>
                 <h3>FILTROS</h3>
