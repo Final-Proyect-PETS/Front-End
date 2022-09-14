@@ -26,8 +26,9 @@ export default function RegisterPet() {
   const [input, setInput] = useState({
     id: id,
     name: "",
+    price: "",
     image: [],
-    stock: "",
+    stock: 1,
     description: "",
     place: "",
     category: "",
@@ -97,6 +98,7 @@ export default function RegisterPet() {
 
   function validate(input) {
     let errors = {};
+    var regex = new RegExp("^[0-9]+$");
 
     if (!input.id) errors.id = "El id es requerido!";
 
@@ -108,7 +110,27 @@ export default function RegisterPet() {
       }
     } else errors.name = "El nombre es requerido!";
 
+    if (input.price) {
+      if (!regex.test(input.price)) {
+        errors.price = "Solo números!"
+      } else if (input.price < 0) {
+        errors.price = "El precio no puede ser negativo!"
+      }
+    } else errors.price = "El precio es requerido"
+
+    if (input.stock) {
+      if (!regex.test(input.stock)) {
+        errors.stock = "Solo números!"
+      } else if (input.stock < 1) {
+        errors.stock = "El precio no puede ser negativo!"
+      } else if (input.stock > 10000) {
+        errors.stock = "El stock no puede ser mayor a 10.000!"
+      }
+    } else errors.price = "El stock es requerido"
+
     if (!input.image) errors.image = "La imagen es requerida!";
+
+    // if (!input.price) errors.pricec = "El precio es requerido!";
 
     if (!input.type) errors.type = "El tipo de producto es requerido!";
 
@@ -121,6 +143,7 @@ export default function RegisterPet() {
     if (
       errors.id ||
       errors.name ||
+      errors.price ||
       errors.image ||
       errors.type ||
       errors.category ||
@@ -130,6 +153,7 @@ export default function RegisterPet() {
     } else if (
       input.id &&
       input.name &&
+      input.price &&
       input.image &&
       input.type &&
       input.category &&
@@ -188,6 +212,7 @@ export default function RegisterPet() {
       setInput({
         id: "",
         name: "",
+        price: "",
         image: [],
         type: "",
         description: "",
@@ -282,12 +307,46 @@ export default function RegisterPet() {
                 name="name"
                 value={input.name}
                 onChange={(e) => handleChange(e)}
-                placeholder="Nombre de la mascota"
+                placeholder="Nombre del producto"
                 className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-black placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
               />
               {errors.name && (
                 <p className="font-bold text-red-700 text-center p-2">
                   {errors.name}
+                </p>
+              )}
+
+            </div>
+            <div>
+              <label className="font-light text-white text-xl">Precio</label>
+              <input
+                type="text"
+                name="price"
+                value={input.price}
+                onChange={(e) => handleChange(e)}
+                placeholder="Precio del producto"
+                className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-black placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
+              />
+              {errors.price && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.price}
+                </p>
+              )}
+
+            </div>
+            <div>
+              <label className="font-light text-white text-xl">Stock</label>
+              <input
+                type="text"
+                name="stock"
+                value={input.stock}
+                onChange={(e) => handleChange(e)}
+                placeholder="Stock del producto"
+                className="rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-black placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
+              />
+              {errors.stock && (
+                <p className="font-bold text-red-700 text-center p-2">
+                  {errors.stock}
                 </p>
               )}
 
