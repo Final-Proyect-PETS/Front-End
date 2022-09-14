@@ -47,7 +47,7 @@ export default function SearchBarProduct({ setCurrentPage }) {
                     type="text"
                     id="input-group-search"
                     class="block p-2 mt-2 pl-10 w-40 lg:w-56 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                    placeholder="Buscar..."
+                    placeholder="Buscar... (Producto o ciudad)"
                 />
             </div>
             <div className="mb-2 flex"></div>

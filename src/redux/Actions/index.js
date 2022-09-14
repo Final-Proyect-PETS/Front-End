@@ -802,4 +802,9 @@ export function getProductByName(name) {
     }
   }
 }
+export function resetProductDetails() {
+  return {
+    type: actions.CLEAR_PRODUCT_DETAIL
+  }
+}
 
