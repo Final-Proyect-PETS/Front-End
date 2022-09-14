@@ -794,7 +794,7 @@ export function getProductByName(name) {
     try {
       let json = await axios.get("https://happytails2.herokuapp.com/home/products?name=" + name)
       return dispatch({
-        type: actions.GET_PRODUCT_DETAIL,
+        type: actions.GET_PRODUCT_NAME,
         payload: json.data
       })
     } catch (error) {
