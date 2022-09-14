@@ -3,8 +3,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProductDetail } from "../../redux/Actions";
+
 import { notificationSwal } from "../../utils/notificationSwal";
+
+import { getProductDetail, resetProductDetails } from "../../redux/Actions";
+
 import NavBar from "../NavBar/NavBar";
 import { paymentMerp } from "../../redux/Actions";
 export default function ProductDetail() {
@@ -12,6 +15,7 @@ export default function ProductDetail() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(resetProductDetails());
     dispatch(getProductDetail(id));
   }, [dispatch]);
 
@@ -83,19 +87,21 @@ export default function ProductDetail() {
           <div className="w-1/2 flex justify-center items-center">
             <img src={product?.image} alt="" />
           </div>
-          <div className="w-1/2 h-full gap-6 lg:gap-0 flex flex-col items-center justify-around">
-            <h1 className="font-semibold text-white text-2xl">
-              {product?.name}
-            </h1>
-            <h1 className="font-semibold text-white text-2xl">
-              $ {product?.price}
-            </h1>
-            <h2 className="font-semibold text-white">{product?.description}</h2>
-            <h3 className="font-semibold text-gray-400">
-              {product?.stock} en stock
-            </h3>
+          <div className="w-full lg:w-1/3 border-l mt-10 lg:mt-0 border-yellow-400 flex flex-col items-center justify-around gap-10 lg:gap-0">
+            <h3 className="font-semibold text-white">En {product?.place}</h3>
+            <h2 className="font-semibold text-white">
+              Vendido por {product?.user[0]?.first_name}{" "}
+              {product?.user[0]?.last_name}
+            </h2>
+            <button className="py-2 w-1/2 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+              Comprar
+            </button>
+            <button className="py-2 w-1/2 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+              Añadir al carrito
+            </button>
           </div>
         </div>
+
         <div className="w-full lg:w-1/3 border-l mt-10 lg:mt-0 border-yellow-400 flex flex-col items-center justify-around gap-10 lg:gap-0">
           <h3 className="font-semibold text-white">En {product?.place}</h3>
           <h2 className="font-semibold text-white">

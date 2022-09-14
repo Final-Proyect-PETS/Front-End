@@ -368,7 +368,7 @@ export function paymentMerp(idBuyer, idProduct, quantity) {
       let json = await axios.get(
         `https://happytails2.herokuapp.com/linkpayment/market/${idBuyer}/${idProduct}/${quantity}`
       );
-      console.log(json.data,"DATA");
+      console.log(json.data, "DATA");
 
       return dispatch({
         type: actions.PAYMENT_MERP,
@@ -776,6 +776,7 @@ export function createProduct(id, payload) {
         `https://happytails2.herokuapp.com/home/product/${id}`,
         payload
       );
+
       dispatch({
         type: actions.CREATE_PRODUCT,
         payload: json.data,
@@ -807,5 +808,26 @@ export function getProductDetail(id) {
         dispatch({ type: actions.GET_PRODUCT_DETAIL, payload: json.data })
       )
       .catch((error) => console.log(error));
+  };
+}
+
+export function getProductByName(name) {
+  return async (dispatch) => {
+    try {
+      let json = await axios.get(
+        "https://happytails2.herokuapp.com/home/products?name=" + name
+      );
+      return dispatch({
+        type: actions.GET_PRODUCT_NAME,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+}
+export function resetProductDetails() {
+  return {
+    type: actions.CLEAR_PRODUCT_DETAIL,
   };
 }

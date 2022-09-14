@@ -52,7 +52,9 @@ export default function Market() {
       <NavBar />
       <div className="mt-14 flex w-screen h-screen justify-center">
         <div className="w-1/4">
-          <MarketSideBar />
+          <MarketSideBar
+            setCurrentPage={setCurrentPage}
+          />
         </div>
         <div className="w-3/4 flex flex-col gap-10">
           <div className="flex bg-red-200 h-screen pt-24 gap-10 flex-wrap">
