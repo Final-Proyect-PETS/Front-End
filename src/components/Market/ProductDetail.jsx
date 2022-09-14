@@ -19,14 +19,15 @@ export default function ProductDetail() {
   console.log(product, "aca");
 
   return (
-    <section className="flex flex-col h-full items-center">
+    Object.keys(product).length ? (
+      <section className="flex flex-col h-full items-center">
       <NavBar />
-      <div className="m-32 flex w-2/3 h-96 bg-yellow-800 rounded-lg ring-2 ring-yellow-600">
-        <div className="w-2/3 flex">
+      <div className="m-32 flex flex-col lg:flex lg:flex-row w-full lg:w-2/3 h-full lg:h-96 bg-yellow-800 rounded-lg ring-2 ring-yellow-600">
+        <div className="w-full lg:w-2/3 flex flex-col items-center lg:flex lg:flex-row">
           <div className="w-1/2 flex justify-center items-center">
             <img src={product?.image} alt="" />
           </div>
-          <div className="w-1/2 flex flex-col items-center justify-around">
+          <div className="w-1/2 h-full gap-6 lg:gap-0 flex flex-col items-center justify-around">
             <h1 className="font-semibold text-white text-2xl">
               {product?.name}
             </h1>
@@ -39,7 +40,7 @@ export default function ProductDetail() {
             </h3>
           </div>
         </div>
-        <div className="w-1/3 bg-red-500 flex flex-col items-center justify-around">
+        <div className="w-full lg:w-1/3 border-l mt-10 lg:mt-0 border-yellow-400 flex flex-col items-center justify-around gap-10 lg:gap-0">
           <h3 className="font-semibold text-white">En {product?.place}</h3>
           <h2 className="font-semibold text-white">
             Vendido por {product?.user[0]?.first_name} {product?.user[0]?.last_name}
@@ -53,5 +54,8 @@ export default function ProductDetail() {
         </div>
       </div>
     </section>
+    ) : (
+      <></>
+    )
   );
 }
