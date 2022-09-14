@@ -34,12 +34,15 @@ import Blog3 from "./components/Blogsito/Blog3";
 import MissingDataRequired from "./components/MissingDataRequired";
 import ReportPet from "./components/Reports/ReportPet";
 import ReportUser from "./components/Reports/ReportUser";
-import CreationForm from "./components/Market/CreationForm"
+import CreationForm from "./components/Market/CreationForm";
 import Market from "./components/Market/Market";
 import { getUserProfile, getAllUsers, getAllPets } from "./redux/Actions/index";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import ProductDetail from "./components/Market/ProductDetail";
+import PurcheaseSuccessful from "./components/Market/PurcheaseSuccessful";
+import PurcheaseCancelled from "./components/Market/PurcheaseCanceled";
+import PurcheasePending from "./components/Market/PurcheasePending";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -89,8 +92,17 @@ function App() {
             path={"/donationsuccessful"}
             element={<DonationSuccessful />}
           />
+          <Route
+            path={"/purcheasesuccessful"}
+            element={<PurcheaseSuccessful />}
+          />
           <Route path={"/donationcancelled"} element={<DonationCancelled />} />
+          <Route
+            path={"/purcheasecancelled"}
+            element={<PurcheaseCancelled />}
+          />
           <Route path={"/donationpending"} element={<DonationPending />} />
+          <Route path={"/purcheasepending"} element={<PurcheasePending />} />
           <Route path={"*"} element={<Error404 />} />
           <Route path={"/mydonations/:id"} element={<UserDonations />} />
           <Route path={"/blog"} element={<Blog />} />

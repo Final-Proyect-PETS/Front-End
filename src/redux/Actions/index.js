@@ -361,6 +361,24 @@ export function paymentMp(idDonor, amountDonation) {
     }
   };
 }
+export function paymentMerp(idBuyer, idProduct, quantity) {
+  console.log(idBuyer, idProduct, quantity);
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(
+        `https://happytails2.herokuapp.com/linkpayment/market/${idBuyer}/${idProduct}/${quantity}`
+      );
+      console.log(json.data,"DATA");
+
+      return dispatch({
+        type: actions.PAYMENT_MERP,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 ///////////////////////////NOTIFICATIONS-------------------
 export function notViewed(payload) {
@@ -751,23 +769,26 @@ export function getUserReportsSolved() {
   };
 }
 
-export function createProduct (id, payload) {
+export function createProduct(id, payload) {
   return async function (dispatch) {
     try {
-      let json = await axios.post(`https://happytails2.herokuapp.com/home/product/${id}`, payload);
-      dispatch ({
+      let json = await axios.post(
+        `https://happytails2.herokuapp.com/home/product/${id}`,
+        payload
+      );
+      dispatch({
         type: actions.CREATE_PRODUCT,
-        payload: json.data
-      })
+        payload: json.data,
+      });
       return "Producto creado correctamente";
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return "Error de server, no se pudo crear el producto, intente más tarde";
     }
-  }
+  };
 }
 
-export function getAllProducts () {
+export function getAllProducts() {
   return async (dispatch) => {
     return await axios
       .get("https://happytails2.herokuapp.com/home/products")
@@ -778,7 +799,7 @@ export function getAllProducts () {
   };
 }
 
-export function getProductDetail (id) {
+export function getProductDetail(id) {
   return async (dispatch) => {
     return await axios
       .get(`https://happytails2.herokuapp.com/home/products/${id}`)
@@ -788,4 +809,3 @@ export function getProductDetail (id) {
       .catch((error) => console.log(error));
   };
 }
-

@@ -25,9 +25,9 @@ export default function Donation() {
 
   function handleChange(e) {
     setInput({
-      ...input,
+      ...input,//22656
       [e.target.name]: e.target.value,
-    });
+    });//input setea estado local
   }
 
   function handleClick(e) {
@@ -74,10 +74,10 @@ export default function Donation() {
           break;
       }
     });
-  }
+  }//BOTONES DE ORDEN DE PAGO POR 200/300/500 NOSTAN
 
   function handleInput(e) {
-    e.preventDefault();
+    e.preventDefault();//se crea orden de pago
     if (input.name && Number(input.name) > 0) {
       setGenerating0(true);
       dispatch(paymentMp(user._id, input.name))

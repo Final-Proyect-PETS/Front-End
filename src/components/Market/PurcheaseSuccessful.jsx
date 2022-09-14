@@ -1,8 +1,8 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
-import "./Donations.css";
+import "./Market.css";
 
-export default function DonationSuccessful() {
+export default function PurcheaseSuccessful() {
   return (
     <>
       <div id="sucess-pay" className="fixed">
