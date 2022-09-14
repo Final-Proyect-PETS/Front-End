@@ -39,7 +39,6 @@ import Market from "./components/Market/Market";
 import { getUserProfile, getAllUsers, getAllPets } from "./redux/Actions/index";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import MarketHome from "./components/Marketplace/MarketHome";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -98,7 +97,7 @@ function App() {
           <Route path={"/blog/3"} element={<Blog3 />} />
           <Route path={"/reportpet"} element={<ReportPet />} />
           <Route path={"/reportuser"} element={<ReportUser />} />
-          <Route path={"/market"} element={<MarketHome />} />
+          {/* <Route path={"/market"} element={<MarketHome />} /> */}
         </Route>
         <Route element={<PrivateAdmin />}>
           <Route path={"/admin"} element={<AdminView />} />
