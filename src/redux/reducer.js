@@ -9,6 +9,7 @@ const initialState = {
   token: null,
   userProfile: [], //usuario loggeado
   payment: {},
+  paymentmer:{},
   tradePet: [], //mascota que se vá
   notification: [], //campanita
   conversations: [],
@@ -191,6 +192,14 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         payment: payload,
       };
+    case actions.PAYMENT_MERP:
+      return {
+        ...state,
+        paymentmer: payload,
+      };
+
+
+
     case actions.INTERESTED_USERS:
       return {
         ...state,

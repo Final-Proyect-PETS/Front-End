@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/Actions";
 import NavBar from "../NavBar/NavBar";
 import ProductCard from "./ProductCard";
+
+import FooterComponent from "../FooterComponent";
+
 import { Link } from "react-router-dom";
 import Paginate from "./Paginate";
 import { useState } from "react";

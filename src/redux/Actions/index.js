@@ -361,6 +361,24 @@ export function paymentMp(idDonor, amountDonation) {
     }
   };
 }
+export function paymentMerp(idBuyer, idProduct, quantity) {
+  console.log(idBuyer, idProduct, quantity);
+  return async function (dispatch) {
+    try {
+      let json = await axios.get(
+        `https://happytails2.herokuapp.com/linkpayment/market/${idBuyer}/${idProduct}/${quantity}`
+      );
+      console.log(json.data, "DATA");
+
+      return dispatch({
+        type: actions.PAYMENT_MERP,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 ///////////////////////////NOTIFICATIONS-------------------
 export function notViewed(payload) {
@@ -754,17 +772,21 @@ export function getUserReportsSolved() {
 export function createProduct(id, payload) {
   return async function (dispatch) {
     try {
-      let json = await axios.post(`https://happytails2.herokuapp.com/home/product/${id}`, payload);
+      let json = await axios.post(
+        `https://happytails2.herokuapp.com/home/product/${id}`,
+        payload
+      );
+
       dispatch({
         type: actions.CREATE_PRODUCT,
-        payload: json.data
-      })
+        payload: json.data,
+      });
       return "Producto creado correctamente";
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return "Error de server, no se pudo crear el producto, intente más tarde";
     }
-  }
+  };
 }
 
 export function getAllProducts() {
@@ -792,19 +814,20 @@ export function getProductDetail(id) {
 export function getProductByName(name) {
   return async (dispatch) => {
     try {
-      let json = await axios.get("https://happytails2.herokuapp.com/home/products?name=" + name)
+      let json = await axios.get(
+        "https://happytails2.herokuapp.com/home/products?name=" + name
+      );
       return dispatch({
         type: actions.GET_PRODUCT_NAME,
-        payload: json.data
-      })
+        payload: json.data,
+      });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 }
 export function resetProductDetails() {
   return {
-    type: actions.CLEAR_PRODUCT_DETAIL
-  }
+    type: actions.CLEAR_PRODUCT_DETAIL,
+  };
 }
-
