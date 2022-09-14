@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/Actions";
 import NavBar from "../NavBar/NavBar";
 import ProductCard from "./ProductCard";
+
 import FooterComponent from "../FooterComponent"
+
+import { Link } from "react-router-dom";
+
 
 export default function Market() {
   const dispatch = useDispatch();
@@ -15,17 +19,21 @@ export default function Market() {
     dispatch(getAllProducts());
   }, [dispatch]);
 
+  console.log(products)
+
   return (
     <div className="flex flex-col justify-between">
       <NavBar />
       <div className="w-full flex bg-red-200 pt-24 gap-10 ">
         {products?.map((d) => (
+            <Link to={"/market/product/" + d._id}>
           <ProductCard
             name={d.name}
             image={d.image}
             price={d.price}
             stock={d.stock}
           />
+            </Link>
         ))}
       </div>
       <FooterComponent/>
