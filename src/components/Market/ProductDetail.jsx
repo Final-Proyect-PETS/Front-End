@@ -16,8 +16,6 @@ export default function ProductDetail() {
     dispatch(getProductDetail(id));
   }, [dispatch]);
 
-  console.log(product, "aca");
-
   return (
     Object.keys(product).length ? (
       <section className="flex flex-col h-full items-center">
