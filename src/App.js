@@ -39,6 +39,7 @@ import Market from "./components/Market/Market";
 import { getUserProfile, getAllUsers, getAllPets } from "./redux/Actions/index";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import ProductDetail from "./components/Market/ProductDetail";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -81,6 +82,7 @@ function App() {
           <Route path={"/adopt/:id"} element={<AdoptForm />} />
           <Route path={"/market"} element={<Market />} />
           <Route path={"/market/create"} element={<CreationForm />} />
+          <Route path={"/market/product/:id"} element={<ProductDetail />} />
           <Route path={"/chat"} element={<Chat />} />
           <Route path={"/donations"} element={<Donation />} />
           <Route
