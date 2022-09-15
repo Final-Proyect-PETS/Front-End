@@ -865,6 +865,14 @@ export function addCar(payload) {
   };
 }
 
+export function delProductCart(payload) {
+  return {
+    type: actions.DEL_PRODUCT_CART,
+    payload: payload,
+
+  };
+}
+
 export function filtrosMarket(filterParamsMarket){
   return async function (dispatch) {
     let json = await axios.get(
@@ -874,5 +882,5 @@ export function filtrosMarket(filterParamsMarket){
       type: actions.FILTROS_MARKET,
       payload: json.data,
     });
-  };
+  }
 }

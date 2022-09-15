@@ -92,11 +92,8 @@ export default function MarketSideBar({ setCurrentPage }) {
 } 
 
     return (
-        <nav className="w-full h-full flex flex-col items-center justify-around bg-yellow-700">
-            <div>
-                <h1 className="text-2xl text-white font-semibold">MarketPlace</h1>
-            </div>
-            <div>
+        <nav className="w-screen  h-30 flex lg:flex-row pt-14 items-center justify-around bg-yellow-500">
+            <div className="flex flex-col lg:flex-row justify-center items-center">
                 <SearchBarProduct
                     setCurrentPage={setCurrentPage}
                 />

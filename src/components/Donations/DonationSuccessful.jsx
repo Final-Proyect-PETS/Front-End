@@ -7,6 +7,7 @@ export default function DonationSuccessful() {
     <>
       <div id="sucess-pay" className="fixed">
         <NavBar />
+        
       </div>
     </>
   );
