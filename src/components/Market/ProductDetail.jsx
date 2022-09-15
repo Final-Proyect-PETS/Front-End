@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import { notificationSwal } from "../../utils/notificationSwal";
-
+import cartmas from "../../assets/images/cartmas.png";
 import { getProductDetail, resetProductDetails } from "../../redux/Actions";
 
 import NavBar from "../NavBar/NavBar";
@@ -22,13 +22,13 @@ export default function ProductDetail() {
 
   const product = useSelector((state) => state.productDetail);
 
-  const carrr = useSelector((state) => state.carrito)
+  const carrr = useSelector((state) => state.carrito);
 
   //PARTE DE PAGO---------------------
   const user = useSelector((state) => state.userProfile);
   const [input, setInput] = useState(1);
   const [generating0, setGenerating0] = useState(false);
-  const [carrito, setCarrito] = useState({})
+  const [carrito, setCarrito] = useState({});
 
   function handleAmmount(e) {
     console.log("click");
@@ -37,16 +37,16 @@ export default function ProductDetail() {
     //input setea estado local
   }
 
-  const pro = []
+  const pro = [];
 
   function handleCar(e) {
-    dispatch(addCar({product: product, quantity: input}))
-    localStorage.setItem("carrito", JSON.stringify(carrr))
+    dispatch(addCar({ product: product, quantity: input }));
+    localStorage.setItem("carrito", JSON.stringify(carrr));
   }
 
-  const que = localStorage.getItem("carrito")
+  const que = localStorage.getItem("carrito");
 
-  console.log(que, "asd")
+  console.log(que, "asd");
 
   function handleInput(e) {
     e.preventDefault(); //se crea orden de pago
@@ -122,35 +122,49 @@ export default function ProductDetail() {
             {product?.user[0]?.last_name}
           </h2>
 
-          <input
-            onChange={(e) => handleAmmount(e)}
-            type="number"
-            placeholder="1"
-            min="1"
-            max={product?.stock}
-            className="py-2 w-20 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-          />
-
           <div className="flex items-center mb-6 -mt-4 w-full">
-            <button
-              type="submit"
-              className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg flex items-center justify-center ml-2"
-              onClick={(e) => handleInput(e)}
-            >
-              Comprar
-            </button>
-            <p className="text-xl text-gray-800 font-normal text-center">
-              {generating0 ? "Generando orden..." : null}
-            </p>
-            <form id="form0" className="place-self-center pl-2"></form>
-          </div>
-
-          <button onClick={(e) => handleCar(e)} className="py-2 w-1/2 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-            Añadir al carrito
+            <input
+              onChange={(e) => handleAmmount(e)}
+              type="number"
+              placeholder="Cantidad"
+              min="1"
+              max={product?.stock}
+              className="py-2 w-56 px-4 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-black font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            />
+          <button
+            type="submit"
+            className="py-2 px-4 w-full bg-yellow-900 hover:bg-green-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg flex items-center justify-center ml-2"
+            onClick={(e) => handleInput(e)}
+          >
+            Comprar
           </button>
+          <p className="text-xl text-gray-800 font-normal text-center">
+            {generating0 ? "Generando orden..." : null}
+          </p>
+          <form id="form0" className="place-self-center pl-2"></form>
+          </div>
+            <button
+              onClick={(e) => handleCar(e)}
+              className="py-2 w-full justify-center items-center flex px-4 bg-yellow-600 hover:bg-yellow-500 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            >
+              Añadir al carrito{" "}
+              <img
+                src={cartmas}
+                alt=""
+                className="lg:w-14 h-6 lg:w-10 lg:h-10 lg:t-4 flex justify-end"
+              />
+            </button>
         </div>
       </div>
-      <FooterComponent/>
+        <Link to={"/market"}>
+          <button
+            type="submit"
+            className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-500 focus:ring-yellow-500 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg flex items-center justify-center mb-4"
+          >
+            Volver atras
+          </button>
+        </Link>
+      <FooterComponent />
     </section>
   ) : (
     <></>
