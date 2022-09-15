@@ -32,6 +32,7 @@ import perronaranja from "../../assets/images/perronaranja.png";
 import cachita from "../../assets/images/carpi.png";
 import amarillobaño from "../../assets/images/amarillobaño.png";
 import paradonar from "../../assets/images/paradonar.jpg";
+import market from "../../assets/images/marketplace.png";
 import carpi from "../../assets/images/cachita.png";
 import diamantepaw from "../../assets/images/diamantepaw.gif";
 import goldenpaw from "../../assets/images/goldenpaw.gif";
@@ -53,7 +54,7 @@ export default function Blog() {
     dispatch(getAllPets());
     dispatch(getUserProfile(id));
   }, [dispatch, id]);
-  
+
   const allUsers = useSelector((state) => state.users);
   const allPets = useSelector((state) => state.pets);
   const loggedUser = useSelector((state) => state.userProfile);
@@ -61,7 +62,7 @@ export default function Blog() {
   const donator = allUsers.filter((user) => user?.donations?.length >= 1);
   const adopted = allPets.filter((pet) => pet?.isAdopted === true);
   const blogger = allUsers.filter((user) => user?.blogmessage?.length >= 1);
-  
+
   const [input, setInput] = useState();
   const [random, setRandom] = useState(Math.random());
 
@@ -88,11 +89,8 @@ export default function Blog() {
   let ranking4likes = rankingPets[rankingPets?.length - 4];
   let ranking5likes = rankingPets[rankingPets?.length - 5];
 
-
-
   function handleChange(e) {
     setInput(e.target.value);
- 
   }
   function onSubmitHandler(e) {
     let payload = {
@@ -115,6 +113,9 @@ export default function Blog() {
         {/* MAIN CARROUSEL------------------------------------------------------------------------------------------- */}
         <div className="h-40 lg:h-3/4 w-full bg-yellow-900  flex justify-center ">
           <Carousel>
+            <a href="https://happytails.vercel.app/market">
+              <img alt="blog" src={market} className="w-screen" />
+            </a>
             <a href="https://happytails.vercel.app/home">
               <img alt="blog" src={perronaranja} className="w-screen" />
             </a>
