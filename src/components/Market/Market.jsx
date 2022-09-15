@@ -49,7 +49,7 @@ export default function Market() {
   const CurrentCards = products.slice(IndexFirstCard, IndexLastCard);
 
   return (
-    <section className="flex flex-col h-screen">
+    <section className="flex flex-col h-screen justify-between">
       <NavBar />
       <div className="mt-14 flex w-screen h-screen justify-center">
         <div className="w-1/4">
@@ -85,6 +85,7 @@ export default function Market() {
           lastPag={lastPage}
         ></Paginate>
       </div>
+      <FooterComponent/>
     </section>
   );
 }
