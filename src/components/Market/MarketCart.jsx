@@ -13,10 +13,8 @@ export default function MarketCart() {
 
   const pro = JSON.parse(products);
 
-  console.log(pro);
-
   const user = useSelector((state) => state.userProfile);
-
+  const idBuyer = user._id;
   const [generating0, setGenerating0] = useState(false);
 
   function handleInput(e) {
@@ -26,7 +24,7 @@ export default function MarketCart() {
     // });
     if (pro.length > 0) {
       setGenerating0(true);
-      dispatch(paymentCart(user._id, pro))
+      dispatch(paymentCart(idBuyer, pro))
         .then((payment) => {
           console.log(payment, "PAYMENT");
           const script = document.createElement("script");

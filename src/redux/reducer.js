@@ -10,6 +10,7 @@ const initialState = {
   userProfile: [], //usuario loggeado
   payment: {},
   paymentmer:{},
+  paymentcart:{},
   tradePet: [], //mascota que se vá
   notification: [], //campanita
   conversations: [],
@@ -206,10 +207,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case actions.PAYMENT_CART:
       return {
         ...state,
-        paymentmer: payload,//este puede ser algun drama
+        paymentcart: payload,//este puede ser algun drama
       };
-
-
 
     case actions.INTERESTED_USERS:
       return {
