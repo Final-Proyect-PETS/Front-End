@@ -4,16 +4,16 @@ import ProductCard from "./ProductCard";
 import { useState } from "react";
 import { notificationSwal } from "../../utils/notificationSwal";
 import { useDispatch, useSelector } from "react-redux";
+import { paymentCart } from "../../redux/Actions";
 
 export default function MarketCart() {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
-    
   const products = localStorage.getItem("carrito");
 
   const pro = JSON.parse(products);
 
-  
+  console.log(pro);
 
   const user = useSelector((state) => state.userProfile);
 
@@ -75,7 +75,15 @@ export default function MarketCart() {
           </div>
           <div className="flex flex-col gap-10">
             {pro?.map((d) => (
-              <ProductCard name={d.name} image={d.image} price={d.price} stock={d.stock}/>
+              <>
+                <ProductCard
+                  name={d.product.name}
+                  image={d.product.image}
+                  price={d.product.price}
+                  stock={d.product.stock}
+                  quantity={d.quantity}
+                />
+              </>
             ))}
           </div>
           <div className="flex items-center mb-6 -mt-4 w-full">
