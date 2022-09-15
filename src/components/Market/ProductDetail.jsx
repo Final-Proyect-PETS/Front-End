@@ -10,6 +10,7 @@ import { getProductDetail, resetProductDetails } from "../../redux/Actions";
 
 import NavBar from "../NavBar/NavBar";
 import { paymentMerp, addCar } from "../../redux/Actions";
+import FooterComponent from "../FooterComponent";
 export default function ProductDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -94,7 +95,7 @@ export default function ProductDetail() {
   }
   //----------------------------------
   return Object.keys(product).length ? (
-    <section className="flex flex-col h-full items-center">
+    <section className="flex flex-col h-screen items-center justify-between">
       <NavBar />
       <div className="m-32 flex flex-col lg:flex lg:flex-row w-full lg:w-2/3 h-full lg:h-96 bg-yellow-800 rounded-lg ring-2 ring-yellow-600">
         <div className="w-full lg:w-2/3 flex flex-col items-center lg:flex lg:flex-row">
@@ -149,6 +150,7 @@ export default function ProductDetail() {
           </button>
         </div>
       </div>
+      <FooterComponent/>
     </section>
   ) : (
     <></>

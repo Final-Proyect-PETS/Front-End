@@ -5,6 +5,7 @@ import { useState } from "react";
 import { notificationSwal } from "../../utils/notificationSwal";
 import { useDispatch, useSelector } from "react-redux";
 import { paymentCart } from "../../redux/Actions";
+import FooterComponent from "../FooterComponent"
 
 export default function MarketCart() {
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ export default function MarketCart() {
   }
 
   return (
-    <>
+    <div className=" h-screen flex flex-col justify-between">
       <NavBar />
       <section className="w-full h-full flex flex-col items-center">
         <div className="pt-24 flex flex-col justify-center items-center gap-10">
@@ -99,6 +100,7 @@ export default function MarketCart() {
           </div>
         </div>
       </section>
-    </>
+      <FooterComponent/>
+    </div>
   );
 }

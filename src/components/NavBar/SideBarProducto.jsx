@@ -265,7 +265,7 @@ export default function SideBarProducto() {
 
 
           
-          <Link to="/petregister">
+          <Link to="/market/create">
             <img
               src={add}
               alt="imagen de pet"
