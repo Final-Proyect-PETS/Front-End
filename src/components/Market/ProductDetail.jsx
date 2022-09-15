@@ -23,7 +23,7 @@ export default function ProductDetail() {
 
   //PARTE DE PAGO---------------------
   const user = useSelector((state) => state.userProfile);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(1);
   const [generating0, setGenerating0] = useState(false);
 
   function handleAmmount(e) {
@@ -110,19 +110,9 @@ export default function ProductDetail() {
           <input
             onChange={(e) => handleAmmount(e)}
             type="number"
-            disable={input > product?.stock.length} //55   55
             placeholder="1"
             min="1"
             max={product?.stock}
-            className="py-2 w-20 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-          />
-          <input
-            type="text"
-            inputmode="numeric"
-            maxLength={product?.stock.length}
-            min="1"
-            max={product?.stock}
-            pattern="\d*"
             className="py-2 w-20 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
           />
 
