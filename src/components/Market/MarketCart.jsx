@@ -4,19 +4,36 @@ import ProductCard from "./ProductCard";
 import { useState } from "react";
 import { notificationSwal } from "../../utils/notificationSwal";
 import { useDispatch, useSelector } from "react-redux";
-import { paymentCart } from "../../redux/Actions";
+import { delProductCart, paymentCart } from "../../redux/Actions";
 import FooterComponent from "../FooterComponent"
 
 export default function MarketCart() {
+
   const dispatch = useDispatch();
 
   const products = localStorage.getItem("carrito");
 
   const pro = JSON.parse(products);
 
+  const carrr = useSelector((state) => state.carrito)
+
   const user = useSelector((state) => state.userProfile);
   const idBuyer = user._id;
   const [generating0, setGenerating0] = useState(false);
+
+  function handleDelCart(e) {
+    localStorage.removeItem("carrito")
+  }
+
+  function handleDeleteItem(d) {
+    dispatch(delProductCart(d)).then(() => localStorage.setItem("carrito", JSON.stringify(carrr)))
+    // localStorage.setItem("carrito", JSON.stringify(carrr))
+    console.log(d)
+  }
+
+  const prueba = localStorage.getItem("carrito")
+
+  const prueba2 = JSON.parse(prueba)
 
   function handleInput(e) {
     e.preventDefault(); //se crea orden de pago
@@ -65,7 +82,7 @@ export default function MarketCart() {
   }
 
   return (
-    <div className=" h-screen flex flex-col justify-between">
+    <div className="h-screen flex flex-col justify-between">
       <NavBar />
       <section className="w-full h-full flex flex-col items-center">
         <div className="pt-24 flex flex-col justify-center items-center gap-10">
@@ -73,7 +90,7 @@ export default function MarketCart() {
             <h1>Carrito</h1>
           </div>
           <div className="flex flex-col gap-10">
-            {pro?.map((d) => (
+            {prueba2?.map((d) => (
               <>
                 <ProductCard
                   name={d.product.name}
@@ -82,6 +99,7 @@ export default function MarketCart() {
                   stock={d.product.stock}
                   quantity={d.quantity}
                 />
+                <button key={d.key} onClick={() => handleDeleteItem(d)}>X</button>
               </>
             ))}
           </div>
@@ -97,6 +115,15 @@ export default function MarketCart() {
               {generating0 ? "Generando orden..." : null}
             </p>
             <form id="form0" className="place-self-center pl-2"></form>
+          </div>
+          <div>
+          <button
+              type="submit"
+              className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg flex items-center justify-center ml-2"
+              onClick={(e) => handleDelCart(e)}
+            >
+              Borrar carrito
+            </button>
           </div>
         </div>
       </section>

@@ -41,6 +41,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         carrito: [...state.carrito, payload],
       }
+    case actions.DEL_PRODUCT_CART:
+      console.log(payload, "REDUCER")
+      return {
+        ...state,
+        carrito: state.carrito.filter((d) => d.product._id !== payload.product._id)
+      }
 
     //GET ALL
     case actions.GET_ALL_PETS:
