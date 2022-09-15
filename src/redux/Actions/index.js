@@ -381,17 +381,19 @@ export function paymentMerp(idBuyer, idProduct, quantity) {
   };
 }
 
-export function paymentCart(idBuyer, products) {
+export function paymentCart(idBuyer, pro) {
   //product es un array de objetos? como lo mando por body en un get?
-//  {prod: {name,stock....}, 
-//  quantity: 2}
+  //  {prod: {name,stock....},
+  //  quantity: 2}
 
-  console.log(idBuyer, products);
+  console.log(idBuyer, pro);
   return async function (dispatch) {
     try {
-      let json = await axios.get(
-        `https://happytails2.herokuapp.com/linkpayment/market/cart/${idBuyer}`,products
+      let json = await axios.post(
+        `https://happytails2.herokuapp.com/linkpayment/${idBuyer}`,
+        pro
       );
+
       console.log(json.data, "DATA");
 
       return dispatch({
@@ -856,9 +858,9 @@ export function resetProductDetails() {
   };
 }
 
-export function addCar (payload) {
+export function addCar(payload) {
   return {
     type: actions.ADD_CAR,
-    payload: payload
-  }
+    payload: payload,
+  };
 }
