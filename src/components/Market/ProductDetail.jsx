@@ -113,7 +113,7 @@ export default function ProductDetail() {
             placeholder="1"
             min="1"
             max={product?.stock}
-            maxLength="4"
+            maxlength={product?.stock.length}
             className="py-2 w-20 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
           />
 
