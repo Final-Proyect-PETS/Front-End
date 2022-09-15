@@ -43,6 +43,7 @@ import ProductDetail from "./components/Market/ProductDetail";
 import PurcheaseSuccessful from "./components/Market/PurcheaseSuccessful";
 import PurcheaseCancelled from "./components/Market/PurcheaseCanceled";
 import PurcheasePending from "./components/Market/PurcheasePending";
+import MarketCart from "./components/Market/MarketCart"
 
 function App() {
   const token = localStorage.getItem("token");
@@ -100,6 +101,10 @@ function App() {
           <Route
             path={"/purcheasecancelled"}
             element={<PurcheaseCancelled />}
+          />
+          <Route
+            path={"/market/cart"}
+            element={<MarketCart />}
           />
           <Route path={"/donationpending"} element={<DonationPending />} />
           <Route path={"/purcheasepending"} element={<PurcheasePending />} />

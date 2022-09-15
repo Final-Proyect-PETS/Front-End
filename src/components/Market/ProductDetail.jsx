@@ -9,7 +9,7 @@ import { notificationSwal } from "../../utils/notificationSwal";
 import { getProductDetail, resetProductDetails } from "../../redux/Actions";
 
 import NavBar from "../NavBar/NavBar";
-import { paymentMerp } from "../../redux/Actions";
+import { paymentMerp, addCar } from "../../redux/Actions";
 export default function ProductDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -21,10 +21,13 @@ export default function ProductDetail() {
 
   const product = useSelector((state) => state.productDetail);
 
+  const carrr = useSelector((state) => state.carrito)
+
   //PARTE DE PAGO---------------------
   const user = useSelector((state) => state.userProfile);
   const [input, setInput] = useState("");
   const [generating0, setGenerating0] = useState(false);
+  const [carrito, setCarrito] = useState({})
 
   function handleAmmount(e) {
     console.log("click");
@@ -32,6 +35,17 @@ export default function ProductDetail() {
     setInput(e.target.value);
     //input setea estado local
   }
+
+  const pro = []
+
+  function handleCar(e) {
+    dispatch(addCar({product: product, quantity: input}))
+    localStorage.setItem("carrito", JSON.stringify(carrr))
+  }
+
+  const que = localStorage.getItem("carrito")
+
+  console.log(que, "asd")
 
   function handleInput(e) {
     e.preventDefault(); //se crea orden de pago
@@ -131,7 +145,7 @@ export default function ProductDetail() {
             <form id="form0" className="place-self-center pl-2"></form>
           </div>
 
-          <button className="py-2 w-1/2 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+          <button onClick={(e) => handleCar(e)} className="py-2 w-1/2 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
             Añadir al carrito
           </button>
         </div>
