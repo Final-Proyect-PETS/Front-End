@@ -4,9 +4,9 @@ import { filtrosMarket } from "../../redux/Actions/index.js";
 import SearchBarProduct from "../SearchBars/SearchBarProduct.jsx"
 
 
+
 export default function MarketSideBar({ setCurrentPage }) {
     const dispatch = useDispatch()
-
     const allProducts = useSelector((state) => state.copyPorductsAll);
     const [resetFilters, setResetFiltersMarket] = useState("false");
     const [filterParamsMarket, setFilterParamsMarket] = useState({
@@ -67,7 +67,8 @@ export default function MarketSideBar({ setCurrentPage }) {
   function handlerMax(ev) {
     setFilterParamsMarket({
         ...filterParamsMarket,
-        priceMax: ev.target.value
+        priceMax: ev.target.value,
+
     })
   }
 
@@ -78,17 +79,8 @@ export default function MarketSideBar({ setCurrentPage }) {
     })
   }
  function handlerButton(ev){
-    
-    dispatch(
-        filtrosMarket({
-        ...filterParamsMarket,
-        priceMax: ev.target.value,
-      },
-      filtrosMarket({
-        ...filterParamsMarket,
-        priceMin: ev.target.value,
-      })
-        ))
+    ev.preventDefault()
+    dispatch(filtrosMarket(filterParamsMarket))
 } 
 
     return (
@@ -111,15 +103,16 @@ export default function MarketSideBar({ setCurrentPage }) {
                 <option value="gato">Gatos</option>
                 <option value="otro">Otros</option>
             </select>
-            <from type = "submit">
+            <form onSubmit = {(ev) => handlerButton(ev)}>
             <div>
                 <input onChange={(ev) => handlerMin(ev)} value={filterParamsMarket.priceMin} type="number" placeholder="Precio Minimo"/>
             </div>
             <div>
                 <input onChange={(ev) => handlerMax(ev)} value={filterParamsMarket.priceMax} type="number" placeholder="Precio Maximo"/>
+           {/*      {filterParamsMarket.priceMin > filterParamsMarket.priceMax && filterParamsMarket.priceMax !== null?<p>Valores invalidos</p>:<></>} */}
             </div>
-             <button onClick={(ev) => handlerButton(ev)}>Buscar</button> 
-            </from>
+             <button type="submit">Buscar</button>    
+            </form>
         </nav>
     )
 }
