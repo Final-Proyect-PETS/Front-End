@@ -864,3 +864,10 @@ export function addCar(payload) {
     payload: payload,
   };
 }
+
+export function delProductCart(payload) {
+  return {
+    type: actions.DEL_PRODUCT_CART,
+    payload: payload,
+  };
+}
