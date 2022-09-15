@@ -10,11 +10,11 @@ export default function ProductCard({
   quantity,
 }) {
   return (
-    <div className="flex rounded-lg border shadow-md">
+    <div className="flex rounded-lg border shadow-md h-56">
       <img
         src={image}
         alt=""
-        className="w-48 rounded-lg rounded-t-lg lg:h-auto lg:rounded-none lg:rounded-l-lg"
+        className="object-cover w-48 h-auto rounded-lg rounded-t-lg lg:h-auto lg:rounded-none lg:rounded-l-lg"
       />
       <div className="w-60 bg-white border-l flex flex-col justify-around pl-5">
         <h1 className="text-xl font-semibold">

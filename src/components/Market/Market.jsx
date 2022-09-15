@@ -49,15 +49,14 @@ export default function Market() {
   const CurrentCards = products.slice(IndexFirstCard, IndexLastCard);
 
   return (
-    <section className="flex flex-col h-full">
+    <section className="flex flex-col h-screen">
       <NavBar />
-      <SideBarProducto />
       <div className="mt-14 flex w-screen h-screen justify-center">
         <div className="w-1/4">
           <MarketSideBar setCurrentPage={setCurrentPage} />
         </div>
         <div className="w-3/4 flex flex-col gap-10">
-          <div className="flex bg-red-200 h-screen pt-24 gap-10 flex-wrap">
+          <div className="flex pt-24 gap-10 flex-wrap">
             {CurrentCards?.map((d) => (
               <Link to={"/market/product/" + d._id}>
                 <ProductCard
@@ -69,19 +68,22 @@ export default function Market() {
               </Link>
             ))}
           </div>
-          <div className="flex justify-center">
-            <Paginate
-              CardsPerPage={CardsPerPage}
-              products={products.length}
-              CurrentPag={CurrentPag}
-              setCurrentPage={setCurrentPage}
-              firstPag={firstPag}
-              prevPag={prevPag}
-              nextPag={nextPag}
-              lastPag={lastPage}
-            ></Paginate>
-          </div>
         </div>
+        <div className="w-1/4 flex flex-col justify-center items-center">
+          <SideBarProducto />
+        </div>
+      </div>
+      <div className="flex justify-center mt-24">
+        <Paginate
+          CardsPerPage={CardsPerPage}
+          products={products.length}
+          CurrentPag={CurrentPag}
+          setCurrentPage={setCurrentPage}
+          firstPag={firstPag}
+          prevPag={prevPag}
+          nextPag={nextPag}
+          lastPag={lastPage}
+        ></Paginate>
       </div>
     </section>
   );
