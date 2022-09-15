@@ -390,7 +390,9 @@ export function paymentCart(idBuyer, products) {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        `https://happytails2.herokuapp.com/linkpayment/cartagit/${idBuyer}`
+
+        `https://happytails2.herokuapp.com/linkpayment/${idBuyer}`,products
+
       );
       console.log(json.data, "DATA");
 
