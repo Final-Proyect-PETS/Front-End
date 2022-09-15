@@ -120,6 +120,7 @@ export default function ProductDetail() {
           <div className="flex items-center mb-6 -mt-4 w-full">
             <button
               type="submit"
+              disable={input > product?.stock.length} //55   55
               className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg flex items-center justify-center ml-2"
               onClick={(e) => handleInput(e)}
             >
