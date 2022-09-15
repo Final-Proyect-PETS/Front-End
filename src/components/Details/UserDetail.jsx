@@ -342,6 +342,11 @@ export default function UserDetail() {
                       Traspaso de mascotas
                     </button>
                   </Link>
+                  <Link to="/petregister">
+                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                      Crear mascota
+                    </button>
+                  </Link>
                   <Link to="/market/create">
                     <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                       Crear articulo
@@ -370,8 +375,8 @@ export default function UserDetail() {
               </button>
             ) : null}
             {loggedUser?.isAdmin &&
-              userDetail?.isAdmin &&
-              loggedUser?._id !== userDetail?._id ? (
+            userDetail?.isAdmin &&
+            loggedUser?._id !== userDetail?._id ? (
               <button
                 onClick={() => {
                   handleAdminUnset(userDetail._id);
@@ -405,7 +410,10 @@ export default function UserDetail() {
               Mascotas del usuario
             </h3>
           </div>
-          <div id="editPet" className="flex flex-col lg:flex-row place-content-center">
+          <div
+            id="editPet"
+            className="flex flex-col lg:flex-row place-content-center"
+          >
             {userDetail?.pets?.length ? (
               userDetail?.pets.map((pets) => (
                 <OwnedPet
