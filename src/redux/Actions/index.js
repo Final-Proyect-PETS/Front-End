@@ -869,5 +869,18 @@ export function delProductCart(payload) {
   return {
     type: actions.DEL_PRODUCT_CART,
     payload: payload,
+
   };
+}
+
+export function filtrosMarket(filterParamsMarket){
+  return async function (dispatch) {
+    let json = await axios.get(
+      `https://happytails2.herokuapp.com/home/productsFilters?type=${filterParamsMarket.type}&category=${filterParamsMarket.category}&priceMin=${filterParamsMarket.priceMin}&priceMax=${filterParamsMarket.priceMax}`
+    );
+    return dispatch({
+      type: actions.FILTROS_MARKET,
+      payload: json.data,
+    });
+  }
 }

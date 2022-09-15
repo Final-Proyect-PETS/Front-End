@@ -24,6 +24,7 @@ const initialState = {
   deletedUserReports: [],
   products: [],
   productDetail: [],
+  copyPorductsAll: [],
   query: "",
   carrito: [],
 };
@@ -63,6 +64,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         products: payload,
+        copyPorductsAll: payload,
       }
 
     //GET BY NAME
@@ -173,6 +175,18 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         pets: payload,
+        query: "",
+      };
+      case actions.FILTROS_MARKET:
+      if (payload.length === 0) {
+        return {
+          ...state,
+          query: "empty",
+        };
+      }
+      return {
+        ...state,
+        products: payload,
         query: "",
       };
     //LOGIN
@@ -318,6 +332,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         deletedUserReports: payload,
       };
+    
     default:
       return state;
   }
