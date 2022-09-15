@@ -110,17 +110,25 @@ export default function ProductDetail() {
           <input
             onChange={(e) => handleAmmount(e)}
             type="number"
+            disable={input > product?.stock.length} //55   55
             placeholder="1"
             min="1"
             max={product?.stock}
-            maxlength={product?.stock.length}
+            className="py-2 w-20 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+          />
+          <input
+            type="text"
+            inputmode="numeric"
+            maxLength={product?.stock.length}
+            min="1"
+            max={product?.stock}
+            pattern="\d*"
             className="py-2 w-20 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
           />
 
           <div className="flex items-center mb-6 -mt-4 w-full">
             <button
               type="submit"
-              disable={input > product?.stock.length} //55   55
               className="py-2 px-4 w-full bg-yellow-900 hover:bg-yellow-800 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg flex items-center justify-center ml-2"
               onClick={(e) => handleInput(e)}
             >
