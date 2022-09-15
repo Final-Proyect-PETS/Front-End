@@ -87,21 +87,19 @@ export default function ProductDetail() {
           <div className="w-1/2 flex justify-center items-center">
             <img src={product?.image} alt="" />
           </div>
-          <div className="w-full lg:w-1/3 border-l mt-10 lg:mt-0 border-yellow-400 flex flex-col items-center justify-around gap-10 lg:gap-0">
-            <h3 className="font-semibold text-white">En {product?.place}</h3>
-            <h2 className="font-semibold text-white">
-              Vendido por {product?.user[0]?.first_name}{" "}
-              {product?.user[0]?.last_name}
-            </h2>
-            <button className="py-2 w-1/2 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-              Comprar
-            </button>
-            <button className="py-2 w-1/2 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-              Añadir al carrito
-            </button>
+          <div className="w-1/2 h-full gap-6 lg:gap-0 flex flex-col items-center justify-around">
+            <h1 className="font-semibold text-white text-2xl">
+              {product?.name}
+            </h1>
+            <h1 className="font-semibold text-white text-2xl">
+              $ {product?.price}
+            </h1>
+            <h2 className="font-semibold text-white">{product?.description}</h2>
+            <h3 className="font-semibold text-gray-400">
+              {product?.stock} unidades disponibles.
+            </h3>
           </div>
         </div>
-
         <div className="w-full lg:w-1/3 border-l mt-10 lg:mt-0 border-yellow-400 flex flex-col items-center justify-around gap-10 lg:gap-0">
           <h3 className="font-semibold text-white">En {product?.place}</h3>
           <h2 className="font-semibold text-white">
@@ -112,9 +110,11 @@ export default function ProductDetail() {
           <input
             onChange={(e) => handleAmmount(e)}
             type="number"
+            placeholder="1"
             min="1"
             max={product?.stock}
-            className="py-2 w-1/2 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+            maxLength="4"
+            className="py-2 w-20 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
           />
 
           <div className="flex items-center mb-6 -mt-4 w-full">

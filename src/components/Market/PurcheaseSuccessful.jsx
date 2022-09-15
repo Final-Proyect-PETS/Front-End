@@ -7,6 +7,7 @@ export default function PurcheaseSuccessful() {
     <>
       <div id="sucess-pay" className="fixed">
         <NavBar />
+        < h1 className="pt-56">PAGO REALIZADO CON EXITO</h1>
       </div>
     </>
   );
