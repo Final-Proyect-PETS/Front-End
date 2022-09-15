@@ -855,3 +855,10 @@ export function resetProductDetails() {
     type: actions.CLEAR_PRODUCT_DETAIL,
   };
 }
+
+export function addCar (payload) {
+  return {
+    type: actions.ADD_CAR,
+    payload: payload
+  }
+}

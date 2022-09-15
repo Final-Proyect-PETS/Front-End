@@ -24,6 +24,7 @@ const initialState = {
   products: [],
   productDetail: [],
   query: "",
+  carrito: [],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -34,6 +35,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         switchRender: payload,
       };
+    case actions.ADD_CAR:
+      return {
+        ...state,
+        carrito: [...state.carrito, payload],
+      }
 
     //GET ALL
     case actions.GET_ALL_PETS:
