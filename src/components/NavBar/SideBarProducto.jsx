@@ -252,14 +252,19 @@ export default function SideBarProducto() {
         </button>
       ) : (
         <>
-          <button
-            onClick={() => setShowSidebar(!showSidebar)}
-            className="fixed  z-30 flex items-center rounded-lg  cursor-pointer right-2 top-40 lg:right-56 hover:bg-yellow-500"
-            width="40"
-            height="40"
-          >
-            <img src={cart} alt="narnia" />
-          </button>
+          <Link to="/market/cart">
+            <button
+              // onClick={() => setShowSidebar(!showSidebar)}
+              className="fixed  z-30 flex items-center rounded-lg  cursor-pointer right-2 top-40 lg:right-56 hover:bg-yellow-500"
+              width="40"
+              height="40"
+            >
+              <img src={cart} alt="narnia" />
+            </button>
+          </Link>
+
+
+          
           <Link to="/petregister">
             <img
               src={add}
