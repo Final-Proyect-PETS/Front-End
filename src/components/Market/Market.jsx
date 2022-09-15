@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import Paginate from "./Paginate";
 import { useState } from "react";
 import MarketSideBar from "./MarketSideBar";
+import SideBarProducto from "../NavBar/SideBarProducto";
 
 export default function Market() {
   const dispatch = useDispatch();
@@ -50,11 +51,10 @@ export default function Market() {
   return (
     <section className="flex flex-col h-full">
       <NavBar />
+      <SideBarProducto />
       <div className="mt-14 flex w-screen h-screen justify-center">
         <div className="w-1/4">
-          <MarketSideBar
-            setCurrentPage={setCurrentPage}
-          />
+          <MarketSideBar setCurrentPage={setCurrentPage} />
         </div>
         <div className="w-3/4 flex flex-col gap-10">
           <div className="flex bg-red-200 h-screen pt-24 gap-10 flex-wrap">

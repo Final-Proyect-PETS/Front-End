@@ -36,6 +36,7 @@ export const ADOPT_EMAIL = "ADOPT_EMAIL";
 //PAYMENT -------------------
 export const PAYMENT_MP = "PAYMENT_MP";
 export const PAYMENT_MERP = "PAYMENT_MERP";//DEMARKET
+export const PAYMENT_CART = "PAYMENT_CART";//DEMARKET
 //INTERESTED_USERS
 export const INTERESTED_USERS = "INTERESTED_USERS";
 

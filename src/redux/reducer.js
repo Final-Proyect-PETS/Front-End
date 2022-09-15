@@ -197,6 +197,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         paymentmer: payload,
       };
+    case actions.PAYMENT_CART:
+      return {
+        ...state,
+        paymentmer: payload,//este puede ser algun drama
+      };
 
 
 
