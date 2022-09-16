@@ -21,7 +21,7 @@ export default function ProductDetail() {
   }, [dispatch]);
 
   const product = useSelector((state) => state.productDetail);
-  const userOwner = useSelector((state) => state.productDetail.user);
+
   const carrr = useSelector((state) => state.carrito);
 
   //PARTE DE PAGO---------------------
@@ -29,15 +29,7 @@ export default function ProductDetail() {
   const [input, setInput] = useState(1);
   const [generating0, setGenerating0] = useState(false);
   const [carrito, setCarrito] = useState({});
-  const objDataMail = {
-          money:product.price,
-          first_name: user.first_name,
-          second_name: user.last_name,
-          logUser: userOwner,
-          thing: product.name,
-          logUserEmail: user.email
-  }
-console.log(objDataMail)
+
   function handleAmmount(e) {
     console.log("click");
     console.log(e.target.value, "input value");
@@ -63,7 +55,7 @@ console.log(objDataMail)
     // });
     if (product?.price && Number(product?.price) > 0) {
       setGenerating0(true);
-      dispatch(paymentMerp(user._id, product._id, input, objDataMail))
+      dispatch(paymentMerp(user._id, product._id, input))
         .then((payment) => {
           console.log(payment, "PAYMENT");
           const script = document.createElement("script");
@@ -101,9 +93,6 @@ console.log(objDataMail)
       );
     }
   }
-  function log(){
-    console.log(objDataMail)
-  }
   //----------------------------------
   return Object.keys(product).length ? (
     <section className="flex flex-col h-screen items-center justify-between">
@@ -111,7 +100,6 @@ console.log(objDataMail)
       <div className="m-32 flex flex-col lg:flex lg:flex-row w-full lg:w-2/3 h-full lg:h-96 bg-yellow-800 rounded-lg ring-2 ring-yellow-600">
         <div className="w-full lg:w-2/3 flex flex-col items-center lg:flex lg:flex-row">
           <div className="w-1/2 flex justify-center items-center">
-    
             <img src={product?.image} alt="" className="object-cover" />
           </div>
           <div className="w-1/2 h-full gap-6 lg:gap-0 flex flex-col items-center justify-around">
