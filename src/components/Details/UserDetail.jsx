@@ -305,6 +305,14 @@ export default function UserDetail() {
                       className="ring-[#f19d3d] ring-2 h-36  w-36 lg:h-60 lg:w-96  rounded-xl"
                     />
                   ) : null}
+              <button
+                onClick={() => {
+                  onClick();
+                }}
+                className="py-2 px-4 mt-5 bg-yellow-600 hover:bg-yellow-300 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+              >
+                Más información
+              </button>
                 </div>
               </div>
             </div>
@@ -313,56 +321,40 @@ export default function UserDetail() {
           <div className="h-1/3 pt-5 flex">
             <div className="w-full flex justify-center items-center mt-10">
               {loggedUser._id !== userDetail._id ? (
-                <button
-                  onClick={() => chat()}
-                  className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-                >
-                  Enviar mensaje
-                </button>
+                <div className="flex flex-row items-center justify-center mb-5">
+                  <button
+                    className="py-2 px-4 m-1 bg-yellow-600 hover:bg-green-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+                    onClick={() => chat()}
+                  >
+                    Enviar mensaje
+                  </button>
+                  <Link to={`/reportuser`}>
+                    <button className="py-2 px-4 m-1 bg-yellow-600 hover:bg-red-600 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                      Denunciar
+                    </button>
+                  </Link>
+                </div>
               ) : (
                 <></>
               )}
-              <button
-                onClick={() => {
-                  onClick();
-                }}
-                className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
-              >
-                Más información
-              </button>
+
               {loggedUser?._id === userDetail?._id ? (
-                <>
+                <div className="flex flex-row items-center justify-center mb-5">
                   <Link to="/updateuser">
-                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                    <button className="py-2 px-4 m-1 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
                       ✏️Editar Perfil
                     </button>
                   </Link>
-                  <Link to="/interestedtraders">
-                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                      Traspaso de mascotas
-                    </button>
-                  </Link>
-                  <Link to="/petregister">
-                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                      Crear mascota
-                    </button>
-                  </Link>
+
                   <Link to="/market/create">
-                    <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                      Crear articulo
+                    <button className="py-2 px-4 m-1 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                      Vender un producto
                     </button>
                   </Link>
-                </>
+                </div>
               ) : (
                 false
               )}
-              {loggedUser?._id !== userDetail?._id ? (
-                <Link to={`/reportuser`}>
-                  <button className="py-2 mt-5 ml-5 px-4 bg-yellow-600 hover:bg-yellow-900 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-                    Denunciar
-                  </button>
-                </Link>
-              ) : null}
             </div>
             {loggedUser?.isAdmin && !userDetail?.isAdmin ? (
               <button
@@ -414,6 +406,22 @@ export default function UserDetail() {
             id="editPet"
             className="flex flex-col lg:flex-row place-content-center"
           >
+            {loggedUser?._id === userDetail?._id ? (
+              <div className="flex flex-col justify-center items-center p-2">
+                <Link to="/interestedtraders">
+                  <button className="py-2 gap-1 px-4 bg-yellow-900 hover:bg-green-600 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                    Traspaso de mascotas
+                  </button>
+                </Link>
+                <Link to="/petregister">
+                  <button className="py-2 mt-2 px-4 bg-yellow-900 hover:bg-green-600 focus:ring-yellow-900 focus:ring-offset-yellow-200 text-white w-30 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
+                    Crear mascota
+                  </button>
+                </Link>
+              </div>
+            ) : (
+              false
+            )}
             {userDetail?.pets?.length ? (
               userDetail?.pets.map((pets) => (
                 <OwnedPet
@@ -437,6 +445,7 @@ export default function UserDetail() {
             )}
           </div>
         </div>
+
         <FooterComponent />
       </>
     );
