@@ -66,6 +66,8 @@ export default function ProductCard({
             <h5>
               {stock > 1
                 ? "Quedan " + stock + " unidades disponibles!"
+                : stock <= 0
+                ? "Sin unidades disponibles"
                 : "Queda solo " + stock + " unidad disponible!"}
             </h5>
             {/* <img src={donator} className="ml-1 h-6 w-6" alt="" /> */}
