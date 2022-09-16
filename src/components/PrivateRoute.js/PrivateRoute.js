@@ -10,6 +10,7 @@ const PrivateRoutes = () => {
 
   let idd = { id: id ? true : false };
 
+  
   const patternId = /^[0-9a-fA-F]{24}$/.test(id)
 
   const pattern = /^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-\+\/=]*)/gi.test(tokenn)
