@@ -63,6 +63,7 @@ export default function PetCard({
 
     dispatch(likePet(nameLike));
   }
+
   //hover quien te gusta ------ POSIBLE FALLO DE RENDIMIENTO-
 
   //likes--hasta aca , casi te vas
@@ -80,7 +81,7 @@ export default function PetCard({
               {namePet?.length > 15 ? `${namePet.slice(0, 15)}...` : namePet}
             </h5>
             <h5 class=" font-semibold text-sm lg:text-xl ml-2 tracking-tight text-gray-900 dark:text-white">
-              {place?.length > 40 ? place.slice(0, 40) : place}
+              {place?.length > 40 ? `${place.slice(0, 40)}...` : place}
             </h5>
             <div className="flex">
               <span className="font-normal ml-2  text-sm text-gray-700 dark:text-gray-400">
