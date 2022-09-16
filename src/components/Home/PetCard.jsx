@@ -80,7 +80,7 @@ export default function PetCard({
               {namePet?.length > 15 ? `${namePet.slice(0, 15)}...` : namePet}
             </h5>
             <h5 class=" font-semibold text-sm lg:text-xl ml-2 tracking-tight text-gray-900 dark:text-white">
-              {place}
+              {place?.length > 40 ? place.slice(0, 40) : place}
             </h5>
             <div className="flex">
               <span className="font-normal ml-2  text-sm text-gray-700 dark:text-gray-400">
@@ -107,11 +107,12 @@ export default function PetCard({
                 likes?.length > 1
                   ? likes?.length === 2
                     ? `A ${likes[0]} y ${likes[1]} les gusta esto...`
-                    : `A   ${likes.slice(0, 2).reverse()} y ${likes.length - 2
-                    } mas les gusta esto...`
+                    : `A   ${likes.slice(0, 2).reverse()} y ${
+                        likes.length - 2
+                      } mas les gusta esto...`
                   : likes?.length === 1
-                    ? `A ${likes[0]} le gusta esto`
-                    : "Me gusta"
+                  ? `A ${likes[0]} le gusta esto`
+                  : "Me gusta"
               }
               placement="bottom"
             >
