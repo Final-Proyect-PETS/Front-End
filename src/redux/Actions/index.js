@@ -361,7 +361,7 @@ export function paymentMp(idDonor, amountDonation) {
     }
   };
 }
-export function paymentMerp(idBuyer, idProduct, quantity) {
+export function paymentMerp(idBuyer, idProduct, quantity, objDataMail) {
   //idProduct=
   console.log(idBuyer, idProduct, quantity);
   return async function (dispatch) {
@@ -370,7 +370,9 @@ export function paymentMerp(idBuyer, idProduct, quantity) {
         `https://happytails2.herokuapp.com/linkpayment/market/${idBuyer}/${idProduct}/${quantity}`
       );
       console.log(json.data, "DATA");
-
+         await axios.post(
+          `https://happytails2.herokuapp.com/email/sendEmailBuy`, objDataMail
+        )
       return dispatch({
         type: actions.PAYMENT_MERP,
         payload: json.data,
