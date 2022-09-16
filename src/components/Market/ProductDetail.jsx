@@ -111,7 +111,11 @@ export default function ProductDetail() {
             </h1>
             <h2 className="font-semibold text-white">{product?.description}</h2>
             <h3 className="font-semibold text-gray-400">
-              {product?.stock} unidades disponibles.
+            {product?.stock > 1
+                ? "Quedan " + product?.stock + " unidades disponibles!"
+                : product?.stock <= 0
+                ? "Sin unidades disponibles"
+                : "Queda solo " + product?.stock + " unidad disponible!"}
             </h3>
           </div>
         </div>
