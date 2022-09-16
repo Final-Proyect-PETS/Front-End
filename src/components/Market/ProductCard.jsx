@@ -80,7 +80,7 @@ export default function ProductCard({
 
         {/* imagencarrusel */}
       </div>
-      <div className="flex flex-col justify-between h-10 w-20 m-1  lg:m-4">
+      <div className="flex flex-col justify-between items-center h-10 w-20 m-1  lg:mt-5">
         <Tooltip
           content="Compartir"
           trigger="hover"
