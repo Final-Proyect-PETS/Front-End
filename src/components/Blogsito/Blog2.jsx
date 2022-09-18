@@ -143,7 +143,7 @@ export default function Blog2() {
                         }
                         hashtag={"#happytails"}
                       >
-                        <FacebookIcon size={40} className="rounded-full"/>
+                        <FacebookIcon size={40} className="rounded-full" />
                       </FacebookShareButton>
                     </div>
                     <div className="rounded-lg h-16 w-16 flex items-center justify-center overflow-hidden">
@@ -151,7 +151,7 @@ export default function Blog2() {
                         subject="Miren este blog de Happy Tails, me ayudo mucho!"
                         body={`https://www.happytails.vercel.app/blog/1`}
                       >
-                        <EmailIcon size={40} className="rounded-full"/>
+                        <EmailIcon size={40} className="rounded-full" />
                       </EmailShareButton>
                     </div>
                   </div>
@@ -162,7 +162,7 @@ export default function Blog2() {
                   <h2 className="text-white text-2xl font-semibold">
                     Más popular
                   </h2>
-                  <Link to={"/blog/2"}>
+                  <Link to={"/blog/1"}>
                     <div className="flex flex-col items-center gap-3">
                       <img src={cachita} alt="" />
                       <h1 className="font-semibold text-ls">
