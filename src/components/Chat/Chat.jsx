@@ -140,8 +140,7 @@ export default function Chat() {
               <Cabecera el={currentChat.members.filter((d) => d !== id)} />
               <div className="w-full flex-grow bg-white shadow-sm shadow-slate-500 overflow-y-scroll">
                 <div className="pr-1 h-96">
-                  {messages.length > 0
-                    ? messages.map((m) => (
+                  {messages.map((m) => (
                         <div ref={scrollRef}>
                           <Messages
                             message={m}
@@ -151,7 +150,7 @@ export default function Chat() {
                           />
                         </div>
                       ))
-                    : "MANU ACA PASO ALGO"}
+                    }
                 </div>
               </div>
 
