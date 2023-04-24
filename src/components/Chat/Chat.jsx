@@ -35,9 +35,8 @@ export default function Chat() {
   const id = localStorage.getItem("id");
 
   useEffect(() => {
-    socket.current = io("https://back-end-production-692d.up.railway.app");//
- 
-    
+    socket.current = io("https://back-end-production-692d.up.railway.app"); //
+
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -66,7 +65,8 @@ export default function Chat() {
     const getMessages = async () => {
       try {
         const res = await axios.get(
-          "back-end-production-692d.up.railway.app/home/message/" + currentChat?._id
+          "back-end-production-692d.up.railway.app/home/message/" +
+            currentChat?._id
         );
         setMessages(res.data);
       } catch (error) {
@@ -140,16 +140,18 @@ export default function Chat() {
               <Cabecera el={currentChat.members.filter((d) => d !== id)} />
               <div className="w-full flex-grow bg-white shadow-sm shadow-slate-500 overflow-y-scroll">
                 <div className="pr-1 h-96">
-                  {messages.map((m) => (
-                    <div ref={scrollRef}>
-                      <Messages
-                        message={m}
-                        own={m.sender === id}
-                        mio={id}
-                        el={m.sender !== id ? m.sender : false}
-                      />
-                    </div>
-                  ))}
+                  {messages.length > 0
+                    ? messages.map((m) => (
+                        <div ref={scrollRef}>
+                          <Messages
+                            message={m}
+                            own={m.sender === id}
+                            mio={id}
+                            el={m.sender !== id ? m.sender : false}
+                          />
+                        </div>
+                      ))
+                    : "MANU ACA PASO ALGO"}
                 </div>
               </div>
 
