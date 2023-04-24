@@ -65,7 +65,7 @@ export default function Chat() {
     const getMessages = async () => {
       try {
         const res = await axios.get(
-          "back-end-production-692d.up.railway.app/home/message/" +
+          "https://back-end-production-692d.up.railway.app/home/message/" +
             currentChat?._id
         );
         setMessages(res.data);
