@@ -12,7 +12,7 @@ export function switchRenderAction(input) {
 export function getAllUsers() {
   return async (dispatch) => {
     return await axios
-      .get("https://back-end-production-692d.up.railway.app/home/users")
+      .get("https://happytails-6785.onrender.com/home/users")
       .then((json) =>
         dispatch({ type: actions.GET_ALL_USERS, payload: json.data })
       )
@@ -22,7 +22,7 @@ export function getAllUsers() {
 export function getAllPets() {
   return async (dispatch) => {
     return await axios
-      .get("https://back-end-production-692d.up.railway.app/home/pets")
+      .get("https://happytails-6785.onrender.com/home/pets")
       .then((json) =>
         dispatch({ type: actions.GET_ALL_PETS, payload: json.data })
       )
@@ -33,7 +33,7 @@ export function getAllPets() {
 export function getUserDetail(id) {
   return async (dispatch) => {
     return await axios
-      .get(`https://back-end-production-692d.up.railway.app/home/users/${id}`)
+      .get(`https://happytails-6785.onrender.com/home/users/${id}`)
       .then((json) =>
         dispatch({ type: actions.GET_USER_DETAIL, payload: json.data })
       )
@@ -43,7 +43,7 @@ export function getUserDetail(id) {
 export function getPetDetail(id) {
   return async (dispatch) => {
     return await axios
-      .get(`https://back-end-production-692d.up.railway.app/home/pets/${id}`)
+      .get(`https://happytails-6785.onrender.com/home/pets/${id}`)
       .then((json) =>
         dispatch({ type: actions.GET_PET_DETAIL, payload: json.data })
       )
@@ -55,7 +55,7 @@ export function getUserByName(name) {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        "https://back-end-production-692d.up.railway.app/home/users?name=" + name
+        "https://happytails-6785.onrender.com/home/users?name=" + name
       );
       return dispatch({
         type: actions.GET_USER_BY_NAME,
@@ -70,7 +70,7 @@ export function getPetByName(name) {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        "https://back-end-production-692d.up.railway.app/home/pets?name=" + name
+        "https://happytails-6785.onrender.com/home/pets?name=" + name
       );
       return dispatch({
         type: actions.GET_PET_BY_NAME,
@@ -86,7 +86,7 @@ export function postPet(id, payload) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        `https://back-end-production-692d.up.railway.app/home/pets/${id}`,
+        `https://happytails-6785.onrender.com/home/pets/${id}`,
         payload
       );
       dispatch({
@@ -104,7 +104,7 @@ export function postUser(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        `https://back-end-production-692d.up.railway.app/register`,
+        `https://happytails-6785.onrender.com/register`,
         payload
       );
       return dispatch({
@@ -121,7 +121,7 @@ export function postImage(archivo) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        `https://back-end-production-692d.up.railway.app/home/images`,
+        `https://happytails-6785.onrender.com/home/images`,
         archivo
       );
       return dispatch({
@@ -152,7 +152,7 @@ export function patchUsuer(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/home/users/${payload.id}`,
+        `https://happytails-6785.onrender.com/home/users/${payload.id}`,
         payload
       );
       return dispatch({
@@ -169,7 +169,7 @@ export function patchPet(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/home/pets/${payload.id}`,
+        `https://happytails-6785.onrender.com/home/pets/${payload.id}`,
         payload
       );
       dispatch({
@@ -186,7 +186,7 @@ export function patchPet(payload) {
 export function filterByQuery(filterParams) {
   return async function (dispatch) {
     let json = await axios.get(
-      `https://back-end-production-692d.up.railway.app/home/filters?age=${filterParams.age}&creation_date=${filterParams.creation_date}&vaccinated=${filterParams.vaccinated}&castrated=${filterParams.castrated}&location=${filterParams.location}&pet_type=${filterParams.pet_type}&pet_size=${filterParams.pet_size}&gender=${filterParams.gender}&is_adopted=${filterParams.is_adopted}`
+      `https://happytails-6785.onrender.com/home/filters?age=${filterParams.age}&creation_date=${filterParams.creation_date}&vaccinated=${filterParams.vaccinated}&castrated=${filterParams.castrated}&location=${filterParams.location}&pet_type=${filterParams.pet_type}&pet_size=${filterParams.pet_size}&gender=${filterParams.gender}&is_adopted=${filterParams.is_adopted}`
     );
     return dispatch({
       type: actions.FILTER_BY_QUERY,
@@ -200,7 +200,7 @@ export function userLogin(payload) {
   return async function (dispatch) {
     try {
       await axios
-        .post("https://back-end-production-692d.up.railway.app/login", payload)
+        .post("https://happytails-6785.onrender.com/login", payload)
         .then((response) => {
           const token = response.data.data.token;
           const id = response.data.id.id;
@@ -225,7 +225,7 @@ export function userLoginGoogle(payload) {
   return async function (dispatch) {
     try {
       let json = await axios
-        .post("https://back-end-production-692d.up.railway.app/logingoogle", payload)
+        .post("https://happytails-6785.onrender.com/logingoogle", payload)
         .then((response) => {
           const token = response.data.data.token;
           const id = response.data.id.id;
@@ -250,7 +250,7 @@ export function getUserProfile(id) {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        `https://back-end-production-692d.up.railway.app/home/users/${id}`
+        `https://happytails-6785.onrender.com/home/users/${id}`
       );
       return dispatch({
         type: actions.GET_USER_PROFILE,
@@ -266,7 +266,7 @@ export function forgotPassword(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        "https://back-end-production-692d.up.railway.app/forgotpassword",
+        "https://happytails-6785.onrender.com/forgotpassword",
         payload
       );
       return dispatch({
@@ -283,7 +283,7 @@ export function resetPassword(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/resetpassword/${payload.id}/${payload.auth}`,
+        `https://happytails-6785.onrender.com/resetpassword/${payload.id}/${payload.auth}`,
         payload
       );
       return dispatch({
@@ -300,7 +300,7 @@ export function tradePet(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/home/adopt`,
+        `https://happytails-6785.onrender.com/home/adopt`,
         payload
       );
       return dispatch({
@@ -317,7 +317,7 @@ export function patchInterestedUsers(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/home/interestedUsers`,
+        `https://happytails-6785.onrender.com/home/interestedUsers`,
         payload
       );
       dispatch({
@@ -335,7 +335,7 @@ export function patchLikes(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/home/likes`,
+        `https://happytails-6785.onrender.com/home/likes`,
         payload
       );
       dispatch({ type: actions.PATCH_LIKES, payload: json.data });
@@ -350,7 +350,7 @@ export function paymentMp(idDonor, amountDonation) {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        `https://back-end-production-692d.up.railway.app/linkpayment/${idDonor}/${amountDonation}`
+        `https://happytails-6785.onrender.com/linkpayment/${idDonor}/${amountDonation}`
       );
       return dispatch({
         type: actions.PAYMENT_MP,
@@ -367,7 +367,7 @@ export function paymentMerp(idBuyer, idProduct, quantity) {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        `https://back-end-production-692d.up.railway.app/linkpayment/market/${idBuyer}/${idProduct}/${quantity}`
+        `https://happytails-6785.onrender.com/linkpayment/market/${idBuyer}/${idProduct}/${quantity}`
       );
       console.log(json.data, "DATA");
 
@@ -390,7 +390,7 @@ export function paymentCart(idBuyer, pro) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        `https://back-end-production-692d.up.railway.app/linkpayment/${idBuyer}`,
+        `https://happytails-6785.onrender.com/linkpayment/${idBuyer}`,
         pro
       );
 
@@ -425,7 +425,7 @@ export function chatWithUser(losdosid) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        "https://back-end-production-692d.up.railway.app/home/conversations/",
+        "https://happytails-6785.onrender.com/home/conversations/",
         losdosid
       );
       return dispatch({
@@ -442,7 +442,7 @@ export function getConversations(id) {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        "https://back-end-production-692d.up.railway.app/home/conversations/" + id
+        "https://happytails-6785.onrender.com/home/conversations/" + id
       );
       return dispatch({
         type: actions.GET_CONVERSATIONS,
@@ -458,7 +458,7 @@ export function getMessages(iddd) {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        "https://back-end-production-692d.up.railway.app/home/message/" + iddd
+        "https://happytails-6785.onrender.com/home/message/" + iddd
       );
       return dispatch({
         type: actions.GET_MESSAGES,
@@ -474,7 +474,7 @@ export function sendMessage(message) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        "https://back-end-production-692d.up.railway.app/home/message/",
+        "https://happytails-6785.onrender.com/home/message/",
         message
       );
       return dispatch({
@@ -505,7 +505,7 @@ export function viewing(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/home/viewing`,
+        `https://happytails-6785.onrender.com/home/viewing`,
         payload
       );
       return dispatch({
@@ -522,7 +522,7 @@ export function viewingLike(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/home/viewinglike`,
+        `https://happytails-6785.onrender.com/home/viewinglike`,
         payload
       );
       return dispatch({
@@ -539,7 +539,7 @@ export function likePet(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/home/likepets`,
+        `https://happytails-6785.onrender.com/home/likepets`,
         payload
       );
       dispatch({
@@ -557,7 +557,7 @@ export function reportPet(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        `https://back-end-production-692d.up.railway.app/home/reportpet`,
+        `https://happytails-6785.onrender.com/home/reportpet`,
         payload
       );
       dispatch({
@@ -575,7 +575,7 @@ export function reportUser(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        `https://back-end-production-692d.up.railway.app/home/reportuser`,
+        `https://happytails-6785.onrender.com/home/reportuser`,
         payload
       );
       dispatch({
@@ -593,7 +593,7 @@ export function getReportedPets() {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        `https://back-end-production-692d.up.railway.app/home/reportpet`
+        `https://happytails-6785.onrender.com/home/reportpet`
       );
       return dispatch({
         type: actions.GET_REPORTED_PETS,
@@ -609,7 +609,7 @@ export function getReportedUsers() {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        `https://back-end-production-692d.up.railway.app/home/reportuser`
+        `https://happytails-6785.onrender.com/home/reportuser`
       );
       return dispatch({
         type: actions.GET_REPORTED_USERS,
@@ -625,7 +625,7 @@ export function handlePet(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/handle/pet/`,
+        `https://happytails-6785.onrender.com/handle/pet/`,
         payload
       );
       dispatch({
@@ -643,7 +643,7 @@ export function handleUser(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/handle/user/`,
+        `https://happytails-6785.onrender.com/handle/user/`,
         payload
       );
       dispatch({
@@ -661,7 +661,7 @@ export function handlePetReport(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/handle/petreport/`,
+        `https://happytails-6785.onrender.com/handle/petreport/`,
         payload
       );
       dispatch({
@@ -679,7 +679,7 @@ export function handleUserReport(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/handle/userreport/`,
+        `https://happytails-6785.onrender.com/handle/userreport/`,
         payload
       );
       dispatch({
@@ -697,7 +697,7 @@ export function handleAdmin(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/handle/admin/`,
+        `https://happytails-6785.onrender.com/handle/admin/`,
         payload
       );
       dispatch({
@@ -715,7 +715,7 @@ export function getDeletedPets() {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        `https://back-end-production-692d.up.railway.app/handle/deletedpets`
+        `https://happytails-6785.onrender.com/handle/deletedpets`
       );
       return dispatch({
         type: actions.GET_DELETED_PETS,
@@ -731,7 +731,7 @@ export function getDeletedUsers() {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        `https://back-end-production-692d.up.railway.app/handle/deletedusers`
+        `https://happytails-6785.onrender.com/handle/deletedusers`
       );
       return dispatch({
         type: actions.GET_DELETED_USERS,
@@ -747,7 +747,7 @@ export function handleUserRestore(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/handle/deleteduser/`,
+        `https://happytails-6785.onrender.com/handle/deleteduser/`,
         payload
       );
       dispatch({
@@ -765,7 +765,7 @@ export function handleUserReportRestore(payload) {
   return async function (dispatch) {
     try {
       let json = await axios.patch(
-        `https://back-end-production-692d.up.railway.app/handle/userreported/`,
+        `https://happytails-6785.onrender.com/handle/userreported/`,
         payload
       );
       dispatch({
@@ -783,7 +783,7 @@ export function getUserReportsSolved() {
   return async function (dispatch) {
     try {
       let json = await axios.get(
-        `https://back-end-production-692d.up.railway.app/handle/userreports`
+        `https://happytails-6785.onrender.com/handle/userreports`
       );
       return dispatch({
         type: actions.GET_USER_REPORTS_SOLVED,
@@ -799,7 +799,7 @@ export function createProduct(id, payload) {
   return async function (dispatch) {
     try {
       let json = await axios.post(
-        `https://back-end-production-692d.up.railway.app/home/product/${id}`,
+        `https://happytails-6785.onrender.com/home/product/${id}`,
         payload
       );
 
@@ -818,7 +818,7 @@ export function createProduct(id, payload) {
 export function getAllProducts() {
   return async (dispatch) => {
     return await axios
-      .get("https://back-end-production-692d.up.railway.app/home/products")
+      .get("https://happytails-6785.onrender.com/home/products")
       .then((json) =>
         dispatch({ type: actions.GET_ALL_PRODUCTS, payload: json.data })
       )
@@ -829,7 +829,7 @@ export function getAllProducts() {
 export function getProductDetail(id) {
   return async (dispatch) => {
     return await axios
-      .get(`https://back-end-production-692d.up.railway.app/home/products/${id}`)
+      .get(`https://happytails-6785.onrender.com/home/products/${id}`)
       .then((json) =>
         dispatch({ type: actions.GET_PRODUCT_DETAIL, payload: json.data })
       )
@@ -841,7 +841,7 @@ export function getProductByName(name) {
   return async (dispatch) => {
     try {
       let json = await axios.get(
-        "https://back-end-production-692d.up.railway.app/home/products?name=" + name
+        "https://happytails-6785.onrender.com/home/products?name=" + name
       );
       return dispatch({
         type: actions.GET_PRODUCT_NAME,
@@ -876,7 +876,7 @@ export function delProductCart(payload) {
 export function filtrosMarket(filterParamsMarket) {
   return async function (dispatch) {
     let json = await axios.get(
-      `https://back-end-production-692d.up.railway.app/home/productsFilters?type=${filterParamsMarket.type}&category=${filterParamsMarket.category}&priceMin=${filterParamsMarket.priceMin}&priceMax=${filterParamsMarket.priceMax}`
+      `https://happytails-6785.onrender.com/home/productsFilters?type=${filterParamsMarket.type}&category=${filterParamsMarket.category}&priceMin=${filterParamsMarket.priceMin}&priceMax=${filterParamsMarket.priceMax}`
     );
     return dispatch({
       type: actions.FILTROS_MARKET,

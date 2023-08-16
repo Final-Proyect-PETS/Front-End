@@ -26,7 +26,7 @@ export default function Chat() {
 
   const [arrivalMessage, setArrivalMessage] = useState(null);
 
-  const socket = useRef(io("https://back-end-production-692d.up.railway.app"));
+  const socket = useRef(io("https://happytails-6785.onrender.com"));
 
   const [currentChat, setCurrentChat] = useState(null);
 
@@ -35,7 +35,7 @@ export default function Chat() {
   const id = localStorage.getItem("id");
 
   useEffect(() => {
-    socket.current = io("https://back-end-production-692d.up.railway.app");
+    socket.current = io("https://happytails-6785.onrender.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -64,7 +64,7 @@ export default function Chat() {
     const getMessages = async () => {
       try {
         const res = await axios.get(
-          "https://back-end-production-692d.up.railway.app/home/message/" + currentChat?._id
+          "https://happytails-6785.onrender.com/home/message/" + currentChat?._id
         );
         setMessages(res.data);
       } catch (error) {
