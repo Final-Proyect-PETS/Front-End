@@ -35,7 +35,7 @@ export default function Chat() {
   const id = localStorage.getItem("id");
 
   useEffect(() => {
-    socket.current = io("https://happytails.adaptable.app"); //
+    socket.current = io("https://happytails-6785.onrender.com"); //
 
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
@@ -65,7 +65,7 @@ export default function Chat() {
     const getMessages = async () => {
       try {
         const res = await axios.get(
-          "https://happytails.adaptable.app/home/message/" +
+          "https://happytails-6785.onrender.com/home/message/" +
           currentChat?._id
         );
         setMessages(res.data);
